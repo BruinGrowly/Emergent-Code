@@ -1,0 +1,64 @@
+{
+    "filename": "master_calculator_fractal.py",
+    "docstring": "\"\"\"A calculator grown via Fractal Composition (LJPW).\"\"\"",
+    "archetype_queries": {
+        "wise_structure": {
+            "source": "django",
+            "criteria": "max_wisdom"
+        }
+    },
+    "required_components": {
+        "main": {
+            "intent": "A main block matching the semantic profile of a wise configuration file.",
+            "archetype": "wise_structure",
+            "candidates": [
+                "main_parser_simple",
+                "main_parser_robust"
+            ],
+            "minimum_profile": {
+                "W": 0.3
+            }
+        },
+        "secure_add": {
+            "intent": "A fractal addition function composed of Power, Justice, and Love.",
+            "composition": {
+                "core": "add_simple",
+                "guard": "validate_numeric",
+                "observer": "log_operation"
+            }
+        },
+        "subtract": {
+            "intent": "A robust subtraction function.",
+            "archetype": "wise_structure",
+            "candidates": [
+                "subtract_simple",
+                "subtract_robust"
+            ],
+            "minimum_profile": {
+                "J": 0.0
+            }
+        },
+        "multiply": {
+            "intent": "A simple multiplication function.",
+            "archetype": "wise_structure",
+            "candidates": [
+                "multiply_simple",
+                "multiply_robust"
+            ],
+            "minimum_profile": {
+                "P": 0.0
+            }
+        },
+        "divide": {
+            "intent": "A robust division function.",
+            "archetype": "wise_structure",
+            "candidates": [
+                "divide_robust",
+                "divide_simple"
+            ],
+            "minimum_profile": {
+                "J": 0.0
+            }
+        }
+    }
+}
