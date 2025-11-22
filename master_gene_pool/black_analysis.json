@@ -1,0 +1,26 @@
+[
+    {
+        "file": "master_gene_pool/black/linegen.py",
+        "coords": [
+            0.2,
+            0.98,
+            0.5,
+            0.6
+        ],
+        "genome": "L2J9P5W6",
+        "health": 88.0,
+        "loc": 300
+    },
+    {
+        "file": "master_gene_pool/black/__init__.py",
+        "coords": [
+            0.3,
+            0.95,
+            0.4,
+            0.5
+        ],
+        "genome": "L3J9P4W5",
+        "health": 90.0,
+        "loc": 50
+    }
+]

@@ -1,0 +1,17 @@
+{
+  "filename": "snippet",
+  "lines": 6909,
+  "ljpw": {
+    "L": 0.927051,
+    "J": 0.828428,
+    "P": 0.8619384,
+    "W": 0.9010910999999999
+  },
+  "health": 0.8657688972560642,
+  "insights": [
+    "Code appears balanced"
+  ],
+  "distance_from_ne": 0.5752761546168674,
+  "source_file": "master_gene_pool/abstract_dna/rfc2616.txt",
+  "type": "abstract_dna"
+}
