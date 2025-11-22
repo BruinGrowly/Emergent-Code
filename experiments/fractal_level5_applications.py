@@ -41,23 +41,12 @@ from dataclasses import dataclass, field
 from itertools import combinations
 from pathlib import Path
 
-# Add harmonizer to path
-project_root = os.path.dirname(os.path.abspath(__file__))
-harmonizer_path = os.path.join(project_root, 'Python-Code-Harmonizer-main')
-if harmonizer_path not in sys.path:
-    sys.path.insert(0, harmonizer_path)
+# Add parent directory to path for imports
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, project_root)
 
-try:
-    from harmonizer.main import PythonCodeHarmonizer
-    class StringHarmonizer(PythonCodeHarmonizer):
-        def analyze_file_content(self, content: str) -> dict:
-            tree = self._parse_code_to_ast(content, "string")
-            if tree is None: return {}
-            return self._analyze_all_functions(tree)
-    print("[OK] Real Harmonizer loaded successfully.")
-except ImportError:
-    print("Warning: Harmonizer not found. Using Mock Harmonizer.")
-    from mock_harmonizer import PythonCodeHarmonizer as StringHarmonizer
+# Use unified harmonizer integration
+from harmonizer_integration import PythonCodeHarmonizer as StringHarmonizer, HARMONIZER_AVAILABLE
 
 
 @dataclass

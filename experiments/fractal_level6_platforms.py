@@ -24,10 +24,11 @@ from typing import List, Dict, Optional, Tuple
 import itertools
 
 # Add parent directory to path for imports
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, project_root)
 
-# Mock harmonizer is available but not needed for this experiment
-print("Warning: Harmonizer not found. Using Mock Harmonizer.")
+# Use unified harmonizer integration
+from harmonizer_integration import PythonCodeHarmonizer as StringHarmonizer, HARMONIZER_AVAILABLE
 
 
 # ============================================================================
