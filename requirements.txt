@@ -25,9 +25,9 @@ numpy>=1.24.0,<2.0.0
 matplotlib>=3.7.0,<4.0.0
 scipy>=1.11.0,<2.0.0  # For composition rule calibration
 
+# Python Code Harmonizer dependencies
+astunparse>=1.6.3,<2.0.0  # Required for harmonizer AST processing
+tomli>=2.0.0,<3.0.0  # Required for harmonizer TOML parsing
+
 # Additional analysis tools (optional)
 # pandas>=2.0.0,<3.0.0
-
-# Note: Python Code Harmonizer is an external dependency
-# It should be cloned/installed separately in the project root
-# See HARMONIZER_SETUP.md for installation instructions
