@@ -20,35 +20,35 @@ This would prove: Composition is fractal across 3+ levels.
 """
 
 import math
-import sys
 import os
-from typing import Dict, List, Tuple, Optional, Set
+import sys
 from dataclasses import dataclass, field
 from itertools import combinations
+from typing import Dict, List, Optional, Tuple
 
 # Add parent directory to path for imports
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, project_root)
 
 # Use unified harmonizer integration
-from harmonizer_integration import PythonCodeHarmonizer as StringHarmonizer, HARMONIZER_AVAILABLE
 
 
 @dataclass
 class LJPWProfile:
     """Represents a 4D LJPW semantic profile."""
+
     L: float
     J: float
     P: float
     W: float
 
-    def distance_to(self, other: 'LJPWProfile') -> float:
+    def distance_to(self, other: "LJPWProfile") -> float:
         """Euclidean distance in 4D LJPW space."""
         return math.sqrt(
-            (self.L - other.L)**2 +
-            (self.J - other.J)**2 +
-            (self.P - other.P)**2 +
-            (self.W - other.W)**2
+            (self.L - other.L) ** 2
+            + (self.J - other.J) ** 2
+            + (self.P - other.P) ** 2
+            + (self.W - other.W) ** 2
         )
 
     def __repr__(self):
@@ -63,6 +63,7 @@ class ModuleStructure:
     At Level 3, classes are the atoms, and structural features define
     how they're organized into a coherent module.
     """
+
     name: str
     classes: List[str]  # The atomic components at this level
 
@@ -84,28 +85,46 @@ class ModuleStructure:
     def structural_complexity(self) -> int:
         """Count structural features present."""
         count = 0
-        if self.has_module_docstring: count += 1
-        if self.has_exports: count += 1
-        if self.has_type_hints: count += 1
-        if self.has_error_classes: count += 1
-        if self.has_constants: count += 1
-        if self.has_logger: count += 1
-        if self.has_tests: count += 1
-        if self.has_examples: count += 1
+        if self.has_module_docstring:
+            count += 1
+        if self.has_exports:
+            count += 1
+        if self.has_type_hints:
+            count += 1
+        if self.has_error_classes:
+            count += 1
+        if self.has_constants:
+            count += 1
+        if self.has_logger:
+            count += 1
+        if self.has_tests:
+            count += 1
+        if self.has_examples:
+            count += 1
         return count
 
     def __repr__(self):
         features = []
-        if self.has_module_docstring: features.append("docs")
-        if self.has_exports: features.append("exports")
-        if self.has_type_hints: features.append("types")
-        if self.has_error_classes: features.append("errors")
-        if self.has_constants: features.append("config")
-        if self.has_logger: features.append("logging")
-        if self.has_tests: features.append("tests")
-        if self.has_examples: features.append("examples")
+        if self.has_module_docstring:
+            features.append("docs")
+        if self.has_exports:
+            features.append("exports")
+        if self.has_type_hints:
+            features.append("types")
+        if self.has_error_classes:
+            features.append("errors")
+        if self.has_constants:
+            features.append("config")
+        if self.has_logger:
+            features.append("logging")
+        if self.has_tests:
+            features.append("tests")
+        if self.has_examples:
+            features.append("examples")
 
-        return f"Module({len(self.classes)} classes, {', '.join(features) if features else 'basic'})"
+        return (
+            f"Module({len(self.classes)} classes, {', '.join(features) if features else 'basic'})"
+        )
 
 
 # ==============================================================================
@@ -139,9 +158,8 @@ class SecureCalculator:
         result = a - b
         self.history.append(('subtract', a, b, result))
         return result
-'''
+''',
     },
-
     "SimpleCalculator": {
         "profile": LJPWProfile(L=0.3, J=0.3, P=0.7, W=0.4),
         "description": "Basic calculator without validation",
@@ -154,9 +172,8 @@ class SimpleCalculator:
 
     def subtract(self, a, b):
         return a - b
-'''
+''',
     },
-
     "CalculatorValidator": {
         "profile": LJPWProfile(L=0.4, J=0.95, P=0.3, W=0.6),
         "description": "Input validation utilities",
@@ -177,9 +194,8 @@ class CalculatorValidator:
         if value == 0:
             raise ValueError("Value cannot be zero")
         return True
-'''
+''',
     },
-
     "CalculatorLogger": {
         "profile": LJPWProfile(L=0.95, J=0.4, P=0.3, W=0.5),
         "description": "Logging and history tracking",
@@ -205,9 +221,8 @@ class CalculatorLogger:
     def get_history(self):
         """Retrieve operation history."""
         return self.history.copy()
-'''
+''',
     },
-
     "CalculatorConfig": {
         "profile": LJPWProfile(L=0.5, J=0.6, P=0.2, W=0.8),
         "description": "Configuration management",
@@ -230,7 +245,7 @@ class CalculatorConfig:
     def set(self, key, value):
         """Set configuration value."""
         self.settings[key] = value
-'''
+''',
     },
 }
 
@@ -238,6 +253,7 @@ class CalculatorConfig:
 # ==============================================================================
 # Module Composition Engine
 # ==============================================================================
+
 
 class ModuleComposer:
     """
@@ -255,78 +271,79 @@ class ModuleComposer:
         # Module docstring
         if structure.has_module_docstring:
             lines.append('"""')
-            lines.append(f'{structure.name} - A generated calculator module')
-            lines.append('')
+            lines.append(f"{structure.name} - A generated calculator module")
+            lines.append("")
             lines.append(f'This module provides: {", ".join(structure.classes)}')
             if structure.has_exports:
                 lines.append(f'Public API: {", ".join(structure.exports_list)}')
             lines.append('"""')
-            lines.append('')
+            lines.append("")
 
         # Imports
         if structure.has_type_hints:
-            lines.append('from typing import List, Dict, Optional, Union')
-            lines.append('')
+            lines.append("from typing import List, Dict, Optional, Union")
+            lines.append("")
 
         if structure.has_logger:
-            lines.append('import logging')
-            lines.append('')
+            lines.append("import logging")
+            lines.append("")
 
         # Module-level logger
         if structure.has_logger:
-            lines.append(f'logger = logging.getLogger(__name__)')
-            lines.append('logger.setLevel(logging.INFO)')
-            lines.append('')
+            lines.append("logger = logging.getLogger(__name__)")
+            lines.append("logger.setLevel(logging.INFO)")
+            lines.append("")
 
         # Module-level constants
         if structure.has_constants:
-            lines.append('# Module Configuration')
+            lines.append("# Module Configuration")
             for const in structure.constants_defined:
-                lines.append(f'{const} = None  # Define as needed')
-            lines.append('')
+                lines.append(f"{const} = None  # Define as needed")
+            lines.append("")
 
         # Custom exception classes
         if structure.has_error_classes:
-            lines.append('# Custom Exceptions')
+            lines.append("# Custom Exceptions")
             for exc_name in structure.custom_exceptions:
-                lines.append(f'class {exc_name}(Exception):')
+                lines.append(f"class {exc_name}(Exception):")
                 lines.append(f'    """Custom exception for {structure.name}."""')
-                lines.append('    pass')
-                lines.append('')
-            lines.append('')
+                lines.append("    pass")
+                lines.append("")
+            lines.append("")
 
         # Classes
         for class_name in structure.classes:
             if class_name in class_sources:
                 lines.append(class_sources[class_name].strip())
-                lines.append('')
-                lines.append('')
+                lines.append("")
+                lines.append("")
 
         # Exports
         if structure.has_exports:
-            lines.append('# Public API')
-            exports = ', '.join(f'"{e}"' for e in structure.exports_list)
-            lines.append(f'__all__ = [{exports}]')
-            lines.append('')
+            lines.append("# Public API")
+            exports = ", ".join(f'"{e}"' for e in structure.exports_list)
+            lines.append(f"__all__ = [{exports}]")
+            lines.append("")
 
         # Examples (as module-level code)
         if structure.has_examples:
-            lines.append('# Usage Examples')
-            lines.append('def example_usage():')
+            lines.append("# Usage Examples")
+            lines.append("def example_usage():")
             lines.append('    """Demonstrate module usage."""')
             if structure.classes:
                 first_class = structure.classes[0]
-                lines.append(f'    calc = {first_class}()')
-                lines.append('    result = calc.add(5, 3)')
+                lines.append(f"    calc = {first_class}()")
+                lines.append("    result = calc.add(5, 3)")
                 lines.append('    print(f"Result: {result}")')
-            lines.append('')
+            lines.append("")
 
-        return '\n'.join(lines)
+        return "\n".join(lines)
 
 
 # ==============================================================================
 # Level 3 Composition Rules
 # ==============================================================================
+
 
 class Level3CompositionRules:
     """
@@ -345,24 +362,22 @@ class Level3CompositionRules:
         # Calibration coefficients for module-level features
         self.coeffs = calibration or {
             # Module structural bonuses
-            'docstring_love': 0.15,  # Documentation aids usability
-            'docstring_wisdom': 0.10,  # Documentation aids understanding
-            'exports_love': 0.12,  # Clear API aids usability
-            'exports_wisdom': 0.08,  # Clear API aids structure
-            'type_hints_justice': 0.15,  # Type safety
-            'error_classes_justice': 0.12,  # Error handling
-            'constants_wisdom': 0.10,  # Configuration structure
-            'logger_love': 0.15,  # Observability
-            'tests_justice': 0.20,  # Correctness validation
-            'examples_love': 0.10,  # Usability demonstration
-
+            "docstring_love": 0.15,  # Documentation aids usability
+            "docstring_wisdom": 0.10,  # Documentation aids understanding
+            "exports_love": 0.12,  # Clear API aids usability
+            "exports_wisdom": 0.08,  # Clear API aids structure
+            "type_hints_justice": 0.15,  # Type safety
+            "error_classes_justice": 0.12,  # Error handling
+            "constants_wisdom": 0.10,  # Configuration structure
+            "logger_love": 0.15,  # Observability
+            "tests_justice": 0.20,  # Correctness validation
+            "examples_love": 0.10,  # Usability demonstration
             # Diversity bonuses
-            'class_diversity_wisdom': 0.12,  # 3+ classes
-            'structural_diversity_wisdom': 0.10,  # 4+ features
-
+            "class_diversity_wisdom": 0.12,  # 3+ classes
+            "structural_diversity_wisdom": 0.10,  # 4+ features
             # Harmony bonuses
-            'harmony_boost': 0.05,  # 3+ major features
-            'full_module_boost': 0.08,  # 5+ features
+            "harmony_boost": 0.05,  # 3+ major features
+            "full_module_boost": 0.08,  # 5+ features
         }
 
     def predict_profile(self, structure: ModuleStructure) -> LJPWProfile:
@@ -376,55 +391,57 @@ class Level3CompositionRules:
 
         # Module structural bonuses
         if structure.has_module_docstring:
-            L = min(L + self.coeffs['docstring_love'], 1.0)
-            W = min(W + self.coeffs['docstring_wisdom'], 1.0)
+            L = min(L + self.coeffs["docstring_love"], 1.0)
+            W = min(W + self.coeffs["docstring_wisdom"], 1.0)
 
         if structure.has_exports:
-            L = min(L + self.coeffs['exports_love'], 1.0)
-            W = min(W + self.coeffs['exports_wisdom'], 1.0)
+            L = min(L + self.coeffs["exports_love"], 1.0)
+            W = min(W + self.coeffs["exports_wisdom"], 1.0)
 
         if structure.has_type_hints:
-            J = min(J + self.coeffs['type_hints_justice'], 1.0)
+            J = min(J + self.coeffs["type_hints_justice"], 1.0)
 
         if structure.has_error_classes:
-            J = min(J + self.coeffs['error_classes_justice'], 1.0)
+            J = min(J + self.coeffs["error_classes_justice"], 1.0)
 
         if structure.has_constants:
-            W = min(W + self.coeffs['constants_wisdom'], 1.0)
+            W = min(W + self.coeffs["constants_wisdom"], 1.0)
 
         if structure.has_logger:
-            L = min(L + self.coeffs['logger_love'], 1.0)
+            L = min(L + self.coeffs["logger_love"], 1.0)
 
         if structure.has_tests:
-            J = min(J + self.coeffs['tests_justice'], 1.0)
+            J = min(J + self.coeffs["tests_justice"], 1.0)
 
         if structure.has_examples:
-            L = min(L + self.coeffs['examples_love'], 1.0)
+            L = min(L + self.coeffs["examples_love"], 1.0)
 
         # Diversity bonuses
         if len(structure.classes) >= 3:
-            W = min(W + self.coeffs['class_diversity_wisdom'], 1.0)
+            W = min(W + self.coeffs["class_diversity_wisdom"], 1.0)
 
         if structure.structural_complexity() >= 4:
-            W = min(W + self.coeffs['structural_diversity_wisdom'], 1.0)
+            W = min(W + self.coeffs["structural_diversity_wisdom"], 1.0)
 
         # Harmony effects
-        major_features = sum([
-            structure.has_module_docstring,
-            structure.has_exports,
-            structure.has_logger,
-            structure.has_tests,
-            structure.has_error_classes
-        ])
+        major_features = sum(
+            [
+                structure.has_module_docstring,
+                structure.has_exports,
+                structure.has_logger,
+                structure.has_tests,
+                structure.has_error_classes,
+            ]
+        )
 
         if major_features >= 3:
-            boost = self.coeffs['harmony_boost']
+            boost = self.coeffs["harmony_boost"]
             L = min(L + boost, 1.0)
             J = min(J + boost, 1.0)
             W = min(W + boost, 1.0)
 
         if major_features >= 5:
-            boost = self.coeffs['full_module_boost']
+            boost = self.coeffs["full_module_boost"]
             L = min(L + boost, 1.0)
             J = min(J + boost, 1.0)
             P = min(P + boost, 1.0)
@@ -460,6 +477,7 @@ class Level3CompositionRules:
 # Level 3 Discovery Engine
 # ==============================================================================
 
+
 class ModuleDiscoveryEngine:
     """
     Discovers optimal module structures for target LJPW profiles.
@@ -471,20 +489,24 @@ class ModuleDiscoveryEngine:
     - Rank by distance to target
     """
 
-    def __init__(self,
-                 class_profiles: Dict[str, LJPWProfile],
-                 rule_engine: Level3CompositionRules,
-                 available_classes: List[str]):
+    def __init__(
+        self,
+        class_profiles: Dict[str, LJPWProfile],
+        rule_engine: Level3CompositionRules,
+        available_classes: List[str],
+    ):
         self.class_profiles = class_profiles
         self.rule_engine = rule_engine
         self.available_classes = available_classes
 
-    def search(self,
-               target_profile: LJPWProfile,
-               min_classes: int = 2,
-               max_classes: int = 4,
-               allow_structural_features: bool = True,
-               top_k: int = 5) -> List[Tuple[ModuleStructure, LJPWProfile, float]]:
+    def search(
+        self,
+        target_profile: LJPWProfile,
+        min_classes: int = 2,
+        max_classes: int = 4,
+        allow_structural_features: bool = True,
+        top_k: int = 5,
+    ) -> List[Tuple[ModuleStructure, LJPWProfile, float]]:
         """
         Search for module structures matching target profile.
         """
@@ -527,51 +549,59 @@ class ModuleDiscoveryEngine:
         variants.append(ModuleStructure(name="BasicModule", classes=classes))
 
         # Documentation focused
-        variants.append(ModuleStructure(
-            name="DocumentedModule",
-            classes=classes,
-            has_module_docstring=True,
-            has_examples=True,
-            exports_list=classes
-        ))
+        variants.append(
+            ModuleStructure(
+                name="DocumentedModule",
+                classes=classes,
+                has_module_docstring=True,
+                has_examples=True,
+                exports_list=classes,
+            )
+        )
 
         # Quality focused (testing + types)
-        variants.append(ModuleStructure(
-            name="QualityModule",
-            classes=classes,
-            has_type_hints=True,
-            has_tests=True,
-            has_error_classes=True,
-            custom_exceptions=["CalculatorError"]
-        ))
+        variants.append(
+            ModuleStructure(
+                name="QualityModule",
+                classes=classes,
+                has_type_hints=True,
+                has_tests=True,
+                has_error_classes=True,
+                custom_exceptions=["CalculatorError"],
+            )
+        )
 
         # Observable (logging + docs)
-        variants.append(ModuleStructure(
-            name="ObservableModule",
-            classes=classes,
-            has_module_docstring=True,
-            has_logger=True,
-            has_examples=True,
-            exports_list=classes
-        ))
+        variants.append(
+            ModuleStructure(
+                name="ObservableModule",
+                classes=classes,
+                has_module_docstring=True,
+                has_logger=True,
+                has_examples=True,
+                exports_list=classes,
+            )
+        )
 
         # Full featured
         if len(classes) >= 2:
-            variants.append(ModuleStructure(
-                name="FullModule",
-                classes=classes,
-                has_module_docstring=True,
-                has_exports=True,
-                has_type_hints=True,
-                has_error_classes=True,
-                has_constants=True,
-                has_logger=True,
-                has_tests=True,
-                has_examples=True,
-                exports_list=classes,
-                constants_defined=["VERSION", "DEFAULT_MODE"],
-                custom_exceptions=["CalculatorError", "ValidationError"]
-            ))
+            variants.append(
+                ModuleStructure(
+                    name="FullModule",
+                    classes=classes,
+                    has_module_docstring=True,
+                    has_exports=True,
+                    has_type_hints=True,
+                    has_error_classes=True,
+                    has_constants=True,
+                    has_logger=True,
+                    has_tests=True,
+                    has_examples=True,
+                    exports_list=classes,
+                    constants_defined=["VERSION", "DEFAULT_MODE"],
+                    custom_exceptions=["CalculatorError", "ValidationError"],
+                )
+            )
 
         return variants
 
@@ -579,6 +609,7 @@ class ModuleDiscoveryEngine:
 # ==============================================================================
 # Experiment Runner
 # ==============================================================================
+
 
 def run_level3_experiments():
     """
@@ -590,21 +621,15 @@ def run_level3_experiments():
     - Same coupling dynamics
     - Same discovery patterns
     """
-    print("="*80)
+    print("=" * 80)
     print("LEVEL 3 FRACTAL COMPOSITION EXPERIMENT")
     print("Testing: Classes → Modules")
-    print("="*80)
+    print("=" * 80)
 
     # Extract class profiles from library
-    class_profiles = {
-        name: data["profile"]
-        for name, data in CLASS_LIBRARY.items()
-    }
+    class_profiles = {name: data["profile"] for name, data in CLASS_LIBRARY.items()}
 
-    class_sources = {
-        name: data["source"]
-        for name, data in CLASS_LIBRARY.items()
-    }
+    class_sources = {name: data["source"] for name, data in CLASS_LIBRARY.items()}
 
     print("\n[STEP 1] Class Library (Atoms for Level 3)")
     print("-" * 80)
@@ -617,36 +642,33 @@ def run_level3_experiments():
     discovery_engine = ModuleDiscoveryEngine(
         class_profiles=class_profiles,
         rule_engine=rule_engine,
-        available_classes=list(CLASS_LIBRARY.keys())
+        available_classes=list(CLASS_LIBRARY.keys()),
     )
     composer = ModuleComposer()
 
     # Experiment 1: Manual composition with different structures
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("EXPERIMENT 1: Structural Feature Impact at Module Level")
-    print("="*80)
+    print("=" * 80)
 
     base_classes = ["SecureCalculator", "CalculatorValidator", "CalculatorLogger"]
 
     test_structures = [
         ModuleStructure(name="BasicModule", classes=base_classes),
-
         ModuleStructure(
             name="DocumentedModule",
             classes=base_classes,
             has_module_docstring=True,
-            has_examples=True
+            has_examples=True,
         ),
-
         ModuleStructure(
             name="QualityModule",
             classes=base_classes,
             has_type_hints=True,
             has_tests=True,
             has_error_classes=True,
-            custom_exceptions=["CalculatorError"]
+            custom_exceptions=["CalculatorError"],
         ),
-
         ModuleStructure(
             name="FullModule",
             classes=base_classes,
@@ -657,7 +679,7 @@ def run_level3_experiments():
             has_logger=True,
             has_tests=True,
             exports_list=base_classes,
-            custom_exceptions=["CalculatorError"]
+            custom_exceptions=["CalculatorError"],
         ),
     ]
 
@@ -671,25 +693,25 @@ def run_level3_experiments():
         print(f"{structure.name:<25} {str(predicted):<40} {complexity}")
 
     # Experiment 2: Discovery with target profiles
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("EXPERIMENT 2: Module Discovery for Target Profiles")
-    print("="*80)
+    print("=" * 80)
 
     targets = [
         {
-            'name': 'High Quality Module',
-            'profile': LJPWProfile(L=0.6, J=0.95, P=0.5, W=0.8),
-            'description': 'Emphasis on correctness and testing'
+            "name": "High Quality Module",
+            "profile": LJPWProfile(L=0.6, J=0.95, P=0.5, W=0.8),
+            "description": "Emphasis on correctness and testing",
         },
         {
-            'name': 'Highly Observable Module',
-            'profile': LJPWProfile(L=0.95, J=0.6, P=0.5, W=0.7),
-            'description': 'Emphasis on logging and documentation'
+            "name": "Highly Observable Module",
+            "profile": LJPWProfile(L=0.95, J=0.6, P=0.5, W=0.7),
+            "description": "Emphasis on logging and documentation",
         },
         {
-            'name': 'Balanced Production Module',
-            'profile': LJPWProfile(L=0.8, J=0.8, P=0.5, W=0.85),
-            'description': 'Well-rounded production-ready module'
+            "name": "Balanced Production Module",
+            "profile": LJPWProfile(L=0.8, J=0.8, P=0.5, W=0.85),
+            "description": "Well-rounded production-ready module",
         },
     ]
 
@@ -698,17 +720,17 @@ def run_level3_experiments():
         print(f"Target: {target_spec['name']}")
         print(f"Profile: {target_spec['profile']}")
         print(f"Description: {target_spec['description']}")
-        print('='*80)
+        print("=" * 80)
 
         results = discovery_engine.search(
-            target_profile=target_spec['profile'],
+            target_profile=target_spec["profile"],
             min_classes=2,
             max_classes=4,
             allow_structural_features=True,
-            top_k=3
+            top_k=3,
         )
 
-        print(f"\nTop 3 Discovered Designs:")
+        print("\nTop 3 Discovered Designs:")
         for i, (structure, predicted, distance) in enumerate(results, 1):
             print(f"\n{i}. {structure}")
             print(f"   Classes: {', '.join(structure.classes)}")
@@ -719,14 +741,14 @@ def run_level3_experiments():
             if i == 1:
                 module_code = composer.generate_module(structure, class_sources)
                 filename = f"generated_{structure.name}.py"
-                with open(filename, 'w') as f:
+                with open(filename, "w") as f:
                     f.write(module_code)
                 print(f"   -> Saved to {filename}")
 
     # Experiment 3: Fractal Pattern Validation
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("EXPERIMENT 3: Fractal Pattern Validation Across 3 Levels")
-    print("="*80)
+    print("=" * 80)
 
     print("\nComposition Pattern Comparison:")
     print("\nLevel 1 (Primitives → Functions):")
@@ -768,9 +790,9 @@ def run_level3_experiments():
     print("  f(Classes) = Modules")
     print("  Same function f at all levels!")
 
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("CONCLUSION")
-    print("="*80)
+    print("=" * 80)
 
     print("\nIf structural bonuses work as predicted at Level 3,")
     print("we have proven the fractal hypothesis across THREE abstraction levels.")
@@ -782,8 +804,8 @@ def run_level3_experiments():
     print("3. Can extend to Level 4 (Modules → Systems) with confidence")
     print("4. Software composition follows mathematical laws")
 
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run_level3_experiments()

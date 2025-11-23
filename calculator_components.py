@@ -7,36 +7,42 @@ calculator. Each component has a distinct semantic profile (LJPW) and is
 designed to be analyzed and selected by an ICE-based growth engine.
 """
 
-from typing import Union, Optional
+from typing import Union
 
 Number = Union[int, float]
 
 
 class CalculatorError(Exception):
     """Base exception for calculator operations."""
+
     pass
 
 
 class DivisionByZeroError(CalculatorError):
     """Exception raised when attempting to divide by zero."""
+
     pass
 
 
 class InvalidInputError(CalculatorError):
     """Exception raised when inputs are not numeric."""
+
     pass
 
+
 # --- Functional Components: Arithmetic ---
+
 
 def add_simple(a: Number, b: Number) -> Number:
     """Pure Power: A direct, unchecked operation."""
     return a + b
 
+
 def add_robust(a: Number, b: Number) -> Number:
     """
     This function safely adds two numbers. It includes checks to ensure
     the inputs are valid numbers, embodying Justice and correctness.
-    
+
     Raises:
         InvalidInputError: If inputs are not numeric
     """
@@ -44,19 +50,22 @@ def add_robust(a: Number, b: Number) -> Number:
         raise InvalidInputError("Both inputs must be numeric")
     return a + b
 
+
 def subtract_simple(a: Number, b: Number) -> Number:
     """Pure Power: A direct, unchecked operation."""
     return a - b
+
 
 def multiply_simple(a: Number, b: Number) -> Number:
     """Pure Power: A direct, unchecked operation."""
     return a * b
 
+
 def divide_robust(a: Number, b: Number) -> Number:
     """
     This function safely divides two numbers. It validates the divisor
     to prevent a system crash from division by zero, embodying Justice.
-    
+
     Raises:
         DivisionByZeroError: If attempting to divide by zero
     """
@@ -68,7 +77,7 @@ def divide_robust(a: Number, b: Number) -> Number:
 def subtract_robust(a: Number, b: Number) -> Number:
     """
     Safely subtracts two numbers, ensuring inputs are numeric.
-    
+
     Raises:
         InvalidInputError: If inputs are not numeric
     """
@@ -76,10 +85,11 @@ def subtract_robust(a: Number, b: Number) -> Number:
         raise InvalidInputError("Both inputs must be numeric")
     return a - b
 
+
 def multiply_robust(a: Number, b: Number) -> Number:
     """
     Safely multiplies two numbers, ensuring inputs are numeric.
-    
+
     Raises:
         InvalidInputError: If inputs are not numeric
     """
@@ -87,11 +97,14 @@ def multiply_robust(a: Number, b: Number) -> Number:
         raise InvalidInputError("Both inputs must be numeric")
     return a * b
 
+
 def divide_simple(a: Number, b: Number) -> Number:
     """Pure Power: Direct division, risks ZeroDivisionError."""
     return a / b
 
+
 # --- Structural Components: Main Execution Logic ---
+
 
 def main_parser_simple() -> None:
     """
@@ -99,18 +112,22 @@ def main_parser_simple() -> None:
     directness but low Love (bad UX) and low Justice (no validation).
     """
     import sys
+
     # Expects format: python <script> <a> <op> <b>
     a = float(sys.argv[1])
     op_str = sys.argv[2]
     b = float(sys.argv[3])
-    
+
     ops = {
-        'add': add_simple, 'subtract': subtract_simple, 
-        'multiply': multiply_simple, 'divide': divide_robust
+        "add": add_simple,
+        "subtract": subtract_simple,
+        "multiply": multiply_simple,
+        "divide": divide_robust,
     }
-    
+
     result = ops[op_str](a, b)
     print(f"Result: {result}")
+
 
 def main_parser_robust() -> None:
     """
@@ -119,23 +136,33 @@ def main_parser_robust() -> None:
     high Justice (validation), and high Love (good UX).
     """
     import argparse
+
     parser = argparse.ArgumentParser(description="A robust command-line calculator.")
-    parser.add_argument('a', type=float, help="The first number.")
-    parser.add_argument('operation', type=str, choices=['add', 'subtract', 'multiply', 'divide'], help="The operation to perform.")
-    parser.add_argument('b', type=float, help="The second number.")
+    parser.add_argument("a", type=float, help="The first number.")
+    parser.add_argument(
+        "operation",
+        type=str,
+        choices=["add", "subtract", "multiply", "divide"],
+        help="The operation to perform.",
+    )
+    parser.add_argument("b", type=float, help="The second number.")
     args = parser.parse_args()
-    
+
     # Note: This main block intelligently selects the most robust functions available
     ops = {
-        'add': add_robust, 'subtract': subtract_simple, 
-        'multiply': multiply_simple, 'divide': divide_robust
+        "add": add_robust,
+        "subtract": subtract_simple,
+        "multiply": multiply_simple,
+        "divide": divide_robust,
     }
     result = ops[args.operation](args.a, args.b)
     print(f"Result: {result}")
 
+
 # ==============================================================================
 # Atomic Components (Fractal Building Blocks)
 # ==============================================================================
+
 
 def validate_numeric(a, b):
     """
@@ -144,11 +171,13 @@ def validate_numeric(a, b):
     if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
         raise TypeError("Inputs must be numeric")
 
+
 def log_operation(func_name, a, b, result):
     """
     Atomic Love: Observes and records the operation.
     """
     print(f"[LOG] {func_name}({a}, {b}) = {result}")
+
 
 # ==============================================================================
 #  SOURCE CODE DICTIONARY FOR LJPW ANALYSIS
@@ -172,11 +201,11 @@ def log_operation(func_name, a, b, result):
     """
     print(f"[LOG] {func_name}({a}, {b}) = {result}")
 ''',
-        "add_simple": '''
+        "add_simple": """
 def add_simple(a, b):
     # Pure Power: A direct, raw execution. Forcefully adds.
     return a + b
-''',
+""",
         "add_robust": '''
 def add_robust(a, b):
     """
@@ -187,16 +216,16 @@ def add_robust(a, b):
         raise TypeError("Both inputs must be numeric")
     return a + b
 ''',
-        "subtract_simple": '''
+        "subtract_simple": """
 def subtract_simple(a, b):
     # Pure Power: Raw execution. Forcefully subtracts.
     return a - b
-''',
-        "multiply_simple": '''
+""",
+        "multiply_simple": """
 def multiply_simple(a, b):
     # Pure Power: Raw execution. Forcefully multiplies.
     return a * b
-''',
+""",
         "divide_robust": '''
 def divide_robust(a, b):
     """
@@ -268,5 +297,5 @@ def main_robust():
     except Exception as e:
         print(f"Error: {e}")
 ''',
-    }
+    },
 }

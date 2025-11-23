@@ -16,11 +16,12 @@ from pathlib import Path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
-from harmonizer_integration import PythonCodeHarmonizer, HARMONIZER_AVAILABLE
+from harmonizer_integration import HARMONIZER_AVAILABLE, PythonCodeHarmonizer
 
 # ==============================================================================
 # PRIMITIVES (Level 0)
 # ==============================================================================
+
 
 def validate_amount(amount: float) -> None:
     """Validate currency amount is non-negative."""
@@ -32,7 +33,7 @@ def validate_amount(amount: float) -> None:
 
 def validate_currency(currency: str) -> None:
     """Validate currency code is in our supported set."""
-    supported = ['USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD']
+    supported = ["USD", "EUR", "GBP", "JPY", "AUD", "CAD"]
     if currency not in supported:
         raise ValueError(f"Currency {currency} not supported. Supported: {supported}")
 
@@ -49,18 +50,19 @@ def log_conversion(from_currency: str, to_currency: str, amount: float, result: 
 
 # Exchange rates (base: USD)
 EXCHANGE_RATES = {
-    'USD': 1.0,
-    'EUR': 0.92,
-    'GBP': 0.79,
-    'JPY': 149.50,
-    'AUD': 1.52,
-    'CAD': 1.36,
+    "USD": 1.0,
+    "EUR": 0.92,
+    "GBP": 0.79,
+    "JPY": 149.50,
+    "AUD": 1.52,
+    "CAD": 1.36,
 }
 
 
 # ==============================================================================
 # COMPOSED FUNCTIONS (Level 1) - Following LJPW Composition Pattern
 # ==============================================================================
+
 
 def secure_convert(amount: float, from_currency: str, to_currency: str, log: bool = True) -> float:
     """
@@ -112,6 +114,7 @@ def batch_convert(amounts: list, from_currency: str, to_currency: str) -> list:
 # CLASS COMPOSITION (Level 2)
 # ==============================================================================
 
+
 class CurrencyConverter:
     """
     Currency converter following LJPW composition patterns.
@@ -131,12 +134,9 @@ class CurrencyConverter:
         result = secure_convert(amount, from_currency, to_currency)
 
         # Love: track history
-        self.history.append({
-            'amount': amount,
-            'from': from_currency,
-            'to': to_currency,
-            'result': result
-        })
+        self.history.append(
+            {"amount": amount, "from": from_currency, "to": to_currency, "result": result}
+        )
 
         return result
 
@@ -145,12 +145,9 @@ class CurrencyConverter:
         results = batch_convert(amounts, from_currency, to_currency)
 
         # Love: track batch in history
-        self.history.append({
-            'type': 'batch',
-            'count': len(amounts),
-            'from': from_currency,
-            'to': to_currency
-        })
+        self.history.append(
+            {"type": "batch", "count": len(amounts), "from": from_currency, "to": to_currency}
+        )
 
         return results
 
@@ -168,6 +165,7 @@ class CurrencyConverter:
 # ==============================================================================
 # DEMONSTRATION & ANALYSIS
 # ==============================================================================
+
 
 def analyze_with_harmonizer():
     """Analyze our currency converter with the real LJPW harmonizer."""
@@ -190,10 +188,10 @@ def analyze_with_harmonizer():
     print("-" * 70)
 
     primitives = {
-        'validate_amount': validate_amount,
-        'validate_currency': validate_currency,
-        'apply_rate': apply_rate,
-        'log_conversion': log_conversion
+        "validate_amount": validate_amount,
+        "validate_currency": validate_currency,
+        "apply_rate": apply_rate,
+        "log_conversion": log_conversion,
     }
 
     for name, func in primitives.items():
@@ -203,9 +201,11 @@ def analyze_with_harmonizer():
 
         result = harmonizer.analyze_file_content(code)
         if result and name in result:
-            profile = result[name]['ice_result']['ice_components']['intent'].coordinates
+            profile = result[name]["ice_result"]["ice_components"]["intent"].coordinates
             print(f"  {name}:")
-            print(f"    L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+            print(
+                f"    L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+            )
 
     print()
     print("COMPOSED FUNCTIONS (Level 1)")
@@ -232,20 +232,20 @@ def demonstrate_converter():
 
     print("Test 1: Simple Conversion")
     print("-" * 70)
-    result = converter.convert(100, 'USD', 'EUR')
+    result = converter.convert(100, "USD", "EUR")
     print(f"Result: €{result:.2f}")
     print()
 
     print("Test 2: Cross-Currency Conversion")
     print("-" * 70)
-    result = converter.convert(100, 'GBP', 'JPY')
+    result = converter.convert(100, "GBP", "JPY")
     print(f"Result: ¥{result:.2f}")
     print()
 
     print("Test 3: Batch Conversion")
     print("-" * 70)
     amounts = [10, 20, 50, 100]
-    results = converter.batch_convert(amounts, 'USD', 'CAD')
+    results = converter.batch_convert(amounts, "USD", "CAD")
     for amt, res in zip(amounts, results):
         print(f"  ${amt:.2f} USD -> ${res:.2f} CAD")
     print()
@@ -255,15 +255,17 @@ def demonstrate_converter():
     history = converter.get_history()
     print(f"Total conversions: {len(history)}")
     for i, entry in enumerate(history, 1):
-        if entry.get('type') == 'batch':
+        if entry.get("type") == "batch":
             print(f"  {i}. Batch: {entry['count']} conversions {entry['from']} -> {entry['to']}")
         else:
-            print(f"  {i}. {entry['amount']:.2f} {entry['from']} -> {entry['result']:.2f} {entry['to']}")
+            print(
+                f"  {i}. {entry['amount']:.2f} {entry['from']} -> {entry['result']:.2f} {entry['to']}"
+            )
     print()
 
     print("Test 5: Get Exchange Rate")
     print("-" * 70)
-    rate = converter.get_rate('USD', 'EUR')
+    rate = converter.get_rate("USD", "EUR")
     print(f"USD/EUR rate: {rate:.4f}")
     print()
 

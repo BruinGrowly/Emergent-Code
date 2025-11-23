@@ -79,21 +79,6 @@ exclude = '''
 [tool.ruff]
 line-length = 100
 target-version = "py38"
-select = [
-    "E",   # pycodestyle errors
-    "W",   # pycodestyle warnings
-    "F",   # pyflakes
-    "I",   # isort
-    "N",   # pep8-naming
-    "UP",  # pyupgrade
-    "B",   # flake8-bugbear
-    "C4",  # flake8-comprehensions
-]
-ignore = [
-    "E501",  # line too long (handled by black)
-    "B008",  # do not perform function calls in argument defaults
-    "C901",  # too complex
-]
 exclude = [
     ".git",
     ".mypy_cache",
@@ -106,6 +91,27 @@ exclude = [
     "generated",
     "Python-Code-Harmonizer",
     "Python-Code-Harmonizer-main",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+]
+ignore = [
+    "E501",  # line too long (handled by black)
+    "E402",  # module level import not at top of file (intentional for path modifications)
+    "E741",  # ambiguous variable name (l, j, p, w are standard in LJPW framework)
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+    "N806",  # variable name should be lowercase (L, J, P, W are standard in LJPW framework)
+    "F841",  # local variable assigned but never used
 ]
 
 [tool.mypy]
