@@ -125,7 +125,9 @@ def check_harmonizer_integration():
             using_unified += 1
         else:
             # Some experiments may not need the harmonizer if they define their own LJPW logic
-            print(f"  {YELLOW}⚠{RESET} {exp_path.name}: Not using unified integration (may be intentional)")
+            print(
+                f"  {YELLOW}⚠{RESET} {exp_path.name}: Not using unified integration (may be intentional)"
+            )
 
     # Pass if at least half of experiments use unified integration
     print(f"\n  {using_unified}/{total} experiments using unified harmonizer integration")
