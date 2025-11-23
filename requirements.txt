@@ -20,11 +20,13 @@ types-PyYAML>=6.0.12
 sphinx>=7.1.0,<8.0.0
 sphinx-rtd-theme>=1.3.0,<2.0.0
 
-# For experiments and analysis (optional but recommended)
-# Uncomment if needed for data analysis experiments
-# numpy>=1.24.0,<2.0.0
+# For experiments and analysis (required for calibration)
+numpy>=1.24.0,<2.0.0
+matplotlib>=3.7.0,<4.0.0
+scipy>=1.11.0,<2.0.0  # For composition rule calibration
+
+# Additional analysis tools (optional)
 # pandas>=2.0.0,<3.0.0
-# matplotlib>=3.7.0,<4.0.0
 
 # Note: Python Code Harmonizer is an external dependency
 # It should be cloned/installed separately in the project root
