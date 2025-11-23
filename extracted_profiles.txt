@@ -1,0 +1,17 @@
+# Extracted LJPW Profiles
+# Format: name = L, J, P, W
+
+SecureCalculator.secure_add = 0.250, 0.250, 0.250, 0.250
+SecureCalculator.secure_divide = 0.250, 0.250, 0.250, 0.250
+SecureCalculator.secure_multiply = 0.250, 0.250, 0.250, 0.250
+SecureCalculator.secure_subtract = 0.250, 0.250, 0.250, 0.250
+SimpleCalculator.add = 1.000, 0.000, 0.000, 0.000
+SimpleCalculator.multiply = 0.000, 0.000, 0.000, 0.000
+StatefulCalculator.__init__ = 0.000, 0.000, 0.000, 0.000
+StatefulCalculator.add = 1.000, 0.000, 0.000, 0.000
+StatefulCalculator.get_history = 0.000, 0.000, 0.000, 1.000
+StatefulCalculator.multiply = 0.000, 0.000, 0.000, 0.000
+secure_add_function = 0.200, 0.200, 0.200, 0.400
+simple_add_function = 1.000, 0.000, 0.000, 0.000
+simple_multiply_function = 0.000, 0.000, 0.000, 0.000
+zero_aggregate = 0.000, 0.000, 0.000, 0.000
