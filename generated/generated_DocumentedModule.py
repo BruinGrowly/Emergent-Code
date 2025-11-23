@@ -4,6 +4,7 @@ DocumentedModule - A generated calculator module
 This module provides: SecureCalculator, SimpleCalculator, CalculatorValidator
 """
 
+
 class SecureCalculator:
     """Calculator with validated operations and logging."""
 
@@ -15,7 +16,7 @@ class SecureCalculator:
         if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
             raise TypeError("Inputs must be numeric")
         result = a + b
-        self.history.append(('add', a, b, result))
+        self.history.append(("add", a, b, result))
         return result
 
     def subtract(self, a, b):
@@ -23,7 +24,7 @@ class SecureCalculator:
         if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
             raise TypeError("Inputs must be numeric")
         result = a - b
-        self.history.append(('subtract', a, b, result))
+        self.history.append(("subtract", a, b, result))
         return result
 
 
