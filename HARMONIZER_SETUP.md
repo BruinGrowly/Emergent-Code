@@ -24,18 +24,20 @@ To get actual LJPW profiles instead of zeros:
 1. **Clone the Python Code Harmonizer repository:**
    ```bash
    cd /home/user/Emergent-Code/
-   git clone https://github.com/[USERNAME]/Python-Code-Harmonizer.git Python-Code-Harmonizer-main
+   git clone https://github.com/[USERNAME]/Python-Code-Harmonizer.git Python-Code-Harmonizer
    ```
 
    Or if you have it locally:
    ```bash
-   cp -r /path/to/Python-Code-Harmonizer Python-Code-Harmonizer-main
+   cp -r /path/to/Python-Code-Harmonizer Python-Code-Harmonizer
    ```
+
+   Note: The integration also supports `Python-Code-Harmonizer-main` for backwards compatibility.
 
 2. **Verify the structure:**
    ```
    Emergent-Code/
-   ├── Python-Code-Harmonizer-main/
+   ├── Python-Code-Harmonizer/        (or Python-Code-Harmonizer-main/)
    │   └── harmonizer/
    │       └── main.py  (contains PythonCodeHarmonizer class)
    ├── harmonizer_integration.py
@@ -131,12 +133,12 @@ To get real profiles, install the Python Code Harmonizer as described above.
 
 **Problem:**
 ```
-[INFO] Python-Code-Harmonizer-main not found.
-[INFO] Expected location: /home/user/Emergent-Code/Python-Code-Harmonizer-main
+[INFO] Python-Code-Harmonizer not found.
+[INFO] Expected location: /home/user/Emergent-Code/Python-Code-Harmonizer
 ```
 
 **Solution:**
-The harmonizer must be in the project root, not in `experiments/` or elsewhere.
+The harmonizer must be in the project root as either `Python-Code-Harmonizer/` or `Python-Code-Harmonizer-main/`, not in `experiments/` or elsewhere.
 
 ## Next Steps
 

@@ -1,0 +1,123 @@
+# SPDX-License-Identifier: MIT
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    name: Test on Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+    
+    - name: Run harmonizer integration test
+      run: |
+        python test_harmonizer.py
+    
+    - name: Run fractal proof validation
+      run: |
+        python validate_fractal_proof.py
+    
+    - name: Run all tests
+      run: |
+        python run_all_tests.py
+      timeout-minutes: 15
+
+  lint:
+    name: Lint and Type Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install black ruff mypy types-PyYAML
+    
+    - name: Check code formatting with Black
+      run: |
+        black --check --diff .
+      continue-on-error: true
+    
+    - name: Lint with Ruff
+      run: |
+        ruff check .
+      continue-on-error: true
+    
+    - name: Type check with mypy
+      run: |
+        mypy master_grower.py calculator_components.py harmonizer_integration.py
+      continue-on-error: true
+
+  experiments:
+    name: Run Fractal Experiments
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run Level 1 (Primitives → Functions)
+      run: python experiments/composition_discovery.py
+      timeout-minutes: 5
+    
+    - name: Run Level 2 (Functions → Classes)
+      run: python experiments/fractal_composition_level2.py
+      timeout-minutes: 5
+    
+    - name: Run Level 3 (Classes → Modules)
+      run: python experiments/fractal_level3_modules.py
+      timeout-minutes: 5
+    
+    - name: Run Level 4 (Modules → Packages)
+      run: python experiments/fractal_level4_packages.py
+      timeout-minutes: 5
+    
+    - name: Run Level 5 (Packages → Applications)
+      run: python experiments/fractal_level5_applications.py
+      timeout-minutes: 5
+    
+    - name: Run Level 6 (Applications → Platforms)
+      run: python experiments/fractal_level6_platforms.py
+      timeout-minutes: 5
+    
+    - name: Upload generated artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: generated-code
+        path: generated/
+        retention-days: 30

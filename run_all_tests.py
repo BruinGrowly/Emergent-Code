@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+SPDX-License-Identifier: MIT
 Comprehensive Test Suite for Emergent Code
 
 Runs all experiments and validates:

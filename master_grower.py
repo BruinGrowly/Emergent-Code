@@ -1,4 +1,5 @@
 """
+SPDX-License-Identifier: MIT
 Master Grower - Growing Code from a Real-World Blueprint (v5 - Final)
 
 This script uses a 'minimum_profile' constraint and a robust assembly
@@ -11,11 +12,14 @@ import time
 import sys
 import os
 import json
+from typing import Dict, List, Optional, Tuple, Any
 
 # Add the 'harmonizer_repo' directory to the Python path
 project_root = os.path.dirname(os.path.abspath(__file__))
-# harmonizer_path = os.path.join(project_root, 'harmonizer_repo')
-harmonizer_path = os.path.join(project_root, 'Python-Code-Harmonizer-main')
+# Support both directory names for flexibility
+harmonizer_path = os.path.join(project_root, 'Python-Code-Harmonizer')
+if not os.path.exists(harmonizer_path):
+    harmonizer_path = os.path.join(project_root, 'Python-Code-Harmonizer-main')
 
 if harmonizer_path not in sys.path:
     sys.path.insert(0, harmonizer_path)
@@ -44,7 +48,7 @@ from calculator_components import SOURCES
 
 GENE_POOL_DIR = os.path.join(project_root, 'master_gene_pool')
 
-def load_profile_from_gene_pool(file_path_suffix):
+def load_profile_from_gene_pool(file_path_suffix: str) -> Dict[str, float]:
     """
     Scans the gene pool analysis files to find the profile for a specific file.
     """
@@ -173,7 +177,7 @@ class GeneHunter:
         return best['file']
 
 
-def load_dna_from_file(filename):
+def load_dna_from_file(filename: str) -> Dict[str, Any]:
     with open(filename, 'r') as f:
         dna = json.load(f)
     return dna
@@ -204,23 +208,59 @@ class StabilityValidator:
         return True
 
 # ==============================================================================
-# The Component Composer v1 (Fractal Growth)
+# The Component Composer v2 (Fractal Growth with AST-based parsing)
 # ==============================================================================
 
 class ComponentComposer:
-    def compose(self, name, recipe, sources):
+    def compose(self, name: str, recipe: Dict[str, str], sources: Dict[str, str]) -> Optional[str]:
+        """
+        Compose a new function from atomic components using AST parsing.
+        
+        Args:
+            name: Name of the composed function
+            recipe: Dictionary with 'core', optional 'guard', 'observer'
+            sources: Dictionary mapping component names to source code
+            
+        Returns:
+            Generated source code or None if composition fails
+        """
+        import ast
+        
         core_name = recipe['core']
         guard_name = recipe.get('guard')
         observer_name = recipe.get('observer')
         
         core_source = sources[core_name]
         
-        # Extract core body (simplistic extraction for demo)
-        import re
-        body_match = re.search(r"return\s+(.+)", core_source)
-        if not body_match:
-            return None
-        operation = body_match.group(1)
+        # Parse the core function to extract its operation
+        try:
+            tree = ast.parse(core_source)
+            func_def = None
+            for node in ast.walk(tree):
+                if isinstance(node, ast.FunctionDef):
+                    func_def = node
+                    break
+            
+            if not func_def:
+                return None
+            
+            # Extract the return expression
+            operation = None
+            for stmt in func_def.body:
+                if isinstance(stmt, ast.Return) and stmt.value:
+                    operation = ast.unparse(stmt.value)
+                    break
+            
+            if not operation:
+                return None
+                
+        except (SyntaxError, ValueError):
+            # Fallback to simple extraction if AST parsing fails
+            import re
+            body_match = re.search(r"return\s+(.+)", core_source)
+            if not body_match:
+                return None
+            operation = body_match.group(1).strip()
         
         # Generate new function
         code = f"def {name}(a, b):\n"
@@ -248,9 +288,6 @@ class MasterGrower:
     def __init__(self, dna_file):
         self.dna = load_dna_from_file(dna_file)
         self.archetype_queries = self.dna.get('archetype_queries', {})
-        self.gene_hunter = GeneHunter()
-        self.validator = StabilityValidator()
-        
         self.gene_hunter = GeneHunter()
         self.validator = StabilityValidator()
         self.composer = ComponentComposer()
