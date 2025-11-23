@@ -48,3 +48,4 @@ class SecureCalculator:
         result = a / b
         print(f"[LOG] secure_divide({a}, {b}) = {result}")
         return result
+
