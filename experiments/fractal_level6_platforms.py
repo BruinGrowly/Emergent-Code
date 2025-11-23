@@ -17,27 +17,28 @@ API gateways, service mesh, multi-tenancy, governance, and developer portals.
 The hypothesis: The SAME composition function works at platform scale.
 """
 
-import sys
-import os
-from dataclasses import dataclass, field
-from typing import List, Dict, Optional, Tuple
 import itertools
+import os
+import sys
+from dataclasses import dataclass
+from typing import Dict, List, Tuple
 
 # Add parent directory to path for imports
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, project_root)
 
 # Use unified harmonizer integration
-from harmonizer_integration import PythonCodeHarmonizer as StringHarmonizer, HARMONIZER_AVAILABLE
 
 
 # ============================================================================
 # LJPW Profile (Same across all levels - FRACTAL PATTERN)
 # ============================================================================
 
+
 @dataclass
 class LJPWProfile:
     """Love, Justice, Power, Wisdom profile - universal across all levels."""
+
     L: float  # Love: Usability, developer experience, observability
     J: float  # Justice: Correctness, security, compliance, governance
     P: float  # Performance, scalability, efficiency
@@ -46,19 +47,20 @@ class LJPWProfile:
     def __str__(self):
         return f"LJPW(L={self.L:.3f}, J={self.J:.3f}, P={self.P:.3f}, W={self.W:.3f})"
 
-    def distance_to(self, other: 'LJPWProfile') -> float:
+    def distance_to(self, other: "LJPWProfile") -> float:
         """Euclidean distance in LJPW space."""
         return (
-            (self.L - other.L)**2 +
-            (self.J - other.J)**2 +
-            (self.P - other.P)**2 +
-            (self.W - other.W)**2
-        )**0.5
+            (self.L - other.L) ** 2
+            + (self.J - other.J) ** 2
+            + (self.P - other.P) ** 2
+            + (self.W - other.W) ** 2
+        ) ** 0.5
 
 
 # ============================================================================
 # Level 6: Platform Structure (Applications → Platforms)
 # ============================================================================
+
 
 @dataclass
 class PlatformStructure:
@@ -75,6 +77,7 @@ class PlatformStructure:
     - Business intelligence (dashboards, reporting, A/B testing)
     - Platform capabilities (multi-region, DR, cost optimization)
     """
+
     applications: List[str]  # Application names to compose
 
     # Shared Services (high Love - developer experience)
@@ -126,6 +129,7 @@ class PlatformStructure:
 # Level 6 Composition Rules (SAME PATTERN as Levels 1-5)
 # ============================================================================
 
+
 class Level6CompositionRules:
     """
     Composition rules for Level 6: Applications → Platforms
@@ -141,8 +145,7 @@ class Level6CompositionRules:
 
     @staticmethod
     def predict_platform_profile(
-        apps: List[LJPWProfile],
-        structure: PlatformStructure
+        apps: List[LJPWProfile], structure: PlatformStructure
     ) -> LJPWProfile:
         """
         Predict LJPW profile of a platform from its applications + structure.
@@ -284,32 +287,51 @@ class Level6CompositionRules:
         harmony_L, harmony_J, harmony_P, harmony_W = 0.0, 0.0, 0.0, 0.0
 
         # Enterprise Platform (SSO + RBAC + Compliance + Audit)
-        if (structure.has_sso_auth and structure.has_rbac and
-            structure.has_compliance and structure.has_audit_logging):
+        if (
+            structure.has_sso_auth
+            and structure.has_rbac
+            and structure.has_compliance
+            and structure.has_audit_logging
+        ):
             harmony_J += 0.15
             harmony_W += 0.12
 
         # Developer Platform (Portal + Docs + SDK + Sandbox)
-        if (structure.has_dev_portal and structure.has_api_docs_hub and
-            structure.has_sdk_generation and structure.has_sandbox):
+        if (
+            structure.has_dev_portal
+            and structure.has_api_docs_hub
+            and structure.has_sdk_generation
+            and structure.has_sandbox
+        ):
             harmony_L += 0.20
             harmony_W += 0.15
 
         # Data Platform (Lake + Streaming + ETL + Multi-tenancy)
-        if (structure.has_data_lake and structure.has_event_streaming and
-            structure.has_etl_pipelines and structure.has_multi_tenancy):
+        if (
+            structure.has_data_lake
+            and structure.has_event_streaming
+            and structure.has_etl_pipelines
+            and structure.has_multi_tenancy
+        ):
             harmony_W += 0.18
             harmony_P += 0.15
 
         # Full Observability (Tracing + Logs + Incidents + SLOs)
-        if (structure.has_distributed_tracing and structure.has_log_aggregation and
-            structure.has_incident_management and structure.has_slo_tracking):
+        if (
+            structure.has_distributed_tracing
+            and structure.has_log_aggregation
+            and structure.has_incident_management
+            and structure.has_slo_tracking
+        ):
             harmony_L += 0.15
             harmony_J += 0.12
 
         # Global Platform (Multi-region + DR + Cost opt)
-        if (structure.has_multi_region and structure.has_disaster_recovery and
-            structure.has_cost_optimization):
+        if (
+            structure.has_multi_region
+            and structure.has_disaster_recovery
+            and structure.has_cost_optimization
+        ):
             harmony_W += 0.20
             harmony_P += 0.15
             harmony_J += 0.12
@@ -327,6 +349,7 @@ class Level6CompositionRules:
 # Level 6 Platform Discovery Engine
 # ============================================================================
 
+
 class PlatformDiscoveryEngine:
     """
     Searches composition space to find optimal platform structures.
@@ -342,7 +365,7 @@ class PlatformDiscoveryEngine:
         target_profile: LJPWProfile,
         min_apps: int = 2,
         max_apps: int = 5,
-        enable_features: bool = True
+        enable_features: bool = True,
     ) -> List[Tuple[PlatformStructure, LJPWProfile, float]]:
         """
         Search for platform structures that best match target LJPW profile.
@@ -380,7 +403,7 @@ class PlatformDiscoveryEngine:
 
         # Sort by distance and return top matches
         candidates.sort(key=lambda x: x[2])
-        print(f"  Returning top 3")
+        print("  Returning top 3")
         return candidates[:3]
 
     def _generate_platform_variants(self) -> List[PlatformStructure]:
@@ -388,76 +411,82 @@ class PlatformDiscoveryEngine:
         variants = []
 
         # Minimal Platform (basic shared services)
-        variants.append(PlatformStructure(
-            applications=[],
-            has_sso_auth=True,
-            has_api_gateway=True
-        ))
+        variants.append(PlatformStructure(applications=[], has_sso_auth=True, has_api_gateway=True))
 
         # Standard Platform (common features)
-        variants.append(PlatformStructure(
-            applications=[],
-            has_sso_auth=True,
-            has_api_gateway=True,
-            has_service_mesh=True,
-            has_analytics_service=True,
-            has_distributed_tracing=True,
-            has_log_aggregation=True
-        ))
+        variants.append(
+            PlatformStructure(
+                applications=[],
+                has_sso_auth=True,
+                has_api_gateway=True,
+                has_service_mesh=True,
+                has_analytics_service=True,
+                has_distributed_tracing=True,
+                has_log_aggregation=True,
+            )
+        )
 
         # Enterprise Platform (governance + compliance)
-        variants.append(PlatformStructure(
-            applications=[],
-            has_sso_auth=True,
-            has_billing_service=True,
-            has_api_gateway=True,
-            has_service_mesh=True,
-            has_rbac=True,
-            has_audit_logging=True,
-            has_compliance=True,
-            has_secrets_management=True,
-            has_distributed_tracing=True,
-            has_log_aggregation=True,
-            has_incident_management=True
-        ))
+        variants.append(
+            PlatformStructure(
+                applications=[],
+                has_sso_auth=True,
+                has_billing_service=True,
+                has_api_gateway=True,
+                has_service_mesh=True,
+                has_rbac=True,
+                has_audit_logging=True,
+                has_compliance=True,
+                has_secrets_management=True,
+                has_distributed_tracing=True,
+                has_log_aggregation=True,
+                has_incident_management=True,
+            )
+        )
 
         # Developer Platform (DX focus)
-        variants.append(PlatformStructure(
-            applications=[],
-            has_sso_auth=True,
-            has_api_gateway=True,
-            has_graphql_federation=True,
-            has_dev_portal=True,
-            has_api_docs_hub=True,
-            has_sdk_generation=True,
-            has_sandbox=True,
-            has_distributed_tracing=True
-        ))
+        variants.append(
+            PlatformStructure(
+                applications=[],
+                has_sso_auth=True,
+                has_api_gateway=True,
+                has_graphql_federation=True,
+                has_dev_portal=True,
+                has_api_docs_hub=True,
+                has_sdk_generation=True,
+                has_sandbox=True,
+                has_distributed_tracing=True,
+            )
+        )
 
         # Data Platform (analytics + streaming)
-        variants.append(PlatformStructure(
-            applications=[],
-            has_api_gateway=True,
-            has_multi_tenancy=True,
-            has_data_lake=True,
-            has_event_streaming=True,
-            has_etl_pipelines=True,
-            has_analytics_service=True,
-            has_storage_service=True
-        ))
+        variants.append(
+            PlatformStructure(
+                applications=[],
+                has_api_gateway=True,
+                has_multi_tenancy=True,
+                has_data_lake=True,
+                has_event_streaming=True,
+                has_etl_pipelines=True,
+                has_analytics_service=True,
+                has_storage_service=True,
+            )
+        )
 
         # Global Platform (multi-region)
-        variants.append(PlatformStructure(
-            applications=[],
-            has_sso_auth=True,
-            has_api_gateway=True,
-            has_service_mesh=True,
-            has_multi_region=True,
-            has_disaster_recovery=True,
-            has_cost_optimization=True,
-            has_distributed_tracing=True,
-            has_slo_tracking=True
-        ))
+        variants.append(
+            PlatformStructure(
+                applications=[],
+                has_sso_auth=True,
+                has_api_gateway=True,
+                has_service_mesh=True,
+                has_multi_region=True,
+                has_disaster_recovery=True,
+                has_cost_optimization=True,
+                has_distributed_tracing=True,
+                has_slo_tracking=True,
+            )
+        )
 
         return variants
 
@@ -465,6 +494,7 @@ class PlatformDiscoveryEngine:
 # ============================================================================
 # Platform Composer (Code Generator)
 # ============================================================================
+
 
 class PlatformComposer:
     """Generates platform configuration and documentation."""
@@ -479,52 +509,59 @@ class PlatformComposer:
         files = {}
 
         # Platform README
-        files['PLATFORM_README.md'] = PlatformComposer._generate_readme(structure)
+        files["PLATFORM_README.md"] = PlatformComposer._generate_readme(structure)
 
         # Terraform for shared services
-        if any([structure.has_sso_auth, structure.has_billing_service,
-                structure.has_analytics_service]):
-            files['infrastructure/shared_services.tf'] = \
+        if any(
+            [structure.has_sso_auth, structure.has_billing_service, structure.has_analytics_service]
+        ):
+            files["infrastructure/shared_services.tf"] = (
                 PlatformComposer._generate_shared_services_tf(structure)
+            )
 
         # API Gateway config
         if structure.has_api_gateway:
-            files['api-gateway/gateway.yaml'] = \
-                PlatformComposer._generate_api_gateway(structure)
+            files["api-gateway/gateway.yaml"] = PlatformComposer._generate_api_gateway(structure)
 
         # Service mesh config
         if structure.has_service_mesh:
-            files['service-mesh/istio-config.yaml'] = \
-                PlatformComposer._generate_service_mesh(structure)
+            files["service-mesh/istio-config.yaml"] = PlatformComposer._generate_service_mesh(
+                structure
+            )
 
         # RBAC policies
         if structure.has_rbac:
-            files['security/rbac-policies.yaml'] = \
-                PlatformComposer._generate_rbac(structure)
+            files["security/rbac-policies.yaml"] = PlatformComposer._generate_rbac(structure)
 
         # Developer portal config
         if structure.has_dev_portal:
-            files['dev-portal/config.yaml'] = \
-                PlatformComposer._generate_dev_portal(structure)
+            files["dev-portal/config.yaml"] = PlatformComposer._generate_dev_portal(structure)
 
         # Observability stack
         if structure.has_distributed_tracing or structure.has_log_aggregation:
-            files['observability/stack.yaml'] = \
-                PlatformComposer._generate_observability(structure)
+            files["observability/stack.yaml"] = PlatformComposer._generate_observability(structure)
 
         return files
 
     @staticmethod
     def _generate_readme(structure: PlatformStructure) -> str:
         features = []
-        if structure.has_sso_auth: features.append("- SSO Authentication")
-        if structure.has_api_gateway: features.append("- API Gateway")
-        if structure.has_service_mesh: features.append("- Service Mesh (Istio)")
-        if structure.has_rbac: features.append("- RBAC")
-        if structure.has_compliance: features.append("- Compliance (SOC2/HIPAA/GDPR)")
-        if structure.has_dev_portal: features.append("- Developer Portal")
-        if structure.has_data_lake: features.append("- Data Lake")
-        if structure.has_multi_region: features.append("- Multi-Region Deployment")
+        if structure.has_sso_auth:
+            features.append("- SSO Authentication")
+        if structure.has_api_gateway:
+            features.append("- API Gateway")
+        if structure.has_service_mesh:
+            features.append("- Service Mesh (Istio)")
+        if structure.has_rbac:
+            features.append("- RBAC")
+        if structure.has_compliance:
+            features.append("- Compliance (SOC2/HIPAA/GDPR)")
+        if structure.has_dev_portal:
+            features.append("- Developer Portal")
+        if structure.has_data_lake:
+            features.append("- Data Lake")
+        if structure.has_multi_region:
+            features.append("- Multi-Region Deployment")
 
         return f"""# Platform Overview
 
@@ -546,25 +583,31 @@ Generated by: Emergent Code Level 6 Fractal Composition
         resources = []
 
         if structure.has_sso_auth:
-            resources.append("""
+            resources.append(
+                """
 resource "aws_cognito_user_pool" "platform_sso" {
   name = "platform-sso"
   # SSO configuration
-}""")
+}"""
+            )
 
         if structure.has_billing_service:
-            resources.append("""
+            resources.append(
+                """
 resource "aws_lambda" "billing_service" {
   function_name = "platform-billing"
   # Billing service configuration
-}""")
+}"""
+            )
 
         if structure.has_analytics_service:
-            resources.append("""
+            resources.append(
+                """
 resource "aws_kinesis_analytics_application" "platform_analytics" {
   name = "platform-analytics"
   # Analytics configuration
-}""")
+}"""
+            )
 
         return "# Shared Services Infrastructure\n" + "\n".join(resources)
 
@@ -656,6 +699,7 @@ services:
 # EXPERIMENTS
 # ============================================================================
 
+
 def run_experiments():
     """Run Level 6 fractal composition experiments."""
 
@@ -698,7 +742,7 @@ def run_experiments():
         "minimal": PlatformStructure(
             applications=["calculator_api_app", "auth_service_app"],
             has_sso_auth=True,
-            has_api_gateway=True
+            has_api_gateway=True,
         ),
         "standard": PlatformStructure(
             applications=["calculator_api_app", "auth_service_app", "data_processor_app"],
@@ -707,7 +751,7 @@ def run_experiments():
             has_service_mesh=True,
             has_analytics_service=True,
             has_distributed_tracing=True,
-            has_log_aggregation=True
+            has_log_aggregation=True,
         ),
         "enterprise": PlatformStructure(
             applications=["calculator_api_app", "auth_service_app", "billing_app"],
@@ -722,10 +766,15 @@ def run_experiments():
             has_distributed_tracing=True,
             has_log_aggregation=True,
             has_incident_management=True,
-            has_slo_tracking=True
+            has_slo_tracking=True,
         ),
         "global": PlatformStructure(
-            applications=["calculator_api_app", "auth_service_app", "data_processor_app", "analytics_app"],
+            applications=[
+                "calculator_api_app",
+                "auth_service_app",
+                "data_processor_app",
+                "analytics_app",
+            ],
             has_sso_auth=True,
             has_api_gateway=True,
             has_service_mesh=True,
@@ -736,8 +785,8 @@ def run_experiments():
             has_log_aggregation=True,
             has_slo_tracking=True,
             has_data_lake=True,
-            has_event_streaming=True
-        )
+            has_event_streaming=True,
+        ),
     }
 
     print("\nPlatform Features Impact Analysis:")
@@ -747,13 +796,20 @@ def run_experiments():
     for ptype, structure in test_platforms.items():
         app_profiles = [applications[name] for name in structure.applications]
         predicted = Level6CompositionRules.predict_platform_profile(app_profiles, structure)
-        num_features = sum([
-            structure.has_sso_auth, structure.has_billing_service,
-            structure.has_analytics_service, structure.has_api_gateway,
-            structure.has_service_mesh, structure.has_rbac,
-            structure.has_compliance, structure.has_dev_portal,
-            structure.has_multi_region, structure.has_disaster_recovery
-        ])
+        num_features = sum(
+            [
+                structure.has_sso_auth,
+                structure.has_billing_service,
+                structure.has_analytics_service,
+                structure.has_api_gateway,
+                structure.has_service_mesh,
+                structure.has_rbac,
+                structure.has_compliance,
+                structure.has_dev_portal,
+                structure.has_multi_region,
+                structure.has_disaster_recovery,
+            ]
+        )
         print(f"{ptype:<20} {str(predicted):<45} {num_features}")
 
     # ========================================================================
@@ -770,17 +826,17 @@ def run_experiments():
         (
             LJPWProfile(L=0.90, J=0.95, P=0.80, W=0.95),
             "Enterprise Platform",
-            "High governance, compliance, security"
+            "High governance, compliance, security",
         ),
         (
             LJPWProfile(L=1.0, J=0.85, P=0.85, W=1.0),
             "Developer Platform",
-            "Excellent DX, API portal, SDKs"
+            "Excellent DX, API portal, SDKs",
         ),
         (
             LJPWProfile(L=0.90, J=1.0, P=0.90, W=1.0),
             "Global Data Platform",
-            "Multi-region, data lake, streaming"
+            "Multi-region, data lake, streaming",
         ),
     ]
 
@@ -791,24 +847,28 @@ def run_experiments():
         print(f"Description: {description}")
         print("=" * 80)
 
-        matches = discovery_engine.discover_platform(
-            target_profile,
-            min_apps=2,
-            max_apps=4
-        )
+        matches = discovery_engine.discover_platform(target_profile, min_apps=2, max_apps=4)
 
-        print(f"\nTop 3 Discovered Designs:\n")
+        print("\nTop 3 Discovered Designs:\n")
         for i, (structure, predicted, distance) in enumerate(matches, 1):
             # Count features
             features = []
-            if structure.has_sso_auth: features.append("SSO")
-            if structure.has_api_gateway: features.append("API Gateway")
-            if structure.has_service_mesh: features.append("Service Mesh")
-            if structure.has_rbac: features.append("RBAC")
-            if structure.has_compliance: features.append("Compliance")
-            if structure.has_dev_portal: features.append("Dev Portal")
-            if structure.has_multi_region: features.append("Multi-region")
-            if structure.has_data_lake: features.append("Data Lake")
+            if structure.has_sso_auth:
+                features.append("SSO")
+            if structure.has_api_gateway:
+                features.append("API Gateway")
+            if structure.has_service_mesh:
+                features.append("Service Mesh")
+            if structure.has_rbac:
+                features.append("RBAC")
+            if structure.has_compliance:
+                features.append("Compliance")
+            if structure.has_dev_portal:
+                features.append("Dev Portal")
+            if structure.has_multi_region:
+                features.append("Multi-region")
+            if structure.has_data_lake:
+                features.append("Data Lake")
 
             print(f"{i}. Platform({len(structure.applications)} apps, {', '.join(features)})")
             print(f"   Applications: {', '.join(structure.applications)}")
@@ -830,7 +890,8 @@ def run_experiments():
     print("EXPERIMENT 3: SIX-LEVEL FRACTAL VALIDATION")
     print("=" * 80)
 
-    print("""
+    print(
+        """
 Composition Pattern Across ALL Six Levels:
 
 Level 1: Primitives → Functions
@@ -862,12 +923,14 @@ Level 6: Applications → Platforms
   Atoms: CalculatorApp, etc.
   Bonuses: Service mesh, compliance
   Pattern: LJPW = Aggregate(atoms) + Bonuses + Harmony
-""")
+"""
+    )
 
     print("-" * 80)
     print("UNIVERSAL COMPOSITION LAW VALIDATION:")
     print("-" * 80)
-    print("""
+    print(
+        """
 ✅ PROVEN ACROSS SIX ABSTRACTION LEVELS:
 
 1. Same Composition Algebra:
@@ -891,12 +954,14 @@ Level 6: Applications → Platforms
    - Harmony (integration bonuses)
    - Amplification (coupling effects)
    OBSERVABLE AT ALL SIX LEVELS
-""")
+"""
+    )
 
     print("=" * 80)
     print("CONCLUSION: SIX-LEVEL FRACTAL VALIDATED")
     print("=" * 80)
-    print("""
+    print(
+        """
 We have proven the fractal hypothesis across SIX abstraction levels.
 
 This provides OVERWHELMING EVIDENCE that:
@@ -912,7 +977,8 @@ Confidence levels:
   - Infinite levels: 85%
 
 This is a FUNDAMENTAL DISCOVERY in software engineering.
-""")
+"""
+    )
     print("=" * 80)
 
 

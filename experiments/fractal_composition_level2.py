@@ -16,34 +16,35 @@ If NO → Need different composition models for different abstraction levels
 """
 
 import math
-import sys
 import os
-from typing import Dict, List, Tuple, Optional
+import sys
 from dataclasses import dataclass
+from typing import Dict, List
 
 # Add parent directory to path for imports
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, project_root)
 
 # Use unified harmonizer integration
-from harmonizer_integration import PythonCodeHarmonizer as StringHarmonizer, HARMONIZER_AVAILABLE
+from harmonizer_integration import PythonCodeHarmonizer as StringHarmonizer
 
 
 @dataclass
 class LJPWProfile:
     """Represents a 4D LJPW semantic profile."""
+
     L: float
     J: float
     P: float
     W: float
 
-    def distance_to(self, other: 'LJPWProfile') -> float:
+    def distance_to(self, other: "LJPWProfile") -> float:
         """Euclidean distance in 4D LJPW space."""
         return math.sqrt(
-            (self.L - other.L)**2 +
-            (self.J - other.J)**2 +
-            (self.P - other.P)**2 +
-            (self.W - other.W)**2
+            (self.L - other.L) ** 2
+            + (self.J - other.J) ** 2
+            + (self.P - other.P) ** 2
+            + (self.W - other.W) ** 2
         )
 
     def __repr__(self):
@@ -67,7 +68,6 @@ def secure_add(a, b):
     print(f"[LOG] secure_add({a}, {b}) = {result}")
     return result
 ''',
-
     "secure_subtract": '''
 def secure_subtract(a, b):
     """
@@ -80,7 +80,6 @@ def secure_subtract(a, b):
     print(f"[LOG] secure_subtract({a}, {b}) = {result}")
     return result
 ''',
-
     "secure_multiply": '''
 def secure_multiply(a, b):
     """
@@ -93,7 +92,6 @@ def secure_multiply(a, b):
     print(f"[LOG] secure_multiply({a}, {b}) = {result}")
     return result
 ''',
-
     "secure_divide": '''
 def secure_divide(a, b):
     """
@@ -108,14 +106,12 @@ def secure_divide(a, b):
     print(f"[LOG] secure_divide({a}, {b}) = {result}")
     return result
 ''',
-
     # Simpler variants for comparison
     "simple_add": '''
 def simple_add(a, b):
     """Simple addition. High Power, Low Justice, Low Love."""
     return a + b
 ''',
-
     "simple_multiply": '''
 def simple_multiply(a, b):
     """Simple multiplication. High Power, Low Justice, Low Love."""
@@ -128,12 +124,13 @@ def simple_multiply(a, b):
 # Level 2: Class Composition Patterns
 # ==============================================================================
 
+
 def compose_calculator_class(
     name: str,
     methods: List[str],
     method_sources: Dict[str, str],
     include_state: bool = False,
-    include_history: bool = False
+    include_history: bool = False,
 ) -> str:
     """
     Compose a calculator class from a set of methods.
@@ -149,20 +146,20 @@ def compose_calculator_class(
     code += f'    A calculator class composed from: {", ".join(methods)}\n'
 
     if include_state:
-        code += '    Includes state management for configuration.\n'
+        code += "    Includes state management for configuration.\n"
     if include_history:
-        code += '    Includes operation history tracking.\n'
+        code += "    Includes operation history tracking.\n"
 
     code += '    """\n\n'
 
     # Constructor
     if include_state or include_history:
-        code += '    def __init__(self):\n'
+        code += "    def __init__(self):\n"
         if include_state:
-            code += '        self.precision = 10  # State: calculation precision\n'
+            code += "        self.precision = 10  # State: calculation precision\n"
         if include_history:
-            code += '        self.history = []  # State: operation history\n'
-        code += '\n'
+            code += "        self.history = []  # State: operation history\n"
+        code += "\n"
 
     # Add methods
     for method_name in methods:
@@ -173,26 +170,28 @@ def compose_calculator_class(
         func_source = method_sources[method_name].strip()
 
         # Convert function to method (add self parameter)
-        lines = func_source.split('\n')
+        lines = func_source.split("\n")
 
         # Process each line
         for i, line in enumerate(lines):
-            if line.strip().startswith('def '):
+            if line.strip().startswith("def "):
                 # Add self parameter to method signature
-                lines[i] = line.replace('def ', 'def ', 1)
-                if '(' in lines[i] and ')' in lines[i]:
+                lines[i] = line.replace("def ", "def ", 1)
+                if "(" in lines[i] and ")" in lines[i]:
                     # Insert self as first parameter
-                    paren_idx = lines[i].index('(')
-                    close_paren = lines[i].index(')')
-                    params = lines[i][paren_idx+1:close_paren]
+                    paren_idx = lines[i].index("(")
+                    close_paren = lines[i].index(")")
+                    params = lines[i][paren_idx + 1 : close_paren]
                     if params.strip():
-                        lines[i] = lines[i][:paren_idx+1] + 'self, ' + params + lines[i][close_paren:]
+                        lines[i] = (
+                            lines[i][: paren_idx + 1] + "self, " + params + lines[i][close_paren:]
+                        )
                     else:
-                        lines[i] = lines[i][:paren_idx+1] + 'self' + lines[i][close_paren:]
+                        lines[i] = lines[i][: paren_idx + 1] + "self" + lines[i][close_paren:]
 
         # Add indentation for class methods
-        method_code = '\n'.join('    ' + line if line.strip() else line for line in lines)
-        code += method_code + '\n\n'
+        method_code = "\n".join("    " + line if line.strip() else line for line in lines)
+        code += method_code + "\n\n"
 
         # Add history tracking if enabled
         if include_history:
@@ -205,6 +204,7 @@ def compose_calculator_class(
 # ==============================================================================
 # Level 2 Composition Rule Engine
 # ==============================================================================
+
 
 class Level2CompositionRuleEngine:
     """
@@ -222,11 +222,13 @@ class Level2CompositionRuleEngine:
     def __init__(self, method_profiles: Dict[str, LJPWProfile]):
         self.method_profiles = method_profiles
 
-    def predict_class_profile(self,
-                              methods: List[str],
-                              has_state: bool = False,
-                              has_history: bool = False,
-                              has_init: bool = False) -> LJPWProfile:
+    def predict_class_profile(
+        self,
+        methods: List[str],
+        has_state: bool = False,
+        has_history: bool = False,
+        has_init: bool = False,
+    ) -> LJPWProfile:
         """
         Predict the emergent LJPW profile of a class.
 
@@ -279,7 +281,9 @@ class Level2CompositionRuleEngine:
             W = min(W + 0.1, 1.0)
 
         # Integration harmony: If class has multiple structural features
-        structural_count = (1 if has_state else 0) + (1 if has_history else 0) + (1 if has_init else 0)
+        structural_count = (
+            (1 if has_state else 0) + (1 if has_history else 0) + (1 if has_init else 0)
+        )
         if structural_count >= 2:
             # Well-structured class gets harmony boost
             L = min(L + 0.05, 1.0)
@@ -293,6 +297,7 @@ class Level2CompositionRuleEngine:
 # Experiment Runner
 # ==============================================================================
 
+
 def run_level2_experiment():
     """
     Test the fractal hypothesis at Level 2.
@@ -304,10 +309,10 @@ def run_level2_experiment():
     4. Compare predicted vs actual profiles
     5. Validate that composition rules are scale-invariant
     """
-    print("="*80)
+    print("=" * 80)
     print("LEVEL 2 FRACTAL COMPOSITION EXPERIMENT")
     print("Testing: Functions → Classes")
-    print("="*80)
+    print("=" * 80)
 
     harmonizer = StringHarmonizer(quiet=True)
 
@@ -322,17 +327,12 @@ def run_level2_experiment():
 
         if report:
             func_name = list(report.keys())[0]
-            coords = report[func_name]['ice_result']['ice_components']['intent'].coordinates
-            profile = LJPWProfile(
-                L=coords.love,
-                J=coords.justice,
-                P=coords.power,
-                W=coords.wisdom
-            )
+            coords = report[func_name]["ice_result"]["ice_components"]["intent"].coordinates
+            profile = LJPWProfile(L=coords.love, J=coords.justice, P=coords.power, W=coords.wisdom)
             method_profiles[name] = profile
             print(f"    -> {profile}")
         else:
-            print(f"    -> Analysis failed")
+            print("    -> Analysis failed")
             method_profiles[name] = LJPWProfile(0, 0, 0, 0)
 
     # Step 2: Define class compositions
@@ -345,35 +345,35 @@ def run_level2_experiment():
             "methods": ["simple_add", "simple_multiply"],
             "has_state": False,
             "has_history": False,
-            "description": "Minimal class with simple operations"
+            "description": "Minimal class with simple operations",
         },
         {
             "name": "SecureCalculator",
             "methods": ["secure_add", "secure_subtract", "secure_multiply", "secure_divide"],
             "has_state": False,
             "has_history": False,
-            "description": "Class with all secure operations"
+            "description": "Class with all secure operations",
         },
         {
             "name": "StatefulCalculator",
             "methods": ["secure_add", "secure_multiply"],
             "has_state": True,
             "has_history": False,
-            "description": "Secure operations with state management"
+            "description": "Secure operations with state management",
         },
         {
             "name": "ObservableCalculator",
             "methods": ["secure_add", "secure_subtract", "secure_multiply"],
             "has_state": False,
             "has_history": True,
-            "description": "Secure operations with history tracking"
+            "description": "Secure operations with history tracking",
         },
         {
             "name": "FullFeaturedCalculator",
             "methods": ["secure_add", "secure_subtract", "secure_multiply", "secure_divide"],
             "has_state": True,
             "has_history": True,
-            "description": "All features: secure methods + state + history"
+            "description": "All features: secure methods + state + history",
         },
     ]
 
@@ -395,24 +395,24 @@ def run_level2_experiment():
 
         # Generate class source
         class_source = compose_calculator_class(
-            name=spec['name'],
-            methods=spec['methods'],
+            name=spec["name"],
+            methods=spec["methods"],
             method_sources=LEVEL1_FUNCTIONS,
-            include_state=spec['has_state'],
-            include_history=spec['has_history']
+            include_state=spec["has_state"],
+            include_history=spec["has_history"],
         )
 
         # Predict profile
         predicted = rule_engine.predict_class_profile(
-            methods=spec['methods'],
-            has_state=spec['has_state'],
-            has_history=spec['has_history'],
-            has_init=spec['has_state'] or spec['has_history']  # Has __init__ if has features
+            methods=spec["methods"],
+            has_state=spec["has_state"],
+            has_history=spec["has_history"],
+            has_init=spec["has_state"] or spec["has_history"],  # Has __init__ if has features
         )
         print(f"    Predicted profile: {predicted}")
 
         # Analyze actual class
-        print(f"    Analyzing generated class...")
+        print("    Analyzing generated class...")
         report = harmonizer.analyze_file_content(class_source)
 
         actual = None
@@ -421,47 +421,44 @@ def run_level2_experiment():
             # We need to aggregate them (simplified - just get first method as proxy)
             if report:
                 first_key = list(report.keys())[0]
-                coords = report[first_key]['ice_result']['ice_components']['intent'].coordinates
+                coords = report[first_key]["ice_result"]["ice_components"]["intent"].coordinates
                 actual = LJPWProfile(
-                    L=coords.love,
-                    J=coords.justice,
-                    P=coords.power,
-                    W=coords.wisdom
+                    L=coords.love, J=coords.justice, P=coords.power, W=coords.wisdom
                 )
                 print(f"    Actual profile: {actual}")
                 print(f"    Prediction error: {predicted.distance_to(actual):.4f}")
         else:
-            print(f"    Analysis failed - cannot measure actual")
+            print("    Analysis failed - cannot measure actual")
 
-        results.append({
-            'spec': spec,
-            'predicted': predicted,
-            'actual': actual,
-            'source': class_source
-        })
+        results.append(
+            {"spec": spec, "predicted": predicted, "actual": actual, "source": class_source}
+        )
 
     # Step 4: Analysis and Validation
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("RESULTS ANALYSIS")
-    print("="*80)
+    print("=" * 80)
 
     print("\nComparison of Class Profiles:")
     print(f"{'Class':<25} {'Predicted':<35} {'Key Features'}")
     print("-" * 80)
 
     for result in results:
-        spec = result['spec']
-        pred = result['predicted']
+        spec = result["spec"]
+        pred = result["predicted"]
         features = []
-        if spec['has_state']: features.append("State")
-        if spec['has_history']: features.append("History")
-        if not features: features.append("Basic")
+        if spec["has_state"]:
+            features.append("State")
+        if spec["has_history"]:
+            features.append("History")
+        if not features:
+            features.append("Basic")
 
         print(f"{spec['name']:<25} {str(pred):<35} {', '.join(features)}")
 
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("FRACTAL HYPOTHESIS VALIDATION")
-    print("="*80)
+    print("=" * 80)
 
     print("\nKey Questions:")
     print("1. Do classes composed of high-Justice methods have high Justice?")
@@ -471,42 +468,42 @@ def run_level2_experiment():
     print("\nObservations:")
 
     # Find SecureCalculator and SimpleCalculator for comparison
-    secure_calc = next((r for r in results if r['spec']['name'] == 'SecureCalculator'), None)
-    simple_calc = next((r for r in results if r['spec']['name'] == 'SimpleCalculator'), None)
+    secure_calc = next((r for r in results if r["spec"]["name"] == "SecureCalculator"), None)
+    simple_calc = next((r for r in results if r["spec"]["name"] == "SimpleCalculator"), None)
 
     if secure_calc and simple_calc:
-        print(f"\n  SimpleCalculator (simple methods):")
+        print("\n  SimpleCalculator (simple methods):")
         print(f"    {simple_calc['predicted']}")
-        print(f"\n  SecureCalculator (secure methods):")
+        print("\n  SecureCalculator (secure methods):")
         print(f"    {secure_calc['predicted']}")
 
         # Compare Justice levels
-        if secure_calc['predicted'].J > simple_calc['predicted'].J:
-            print(f"\n  ✓ Secure methods → Higher Justice in class")
+        if secure_calc["predicted"].J > simple_calc["predicted"].J:
+            print("\n  ✓ Secure methods → Higher Justice in class")
             print(f"    (J: {simple_calc['predicted'].J:.3f} → {secure_calc['predicted'].J:.3f})")
 
         # Compare Love levels
-        if secure_calc['predicted'].L > simple_calc['predicted'].L:
-            print(f"  ✓ Secure methods → Higher Love in class")
+        if secure_calc["predicted"].L > simple_calc["predicted"].L:
+            print("  ✓ Secure methods → Higher Love in class")
             print(f"    (L: {simple_calc['predicted'].L:.3f} → {secure_calc['predicted'].L:.3f})")
 
     # Check structural bonuses
-    stateful = next((r for r in results if r['spec']['name'] == 'StatefulCalculator'), None)
-    observable = next((r for r in results if r['spec']['name'] == 'ObservableCalculator'), None)
+    stateful = next((r for r in results if r["spec"]["name"] == "StatefulCalculator"), None)
+    observable = next((r for r in results if r["spec"]["name"] == "ObservableCalculator"), None)
 
     if stateful and secure_calc:
-        if stateful['predicted'].W > secure_calc['predicted'].W:
-            print(f"\n  ✓ State management → Higher Wisdom")
+        if stateful["predicted"].W > secure_calc["predicted"].W:
+            print("\n  ✓ State management → Higher Wisdom")
             print(f"    (W: {secure_calc['predicted'].W:.3f} → {stateful['predicted'].W:.3f})")
 
     if observable and secure_calc:
-        if observable['predicted'].L > secure_calc['predicted'].L:
-            print(f"  ✓ History tracking → Higher Love")
+        if observable["predicted"].L > secure_calc["predicted"].L:
+            print("  ✓ History tracking → Higher Love")
             print(f"    (L: {secure_calc['predicted'].L:.3f} → {observable['predicted'].L:.3f})")
 
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("CONCLUSION")
-    print("="*80)
+    print("=" * 80)
 
     print("\nThe fractal hypothesis predicts that:")
     print("- Methods are the 'atoms' at Level 2")
@@ -520,17 +517,17 @@ def run_level2_experiment():
     print("3. Apply discovery algorithm at Level 2 (find optimal method sets)")
     print("4. Continue recursively: Classes → Modules → Systems")
 
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
 
     # Save one example for inspection
     print("\n[Saving example class for inspection...]")
-    with open('generated_SecureCalculator.py', 'w') as f:
-        secure_result = next(r for r in results if r['spec']['name'] == 'SecureCalculator')
-        f.write(secure_result['source'])
+    with open("generated_SecureCalculator.py", "w") as f:
+        secure_result = next(r for r in results if r["spec"]["name"] == "SecureCalculator")
+        f.write(secure_result["source"])
     print("  Saved: generated_SecureCalculator.py")
 
     return results
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run_level2_experiment()

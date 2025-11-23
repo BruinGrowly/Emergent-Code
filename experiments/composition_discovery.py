@@ -15,37 +15,37 @@ And the system discovers which composition achieves this profile.
 """
 
 import math
-import sys
 import os
-from typing import Dict, List, Tuple, Optional
+import sys
 from dataclasses import dataclass
-from itertools import combinations, product
+from itertools import product
+from typing import Dict, List, Optional, Tuple
 
 # Add parent directory to path for imports
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, project_root)
 
 # Use unified harmonizer integration
-from harmonizer_integration import PythonCodeHarmonizer as StringHarmonizer, HARMONIZER_AVAILABLE
-
 from calculator_components import SOURCES
+from harmonizer_integration import PythonCodeHarmonizer as StringHarmonizer
 
 
 @dataclass
 class LJPWProfile:
     """Represents a 4D LJPW semantic profile."""
+
     L: float
     J: float
     P: float
     W: float
 
-    def distance_to(self, other: 'LJPWProfile') -> float:
+    def distance_to(self, other: "LJPWProfile") -> float:
         """Euclidean distance in 4D LJPW space."""
         return math.sqrt(
-            (self.L - other.L)**2 +
-            (self.J - other.J)**2 +
-            (self.P - other.P)**2 +
-            (self.W - other.W)**2
+            (self.L - other.L) ** 2
+            + (self.J - other.J) ** 2
+            + (self.P - other.P) ** 2
+            + (self.W - other.W) ** 2
         )
 
     def __repr__(self):
@@ -55,21 +55,26 @@ class LJPWProfile:
 @dataclass
 class CompositionRecipe:
     """Represents a composition of atomic components."""
+
     core: str
     guard: Optional[str] = None
     observer: Optional[str] = None
 
     def __repr__(self):
         parts = [f"core={self.core}"]
-        if self.guard: parts.append(f"guard={self.guard}")
-        if self.observer: parts.append(f"observer={self.observer}")
+        if self.guard:
+            parts.append(f"guard={self.guard}")
+        if self.observer:
+            parts.append(f"observer={self.observer}")
         return f"Recipe({', '.join(parts)})"
 
     def to_dict(self):
         """Convert to dictionary format for ComponentComposer."""
-        recipe = {'core': self.core}
-        if self.guard: recipe['guard'] = self.guard
-        if self.observer: recipe['observer'] = self.observer
+        recipe = {"core": self.core}
+        if self.guard:
+            recipe["guard"] = self.guard
+        if self.observer:
+            recipe["observer"] = self.observer
         return recipe
 
 
@@ -99,15 +104,28 @@ class CompositionRuleEngine:
         """
         # Get component profiles
         core_profile = self.atomic_profiles.get(recipe.core, LJPWProfile(0, 0, 0, 0))
-        guard_profile = self.atomic_profiles.get(recipe.guard, LJPWProfile(0, 0, 0, 0)) if recipe.guard else None
-        obs_profile = self.atomic_profiles.get(recipe.observer, LJPWProfile(0, 0, 0, 0)) if recipe.observer else None
+        guard_profile = (
+            self.atomic_profiles.get(recipe.guard, LJPWProfile(0, 0, 0, 0))
+            if recipe.guard
+            else None
+        )
+        obs_profile = (
+            self.atomic_profiles.get(recipe.observer, LJPWProfile(0, 0, 0, 0))
+            if recipe.observer
+            else None
+        )
 
         # Start with base from each layer's PRIMARY dimension
         L_base = obs_profile.L if obs_profile else 0.0  # Observer contributes Love
         J_base = guard_profile.J if guard_profile else 0.0  # Guard contributes Justice
-        P_base = max(core_profile.P, 0.5)  # Core contributes Power (assume 0.5 minimum for operations)
-        W_base = max(core_profile.W, guard_profile.W if guard_profile else 0.0,
-                     obs_profile.W if obs_profile else 0.0)  # Best wisdom from any layer
+        P_base = max(
+            core_profile.P, 0.5
+        )  # Core contributes Power (assume 0.5 minimum for operations)
+        W_base = max(
+            core_profile.W,
+            guard_profile.W if guard_profile else 0.0,
+            obs_profile.W if obs_profile else 0.0,
+        )  # Best wisdom from any layer
 
         # Apply coupling amplification
         # When Love is present, it amplifies Justice and Power (κ_LJ = 1.4, κ_LP = 1.3)
@@ -166,24 +184,23 @@ class CompositionSearchEngine:
 
             if report:
                 func_name = list(report.keys())[0]
-                coords = report[func_name]['ice_result']['ice_components']['intent'].coordinates
+                coords = report[func_name]["ice_result"]["ice_components"]["intent"].coordinates
                 profiles[name] = LJPWProfile(
-                    L=coords.love,
-                    J=coords.justice,
-                    P=coords.power,
-                    W=coords.wisdom
+                    L=coords.love, J=coords.justice, P=coords.power, W=coords.wisdom
                 )
                 print(f"    -> {profiles[name]}")
             else:
-                print(f"    -> Analysis failed, using defaults")
+                print("    -> Analysis failed, using defaults")
                 profiles[name] = LJPWProfile(0.0, 0.0, 0.0, 0.0)
 
         return profiles
 
-    def generate_all_recipes(self,
-                            core_components: List[str],
-                            guard_components: List[str],
-                            observer_components: List[str]) -> List[CompositionRecipe]:
+    def generate_all_recipes(
+        self,
+        core_components: List[str],
+        guard_components: List[str],
+        observer_components: List[str],
+    ) -> List[CompositionRecipe]:
         """Generate all possible composition recipes from available components."""
         recipes = []
 
@@ -205,12 +222,14 @@ class CompositionSearchEngine:
 
         return recipes
 
-    def search(self,
-               target_profile: LJPWProfile,
-               core_components: List[str],
-               guard_components: List[str],
-               observer_components: List[str],
-               top_k: int = 5) -> List[Tuple[CompositionRecipe, LJPWProfile, float]]:
+    def search(
+        self,
+        target_profile: LJPWProfile,
+        core_components: List[str],
+        guard_components: List[str],
+        observer_components: List[str],
+        top_k: int = 5,
+    ) -> List[Tuple[CompositionRecipe, LJPWProfile, float]]:
         """
         Search for compositions that best match the target profile.
 
@@ -223,7 +242,9 @@ class CompositionSearchEngine:
         print(f"  - Observer candidates: {observer_components}")
 
         # Generate all possible recipes
-        all_recipes = self.generate_all_recipes(core_components, guard_components, observer_components)
+        all_recipes = self.generate_all_recipes(
+            core_components, guard_components, observer_components
+        )
         print(f"  - Generated {len(all_recipes)} possible recipes")
 
         # Predict profile for each recipe and calculate distance to target
@@ -247,35 +268,41 @@ def run_experiment():
     1. Validate known composition (secure_add) - can we predict its profile?
     2. Discover novel compositions for new target profiles
     """
-    print("="*80)
+    print("=" * 80)
     print("EXPERIMENT C: COMPOSITION DISCOVERY")
-    print("="*80)
+    print("=" * 80)
 
     harmonizer = StringHarmonizer(quiet=True)
 
     # Get atomic components from calculator_components
-    atomic_components = SOURCES['functions']
+    atomic_components = SOURCES["functions"]
 
     # Filter to get just the atomic building blocks
-    atomic_names = ['validate_numeric', 'log_operation', 'add_simple', 'subtract_simple',
-                    'multiply_simple', 'divide_simple']
-    atomic_pool = {name: atomic_components[name] for name in atomic_names if name in atomic_components}
+    atomic_names = [
+        "validate_numeric",
+        "log_operation",
+        "add_simple",
+        "subtract_simple",
+        "multiply_simple",
+        "divide_simple",
+    ]
+    atomic_pool = {
+        name: atomic_components[name] for name in atomic_names if name in atomic_components
+    }
 
     # Initialize search engine
     search_engine = CompositionSearchEngine(atomic_pool, harmonizer)
 
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("TEST 1: Validate Known Composition (secure_add)")
-    print("="*80)
+    print("=" * 80)
 
     # What is the target profile for secure_add based on the DNA?
     # From calculator_dna_fractal.json, we don't have explicit target,
     # but we know the recipe. Let's predict what it SHOULD be.
 
     known_recipe = CompositionRecipe(
-        core='add_simple',
-        guard='validate_numeric',
-        observer='log_operation'
+        core="add_simple", guard="validate_numeric", observer="log_operation"
     )
 
     predicted = search_engine.rule_engine.predict_composition_profile(known_recipe)
@@ -301,14 +328,16 @@ def secure_add(a, b):
     report = harmonizer.analyze_file_content(secure_add_source)
     if report:
         func_name = list(report.keys())[0]
-        actual = report[func_name]['ice_result']['ice_components']['intent'].coordinates
-        actual_profile = LJPWProfile(L=actual.love, J=actual.justice, P=actual.power, W=actual.wisdom)
+        actual = report[func_name]["ice_result"]["ice_components"]["intent"].coordinates
+        actual_profile = LJPWProfile(
+            L=actual.love, J=actual.justice, P=actual.power, W=actual.wisdom
+        )
         print(f"Actual profile: {actual_profile}")
         print(f"Prediction error: {predicted.distance_to(actual_profile):.4f}")
 
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("TEST 2: Discover Novel Compositions")
-    print("="*80)
+    print("=" * 80)
 
     # Test Case 2a: High Justice, Moderate Power (secure operation)
     target_1 = LJPWProfile(L=0.3, J=0.7, P=0.4, W=0.3)
@@ -316,10 +345,10 @@ def secure_add(a, b):
 
     results = search_engine.search(
         target_profile=target_1,
-        core_components=['add_simple', 'subtract_simple', 'multiply_simple'],
-        guard_components=['validate_numeric'],
-        observer_components=['log_operation'],
-        top_k=3
+        core_components=["add_simple", "subtract_simple", "multiply_simple"],
+        guard_components=["validate_numeric"],
+        observer_components=["log_operation"],
+        top_k=3,
     )
 
     print("\nTop 3 matches:")
@@ -334,10 +363,10 @@ def secure_add(a, b):
 
     results = search_engine.search(
         target_profile=target_2,
-        core_components=['add_simple', 'subtract_simple'],
-        guard_components=['validate_numeric'],
-        observer_components=['log_operation'],
-        top_k=3
+        core_components=["add_simple", "subtract_simple"],
+        guard_components=["validate_numeric"],
+        observer_components=["log_operation"],
+        top_k=3,
     )
 
     print("\nTop 3 matches:")
@@ -352,10 +381,10 @@ def secure_add(a, b):
 
     results = search_engine.search(
         target_profile=target_3,
-        core_components=['add_simple', 'multiply_simple'],
-        guard_components=['validate_numeric'],
-        observer_components=['log_operation'],
-        top_k=3
+        core_components=["add_simple", "multiply_simple"],
+        guard_components=["validate_numeric"],
+        observer_components=["log_operation"],
+        top_k=3,
     )
 
     print("\nTop 3 matches:")
@@ -364,9 +393,9 @@ def secure_add(a, b):
         print(f"   Predicted: {profile}")
         print(f"   Distance: {distance:.4f}")
 
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("EXPERIMENT COMPLETE")
-    print("="*80)
+    print("=" * 80)
     print("\nKey Questions:")
     print("1. How accurate is our composition rule model?")
     print("2. Can we discover optimal recipes for arbitrary target profiles?")
@@ -375,8 +404,8 @@ def secure_add(a, b):
     print("- Refine composition rules based on empirical validation")
     print("- Learn rule weights from analyzing many composition examples")
     print("- Integrate discovery into master_grower.py")
-    print("="*80)
+    print("=" * 80)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run_experiment()

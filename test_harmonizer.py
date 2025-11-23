@@ -14,7 +14,8 @@ from pathlib import Path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
-from harmonizer_integration import PythonCodeHarmonizer, HARMONIZER_AVAILABLE
+from harmonizer_integration import HARMONIZER_AVAILABLE, PythonCodeHarmonizer
+
 
 def main():
     print("=" * 70)
@@ -51,26 +52,27 @@ def test_function(x, y):
         harmonizer = PythonCodeHarmonizer(quiet=True)
         result = harmonizer.analyze_file_content(test_code)
 
-        if result and 'test_function' in result:
-            profile = result['test_function']['ice_result']['ice_components']['intent'].coordinates
-            print(f"✅ Harmonizer analysis successful!")
-            print(f"   Function: test_function")
-            print(f"   LJPW Profile:")
+        if result and "test_function" in result:
+            profile = result["test_function"]["ice_result"]["ice_components"]["intent"].coordinates
+            print("✅ Harmonizer analysis successful!")
+            print("   Function: test_function")
+            print("   LJPW Profile:")
             print(f"     Love:    {profile.love:.3f}")
             print(f"     Justice: {profile.justice:.3f}")
             print(f"     Power:   {profile.power:.3f}")
             print(f"     Wisdom:  {profile.wisdom:.3f}")
 
             if HARMONIZER_AVAILABLE:
-                print(f"   ✓ Real LJPW semantic analysis")
+                print("   ✓ Real LJPW semantic analysis")
             else:
-                print(f"   ⚠ Mock harmonizer (all zeros expected)")
+                print("   ⚠ Mock harmonizer (all zeros expected)")
         else:
             print("❌ Harmonizer analysis failed - unexpected result format")
             print(f"   Result: {result}")
     except Exception as e:
         print(f"❌ Harmonizer analysis error: {e}")
         import traceback
+
         traceback.print_exc()
     print()
 

@@ -13,15 +13,14 @@ To use the real harmonizer:
 """
 
 import sys
-import os
 from pathlib import Path
 
 # Try to find and load the real harmonizer
 project_root = Path(__file__).parent
 # Support both directory names for flexibility
-harmonizer_path = project_root / 'Python-Code-Harmonizer'
+harmonizer_path = project_root / "Python-Code-Harmonizer"
 if not harmonizer_path.exists():
-    harmonizer_path = project_root / 'Python-Code-Harmonizer-main'
+    harmonizer_path = project_root / "Python-Code-Harmonizer-main"
 
 HARMONIZER_AVAILABLE = False
 PythonCodeHarmonizer = None
@@ -33,6 +32,7 @@ if harmonizer_path.exists():
 
         class StringHarmonizer(RealHarmonizer):
             """Wrapper for the real harmonizer that can analyze string content."""
+
             def analyze_file_content(self, content: str) -> dict:
                 tree = self._parse_code_to_ast(content, "string")
                 if tree is None:
@@ -56,22 +56,20 @@ else:
 
 # Mock Harmonizer Implementation
 if not HARMONIZER_AVAILABLE:
+
     class MockIceComponent:
         """Mock ICE component with LJPW coordinates."""
+
         def __init__(self, l, j, p, w):
-            self.coordinates = type('Coords', (), {
-                'love': l,
-                'justice': j,
-                'power': p,
-                'wisdom': w
-            })()
+            self.coordinates = type(
+                "Coords", (), {"love": l, "justice": j, "power": p, "wisdom": w}
+            )()
 
     class MockIceResult:
         """Mock ICE result structure."""
+
         def __init__(self, l, j, p, w):
-            self.ice_components = {
-                'intent': MockIceComponent(l, j, p, w)
-            }
+            self.ice_components = {"intent": MockIceComponent(l, j, p, w)}
 
     class PythonCodeHarmonizer:
         """
@@ -80,6 +78,7 @@ if not HARMONIZER_AVAILABLE:
         Returns zero profiles for all code to enable testing of composition
         logic without real LJPW analysis.
         """
+
         def __init__(self, quiet=True):
             self.quiet = quiet
             if not quiet:
@@ -94,23 +93,22 @@ if not HARMONIZER_AVAILABLE:
             """
             # Extract function name for proper response structure
             import re
+
             match = re.search(r"def\s+(\w+)\(", content)
             func_name = match.group(1) if match else "unknown"
 
             # Return zero profile (real harmonizer will provide actual values)
             return {
                 func_name: {
-                    'ice_result': {
-                        'ice_components': {
-                            'intent': MockIceComponent(0.0, 0.0, 0.0, 0.0)
-                        }
+                    "ice_result": {
+                        "ice_components": {"intent": MockIceComponent(0.0, 0.0, 0.0, 0.0)}
                     }
                 }
             }
 
 
 # Export the harmonizer class and availability flag
-__all__ = ['PythonCodeHarmonizer', 'HARMONIZER_AVAILABLE']
+__all__ = ["PythonCodeHarmonizer", "HARMONIZER_AVAILABLE"]
 
 
 # Usage example:

@@ -11,17 +11,18 @@ Runs all experiments and validates:
 5. Generated artifacts are created
 """
 
-import sys
 import subprocess
+import sys
 import time
 from pathlib import Path
 
 # ANSI colors
-GREEN = '\033[92m'
-RED = '\033[91m'
-YELLOW = '\033[93m'
-BLUE = '\033[94m'
-RESET = '\033[0m'
+GREEN = "\033[92m"
+RED = "\033[91m"
+YELLOW = "\033[93m"
+BLUE = "\033[94m"
+RESET = "\033[0m"
+
 
 class TestResult:
     def __init__(self, name):
@@ -30,6 +31,7 @@ class TestResult:
         self.duration = 0
         self.output = ""
         self.error = ""
+
 
 def run_experiment(exp_path: Path, timeout: int = 60) -> TestResult:
     """Run a single experiment and capture results."""
@@ -40,10 +42,7 @@ def run_experiment(exp_path: Path, timeout: int = 60) -> TestResult:
     start = time.time()
     try:
         proc = subprocess.run(
-            [sys.executable, str(exp_path)],
-            capture_output=True,
-            text=True,
-            timeout=timeout
+            [sys.executable, str(exp_path)], capture_output=True, text=True, timeout=timeout
         )
         result.duration = time.time() - start
         result.output = proc.stdout
@@ -60,6 +59,7 @@ def run_experiment(exp_path: Path, timeout: int = 60) -> TestResult:
         result.passed = False
 
     return result
+
 
 def validate_output(result: TestResult) -> list:
     """Validate experiment output contains expected patterns."""
@@ -108,6 +108,7 @@ def validate_output(result: TestResult) -> list:
 
     return validations
 
+
 def print_summary(results: list):
     """Print test summary."""
     print("\n" + "=" * 70)
@@ -133,6 +134,7 @@ def print_summary(results: list):
         print(f"{YELLOW}⚠ {total - passed} experiments failed{RESET}")
 
     print("=" * 70)
+
 
 def main():
     print("=" * 70)
@@ -176,6 +178,7 @@ def main():
 
     # Return exit code
     return 0 if all(r.passed for r in results) else 1
+
 
 if __name__ == "__main__":
     sys.exit(main())
