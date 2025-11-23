@@ -135,8 +135,11 @@ cd emergent-code
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install dependencies
+# Install dependencies (includes Python Code Harmonizer dependencies)
 pip install -r requirements.txt
+
+# Verify harmonizer integration
+python test_harmonizer.py
 
 # Verify installation
 make validate
