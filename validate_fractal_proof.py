@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+SPDX-License-Identifier: MIT
 Fractal Proof Validation Script
 
 Validates that the Universal Composition Law holds across all levels

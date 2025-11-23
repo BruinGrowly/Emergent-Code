@@ -1,4 +1,5 @@
 """
+SPDX-License-Identifier: MIT
 Calculator Components - The "Gene Pool"
 
 This module provides a variety of component implementations for building a
@@ -6,63 +7,93 @@ calculator. Each component has a distinct semantic profile (LJPW) and is
 designed to be analyzed and selected by an ICE-based growth engine.
 """
 
+from typing import Union, Optional
+
+Number = Union[int, float]
+
+
+class CalculatorError(Exception):
+    """Base exception for calculator operations."""
+    pass
+
+
+class DivisionByZeroError(CalculatorError):
+    """Exception raised when attempting to divide by zero."""
+    pass
+
+
+class InvalidInputError(CalculatorError):
+    """Exception raised when inputs are not numeric."""
+    pass
+
 # --- Functional Components: Arithmetic ---
 
-def add_simple(a, b):
-    # Pure Power: A direct, unchecked operation.
+def add_simple(a: Number, b: Number) -> Number:
+    """Pure Power: A direct, unchecked operation."""
     return a + b
 
-def add_robust(a, b):
+def add_robust(a: Number, b: Number) -> Number:
     """
     This function safely adds two numbers. It includes checks to ensure
     the inputs are valid numbers, embodying Justice and correctness.
+    
+    Raises:
+        InvalidInputError: If inputs are not numeric
     """
     if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
-        raise TypeError("Both inputs must be numeric")
+        raise InvalidInputError("Both inputs must be numeric")
     return a + b
 
-def subtract_simple(a, b):
-    # Pure Power: A direct, unchecked operation.
+def subtract_simple(a: Number, b: Number) -> Number:
+    """Pure Power: A direct, unchecked operation."""
     return a - b
 
-def multiply_simple(a, b):
-    # Pure Power: A direct, unchecked operation.
+def multiply_simple(a: Number, b: Number) -> Number:
+    """Pure Power: A direct, unchecked operation."""
     return a * b
 
-def divide_robust(a, b):
+def divide_robust(a: Number, b: Number) -> Number:
     """
     This function safely divides two numbers. It validates the divisor
     to prevent a system crash from division by zero, embodying Justice.
+    
+    Raises:
+        DivisionByZeroError: If attempting to divide by zero
     """
     if b == 0:
-        print("Error: Justice demands we cannot divide by zero.")
-        return None
+        raise DivisionByZeroError("Justice demands we cannot divide by zero.")
     return a / b
 
 
-def subtract_robust(a, b):
+def subtract_robust(a: Number, b: Number) -> Number:
     """
     Safely subtracts two numbers, ensuring inputs are numeric.
+    
+    Raises:
+        InvalidInputError: If inputs are not numeric
     """
     if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
-        raise TypeError("Both inputs must be numeric")
+        raise InvalidInputError("Both inputs must be numeric")
     return a - b
 
-def multiply_robust(a, b):
+def multiply_robust(a: Number, b: Number) -> Number:
     """
     Safely multiplies two numbers, ensuring inputs are numeric.
+    
+    Raises:
+        InvalidInputError: If inputs are not numeric
     """
     if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
-        raise TypeError("Both inputs must be numeric")
+        raise InvalidInputError("Both inputs must be numeric")
     return a * b
 
-def divide_simple(a, b):
-    # Pure Power: Direct division, risks ZeroDivisionError.
+def divide_simple(a: Number, b: Number) -> Number:
+    """Pure Power: Direct division, risks ZeroDivisionError."""
     return a / b
 
 # --- Structural Components: Main Execution Logic ---
 
-def main_parser_simple():
+def main_parser_simple() -> None:
     """
     A very simple parser using sys.argv. It has high Power due to its
     directness but low Love (bad UX) and low Justice (no validation).
@@ -81,7 +112,7 @@ def main_parser_simple():
     result = ops[op_str](a, b)
     print(f"Result: {result}")
 
-def main_parser_robust():
+def main_parser_robust() -> None:
     """
     A robust parser using argparse. It provides helpful user feedback,
     validation, and clear structure. It embodies high Wisdom (structure),

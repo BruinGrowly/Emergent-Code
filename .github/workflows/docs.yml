@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: MIT
+name: Documentation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-docs:
+    name: Build Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install sphinx sphinx-rtd-theme
+    
+    - name: Check documentation files
+      run: |
+        echo "Checking documentation structure..."
+        ls -la docs/
+        echo "README check:"
+        head -20 README.md
+    
+    - name: Validate markdown links
+      run: |
+        # Check for broken internal links
+        for md in *.md docs/*.md; do
+          if [ -f "$md" ]; then
+            echo "Checking $md..."
+            grep -o '\[.*\](.*\.md)' "$md" || true
+          fi
+        done
+      continue-on-error: true

@@ -1,3 +1,11 @@
+"""
+SPDX-License-Identifier: MIT
+Mock Harmonizer for Testing
+
+Provides a simple mock implementation of the Python Code Harmonizer
+for testing composition logic without real LJPW analysis.
+"""
+
 class MockIceComponent:
     def __init__(self, l, j, p, w):
         self.coordinates = type('Coords', (), {'love': l, 'justice': j, 'power': p, 'wisdom': w})()
@@ -13,15 +21,12 @@ class PythonCodeHarmonizer:
     def analyze_file_content(self, content):
         # Simple heuristic based on content to return a profile
         l, j, p, w = 0, 0, 0, 0
-        print(f"DEBUG: Analyzing content length {len(content)}")
         if "def main_simple" in content:
-            print("DEBUG: Found main_simple")
             p = 0.9
             j = 0.1
             l = 0.1
             w = 0.1
         elif "def main_robust" in content:
-            print("DEBUG: Found main_robust")
             p = 0.5
             j = 0.9
             l = 0.9

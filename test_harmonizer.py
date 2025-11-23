@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+SPDX-License-Identifier: MIT
 Harmonizer Integration Test
 
 This script validates that the harmonizer integration is working correctly,

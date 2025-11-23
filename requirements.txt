@@ -1,1 +1,31 @@
-pyyaml
+# Emergent Code - Python Dependencies
+# Core framework for LJPW-based code generation
+
+# YAML parsing for configuration files
+pyyaml>=6.0.1,<7.0.0
+
+# Testing framework
+pytest>=7.4.0,<8.0.0
+pytest-cov>=4.1.0,<5.0.0
+
+# Code quality tools
+black>=23.7.0,<24.0.0
+ruff>=0.0.285,<1.0.0
+mypy>=1.5.0,<2.0.0
+
+# Type hints for standard library
+types-PyYAML>=6.0.12
+
+# Documentation generation
+sphinx>=7.1.0,<8.0.0
+sphinx-rtd-theme>=1.3.0,<2.0.0
+
+# For experiments and analysis (optional but recommended)
+# Uncomment if needed for data analysis experiments
+# numpy>=1.24.0,<2.0.0
+# pandas>=2.0.0,<3.0.0
+# matplotlib>=3.7.0,<4.0.0
+
+# Note: Python Code Harmonizer is an external dependency
+# It should be cloned/installed separately in the project root
+# See HARMONIZER_SETUP.md for installation instructions

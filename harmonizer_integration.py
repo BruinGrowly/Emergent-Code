@@ -1,4 +1,5 @@
 """
+SPDX-License-Identifier: MIT
 Harmonizer Integration Module
 
 This module provides a unified interface to the LJPW harmonizer,
@@ -7,7 +8,7 @@ or falling back to a mock implementation for testing.
 
 To use the real harmonizer:
 1. Clone the Python-Code-Harmonizer repository into this project root
-2. Ensure it's named: Python-Code-Harmonizer-main/
+2. Ensure it's named: Python-Code-Harmonizer/ or Python-Code-Harmonizer-main/
 3. The harmonizer should have: harmonizer/main.py with PythonCodeHarmonizer class
 """
 
@@ -17,7 +18,10 @@ from pathlib import Path
 
 # Try to find and load the real harmonizer
 project_root = Path(__file__).parent
-harmonizer_path = project_root / 'Python-Code-Harmonizer-main'
+# Support both directory names for flexibility
+harmonizer_path = project_root / 'Python-Code-Harmonizer'
+if not harmonizer_path.exists():
+    harmonizer_path = project_root / 'Python-Code-Harmonizer-main'
 
 HARMONIZER_AVAILABLE = False
 PythonCodeHarmonizer = None
