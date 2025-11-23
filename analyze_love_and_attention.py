@@ -11,7 +11,9 @@ Comparison:
 """
 
 from pathlib import Path
+
 from harmonizer_integration import PythonCodeHarmonizer
+
 
 def main():
     harmonizer = PythonCodeHarmonizer(quiet=False)
@@ -43,15 +45,17 @@ def main():
     for func_name, func_data in result.items():
         ice = func_data["ice_result"]["ice_components"]["intent"].coordinates
         h = (ice.love * ice.justice * ice.power * ice.wisdom) ** 0.25
-        all_functions.append({
-            "name": func_name,
-            "love": ice.love,
-            "justice": ice.justice,
-            "power": ice.power,
-            "wisdom": ice.wisdom,
-            "harmony": h,
-            "intent": ice.love + ice.wisdom,  # 2:1:1 structure: Intent = L + W
-        })
+        all_functions.append(
+            {
+                "name": func_name,
+                "love": ice.love,
+                "justice": ice.justice,
+                "power": ice.power,
+                "wisdom": ice.wisdom,
+                "harmony": h,
+                "intent": ice.love + ice.wisdom,  # 2:1:1 structure: Intent = L + W
+            }
+        )
 
     # Sort by Love (primary) then Harmony (secondary)
     all_functions.sort(key=lambda x: (x["love"], x["harmony"]), reverse=True)
@@ -63,25 +67,27 @@ def main():
 
     for i, func in enumerate(all_functions[:10], 1):
         print(f"{i}. {func['name']}")
-        print(f"   L={func['love']:.3f}, J={func['justice']:.3f}, "
-              f"P={func['power']:.3f}, W={func['wisdom']:.3f}")
+        print(
+            f"   L={func['love']:.3f}, J={func['justice']:.3f}, "
+            f"P={func['power']:.3f}, W={func['wisdom']:.3f}"
+        )
         print(f"   H={func['harmony']:.3f}, Intent(L+W)={func['intent']:.3f}")
 
         # Check thresholds
-        if func['love'] > 0.7:
-            print(f"   ✨ LOVE > 0.7! AUTOPOIETIC LOVE ACHIEVED!")
-        elif func['love'] > 0.667:
-            print(f"   🎉 Love > 0.667! Higher than previous best!")
-        elif func['love'] >= 0.5:
-            print(f"   ✓ Love ≥ 0.5 (good)")
+        if func["love"] > 0.7:
+            print("   ✨ LOVE > 0.7! AUTOPOIETIC LOVE ACHIEVED!")
+        elif func["love"] > 0.667:
+            print("   🎉 Love > 0.667! Higher than previous best!")
+        elif func["love"] >= 0.5:
+            print("   ✓ Love ≥ 0.5 (good)")
 
-        if func['harmony'] > 0.6:
-            print(f"   ✨ HARMONY > 0.6! AUTOPOIETIC!")
-        elif func['harmony'] > 0.5:
-            print(f"   ✓ Harmony > 0.5 (homeostatic)")
+        if func["harmony"] > 0.6:
+            print("   ✨ HARMONY > 0.6! AUTOPOIETIC!")
+        elif func["harmony"] > 0.5:
+            print("   ✓ Harmony > 0.5 (homeostatic)")
 
-        if func['intent'] > 1.0:
-            print(f"   🎯 Intent > 1.0! Strong Intent signal!")
+        if func["intent"] > 1.0:
+            print("   🎯 Intent > 1.0! Strong Intent signal!")
 
         print()
 
@@ -91,19 +97,19 @@ def main():
     print("=" * 80)
     print()
 
-    max_love = max(f['love'] for f in all_functions)
-    max_harmony = max(f['harmony'] for f in all_functions)
-    max_intent = max(f['intent'] for f in all_functions)
+    max_love = max(f["love"] for f in all_functions)
+    max_harmony = max(f["harmony"] for f in all_functions)
+    max_intent = max(f["intent"] for f in all_functions)
 
-    max_love_func = next(f for f in all_functions if f['love'] == max_love)
-    max_harmony_func = next(f for f in all_functions if f['harmony'] == max_harmony)
-    max_intent_func = next(f for f in all_functions if f['intent'] == max_intent)
+    max_love_func = next(f for f in all_functions if f["love"] == max_love)
+    max_harmony_func = next(f for f in all_functions if f["harmony"] == max_harmony)
+    max_intent_func = next(f for f in all_functions if f["intent"] == max_intent)
 
-    print(f"Baseline (LJPW Companion, Love alone):")
-    print(f"  analyze_code_with_guidance: L = 0.667")
+    print("Baseline (LJPW Companion, Love alone):")
+    print("  analyze_code_with_guidance: L = 0.667")
     print()
 
-    print(f"New (Intent Discovery Companion, Love + Attention):")
+    print("New (Intent Discovery Companion, Love + Attention):")
     print(f"  Highest Love: {max_love_func['name']}")
     print(f"    L = {max_love:.3f}")
     print()
@@ -127,9 +133,9 @@ def main():
     else:
         print(f"Max Love: {max_love:.3f}")
         if max_love >= 0.667:
-            print(f"Equal to previous best (no improvement)")
+            print("Equal to previous best (no improvement)")
         else:
-            print(f"Lower than previous best")
+            print("Lower than previous best")
         print()
 
     # Check Harmony
@@ -146,10 +152,7 @@ def main():
     print()
 
     # Find functions that are close to autopoietic
-    almost_autopoietic = [
-        f for f in all_functions
-        if (f['love'] > 0.6 or f['harmony'] > 0.5)
-    ]
+    almost_autopoietic = [f for f in all_functions if (f["love"] > 0.6 or f["harmony"] > 0.5)]
 
     if almost_autopoietic:
         print(f"Functions close to autopoietic threshold: {len(almost_autopoietic)}")

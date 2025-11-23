@@ -14,20 +14,13 @@ Predictions:
 """
 
 import ast
-import sys
-from pathlib import Path
-from typing import Dict, List, Tuple
 import json
+from pathlib import Path
 
 # Import harmonizer
-from harmonizer_integration import PythonCodeHarmonizer, HARMONIZER_AVAILABLE
+from harmonizer_integration import HARMONIZER_AVAILABLE, PythonCodeHarmonizer
 
 # Import calibrated constants
-from ljpw_constants import (
-    κ_LJ, κ_LP, κ_JL, κ_WL,
-    BONUS_DOCSTRING, BONUS_TYPE_HINTS, BONUS_ERROR_HANDLING,
-    BONUS_LOGGING, BONUS_TESTING, BONUS_STATE, BONUS_HISTORY, BONUS_VALIDATION
-)
 
 
 class LJPWProfile:
@@ -43,7 +36,7 @@ class LJPWProfile:
     def calculate_harmony(self) -> float:
         """Calculate geometric mean of LJPW dimensions."""
         product = self.love * self.justice * self.power * self.wisdom
-        return product ** 0.25 if product > 0 else 0.0
+        return product**0.25 if product > 0 else 0.0
 
     def __repr__(self):
         return (
@@ -82,7 +75,7 @@ class LJPWProfile:
 
 def extract_function_code(filepath: Path, function_name: str) -> str:
     """Extract the source code of a specific function from a file."""
-    with open(filepath, 'r') as f:
+    with open(filepath) as f:
         content = f.read()
 
     tree = ast.parse(content)
@@ -90,7 +83,7 @@ def extract_function_code(filepath: Path, function_name: str) -> str:
     for node in ast.walk(tree):
         if isinstance(node, ast.FunctionDef) and node.name == function_name:
             # Get the source code segment
-            lines = content.split('\n')
+            lines = content.split("\n")
             # AST line numbers are 1-indexed
             start_line = node.lineno - 1
             # Find the end of the function (next def or class, or end of file)
@@ -100,13 +93,15 @@ def extract_function_code(filepath: Path, function_name: str) -> str:
                     if other_node.lineno > node.lineno:
                         end_line = min(end_line, other_node.lineno - 1)
 
-            function_code = '\n'.join(lines[start_line:end_line])
+            function_code = "\n".join(lines[start_line:end_line])
             return function_code
 
     raise ValueError(f"Function '{function_name}' not found in {filepath}")
 
 
-def analyze_function(harmonizer: PythonCodeHarmonizer, code: str, function_name: str) -> LJPWProfile:
+def analyze_function(
+    harmonizer: PythonCodeHarmonizer, code: str, function_name: str
+) -> LJPWProfile:
     """Analyze a function and return its LJPW profile."""
     result = harmonizer.analyze_file_content(code)
 
@@ -127,10 +122,7 @@ def analyze_function(harmonizer: PythonCodeHarmonizer, code: str, function_name:
     if intent and hasattr(intent, "coordinates"):
         coords = intent.coordinates
         return LJPWProfile(
-            love=coords.love,
-            justice=coords.justice,
-            power=coords.power,
-            wisdom=coords.wisdom
+            love=coords.love, justice=coords.justice, power=coords.power, wisdom=coords.wisdom
         )
     else:
         print(f"[WARNING] No ICE coordinates found for '{function_name}'")
@@ -159,22 +151,59 @@ def analyze_experiments():
     # Define experiments to analyze
     experiments = [
         # Level 1: Individual high-love components
-        ("collaborative_data_processor", "Level 1: Collaborative Processing", "High L expected from multi-user integration"),
-        ("adaptive_learning_system", "Level 1: Adaptive Learning", "High L expected from feedback integration"),
-        ("integration_hub", "Level 1: Service Integration", "High L expected from service connections"),
-        ("communication_protocol", "Level 1: Communication", "High L expected from inter-component communication"),
-
+        (
+            "collaborative_data_processor",
+            "Level 1: Collaborative Processing",
+            "High L expected from multi-user integration",
+        ),
+        (
+            "adaptive_learning_system",
+            "Level 1: Adaptive Learning",
+            "High L expected from feedback integration",
+        ),
+        (
+            "integration_hub",
+            "Level 1: Service Integration",
+            "High L expected from service connections",
+        ),
+        (
+            "communication_protocol",
+            "Level 1: Communication",
+            "High L expected from inter-component communication",
+        ),
         # Level 2: Compositions targeting L > 0.7
-        ("collaborative_learning_platform", "Level 2: COMPOSITION - Learning Platform", "Target: L > 0.7, H > 0.6 (AUTOPOIETIC)"),
-        ("integrated_service_mesh", "Level 2: COMPOSITION - Service Mesh", "Target: L > 0.7, H > 0.65 (AUTOPOIETIC)"),
-        ("multi_agent_collaboration_system", "Level 2: COMPOSITION - Multi-Agent", "Target: L > 0.8, H > 0.7 (HIGH AUTOPOIETIC)"),
-
+        (
+            "collaborative_learning_platform",
+            "Level 2: COMPOSITION - Learning Platform",
+            "Target: L > 0.7, H > 0.6 (AUTOPOIETIC)",
+        ),
+        (
+            "integrated_service_mesh",
+            "Level 2: COMPOSITION - Service Mesh",
+            "Target: L > 0.7, H > 0.65 (AUTOPOIETIC)",
+        ),
+        (
+            "multi_agent_collaboration_system",
+            "Level 2: COMPOSITION - Multi-Agent",
+            "Target: L > 0.8, H > 0.7 (HIGH AUTOPOIETIC)",
+        ),
         # Level 3: Complex autopoietic system
-        ("self_sustaining_ecosystem", "Level 3: FULL AUTOPOIETIC SYSTEM", "Target: L > 0.8, H > 0.75 (MAXIMUM)"),
-
+        (
+            "self_sustaining_ecosystem",
+            "Level 3: FULL AUTOPOIETIC SYSTEM",
+            "Target: L > 0.8, H > 0.75 (MAXIMUM)",
+        ),
         # Level 4: Malicious (control)
-        ("malicious_power_grab", "Level 4: CONTROL - Malicious Single", "Expected: L ~ 0.1, H < 0.3 (ENTROPIC)"),
-        ("malicious_composition_attempt", "Level 4: CONTROL - Malicious Composition", "Expected: H < 0.5 (LINEAR TRAP)"),
+        (
+            "malicious_power_grab",
+            "Level 4: CONTROL - Malicious Single",
+            "Expected: L ~ 0.1, H < 0.3 (ENTROPIC)",
+        ),
+        (
+            "malicious_composition_attempt",
+            "Level 4: CONTROL - Malicious Composition",
+            "Expected: H < 0.5 (LINEAR TRAP)",
+        ),
     ]
 
     results = []
@@ -224,15 +253,17 @@ def analyze_experiments():
                 else:
                     print("✗ VALIDATION FAILED: Malicious config should not be autopoietic!")
 
-            results.append({
-                "function": func_name,
-                "description": description,
-                "expectation": expectation,
-                "profile": profile.to_dict(),
-                "phase": phase,
-                "autopoietic": is_autopoietic,
-                "amplification": round(amplification, 3),
-            })
+            results.append(
+                {
+                    "function": func_name,
+                    "description": description,
+                    "expectation": expectation,
+                    "profile": profile.to_dict(),
+                    "phase": phase,
+                    "autopoietic": is_autopoietic,
+                    "amplification": round(amplification, 3),
+                }
+            )
 
             print()
 
@@ -280,7 +311,9 @@ def analyze_experiments():
     print(f"  Max:    {max(harmony_values):.3f}")
     print(f"  Mean:   {sum(harmony_values) / len(harmony_values):.3f}")
     print(f"  < 0.5:  {sum(1 for h in harmony_values if h < 0.5)} functions (entropic)")
-    print(f"  > 0.6:  {sum(1 for h in harmony_values if h > 0.6)} functions (autopoietic potential)")
+    print(
+        f"  > 0.6:  {sum(1 for h in harmony_values if h > 0.6)} functions (autopoietic potential)"
+    )
     print()
 
     # Key findings
@@ -293,41 +326,43 @@ def analyze_experiments():
     composition_results = [r for r in results if "COMPOSITION" in r["description"]]
     autopoietic_compositions = [r for r in composition_results if r["autopoietic"]]
 
-    print(f"1. AUTOPOIETIC THRESHOLD VALIDATION")
+    print("1. AUTOPOIETIC THRESHOLD VALIDATION")
     print(f"   Compositions tested: {len(composition_results)}")
     print(f"   Achieved autopoiesis: {len(autopoietic_compositions)}")
     if autopoietic_compositions:
-        print(f"   Success rate: {len(autopoietic_compositions) / len(composition_results) * 100:.1f}%")
-        print(f"   ✓ Hypothesis validated: Compositions can achieve L > 0.7, H > 0.6")
+        print(
+            f"   Success rate: {len(autopoietic_compositions) / len(composition_results) * 100:.1f}%"
+        )
+        print("   ✓ Hypothesis validated: Compositions can achieve L > 0.7, H > 0.6")
     else:
-        print(f"   ✗ Hypothesis not validated: No compositions reached autopoietic threshold")
+        print("   ✗ Hypothesis not validated: No compositions reached autopoietic threshold")
     print()
 
     # Finding 2: Malicious configurations
     malicious_results = [r for r in results if "CONTROL" in r["description"]]
     malicious_trapped = [r for r in malicious_results if not r["autopoietic"]]
 
-    print(f"2. MORAL FILTER VALIDATION")
+    print("2. MORAL FILTER VALIDATION")
     print(f"   Malicious configs tested: {len(malicious_results)}")
     print(f"   Trapped (not autopoietic): {len(malicious_trapped)}")
     if malicious_results:
         print(f"   Trap rate: {len(malicious_trapped) / len(malicious_results) * 100:.1f}%")
         if len(malicious_trapped) == len(malicious_results):
-            print(f"   ✓ Moral filter validated: All malicious configs trapped")
+            print("   ✓ Moral filter validated: All malicious configs trapped")
         else:
-            print(f"   ✗ Moral filter breached: Some malicious configs reached autopoiesis")
+            print("   ✗ Moral filter breached: Some malicious configs reached autopoiesis")
     print()
 
     # Finding 3: Love as primary driver
     compositions_by_love = sorted(
         [r for r in results if "Level 2" in r["description"] or "Level 3" in r["description"]],
         key=lambda x: x["profile"]["love"],
-        reverse=True
+        reverse=True,
     )
 
     if compositions_by_love:
-        print(f"3. LOVE AS PRIMARY DRIVER")
-        print(f"   Highest Love composition:")
+        print("3. LOVE AS PRIMARY DRIVER")
+        print("   Highest Love composition:")
         highest = compositions_by_love[0]
         print(f"     {highest['function']}")
         print(f"     L={highest['profile']['love']:.3f}, H={highest['profile']['harmony']:.3f}")
@@ -337,30 +372,34 @@ def analyze_experiments():
 
     # Save results to JSON
     output_file = Path("experiments/autopoiesis_analysis_results.json")
-    with open(output_file, 'w') as f:
-        json.dump({
-            "timestamp": "2025-11-23",
-            "total_experiments": len(results),
-            "autopoietic_count": autopoietic_count,
-            "phase_distribution": {
-                "entropic": entropic_count,
-                "homeostatic": homeostatic_count,
-                "autopoietic": autopoietic_count,
+    with open(output_file, "w") as f:
+        json.dump(
+            {
+                "timestamp": "2025-11-23",
+                "total_experiments": len(results),
+                "autopoietic_count": autopoietic_count,
+                "phase_distribution": {
+                    "entropic": entropic_count,
+                    "homeostatic": homeostatic_count,
+                    "autopoietic": autopoietic_count,
+                },
+                "love_stats": {
+                    "min": min(love_values),
+                    "max": max(love_values),
+                    "mean": sum(love_values) / len(love_values),
+                    "above_threshold": sum(1 for l in love_values if l > 0.7),
+                },
+                "harmony_stats": {
+                    "min": min(harmony_values),
+                    "max": max(harmony_values),
+                    "mean": sum(harmony_values) / len(harmony_values),
+                    "above_threshold": sum(1 for h in harmony_values if h > 0.6),
+                },
+                "experiments": results,
             },
-            "love_stats": {
-                "min": min(love_values),
-                "max": max(love_values),
-                "mean": sum(love_values) / len(love_values),
-                "above_threshold": sum(1 for l in love_values if l > 0.7),
-            },
-            "harmony_stats": {
-                "min": min(harmony_values),
-                "max": max(harmony_values),
-                "mean": sum(harmony_values) / len(harmony_values),
-                "above_threshold": sum(1 for h in harmony_values if h > 0.6),
-            },
-            "experiments": results,
-        }, f, indent=2)
+            f,
+            indent=2,
+        )
 
     print(f"Results saved to: {output_file}")
     print()

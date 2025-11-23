@@ -1,7 +1,7 @@
 class HighLoveCalculator:
     """
     HighLoveCalculator - Generated class
-    Methods: secure_add, simple_add, format_result, log_operation
+    Methods: secure_add, secure_subtract, secure_multiply, secure_divide
     """
 
     def __init__(self):
@@ -24,22 +24,31 @@ class HighLoveCalculator:
         print(f"[LOG] secure_add({a}, {b}) = {result}")
         return result
 
-    def simple_add(self, a, b):
-        """Direct addition."""
-        return a + b
+    def secure_subtract(self, a, b):
+        """Validated subtraction with logging."""
+        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+            raise TypeError("Inputs must be numeric")
+        result = a - b
+        print(f"[LOG] secure_subtract({a}, {b}) = {result}")
+        return result
 
-    def format_result(self, value, precision=2):
-        """Format numerical result with specified precision."""
-        return f"{{:.{{precision}}f}}".format(value, precision=precision)
+    def secure_multiply(self, a, b):
+        """Validated multiplication with logging."""
+        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+            raise TypeError("Inputs must be numeric")
+        result = a * b
+        print(f"[LOG] secure_multiply({a}, {b}) = {result}")
+        return result
 
-    def log_operation(self, operation, *args):
-        """Log an operation to history."""
-        if hasattr(self, 'history'):
-            self.history.append({{
-                'operation': operation,
-                'args': args,
-                'timestamp': __import__('time').time()
-            }})
+    def secure_divide(self, a, b):
+        """Validated division with zero-check and logging."""
+        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+            raise TypeError("Inputs must be numeric")
+        if b == 0:
+            raise ValueError("Cannot divide by zero")
+        result = a / b
+        print(f"[LOG] secure_divide({a}, {b}) = {result}")
+        return result
 
     def _internal_validate(self, value):
         """Private validation helper."""

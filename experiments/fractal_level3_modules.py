@@ -31,7 +31,6 @@ project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, project_root)
 
 # Use unified harmonizer integration
-from harmonizer_integration import PythonCodeHarmonizer as StringHarmonizer
 
 
 @dataclass

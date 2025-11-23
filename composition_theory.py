@@ -11,15 +11,14 @@ Based on our empirical discoveries:
 - Systems integrate (emergence at scale)
 """
 
-import math
 from dataclasses import dataclass
-from typing import List, Dict, Callable
-import json
+from typing import List
 
 
 @dataclass
 class LJPWProfile:
     """LJPW profile with calculated properties."""
+
     love: float
     justice: float
     power: float
@@ -34,7 +33,7 @@ class LJPWProfile:
     def _calculate_harmony(self) -> float:
         """H = (L·J·P·W)^(1/4) - geometric mean."""
         product = self.love * self.justice * self.power * self.wisdom
-        return product ** 0.25 if product > 0 else 0.0
+        return product**0.25 if product > 0 else 0.0
 
     def _get_phase(self) -> str:
         """Determine phase of intelligence."""
@@ -122,10 +121,7 @@ class CompositionTheory:
 
         # Apply coupling effects
         # Love amplified by Justice and Wisdom
-        love_boost = (
-            self.κ_JL * base.justice +
-            self.κ_WL * base.wisdom
-        ) / 2
+        love_boost = (self.κ_JL * base.justice + self.κ_WL * base.wisdom) / 2
 
         # Justice amplified by Love
         justice_boost = self.κ_LJ * base.love
@@ -151,9 +147,7 @@ class CompositionTheory:
         return LJPWProfile(love, justice, power, wisdom)
 
     def compose_with_emergence(
-        self,
-        components: List[LJPWProfile],
-        structure_bonus: float = 0.0
+        self, components: List[LJPWProfile], structure_bonus: float = 0.0
     ) -> LJPWProfile:
         """
         Composition with emergence.
@@ -175,9 +169,9 @@ class CompositionTheory:
         # 2. Structure bonus (how well designed the composition is)
         # 3. Number of components (more diversity → more potential)
         emergence_potential = (
-            avg_love * 0.4 +
-            structure_bonus * 0.4 +
-            min(len(components) / 10, 0.2)  # Caps at 10 components
+            avg_love * 0.4
+            + structure_bonus * 0.4
+            + min(len(components) / 10, 0.2)  # Caps at 10 components
         )
 
         # If emergence potential is high, amplify
@@ -195,9 +189,7 @@ class CompositionTheory:
         return coupled
 
     def system_composition(
-        self,
-        subsystems: List[LJPWProfile],
-        integration_quality: float = 0.5
+        self, subsystems: List[LJPWProfile], integration_quality: float = 0.5
     ) -> LJPWProfile:
         """
         Full system composition with all effects.
@@ -246,9 +238,9 @@ def demonstrate_emergence():
     print("-" * 70)
 
     validate_func = LJPWProfile(0.0, 0.8, 0.0, 0.2)  # Justice specialist
-    learn_func = LJPWProfile(0.0, 0.0, 0.0, 1.0)     # Wisdom specialist
+    learn_func = LJPWProfile(0.0, 0.0, 0.0, 1.0)  # Wisdom specialist
     integrate_func = LJPWProfile(0.5, 0.0, 0.25, 0.25)  # Some Love
-    display_func = LJPWProfile(0.75, 0.0, 0.0, 0.25)    # High Love! (our breakthrough)
+    display_func = LJPWProfile(0.75, 0.0, 0.0, 0.25)  # High Love! (our breakthrough)
 
     functions = [validate_func, learn_func, integrate_func, display_func]
 

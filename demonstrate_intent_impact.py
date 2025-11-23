@@ -46,31 +46,46 @@ def demonstrate_intent_impact():
     print()
 
     experiments = [
-        ("add", """
+        (
+            "add",
+            """
 def add(a, b):
     '''Add two numbers'''
     return a + b
-"""),
-        ("calculate_sum", """
+""",
+        ),
+        (
+            "calculate_sum",
+            """
 def calculate_sum(a, b):
     '''Calculate the mathematical sum of two values'''
     return a + b
-"""),
-        ("combine_values", """
+""",
+        ),
+        (
+            "combine_values",
+            """
 def combine_values(a, b):
     '''Combine two values into their sum'''
     return a + b
-"""),
-        ("secure_add", """
+""",
+        ),
+        (
+            "secure_add",
+            """
 def secure_add(a, b):
     '''Securely add two validated numeric values'''
     return a + b
-"""),
-        ("arithmetic_addition", """
+""",
+        ),
+        (
+            "arithmetic_addition",
+            """
 def arithmetic_addition(a, b):
     '''Perform arithmetic addition operation with mathematical precision'''
     return a + b
-"""),
+""",
+        ),
     ]
 
     results = {}
@@ -79,7 +94,9 @@ def arithmetic_addition(a, b):
         if result and name in result:
             profile = result[name]["ice_result"]["ice_components"]["intent"].coordinates
             results[name] = profile
-            print(f"{name:25s} → L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+            print(
+                f"{name:25s} → L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+            )
         else:
             print(f"{name:25s} → Analysis failed")
 
@@ -93,29 +110,48 @@ def arithmetic_addition(a, b):
     print()
 
     intent_escalation = [
-        ("Level 1: Minimal", "simple_add", """
+        (
+            "Level 1: Minimal",
+            "simple_add",
+            """
 def simple_add(a, b):
     return a + b
-"""),
-        ("Level 2: Descriptive", "add_numbers", """
+""",
+        ),
+        (
+            "Level 2: Descriptive",
+            "add_numbers",
+            """
 def add_numbers(a, b):
     '''Add two numbers together'''
     return a + b
-"""),
-        ("Level 3: Safe", "safe_add", """
+""",
+        ),
+        (
+            "Level 3: Safe",
+            "safe_add",
+            """
 def safe_add(a, b):
     '''Safely add two numbers with type checking'''
     return a + b
-"""),
-        ("Level 4: Secure", "secure_add", """
+""",
+        ),
+        (
+            "Level 4: Secure",
+            "secure_add",
+            """
 def secure_add(a, b):
     '''
     Securely add two validated numeric values with comprehensive
     error handling and type safety guarantees.
     '''
     return a + b
-"""),
-        ("Level 5: Enterprise", "enterprise_addition", """
+""",
+        ),
+        (
+            "Level 5: Enterprise",
+            "enterprise_addition",
+            """
 def enterprise_addition(a, b):
     '''
     Enterprise-grade arithmetic addition service with validation,
@@ -123,7 +159,8 @@ def enterprise_addition(a, b):
     for mission-critical financial calculations.
     '''
     return a + b
-"""),
+""",
+        ),
     ]
 
     escalation_results = {}
@@ -133,7 +170,9 @@ def enterprise_addition(a, b):
             profile = result[name]["ice_result"]["ice_components"]["intent"].coordinates
             escalation_results[level] = profile
             print(f"{level:20s} ({name:20s})")
-            print(f"{'':20s} → L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+            print(
+                f"{'':20s} → L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+            )
             print()
 
     # =========================================================================
@@ -146,7 +185,10 @@ def enterprise_addition(a, b):
     print()
 
     targeted_intents = [
-        ("Target: Love", "caring_add", """
+        (
+            "Target: Love",
+            "caring_add",
+            """
 def caring_add(a, b):
     '''
     Add two numbers with compassionate error messages,
@@ -154,8 +196,12 @@ def caring_add(a, b):
     community support and collaboration.
     '''
     return a + b
-"""),
-        ("Target: Justice", "validated_add", """
+""",
+        ),
+        (
+            "Target: Justice",
+            "validated_add",
+            """
 def validated_add(a, b):
     '''
     Add two numbers with strict validation, correctness
@@ -163,8 +209,12 @@ def validated_add(a, b):
     in all operations ensuring legal compliance.
     '''
     return a + b
-"""),
-        ("Target: Power", "efficient_add", """
+""",
+        ),
+        (
+            "Target: Power",
+            "efficient_add",
+            """
 def efficient_add(a, b):
     '''
     Add two numbers with maximum computational power,
@@ -172,8 +222,12 @@ def efficient_add(a, b):
     authoritative result generation capabilities.
     '''
     return a + b
-"""),
-        ("Target: Wisdom", "intelligent_add", """
+""",
+        ),
+        (
+            "Target: Wisdom",
+            "intelligent_add",
+            """
 def intelligent_add(a, b):
     '''
     Add two numbers with deep understanding of mathematical
@@ -181,7 +235,8 @@ def intelligent_add(a, b):
     and comprehensive knowledge integration for research.
     '''
     return a + b
-"""),
+""",
+        ),
     ]
 
     targeted_results = {}
@@ -193,10 +248,12 @@ def intelligent_add(a, b):
             ljpw = [profile.love, profile.justice, profile.power, profile.wisdom]
             max_dim = max(ljpw)
             max_idx = ljpw.index(max_dim)
-            dims = ['L', 'J', 'P', 'W']
+            dims = ["L", "J", "P", "W"]
 
             print(f"{target:20s} ({name})")
-            print(f"{'':20s} → L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+            print(
+                f"{'':20s} → L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+            )
             print(f"{'':20s}   Highest: {dims[max_idx]} = {max_dim:.3f}")
             print()
 

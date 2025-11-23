@@ -8,11 +8,10 @@ to validate the autopoiesis hypothesis with actual working code.
 """
 
 import ast
-from pathlib import Path
-from typing import Dict
 import json
+from pathlib import Path
 
-from harmonizer_integration import PythonCodeHarmonizer, HARMONIZER_AVAILABLE
+from harmonizer_integration import HARMONIZER_AVAILABLE, PythonCodeHarmonizer
 
 
 class LJPWProfile:
@@ -28,7 +27,7 @@ class LJPWProfile:
     def calculate_harmony(self) -> float:
         """Calculate geometric mean of LJPW dimensions."""
         product = self.love * self.justice * self.power * self.wisdom
-        return product ** 0.25 if product > 0 else 0.0
+        return product**0.25 if product > 0 else 0.0
 
     def __repr__(self):
         return (
@@ -67,14 +66,14 @@ class LJPWProfile:
 
 def extract_function_code(filepath: Path, function_name: str) -> str:
     """Extract the source code of a specific function from a file."""
-    with open(filepath, 'r') as f:
+    with open(filepath) as f:
         content = f.read()
 
     tree = ast.parse(content)
 
     for node in ast.walk(tree):
         if isinstance(node, ast.FunctionDef) and node.name == function_name:
-            lines = content.split('\n')
+            lines = content.split("\n")
             start_line = node.lineno - 1
             end_line = len(lines)
             for other_node in ast.walk(tree):
@@ -82,13 +81,15 @@ def extract_function_code(filepath: Path, function_name: str) -> str:
                     if other_node.lineno > node.lineno:
                         end_line = min(end_line, other_node.lineno - 1)
 
-            function_code = '\n'.join(lines[start_line:end_line])
+            function_code = "\n".join(lines[start_line:end_line])
             return function_code
 
     raise ValueError(f"Function '{function_name}' not found in {filepath}")
 
 
-def analyze_function(harmonizer: PythonCodeHarmonizer, code: str, function_name: str) -> LJPWProfile:
+def analyze_function(
+    harmonizer: PythonCodeHarmonizer, code: str, function_name: str
+) -> LJPWProfile:
     """Analyze a function and return its LJPW profile."""
     result = harmonizer.analyze_file_content(code)
 
@@ -107,10 +108,7 @@ def analyze_function(harmonizer: PythonCodeHarmonizer, code: str, function_name:
     if intent and hasattr(intent, "coordinates"):
         coords = intent.coordinates
         return LJPWProfile(
-            love=coords.love,
-            justice=coords.justice,
-            power=coords.power,
-            wisdom=coords.wisdom
+            love=coords.love, justice=coords.justice, power=coords.power, wisdom=coords.wisdom
         )
     else:
         print(f"[WARNING] No ICE coordinates found for '{function_name}'")
@@ -138,27 +136,38 @@ def analyze_real_experiments():
     # Define REAL experiments to analyze
     experiments = [
         # Level 1: Real high-love components
-        ("integrate_user_data", "Level 1: REAL User Integration",
-         "Actual weighted consensus from multiple users"),
-
-        ("validate_with_constraints", "Level 1: REAL Validation",
-         "Actual constraint checking with detailed errors"),
-
-        ("adaptive_weight_calculator", "Level 1: REAL Adaptation",
-         "Actual learning from historical performance"),
-
-        ("execute_with_retry", "Level 1: REAL Power",
-         "Actual execution with retry logic"),
-
+        (
+            "integrate_user_data",
+            "Level 1: REAL User Integration",
+            "Actual weighted consensus from multiple users",
+        ),
+        (
+            "validate_with_constraints",
+            "Level 1: REAL Validation",
+            "Actual constraint checking with detailed errors",
+        ),
+        (
+            "adaptive_weight_calculator",
+            "Level 1: REAL Adaptation",
+            "Actual learning from historical performance",
+        ),
+        ("execute_with_retry", "Level 1: REAL Power", "Actual execution with retry logic"),
         # Level 2: Real compositions
-        ("collaborative_consensus_system", "Level 2: REAL COMPOSITION",
-         "Target: L > 0.7, H > 0.6 - All 4 dimensions working together"),
-
-        ("feedback_learning_loop", "Level 3: REAL AUTOPOIETIC LOOP",
-         "Target: L > 0.8, H > 0.7 - Self-improving feedback system"),
-
-        ("multi_agent_task_solver", "Level 3: REAL MULTI-AGENT",
-         "Target: L > 0.8, H > 0.7 - Agents with collective intelligence"),
+        (
+            "collaborative_consensus_system",
+            "Level 2: REAL COMPOSITION",
+            "Target: L > 0.7, H > 0.6 - All 4 dimensions working together",
+        ),
+        (
+            "feedback_learning_loop",
+            "Level 3: REAL AUTOPOIETIC LOOP",
+            "Target: L > 0.8, H > 0.7 - Self-improving feedback system",
+        ),
+        (
+            "multi_agent_task_solver",
+            "Level 3: REAL MULTI-AGENT",
+            "Target: L > 0.8, H > 0.7 - Agents with collective intelligence",
+        ),
     ]
 
     results = []
@@ -189,18 +198,28 @@ def analyze_real_experiments():
             # Detailed dimension analysis
             print()
             print("Dimension Analysis:")
-            print(f"  Love (L):    {profile.love:.3f} {'✓ > 0.7' if profile.love > 0.7 else '✗ ≤ 0.7'}")
+            print(
+                f"  Love (L):    {profile.love:.3f} {'✓ > 0.7' if profile.love > 0.7 else '✗ ≤ 0.7'}"
+            )
             print(f"  Justice (J): {profile.justice:.3f}")
-            print(f"  Power (P):   {profile.power:.3f} {'✓ > 0' if profile.power > 0 else '✗ = 0 (NO CAPABILITY!)'}")
+            print(
+                f"  Power (P):   {profile.power:.3f} {'✓ > 0' if profile.power > 0 else '✗ = 0 (NO CAPABILITY!)'}"
+            )
             print(f"  Wisdom (W):  {profile.wisdom:.3f}")
-            print(f"  Harmony (H): {profile.harmony:.3f} {'✓ > 0.6' if profile.harmony > 0.6 else '✗ ≤ 0.6'}")
+            print(
+                f"  Harmony (H): {profile.harmony:.3f} {'✓ > 0.6' if profile.harmony > 0.6 else '✗ ≤ 0.6'}"
+            )
 
             # Validation against targets
-            if "COMPOSITION" in description or "AUTOPOIETIC" in description or "MULTI-AGENT" in description:
+            if (
+                "COMPOSITION" in description
+                or "AUTOPOIETIC" in description
+                or "MULTI-AGENT" in description
+            ):
                 print()
                 if is_autopoietic:
                     print("✓✓✓ AUTOPOIESIS ACHIEVED! ✓✓✓")
-                    print(f"  This system has crossed the threshold into self-sustaining growth!")
+                    print("  This system has crossed the threshold into self-sustaining growth!")
                 else:
                     print("Autopoiesis status:")
                     if profile.love <= 0.7:
@@ -211,27 +230,30 @@ def analyze_real_experiments():
                     if profile.harmony <= 0.6:
                         print(f"  ⚠ Harmony: {profile.harmony:.3f} ≤ 0.6 (dimensions imbalanced)")
                         if profile.power == 0:
-                            print(f"    → Power = 0 (system has no capability!)")
+                            print("    → Power = 0 (system has no capability!)")
                         if profile.justice == 0:
-                            print(f"    → Justice = 0 (no validation!)")
+                            print("    → Justice = 0 (no validation!)")
                     else:
                         print(f"  ✓ Harmony: {profile.harmony:.3f} > 0.6 (balanced)")
 
-            results.append({
-                "function": func_name,
-                "description": description,
-                "expectation": expectation,
-                "profile": profile.to_dict(),
-                "phase": phase,
-                "autopoietic": is_autopoietic,
-                "amplification": round(amplification, 3),
-            })
+            results.append(
+                {
+                    "function": func_name,
+                    "description": description,
+                    "expectation": expectation,
+                    "profile": profile.to_dict(),
+                    "phase": phase,
+                    "autopoietic": is_autopoietic,
+                    "amplification": round(amplification, 3),
+                }
+            )
 
             print()
 
         except Exception as e:
             print(f"[ERROR] Failed to analyze {func_name}: {e}")
             import traceback
+
             traceback.print_exc()
             print()
 
@@ -253,7 +275,7 @@ def analyze_real_experiments():
 
     # Comparison with stub experiments
     print("Comparison: REAL vs STUB implementations")
-    print(f"  Stub experiments: 0 autopoietic (all P=0)")
+    print("  Stub experiments: 0 autopoietic (all P=0)")
     print(f"  Real experiments: {autopoietic_count} autopoietic")
     print()
 
@@ -275,30 +297,34 @@ def analyze_real_experiments():
         for r in results:
             if "COMPOSITION" in r["description"]:
                 print(f"  {r['function']}:")
-                p = r['profile']
-                if p['power'] == 0:
-                    print(f"    ⚠ Power = 0 (no capability detected)")
-                if p['love'] <= 0.7:
+                p = r["profile"]
+                if p["power"] == 0:
+                    print("    ⚠ Power = 0 (no capability detected)")
+                if p["love"] <= 0.7:
                     print(f"    ⚠ Love = {p['love']} ≤ 0.7 (insufficient integration)")
-                if p['harmony'] <= 0.6:
+                if p["harmony"] <= 0.6:
                     print(f"    ⚠ Harmony = {p['harmony']} ≤ 0.6")
         print()
 
     # Save results
     output_file = Path("experiments/real_autopoiesis_analysis.json")
-    with open(output_file, 'w') as f:
-        json.dump({
-            "timestamp": "2025-11-23",
-            "experiment_type": "REAL_FUNCTIONAL_CODE",
-            "total_experiments": len(results),
-            "autopoietic_count": autopoietic_count,
-            "phase_distribution": {
-                "entropic": entropic_count,
-                "homeostatic": homeostatic_count,
-                "autopoietic": autopoietic_count,
+    with open(output_file, "w") as f:
+        json.dump(
+            {
+                "timestamp": "2025-11-23",
+                "experiment_type": "REAL_FUNCTIONAL_CODE",
+                "total_experiments": len(results),
+                "autopoietic_count": autopoietic_count,
+                "phase_distribution": {
+                    "entropic": entropic_count,
+                    "homeostatic": homeostatic_count,
+                    "autopoietic": autopoietic_count,
+                },
+                "experiments": results,
             },
-            "experiments": results,
-        }, f, indent=2)
+            f,
+            indent=2,
+        )
 
     print(f"Results saved to: {output_file}")
     print()

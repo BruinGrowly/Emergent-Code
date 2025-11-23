@@ -7,20 +7,20 @@ Attention: Design it carefully to enable emergence
 Love: Integrate components so they amplify each other
 """
 
-from typing import Dict, List, Any, Callable
 from dataclasses import dataclass
-import math
+from typing import Any, Callable, Dict, List
 
 
 @dataclass
 class Operation:
     """An operation the calculator can perform."""
+
     name: str
     func: Callable
-    love: float      # How much it integrates
-    justice: float   # How much it validates
-    power: float     # How much it computes
-    wisdom: float    # How much it learns
+    love: float  # How much it integrates
+    justice: float  # How much it validates
+    power: float  # How much it computes
+    wisdom: float  # How much it learns
 
 
 class EmergentCalculator:
@@ -33,14 +33,18 @@ class EmergentCalculator:
     def __init__(self):
         # Start simple - basic operations
         self.operations = {
-            "add": Operation("add", lambda a, b: a + b,
-                           love=0.3, justice=0.0, power=0.5, wisdom=0.0),
-            "subtract": Operation("subtract", lambda a, b: a - b,
-                                love=0.3, justice=0.0, power=0.5, wisdom=0.0),
-            "multiply": Operation("multiply", lambda a, b: a * b,
-                                love=0.3, justice=0.0, power=0.5, wisdom=0.0),
-            "divide": Operation("divide", self._safe_divide,
-                              love=0.3, justice=0.5, power=0.5, wisdom=0.0),
+            "add": Operation(
+                "add", lambda a, b: a + b, love=0.3, justice=0.0, power=0.5, wisdom=0.0
+            ),
+            "subtract": Operation(
+                "subtract", lambda a, b: a - b, love=0.3, justice=0.0, power=0.5, wisdom=0.0
+            ),
+            "multiply": Operation(
+                "multiply", lambda a, b: a * b, love=0.3, justice=0.0, power=0.5, wisdom=0.0
+            ),
+            "divide": Operation(
+                "divide", self._safe_divide, love=0.3, justice=0.5, power=0.5, wisdom=0.0
+            ),
         }
 
         # Track usage - this enables learning
@@ -70,7 +74,7 @@ class EmergentCalculator:
         if operation not in self.operations:
             return {
                 "error": f"Unknown operation: {operation}",
-                "suggestions": self._suggest_operations(operation)
+                "suggestions": self._suggest_operations(operation),
             }
 
         # Execute (Power)
@@ -98,18 +102,20 @@ class EmergentCalculator:
                 "power": op.power,
                 "wisdom": op.wisdom,
             },
-            "new_operations_available": self._check_for_emergence()
+            "new_operations_available": self._check_for_emergence(),
         }
 
     def _learn_from_usage(self, operation: str, a: float, b: float, result: float):
         """Learn patterns from usage - this is Wisdom."""
         # Track this calculation
-        self.usage_history.append({
-            "operation": operation,
-            "a": a,
-            "b": b,
-            "result": result,
-        })
+        self.usage_history.append(
+            {
+                "operation": operation,
+                "a": a,
+                "b": b,
+                "result": result,
+            }
+        )
 
         # Track values used
         for val in [a, b, result]:
@@ -185,11 +191,11 @@ class EmergentCalculator:
         if operation_name == "power":
             self.operations["power"] = Operation(
                 "power",
-                lambda a, b: a ** b,
-                love=0.5,      # Higher love - integrates multiply concept
-                justice=0.3,   # Some validation
-                power=0.7,     # More powerful
-                wisdom=0.3     # Learned from usage
+                lambda a, b: a**b,
+                love=0.5,  # Higher love - integrates multiply concept
+                justice=0.3,  # Some validation
+                power=0.7,  # More powerful
+                wisdom=0.3,  # Learned from usage
             )
             return True
 
@@ -197,10 +203,10 @@ class EmergentCalculator:
             self.operations["modulo"] = Operation(
                 "modulo",
                 lambda a, b: a % b if b != 0 else 0,
-                love=0.5,      # Integrates divide concept
-                justice=0.4,   # Handles edge cases
+                love=0.5,  # Integrates divide concept
+                justice=0.4,  # Handles edge cases
                 power=0.6,
-                wisdom=0.3
+                wisdom=0.3,
             )
             return True
 
@@ -208,10 +214,10 @@ class EmergentCalculator:
             self.operations["average"] = Operation(
                 "average",
                 lambda a, b: (a + b) / 2,
-                love=0.7,      # HIGH LOVE - integrates add + divide!
+                love=0.7,  # HIGH LOVE - integrates add + divide!
                 justice=0.3,
                 power=0.5,
-                wisdom=0.4     # Learned from many calculations
+                wisdom=0.4,  # Learned from many calculations
             )
             return True
 
@@ -219,10 +225,10 @@ class EmergentCalculator:
             self.operations["square"] = Operation(
                 "square",
                 lambda a, b: a * a,  # b is ignored
-                love=0.6,      # Integrates multiply concept
+                love=0.6,  # Integrates multiply concept
                 justice=0.2,
                 power=0.7,
-                wisdom=0.5     # Learned from repeated values
+                wisdom=0.5,  # Learned from repeated values
             )
             return True
 
@@ -241,10 +247,10 @@ class EmergentCalculator:
                 self.operations[operation_name] = Operation(
                     operation_name,
                     combo_func,
-                    love=0.8,      # VERY HIGH - integrates two operations!
+                    love=0.8,  # VERY HIGH - integrates two operations!
                     justice=max(first_op.justice, second_op.justice),
                     power=(first_op.power + second_op.power) / 2,
-                    wisdom=0.6     # Learned from usage patterns
+                    wisdom=0.6,  # Learned from usage patterns
                 )
                 return True
 
@@ -278,7 +284,9 @@ class EmergentCalculator:
         wisdom = min(1.0, avg_wisdom + learning_bonus)
 
         # Calculate harmony
-        harmony = (love * justice * power * wisdom) ** 0.25 if all([love, justice, power, wisdom]) else 0
+        harmony = (
+            (love * justice * power * wisdom) ** 0.25 if all([love, justice, power, wisdom]) else 0
+        )
 
         return {
             "love": round(love, 3),
@@ -304,8 +312,10 @@ def demonstrate_emergence():
     print("Starting state:")
     ljpw = calc.system_ljpw()
     print(f"  Operations: {ljpw['operations_count']}")
-    print(f"  LJPW: L={ljpw['love']:.3f}, J={ljpw['justice']:.3f}, "
-          f"P={ljpw['power']:.3f}, W={ljpw['wisdom']:.3f}")
+    print(
+        f"  LJPW: L={ljpw['love']:.3f}, J={ljpw['justice']:.3f}, "
+        f"P={ljpw['power']:.3f}, W={ljpw['wisdom']:.3f}"
+    )
     print(f"  Harmony: {ljpw['harmony']:.3f}")
     print()
 
@@ -321,7 +331,7 @@ def demonstrate_emergence():
     ]
 
     ljpw = calc.system_ljpw()
-    print(f"After 4 calculations:")
+    print("After 4 calculations:")
     print(f"  LJPW: L={ljpw['love']:.3f}, W={ljpw['wisdom']:.3f}, H={ljpw['harmony']:.3f}")
     print(f"  New operations suggested: {results[-1]['new_operations_available']}")
     print()
@@ -330,15 +340,17 @@ def demonstrate_emergence():
     print("Phase 2: Growing new operations")
     print("-" * 70)
 
-    for new_op in results[-1]['new_operations_available']:
+    for new_op in results[-1]["new_operations_available"]:
         grew = calc.grow(new_op)
         print(f"  Added '{new_op}': {grew}")
 
     ljpw = calc.system_ljpw()
-    print(f"\nAfter growth:")
+    print("\nAfter growth:")
     print(f"  Operations: {ljpw['operations_count']}")
-    print(f"  LJPW: L={ljpw['love']:.3f}, J={ljpw['justice']:.3f}, "
-          f"P={ljpw['power']:.3f}, W={ljpw['wisdom']:.3f}")
+    print(
+        f"  LJPW: L={ljpw['love']:.3f}, J={ljpw['justice']:.3f}, "
+        f"P={ljpw['power']:.3f}, W={ljpw['wisdom']:.3f}"
+    )
     print(f"  Harmony: {ljpw['harmony']:.3f}")
     print()
 
@@ -356,8 +368,8 @@ def demonstrate_emergence():
     ]
 
     ljpw = calc.system_ljpw()
-    new_ops = more_results[-1].get('new_operations_available', [])
-    print(f"After more use:")
+    new_ops = more_results[-1].get("new_operations_available", [])
+    print("After more use:")
     print(f"  Usage count: {ljpw['usage_count']}")
     print(f"  LJPW: L={ljpw['love']:.3f}, W={ljpw['wisdom']:.3f}, H={ljpw['harmony']:.3f}")
     print(f"  New operations available: {new_ops}")
@@ -374,24 +386,28 @@ def demonstrate_emergence():
             # Show the LJPW of the new operation
             if new_op in calc.operations:
                 op = calc.operations[new_op]
-                print(f"    LJPW: L={op.love:.2f}, J={op.justice:.2f}, "
-                      f"P={op.power:.2f}, W={op.wisdom:.2f}")
+                print(
+                    f"    LJPW: L={op.love:.2f}, J={op.justice:.2f}, "
+                    f"P={op.power:.2f}, W={op.wisdom:.2f}"
+                )
 
     ljpw = calc.system_ljpw()
-    print(f"\nFinal state:")
+    print("\nFinal state:")
     print(f"  Operations: {ljpw['operations_count']}")
-    print(f"  LJPW: L={ljpw['love']:.3f}, J={ljpw['justice']:.3f}, "
-          f"P={ljpw['power']:.3f}, W={ljpw['wisdom']:.3f}")
+    print(
+        f"  LJPW: L={ljpw['love']:.3f}, J={ljpw['justice']:.3f}, "
+        f"P={ljpw['power']:.3f}, W={ljpw['wisdom']:.3f}"
+    )
     print(f"  Harmony: {ljpw['harmony']:.3f}")
     print(f"  Intent: {ljpw['intent']:.3f}")
     print()
 
-    if ljpw['love'] > 0.7:
+    if ljpw["love"] > 0.7:
         print("✨ LOVE > 0.7! Autopoietic Love threshold reached!")
-    if ljpw['harmony'] > 0.6:
+    if ljpw["harmony"] > 0.6:
         print("✨ HARMONY > 0.6! System is AUTOPOIETIC!")
 
-    if ljpw['love'] > 0.7 or ljpw['harmony'] > 0.5:
+    if ljpw["love"] > 0.7 or ljpw["harmony"] > 0.5:
         print("\n🌟 EMERGENCE DETECTED!")
         print("The calculator has grown beyond its initial design.")
         print("Through use and learning, it developed new capabilities.")
@@ -400,7 +416,7 @@ def demonstrate_emergence():
     print()
     print("=" * 70)
     print(f"Growth: {4} → {ljpw['operations_count']} operations")
-    print(f"Love increased as operations integrated")
+    print("Love increased as operations integrated")
     print(f"Wisdom increased through learning from {ljpw['usage_count']} uses")
     print("=" * 70)
 

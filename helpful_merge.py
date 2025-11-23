@@ -3,6 +3,7 @@
 Helpful Merge - Combines data from multiple sources intelligently.
 """
 
+
 def merge_data_sources(sources: list) -> dict:
     """
     Merge multiple data sources into one, handling conflicts intelligently.
@@ -22,12 +23,14 @@ def merge_data_sources(sources: list) -> dict:
         if "data" not in source:
             continue
 
-        validated_sources.append({
-            "index": i,
-            "data": source["data"],
-            "timestamp": source.get("timestamp", 0),
-            "confidence": source.get("confidence", 0.5),
-        })
+        validated_sources.append(
+            {
+                "index": i,
+                "data": source["data"],
+                "timestamp": source.get("timestamp", 0),
+                "confidence": source.get("confidence", 0.5),
+            }
+        )
 
     if not validated_sources:
         return {"error": "No valid sources found"}
@@ -46,12 +49,14 @@ def merge_data_sources(sources: list) -> dict:
         # Gather all values for this key
         for source in validated_sources:
             if key in source["data"]:
-                candidates.append({
-                    "value": source["data"][key],
-                    "timestamp": source["timestamp"],
-                    "confidence": source["confidence"],
-                    "source_index": source["index"],
-                })
+                candidates.append(
+                    {
+                        "value": source["data"][key],
+                        "timestamp": source["timestamp"],
+                        "confidence": source["confidence"],
+                        "source_index": source["index"],
+                    }
+                )
 
         if not candidates:
             continue
@@ -65,8 +70,7 @@ def merge_data_sources(sources: list) -> dict:
         "sources_used": len(validated_sources),
         "keys_merged": len(merged),
         "conflicts_resolved": sum(
-            1 for key in all_keys
-            if sum(1 for s in validated_sources if key in s["data"]) > 1
+            1 for key in all_keys if sum(1 for s in validated_sources if key in s["data"]) > 1
         ),
     }
 

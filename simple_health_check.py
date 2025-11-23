@@ -6,7 +6,7 @@ Just a helper that takes code and tells you what's good and what needs work.
 Simple. Useful. Real.
 """
 
-from harmonizer_integration import PythonCodeHarmonizer, HARMONIZER_AVAILABLE
+from harmonizer_integration import HARMONIZER_AVAILABLE, PythonCodeHarmonizer
 
 
 def check_code_health(code: str) -> dict:
@@ -45,7 +45,9 @@ def check_code_health(code: str) -> dict:
     wisdom = coords.wisdom
 
     # Calculate harmony
-    harmony = (love * justice * power * wisdom) ** 0.25 if all([love, justice, power, wisdom]) else 0.0
+    harmony = (
+        (love * justice * power * wisdom) ** 0.25 if all([love, justice, power, wisdom]) else 0.0
+    )
 
     # Calculate balance (how even are the dimensions?)
     all_dims = [love, justice, power, wisdom]
@@ -76,7 +78,7 @@ def check_code_health(code: str) -> dict:
         },
         "good": [],
         "needs_work": [],
-        "overall": ""
+        "overall": "",
     }
 
     # What's good?
@@ -137,19 +139,19 @@ if __name__ == "__main__":
     print(f"Function: {health['name']}")
     print()
     print("Scores:")
-    for dim, score in health['scores'].items():
+    for dim, score in health["scores"].items():
         print(f"  {dim.capitalize():10s}: {score:.2f}")
     print()
 
-    if health['good']:
+    if health["good"]:
         print("✓ Strengths:")
-        for item in health['good']:
+        for item in health["good"]:
             print(f"  • {item}")
         print()
 
-    if health['needs_work']:
+    if health["needs_work"]:
         print("⚠ Needs Work:")
-        for item in health['needs_work']:
+        for item in health["needs_work"]:
             print(f"  • {item}")
         print()
 

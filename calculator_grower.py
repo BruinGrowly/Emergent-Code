@@ -29,12 +29,14 @@ class CalculatorGrower:
             error = str(e)
 
         # Track usage
-        self.usage_history.append({
-            "operation": operation,
-            "a": a,
-            "b": b,
-            "success": success,
-        })
+        self.usage_history.append(
+            {
+                "operation": operation,
+                "a": a,
+                "b": b,
+                "success": success,
+            }
+        )
 
         # Learn from usage patterns
         self._learn_from_usage()
@@ -71,20 +73,26 @@ class CalculatorGrower:
 
     def _make_power_operation(self):
         """Create a new power operation."""
+
         def power(a: float, b: float) -> float:
-            return a ** b
+            return a**b
+
         return power
 
     def _make_modulo_operation(self):
         """Create a new modulo operation."""
+
         def modulo(a: float, b: float) -> float:
             return a % b
+
         return modulo
 
     def _make_average_operation(self):
         """Create a new average operation."""
+
         def average(a: float, b: float) -> float:
             return (a + b) / 2
+
         return average
 
     def grow(self):

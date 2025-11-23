@@ -111,6 +111,9 @@ ignore = [
     "B008",  # do not perform function calls in argument defaults
     "C901",  # too complex
     "N806",  # variable name should be lowercase (L, J, P, W are standard in LJPW framework)
+    "N815",  # variable name in class scope should not be mixedCase (Greek letters κ are intentional)
+    "N816",  # variable name should not be mixedCase (Greek letters κ are intentional)
+    "B007",  # loop control variable not used within loop body
     "F841",  # local variable assigned but never used
 ]
 

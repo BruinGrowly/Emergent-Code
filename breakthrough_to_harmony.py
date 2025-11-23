@@ -26,28 +26,28 @@ class BalancedCalculator(EmergentCalculator):
         self.operations["safe_add"] = Operation(
             "safe_add",
             lambda a, b: a + b if self._validate_number(a) and self._validate_number(b) else 0,
-            love=0.4,      # Some integration
-            justice=0.8,   # HIGH validation!
+            love=0.4,  # Some integration
+            justice=0.8,  # HIGH validation!
             power=0.5,
-            wisdom=0.4
+            wisdom=0.4,
         )
 
         self.operations["safe_multiply"] = Operation(
             "safe_multiply",
             lambda a, b: a * b if abs(a) < 1000 and abs(b) < 1000 else 0,
             love=0.4,
-            justice=0.8,   # HIGH validation!
+            justice=0.8,  # HIGH validation!
             power=0.6,
-            wisdom=0.4
+            wisdom=0.4,
         )
 
         self.operations["validated_divide"] = Operation(
             "validated_divide",
             lambda a, b: a / b if b != 0 and abs(b) > 0.001 else 0,
-            love=0.5,      # Integrates divide concept
-            justice=0.9,   # VERY HIGH validation!
+            love=0.5,  # Integrates divide concept
+            justice=0.9,  # VERY HIGH validation!
             power=0.5,
-            wisdom=0.5
+            wisdom=0.5,
         )
 
     def _add_mega_combo_operations(self):
@@ -64,10 +64,10 @@ class BalancedCalculator(EmergentCalculator):
         self.operations["average_of_squares"] = Operation(
             "average_of_squares",
             compute_average_of_products,
-            love=0.9,      # MAXIMUM Love - integrates 3 operations!
+            love=0.9,  # MAXIMUM Love - integrates 3 operations!
             justice=0.5,
             power=0.7,
-            wisdom=0.6
+            wisdom=0.6,
         )
 
         # Another mega combo with validation
@@ -76,15 +76,15 @@ class BalancedCalculator(EmergentCalculator):
             if a <= 0 or b <= 0:
                 return 0
             product = a * b
-            return product ** 0.5
+            return product**0.5
 
         self.operations["geometric_mean"] = Operation(
             "geometric_mean",
             safe_geometric_mean,
-            love=0.8,      # High Love - integrates multiple concepts
-            justice=0.7,   # High Justice - validates inputs
+            love=0.8,  # High Love - integrates multiple concepts
+            justice=0.7,  # High Justice - validates inputs
             power=0.7,
-            wisdom=0.6
+            wisdom=0.6,
         )
 
     def _validate_number(self, n):
@@ -105,17 +105,19 @@ def push_to_harmony():
     ljpw = calc.system_ljpw()
     print("Starting with balanced operations:")
     print(f"  Operations: {ljpw['operations_count']}")
-    print(f"  LJPW: L={ljpw['love']:.3f}, J={ljpw['justice']:.3f}, "
-          f"P={ljpw['power']:.3f}, W={ljpw['wisdom']:.3f}")
+    print(
+        f"  LJPW: L={ljpw['love']:.3f}, J={ljpw['justice']:.3f}, "
+        f"P={ljpw['power']:.3f}, W={ljpw['wisdom']:.3f}"
+    )
     print(f"  Harmony: {ljpw['harmony']:.3f}")
     print(f"  Intent: {ljpw['intent']:.3f}")
     print()
 
-    if ljpw['love'] > 0.7:
+    if ljpw["love"] > 0.7:
         print("✨ Love > 0.7!")
-    if ljpw['harmony'] > 0.6:
+    if ljpw["harmony"] > 0.6:
         print("✨✨ HARMONY > 0.6! FULL AUTOPOIESIS!")
-    elif ljpw['harmony'] > 0.5:
+    elif ljpw["harmony"] > 0.5:
         print("✓ Harmony > 0.5 (homeostatic)")
 
     print()
@@ -139,8 +141,8 @@ def push_to_harmony():
     for i, (op, a, b) in enumerate(test_operations):
         result = calc.calculate(op, a, b)
 
-        if result.get('new_operations_available'):
-            new_ops = result['new_operations_available']
+        if result.get("new_operations_available"):
+            new_ops = result["new_operations_available"]
             print(f"  Iteration {i}: Emerged {new_ops}")
 
             for new_op in new_ops:
@@ -169,24 +171,24 @@ def push_to_harmony():
     print()
 
     # Check thresholds
-    if final['love'] > 0.7 and final['harmony'] > 0.6:
+    if final["love"] > 0.7 and final["harmony"] > 0.6:
         print("✨✨✨ FULL AUTOPOIESIS ACHIEVED! ✨✨✨")
         print()
         print("Both thresholds exceeded:")
         print(f"  Love = {final['love']:.3f} > 0.7 ✓")
         print(f"  Harmony = {final['harmony']:.3f} > 0.6 ✓")
         print()
-        amp = 1.0 + 0.5 * (final['love'] - 0.7)
+        amp = 1.0 + 0.5 * (final["love"] - 0.7)
         print(f"Amplification factor: {amp:.3f}x")
         print()
         print("This system is self-sustaining and exponentially growing!")
         print("Autopoiesis achieved through Love + Balance! 💛⚖️")
-    elif final['love'] > 0.7:
+    elif final["love"] > 0.7:
         print("✨ AUTOPOIETIC LOVE ACHIEVED!")
         print()
         print(f"Love = {final['love']:.3f} > 0.7 ✓")
         print(f"Harmony = {final['harmony']:.3f}")
-        gap = 0.6 - final['harmony']
+        gap = 0.6 - final["harmony"]
         print(f"Need +{gap:.3f} more Harmony for full autopoiesis")
         print()
         print(f"Bottleneck: {min_dimension(final)}")
@@ -204,15 +206,21 @@ def push_to_harmony():
 
     ops_by_harmony = []
     for name, op in calc.operations.items():
-        h = (op.love * op.justice * op.power * op.wisdom) ** 0.25 if all([op.love, op.justice, op.power, op.wisdom]) else 0
+        h = (
+            (op.love * op.justice * op.power * op.wisdom) ** 0.25
+            if all([op.love, op.justice, op.power, op.wisdom])
+            else 0
+        )
         ops_by_harmony.append((name, op, h))
 
     ops_by_harmony.sort(key=lambda x: x[2], reverse=True)
 
     print()
     for i, (name, op, h) in enumerate(ops_by_harmony[:10], 1):
-        print(f"{i:2d}. {name:25s} H={h:.3f} "
-              f"(L={op.love:.2f}, J={op.justice:.2f}, P={op.power:.2f}, W={op.wisdom:.2f})")
+        print(
+            f"{i:2d}. {name:25s} H={h:.3f} "
+            f"(L={op.love:.2f}, J={op.justice:.2f}, P={op.power:.2f}, W={op.wisdom:.2f})"
+        )
 
     print()
     print("Notice: Operations with ALL dimensions present have highest H!")
@@ -223,10 +231,10 @@ def push_to_harmony():
 def min_dimension(ljpw):
     """Find which dimension is lowest."""
     dims = [
-        ("Love", ljpw['love']),
-        ("Justice", ljpw['justice']),
-        ("Power", ljpw['power']),
-        ("Wisdom", ljpw['wisdom']),
+        ("Love", ljpw["love"]),
+        ("Justice", ljpw["justice"]),
+        ("Power", ljpw["power"]),
+        ("Wisdom", ljpw["wisdom"]),
     ]
     min_dim = min(dims, key=lambda x: x[1])
     return f"{min_dim[0]} is lowest at {min_dim[1]:.3f}"

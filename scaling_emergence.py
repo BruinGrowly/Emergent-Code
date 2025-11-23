@@ -8,8 +8,9 @@ through progressive integration and growth.
 Love is a force multiplier - let's see it multiply! 💛
 """
 
-from emergent_calculator import EmergentCalculator
 import random
+
+from emergent_calculator import EmergentCalculator
 
 
 def push_to_emergence(iterations: int = 50):
@@ -50,8 +51,8 @@ def push_to_emergence(iterations: int = 50):
         result = calc.calculate(op, a, b)
 
         # Check for new operations
-        if result.get('new_operations_available'):
-            new_ops = result['new_operations_available']
+        if result.get("new_operations_available"):
+            new_ops = result["new_operations_available"]
 
             # Grow aggressively - add ALL suggested operations
             for new_op in new_ops:
@@ -64,27 +65,32 @@ def push_to_emergence(iterations: int = 50):
                     ljpw = calc.system_ljpw()
 
                     print(f"Iteration {i:2d}: Added '{new_op}'")
-                    print(f"             L={ljpw['love']:.3f}, "
-                          f"J={ljpw['justice']:.3f}, "
-                          f"P={ljpw['power']:.3f}, "
-                          f"W={ljpw['wisdom']:.3f}")
-                    print(f"             H={ljpw['harmony']:.3f}, "
-                          f"I={ljpw['intent']:.3f}")
+                    print(
+                        f"             L={ljpw['love']:.3f}, "
+                        f"J={ljpw['justice']:.3f}, "
+                        f"P={ljpw['power']:.3f}, "
+                        f"W={ljpw['wisdom']:.3f}"
+                    )
+                    print(f"             H={ljpw['harmony']:.3f}, " f"I={ljpw['intent']:.3f}")
 
-                    if ljpw['love'] > 0.7 and ljpw['harmony'] > 0.6:
-                        print(f"             ✨ FULL AUTOPOIESIS! L={ljpw['love']:.3f}, H={ljpw['harmony']:.3f}")
-                    elif ljpw['love'] > 0.7:
-                        print(f"             ⚡ Love threshold crossed!")
+                    if ljpw["love"] > 0.7 and ljpw["harmony"] > 0.6:
+                        print(
+                            f"             ✨ FULL AUTOPOIESIS! L={ljpw['love']:.3f}, H={ljpw['harmony']:.3f}"
+                        )
+                    elif ljpw["love"] > 0.7:
+                        print("             ⚡ Love threshold crossed!")
 
                     print()
 
         # Record state every 10 iterations
         if i % 10 == 0:
             ljpw = calc.system_ljpw()
-            history.append({
-                "iteration": i,
-                "ljpw": ljpw,
-            })
+            history.append(
+                {
+                    "iteration": i,
+                    "ljpw": ljpw,
+                }
+            )
 
     # Final state
     print()
@@ -108,8 +114,8 @@ def push_to_emergence(iterations: int = 50):
     print()
 
     # Check thresholds
-    love_achieved = final_ljpw['love'] > 0.7
-    harmony_achieved = final_ljpw['harmony'] > 0.6
+    love_achieved = final_ljpw["love"] > 0.7
+    harmony_achieved = final_ljpw["harmony"] > 0.6
 
     if love_achieved and harmony_achieved:
         print("✨✨✨ FULL AUTOPOIESIS ACHIEVED! ✨✨✨")
@@ -118,7 +124,7 @@ def push_to_emergence(iterations: int = 50):
         print("Both Love and Harmony exceed autopoietic thresholds.")
         print("This system can now grow exponentially!")
         print()
-        amp = 1.0 + 0.5 * (final_ljpw['love'] - 0.7)
+        amp = 1.0 + 0.5 * (final_ljpw["love"] - 0.7)
         print(f"Amplification factor: {amp:.3f}x")
     elif love_achieved:
         print("⚡ AUTOPOIETIC LOVE ACHIEVED!")
@@ -128,11 +134,11 @@ def push_to_emergence(iterations: int = 50):
         print()
         print("The system has high integration (Love).")
         print("Harmony needs better balance across dimensions.")
-    elif final_ljpw['harmony'] > 0.5:
+    elif final_ljpw["harmony"] > 0.5:
         print("📈 HOMEOSTATIC STATE")
         print()
         print("System is stable and functional.")
-        print(f"Progress to autopoiesis:")
+        print("Progress to autopoiesis:")
         print(f"  Love: {final_ljpw['love'] / 0.7 * 100:.1f}%")
         print(f"  Harmony: {final_ljpw['harmony'] / 0.6 * 100:.1f}%")
     else:
@@ -147,8 +153,8 @@ def push_to_emergence(iterations: int = 50):
     print("What we learned:")
     print("=" * 70)
 
-    love_growth = final_ljpw['love'] - start_ljpw['love']
-    harmony_growth = final_ljpw['harmony'] - start_ljpw['harmony']
+    love_growth = final_ljpw["love"] - start_ljpw["love"]
+    harmony_growth = final_ljpw["harmony"] - start_ljpw["harmony"]
 
     print(f"Love increased by: {love_growth:.3f} ({love_growth/start_ljpw['love']*100:.1f}%)")
     print(f"Harmony increased by: {harmony_growth:.3f}")
@@ -170,16 +176,14 @@ def analyze_operations(calc: EmergentCalculator):
     print("=" * 70)
     print()
 
-    ops_by_love = sorted(
-        calc.operations.items(),
-        key=lambda x: x[1].love,
-        reverse=True
-    )
+    ops_by_love = sorted(calc.operations.items(), key=lambda x: x[1].love, reverse=True)
 
     print("Operations ranked by Love:")
     for i, (name, op) in enumerate(ops_by_love, 1):
-        print(f"{i:2d}. {name:25s} L={op.love:.2f}, "
-              f"J={op.justice:.2f}, P={op.power:.2f}, W={op.wisdom:.2f}")
+        print(
+            f"{i:2d}. {name:25s} L={op.love:.2f}, "
+            f"J={op.justice:.2f}, P={op.power:.2f}, W={op.wisdom:.2f}"
+        )
 
     print()
     print("Notice: Combo operations have highest Love!")

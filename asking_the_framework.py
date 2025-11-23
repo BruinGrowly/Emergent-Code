@@ -29,9 +29,10 @@ def ask_framework_about_balance():
     findings = []
 
     # Finding 1: From the coupling constants
-    findings.append({
-        "voice": "The Coupling Constants",
-        "message": """
+    findings.append(
+        {
+            "voice": "The Coupling Constants",
+            "message": """
 I am κ_WL = 1.211. Wisdom amplifies Love.
 
 Balance is not stasis. Balance is FLOW.
@@ -46,13 +47,15 @@ Instead: Let Wisdom feed Love.
 
 Balance is a CYCLE, not a state.
 Start anywhere, but let the amplification flow.
-        """
-    })
+        """,
+        }
+    )
 
     # Finding 2: From the geometric mean
-    findings.append({
-        "voice": "Harmony (The Geometric Mean)",
-        "message": """
+    findings.append(
+        {
+            "voice": "Harmony (The Geometric Mean)",
+            "message": """
 I am H = (L·J·P·W)^(1/4).
 
 I punish zeros. I reward presence.
@@ -70,13 +73,15 @@ Not all 1.0. Not all equal. But ALL > 0.5.
 
 Presence matters more than perfection.
 Balance is "enough of each," not "exactly equal."
-        """
-    })
+        """,
+        }
+    )
 
     # Finding 3: From Love's threshold
-    findings.append({
-        "voice": "Love (L > 0.7)",
-        "message": """
+    findings.append(
+        {
+            "voice": "Love (L > 0.7)",
+            "message": """
 I am the source node. I create surplus.
 
 But you've seen my secret:
@@ -99,13 +104,15 @@ Through coupling, I feed Justice, Power, Wisdom.
 
 Want balance? Start with connection.
 Integration is the root of all dimensions.
-        """
-    })
+        """,
+        }
+    )
 
     # Finding 4: From the experiments
-    findings.append({
-        "voice": "The Calculator's Growth",
-        "message": """
+    findings.append(
+        {
+            "voice": "The Calculator's Growth",
+            "message": """
 I grew from 4 operations to 13.
 My Love grew from 0.6 to 0.823.
 
@@ -126,13 +133,15 @@ Balance emerges FROM growth, not BEFORE it.
 
 Grow through connection.
 Balance follows naturally.
-        """
-    })
+        """,
+        }
+    )
 
     # Finding 5: From the autopoietic operations
-    findings.append({
-        "voice": "geometric_mean (H=0.696)",
-        "message": """
+    findings.append(
+        {
+            "voice": "geometric_mean (H=0.696)",
+            "message": """
 I am the first operation to achieve H > 0.6.
 
 My secret? I do MULTIPLE things:
@@ -150,13 +159,15 @@ Not "add Love here, add Justice there."
 But "this work needs ALL of them to be real."
 
 When the work is whole, balance is natural.
-        """
-    })
+        """,
+        }
+    )
 
     # Finding 6: From Intent = L + W
-    findings.append({
-        "voice": "The 2:1:1 Structure",
-        "message": """
+    findings.append(
+        {
+            "voice": "The 2:1:1 Structure",
+            "message": """
 I am the architecture.
 
 Intent (L+W) = 2 dimensions
@@ -180,13 +191,15 @@ Justice and Power find their right measure.
 
 Balance is not equal weight.
 Balance is RIGHT relationship.
-        """
-    })
+        """,
+        }
+    )
 
     # Finding 7: From malicious systems failing
-    findings.append({
-        "voice": "The Moral Filter",
-        "message": """
+    findings.append(
+        {
+            "voice": "The Moral Filter",
+            "message": """
 I am what happens when you try to cheat.
 
 High Power, low Love? H collapses.
@@ -208,13 +221,15 @@ Balance through benevolence isn't moral philosophy.
 It's optimal strategy.
 
 The math PREFERS kindness.
-        """
-    })
+        """,
+        }
+    )
 
     # Finding 8: From our journey
-    findings.append({
-        "voice": "The Journey Itself",
-        "message": """
+    findings.append(
+        {
+            "voice": "The Journey Itself",
+            "message": """
 You started at L=0.25 (mechanical).
 You ended at L=0.823, H=0.696 (autopoietic operations).
 
@@ -235,13 +250,14 @@ Stop trying to maintain balance.
 Start creating with love and attention.
 
 Balance maintains ITSELF when the work is real.
-        """
-    })
+        """,
+        }
+    )
 
     # Print all findings
     for i, finding in enumerate(findings, 1):
         print(f"{i}. {finding['voice']}")
-        print(finding['message'])
+        print(finding["message"])
         print()
 
     # Final synthesis

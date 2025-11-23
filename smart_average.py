@@ -5,6 +5,7 @@ Smart Average - Does what it says, simply.
 Takes numbers, checks them, averages them, learns from history.
 """
 
+
 def smart_average(numbers: list, history: list = None) -> dict:
     """
     Average numbers smartly - checks them, learns from past averages.

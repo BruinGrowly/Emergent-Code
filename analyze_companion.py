@@ -7,7 +7,9 @@ in Love and Harmony than code written mechanically?
 """
 
 import inspect
+
 from ljpw_companion import LJPWCompanion
+
 
 def main():
     companion = LJPWCompanion()
@@ -50,20 +52,22 @@ def main():
             print(f"Error: {analysis['error']}")
             continue
 
-        ljpw = analysis['ljpw']
-        h = analysis['harmony']
+        ljpw = analysis["ljpw"]
+        h = analysis["harmony"]
 
-        print(f"LJPW: L={ljpw['love']:.3f}, J={ljpw['justice']:.3f}, "
-              f"P={ljpw['power']:.3f}, W={ljpw['wisdom']:.3f}")
+        print(
+            f"LJPW: L={ljpw['love']:.3f}, J={ljpw['justice']:.3f}, "
+            f"P={ljpw['power']:.3f}, W={ljpw['wisdom']:.3f}"
+        )
         print(f"Harmony: {h:.3f}")
         print(f"Phase: {analysis['phase']}")
 
-        if ljpw['love'] > 0.5:
-            print(f"  ✓ Love > 0.5! Higher than most mechanical compositions")
+        if ljpw["love"] > 0.5:
+            print("  ✓ Love > 0.5! Higher than most mechanical compositions")
         if h > 0.3:
-            print(f"  ✓ Harmony > 0.3! Higher than mechanical compositions")
-        if analysis['autopoietic_potential']['is_autopoietic']:
-            print(f"  ✨ AUTOPOIETIC! The genuine intent shows up!")
+            print("  ✓ Harmony > 0.3! Higher than mechanical compositions")
+        if analysis["autopoietic_potential"]["is_autopoietic"]:
+            print("  ✨ AUTOPOIETIC! The genuine intent shows up!")
 
         print()
 

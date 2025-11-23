@@ -26,7 +26,7 @@ def analyze_code(code: str, name: str, harmonizer):
     if result:
         for func_name, data in result.items():
             try:
-                profile = data['ice_result']['ice_components']['intent'].coordinates
+                profile = data["ice_result"]["ice_components"]["intent"].coordinates
                 profiles[func_name] = profile
             except (KeyError, AttributeError):
                 pass
@@ -62,11 +62,13 @@ def secure_add(a, b):
     return result
 '''
 
-    profiles = analyze_code(secure_add_standalone, 'secure_add_standalone', harmonizer)
+    profiles = analyze_code(secure_add_standalone, "secure_add_standalone", harmonizer)
     for name, profile in profiles.items():
-        key = f"secure_add_function"
+        key = "secure_add_function"
         all_profiles[key] = profile
-        print(f"✓ {key:<35} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+        print(
+            f"✓ {key:<35} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+        )
 
     # ========================================================================
     # SECTION 2: Generated SecureCalculator Class
@@ -78,11 +80,13 @@ def secure_add(a, b):
     generated_file = Path("generated_SecureCalculator.py")
     if generated_file.exists():
         code = generated_file.read_text()
-        profiles = analyze_code(code, 'generated_SecureCalculator', harmonizer)
+        profiles = analyze_code(code, "generated_SecureCalculator", harmonizer)
         for name, profile in profiles.items():
             key = f"SecureCalculator.{name}"
             all_profiles[key] = profile
-            print(f"✓ {key:<35} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+            print(
+                f"✓ {key:<35} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+            )
     else:
         print("⚠ generated_SecureCalculator.py not found")
 
@@ -105,15 +109,19 @@ def simple_multiply(a, b):
     return a * b
 '''
 
-    profiles = analyze_code(simple_add, 'simple_add', harmonizer)
+    profiles = analyze_code(simple_add, "simple_add", harmonizer)
     for name, profile in profiles.items():
-        all_profiles[f"simple_add_function"] = profile
-        print(f"✓ simple_add_function{'':<20} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+        all_profiles["simple_add_function"] = profile
+        print(
+            f"✓ simple_add_function{'':<20} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+        )
 
-    profiles = analyze_code(simple_multiply, 'simple_multiply', harmonizer)
+    profiles = analyze_code(simple_multiply, "simple_multiply", harmonizer)
     for name, profile in profiles.items():
-        all_profiles[f"simple_multiply_function"] = profile
-        print(f"✓ simple_multiply_function{'':<15} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+        all_profiles["simple_multiply_function"] = profile
+        print(
+            f"✓ simple_multiply_function{'':<15} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+        )
 
     # ========================================================================
     # SECTION 4: Simple Classes
@@ -135,11 +143,13 @@ class SimpleCalculator:
         return a * b
 '''
 
-    profiles = analyze_code(simple_calculator_class, 'SimpleCalculator', harmonizer)
+    profiles = analyze_code(simple_calculator_class, "SimpleCalculator", harmonizer)
     for name, profile in profiles.items():
         key = f"SimpleCalculator.{name}"
         all_profiles[key] = profile
-        print(f"✓ {key:<35} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+        print(
+            f"✓ {key:<35} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+        )
 
     # ========================================================================
     # SECTION 5: Stateful Classes
@@ -182,11 +192,13 @@ class StatefulCalculator:
         return self.history
 '''
 
-    profiles = analyze_code(stateful_calculator, 'StatefulCalculator', harmonizer)
+    profiles = analyze_code(stateful_calculator, "StatefulCalculator", harmonizer)
     for name, profile in profiles.items():
         key = f"StatefulCalculator.{name}"
         all_profiles[key] = profile
-        print(f"✓ {key:<35} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+        print(
+            f"✓ {key:<35} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+        )
 
     # ========================================================================
     # SECTION 6: Primitive Aggregation Patterns
@@ -202,10 +214,12 @@ def zero_aggregate(a, b):
     pass
 '''
 
-    profiles = analyze_code(zero_aggregate, 'zero_aggregate', harmonizer)
+    profiles = analyze_code(zero_aggregate, "zero_aggregate", harmonizer)
     for name, profile in profiles.items():
-        all_profiles['zero_aggregate'] = profile
-        print(f"✓ zero_aggregate{'':<22} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+        all_profiles["zero_aggregate"] = profile
+        print(
+            f"✓ zero_aggregate{'':<22} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+        )
 
     # ========================================================================
     # SUMMARY
@@ -217,8 +231,8 @@ def zero_aggregate(a, b):
     print()
 
     # Group by type
-    functions = {k: v for k, v in all_profiles.items() if '_function' in k or k == 'zero_aggregate'}
-    class_methods = {k: v for k, v in all_profiles.items() if '.' in k}
+    functions = {k: v for k, v in all_profiles.items() if "_function" in k or k == "zero_aggregate"}
+    class_methods = {k: v for k, v in all_profiles.items() if "." in k}
 
     print(f"Standalone functions: {len(functions)}")
     print(f"Class methods: {len(class_methods)}")
@@ -229,11 +243,13 @@ def zero_aggregate(a, b):
     print("=" * 80)
 
     output_file = Path("extracted_profiles.txt")
-    with output_file.open('w') as f:
+    with output_file.open("w") as f:
         f.write("# Extracted LJPW Profiles\n")
         f.write("# Format: name = L, J, P, W\n\n")
         for name, profile in sorted(all_profiles.items()):
-            f.write(f"{name} = {profile.love:.3f}, {profile.justice:.3f}, {profile.power:.3f}, {profile.wisdom:.3f}\n")
+            f.write(
+                f"{name} = {profile.love:.3f}, {profile.justice:.3f}, {profile.power:.3f}, {profile.wisdom:.3f}\n"
+            )
 
     print(f"✓ Saved {len(all_profiles)} profiles to {output_file}")
 
@@ -245,9 +261,11 @@ def zero_aggregate(a, b):
     print()
 
     for name, profile in sorted(all_profiles.items()):
-        safe_name = name.replace('.', '_').replace('_function', '')
+        safe_name = name.replace(".", "_").replace("_function", "")
         print(f"# {name}")
-        print(f"{safe_name}_profile = LJPWProfile({profile.love:.3f}, {profile.justice:.3f}, {profile.power:.3f}, {profile.wisdom:.3f})")
+        print(
+            f"{safe_name}_profile = LJPWProfile({profile.love:.3f}, {profile.justice:.3f}, {profile.power:.3f}, {profile.wisdom:.3f})"
+        )
         print()
 
     return 0

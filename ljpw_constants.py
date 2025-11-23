@@ -155,6 +155,7 @@ CALIBRATED_CONSTANTS = {
     "BONUS_VALIDATION": 0.000,
 }
 
+
 def get_all_constants():
     """Return all constants as a dictionary."""
     return {
@@ -173,6 +174,7 @@ def get_all_constants():
         "HARMONY_THRESHOLD": HARMONY_THRESHOLD,
         "HARMONY_BONUS_PER_FEATURE": HARMONY_BONUS_PER_FEATURE,
     }
+
 
 def print_constants():
     """Print all constants in a readable format."""
@@ -199,6 +201,7 @@ def print_constants():
     print(f"Calibration: v{CALIBRATION_VERSION} ({CALIBRATION_DATE})")
     print(f"Training: {TRAINING_EXAMPLES} examples, {MSE_IMPROVEMENT:.1%} improvement")
     print("=" * 70)
+
 
 if __name__ == "__main__":
     print_constants()

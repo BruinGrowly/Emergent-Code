@@ -8,7 +8,9 @@ Comparing:
 """
 
 from pathlib import Path
+
 from harmonizer_integration import PythonCodeHarmonizer
+
 
 def main():
     harmonizer = PythonCodeHarmonizer(quiet=False)
@@ -40,7 +42,7 @@ def main():
         print(f"LJPW: L={ice.love:.3f}, J={ice.justice:.3f}, P={ice.power:.3f}, W={ice.wisdom:.3f}")
         h_mech = (ice.love * ice.justice * ice.power * ice.wisdom) ** 0.25
         print(f"Harmony: {h_mech:.3f}")
-        print(f"Assessment: Balanced but LOW (all dimensions ≈ 0.25)")
+        print("Assessment: Balanced but LOW (all dimensions ≈ 0.25)")
     print()
 
     # Test 2: Genuine intent code
@@ -64,14 +66,16 @@ def main():
     for func_name, func_data in genuine_result.items():
         ice = func_data["ice_result"]["ice_components"]["intent"].coordinates
         h = (ice.love * ice.justice * ice.power * ice.wisdom) ** 0.25
-        all_functions.append({
-            "name": func_name,
-            "love": ice.love,
-            "justice": ice.justice,
-            "power": ice.power,
-            "wisdom": ice.wisdom,
-            "harmony": h,
-        })
+        all_functions.append(
+            {
+                "name": func_name,
+                "love": ice.love,
+                "justice": ice.justice,
+                "power": ice.power,
+                "wisdom": ice.wisdom,
+                "harmony": h,
+            }
+        )
 
     # Sort by harmony
     all_functions.sort(key=lambda x: x["harmony"], reverse=True)
@@ -79,18 +83,20 @@ def main():
     print("Top 5 functions by Harmony:")
     for i, func in enumerate(all_functions[:5], 1):
         print(f"\n{i}. {func['name']}")
-        print(f"   L={func['love']:.3f}, J={func['justice']:.3f}, "
-              f"P={func['power']:.3f}, W={func['wisdom']:.3f}")
+        print(
+            f"   L={func['love']:.3f}, J={func['justice']:.3f}, "
+            f"P={func['power']:.3f}, W={func['wisdom']:.3f}"
+        )
         print(f"   H={func['harmony']:.3f}")
 
-        if func['harmony'] > h_mech:
-            print(f"   ✓ Higher harmony than mechanical composition!")
-        if func['love'] > 0.5:
-            print(f"   ✓ Love > 0.5 (higher than most)")
-        if func['harmony'] > 0.5:
-            print(f"   ✓ Harmony > 0.5 (HOMEOSTATIC phase!)")
-        if func['love'] > 0.7 and func['harmony'] > 0.6:
-            print(f"   ✨ AUTOPOIETIC! Genuine intent achieved the threshold!")
+        if func["harmony"] > h_mech:
+            print("   ✓ Higher harmony than mechanical composition!")
+        if func["love"] > 0.5:
+            print("   ✓ Love > 0.5 (higher than most)")
+        if func["harmony"] > 0.5:
+            print("   ✓ Harmony > 0.5 (HOMEOSTATIC phase!)")
+        if func["love"] > 0.7 and func["harmony"] > 0.6:
+            print("   ✨ AUTOPOIETIC! Genuine intent achieved the threshold!")
 
     print()
     print("=" * 80)
@@ -99,10 +105,10 @@ def main():
     print()
 
     # Find max values
-    max_love = max(f['love'] for f in all_functions)
-    max_harmony = max(f['harmony'] for f in all_functions)
-    max_love_func = next(f for f in all_functions if f['love'] == max_love)
-    max_h_func = next(f for f in all_functions if f['harmony'] == max_harmony)
+    max_love = max(f["love"] for f in all_functions)
+    max_harmony = max(f["harmony"] for f in all_functions)
+    max_love_func = next(f for f in all_functions if f["love"] == max_love)
+    max_h_func = next(f for f in all_functions if f["harmony"] == max_harmony)
 
     print(f"Mechanical composition: H = {h_mech:.3f}")
     print(f"Genuine intent (highest H): H = {max_harmony:.3f} ({max_h_func['name']})")

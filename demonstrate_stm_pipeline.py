@@ -61,7 +61,9 @@ def validate_user_input(data):
 
     result = harmonizer.analyze_file_content(code_signal)
     if result and "validate_user_input" in result:
-        profile = result["validate_user_input"]["ice_result"]["ice_components"]["intent"].coordinates
+        profile = result["validate_user_input"]["ice_result"]["ice_components"][
+            "intent"
+        ].coordinates
         print("MEANING (LJPW Coordinates):")
         print(f"  L={profile.love:.3f}   (Love - connection, communication)")
         print(f"  J={profile.justice:.3f}   (Justice - validation, correctness)")
@@ -115,7 +117,9 @@ def log_operation(operation, a, b, result):
             profile = result[func_name]["ice_result"]["ice_components"]["intent"].coordinates
             meanings[name] = profile
             print(f"\n{name}: {func_name}")
-            print(f"  → L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+            print(
+                f"  → L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+            )
 
     print("\n\nTRANSFORM (Aggregation):")
     print("  1. Analyze each signal individually")
@@ -203,16 +207,24 @@ def secure_add(a, b):
     print()
 
     quality_tests = [
-        ("Low Quality", """
+        (
+            "Low Quality",
+            """
 def do_stuff(x, y):
     return x + y
-"""),
-        ("Medium Quality", """
+""",
+        ),
+        (
+            "Medium Quality",
+            """
 def add_numbers(x, y):
     '''Add two numbers'''
     return x + y
-"""),
-        ("High Quality", """
+""",
+        ),
+        (
+            "High Quality",
+            """
 def add_numbers_securely(x, y):
     '''
     Add two numbers with type validation and logging.
@@ -225,7 +237,8 @@ def add_numbers_securely(x, y):
     result = x + y
     print(f"[LOG] {x} + {y} = {result}")
     return result
-"""),
+""",
+        ),
     ]
 
     print("Signal Quality Impact on Meaning:\n")
@@ -237,10 +250,18 @@ def add_numbers_securely(x, y):
 
             # Calculate semantic richness
             richness = sum([profile.love, profile.justice, profile.power, profile.wisdom])
-            dimensions_used = sum([1 for v in [profile.love, profile.justice, profile.power, profile.wisdom] if v > 0.1])
+            dimensions_used = sum(
+                [
+                    1
+                    for v in [profile.love, profile.justice, profile.power, profile.wisdom]
+                    if v > 0.1
+                ]
+            )
 
             print(f"{quality:15s} Signal: {func_name}")
-            print(f"{'':15s} LJPW: L={profile.love:.2f}, J={profile.justice:.2f}, P={profile.power:.2f}, W={profile.wisdom:.2f}")
+            print(
+                f"{'':15s} LJPW: L={profile.love:.2f}, J={profile.justice:.2f}, P={profile.power:.2f}, W={profile.wisdom:.2f}"
+            )
             print(f"{'':15s} Richness: {richness:.2f} | Dimensions: {dimensions_used}/4")
             print()
 

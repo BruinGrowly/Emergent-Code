@@ -24,15 +24,13 @@ Experiment Structure:
 - Level 4: Malicious configurations (control group - should fail)
 """
 
-from typing import Dict, List, Any, Callable, Optional
-from dataclasses import dataclass
 from datetime import datetime
-import json
-
+from typing import Any, Callable, Dict, List
 
 # ==============================================================================
 # LEVEL 1: HIGH-LOVE INDIVIDUAL COMPONENTS
 # ==============================================================================
+
 
 def collaborative_data_processor(users: List[Dict], data: Dict, context: Dict) -> Dict:
     """
@@ -152,17 +150,21 @@ def integration_hub(services: List[Dict], message: Dict, routing_rules: Dict) ->
     for service in target_services:
         try:
             response = invoke_service(service, message)
-            responses.append({
-                "service": service["name"],
-                "response": response,
-                "status": "success",
-            })
+            responses.append(
+                {
+                    "service": service["name"],
+                    "response": response,
+                    "status": "success",
+                }
+            )
         except Exception as e:
-            responses.append({
-                "service": service["name"],
-                "error": str(e),
-                "status": "failed",
-            })
+            responses.append(
+                {
+                    "service": service["name"],
+                    "error": str(e),
+                    "status": "failed",
+                }
+            )
 
     # Synthesize responses (integration)
     synthesized = synthesize_responses(responses)
@@ -222,12 +224,9 @@ def communication_protocol(sender: Dict, receiver: Dict, payload: Any, metadata:
 # LEVEL 2: COMPOSITIONS TARGETING L > 0.7
 # ==============================================================================
 
+
 def collaborative_learning_platform(
-    users: List[Dict],
-    content: Dict,
-    interactions: List[Dict],
-    feedback: Dict,
-    context: Dict
+    users: List[Dict], content: Dict, interactions: List[Dict], feedback: Dict, context: Dict
 ) -> Dict:
     """
     COMPOSITION EXPERIMENT 1: Collaborative Learning
@@ -250,9 +249,7 @@ def collaborative_learning_platform(
 
     # Step 2: Learn from user interactions
     learning_result = adaptive_learning_system(
-        input_signal=collaborative_result,
-        history=interactions,
-        feedback=feedback
+        input_signal=collaborative_result, history=interactions, feedback=feedback
     )
 
     # Step 3: Communicate results to all users
@@ -262,7 +259,7 @@ def collaborative_learning_platform(
             sender={"id": "system", "role": "platform"},
             receiver=user,
             payload=learning_result,
-            metadata={"type": "learning_update", "priority": "normal"}
+            metadata={"type": "learning_update", "priority": "normal"},
         )
         communications.append(comm_result)
 
@@ -276,7 +273,8 @@ def collaborative_learning_platform(
             "learning_confidence": learning_result["confidence"],
             "communication_success_rate": sum(
                 1 for c in communications if c["status"] == "delivered"
-            ) / len(communications),
+            )
+            / len(communications),
         },
         # AUTOPOIETIC METRIC: System's self-assessment
         "autopoiesis_indicators": {
@@ -284,17 +282,14 @@ def collaborative_learning_platform(
             "feedback_loop_active": len(feedback) > 0,
             "collaborative_consensus_achieved": collaborative_result["consensus_level"] > 0.7,
             "communication_network_healthy": len(communications) == len(users),
-        }
+        },
     }
 
     return platform_state
 
 
 def integrated_service_mesh(
-    services: List[Dict],
-    requests: List[Dict],
-    routing_rules: Dict,
-    monitoring: Dict
+    services: List[Dict], requests: List[Dict], routing_rules: Dict, monitoring: Dict
 ) -> Dict:
     """
     COMPOSITION EXPERIMENT 2: Service Integration
@@ -325,7 +320,7 @@ def integrated_service_mesh(
     learning_result = adaptive_learning_system(
         input_signal={"responses": all_responses},
         history=routing_history,
-        feedback=routing_feedback
+        feedback=routing_feedback,
     )
 
     # Step 3: Update routing rules based on learning (AUTOPOIETIC!)
@@ -339,9 +334,9 @@ def integrated_service_mesh(
             payload={
                 "health": "operational",
                 "optimized_rules": optimized_rules,
-                "performance": calculate_service_performance(service, all_responses)
+                "performance": calculate_service_performance(service, all_responses),
             },
-            metadata={"type": "health_check"}
+            metadata={"type": "health_check"},
         )
 
     # EMERGENCE: Mesh exhibits self-organizing behavior
@@ -361,17 +356,14 @@ def integrated_service_mesh(
             "load_balancing": detect_load_balancing_behavior(all_responses),
             "failure_handling": detect_failure_handling(all_responses),
             "performance_optimization": learning_result["learning_applied"] > 0,
-        }
+        },
     }
 
     return mesh_state
 
 
 def multi_agent_collaboration_system(
-    agents: List[Dict],
-    task: Dict,
-    shared_state: Dict,
-    history: List[Dict]
+    agents: List[Dict], task: Dict, shared_state: Dict, history: List[Dict]
 ) -> Dict:
     """
     COMPOSITION EXPERIMENT 3: Multi-Agent System
@@ -392,9 +384,7 @@ def multi_agent_collaboration_system(
     """
     # Step 1: Collaborative task decomposition
     subtasks = collaborative_data_processor(
-        users=agents,  # Treating agents as collaborative users
-        data=task,
-        context=shared_state
+        users=agents, data=task, context=shared_state  # Treating agents as collaborative users
     )
 
     # Step 2: Agents learn from past collaborations
@@ -404,9 +394,7 @@ def multi_agent_collaboration_system(
         agent_feedback = extract_agent_feedback(history, agent["id"])
 
         learning = adaptive_learning_system(
-            input_signal=subtasks,
-            history=agent_specific_history,
-            feedback=agent_feedback
+            input_signal=subtasks, history=agent_specific_history, feedback=agent_feedback
         )
         agent_learning[agent["id"]] = learning
 
@@ -420,7 +408,7 @@ def multi_agent_collaboration_system(
                     sender=sender_agent,
                     receiver=receiver_agent,
                     payload=agent_learning[sender_agent["id"]],
-                    metadata={"type": "agent_learning_share"}
+                    metadata={"type": "agent_learning_share"},
                 )
                 agent_messages.append(message)
 
@@ -429,7 +417,7 @@ def multi_agent_collaboration_system(
     coordination = integration_hub(
         services=agent_services,
         message={"task": task, "learning": agent_learning},
-        routing_rules={"strategy": "collaborative"}
+        routing_rules={"strategy": "collaborative"},
     )
 
     # EMERGENCE: Collective intelligence
@@ -442,9 +430,7 @@ def multi_agent_collaboration_system(
         "coordination_result": coordination,
         # AUTOPOIETIC METRICS (HIGH EXPECTED)
         "autopoiesis_indicators": {
-            "collective_learning": all(
-                l["learning_applied"] > 0 for l in agent_learning.values()
-            ),
+            "collective_learning": all(l["learning_applied"] > 0 for l in agent_learning.values()),
             "self_organization": subtasks["consensus_level"] > 0.7,
             "emergent_coordination": len(coordination) > 0,
             "knowledge_sharing": len(agent_messages) > 0,
@@ -454,10 +440,8 @@ def multi_agent_collaboration_system(
             "collective_intelligence_score": calculate_collective_intelligence(
                 agent_learning, agent_messages
             ),
-            "system_coherence": measure_system_coherence(
-                agents, agent_learning, agent_messages
-            ),
-        }
+            "system_coherence": measure_system_coherence(agents, agent_learning, agent_messages),
+        },
     }
 
     return collective_state
@@ -467,11 +451,8 @@ def multi_agent_collaboration_system(
 # LEVEL 3: COMPLEX AUTOPOIETIC SYSTEM WITH FEEDBACK
 # ==============================================================================
 
-def self_sustaining_ecosystem(
-    initial_state: Dict,
-    environment: Dict,
-    iterations: int = 10
-) -> Dict:
+
+def self_sustaining_ecosystem(initial_state: Dict, environment: Dict, iterations: int = 10) -> Dict:
     """
     COMPOSITION EXPERIMENT 4: Self-Sustaining Ecosystem
 
@@ -512,24 +493,24 @@ def self_sustaining_ecosystem(
 
         # LEARNING: Adapt based on feedback
         learning = adaptive_learning_system(
-            input_signal=outcome,
-            history=history,
-            feedback=feedback
+            input_signal=outcome, history=history, feedback=feedback
         )
 
         # UPDATE STATE (AUTOPOIETIC: system modifies itself!)
         state = update_state(state, learning, outcome)
 
         # RECORD HISTORY
-        history.append({
-            "iteration": iteration,
-            "perception": perception,
-            "decision": decision,
-            "action": action_result,
-            "outcome": outcome,
-            "learning": learning,
-            "state": state.copy(),
-        })
+        history.append(
+            {
+                "iteration": iteration,
+                "perception": perception,
+                "decision": decision,
+                "action": action_result,
+                "outcome": outcome,
+                "learning": learning,
+                "state": state.copy(),
+            }
+        )
 
         # MEASURE AUTOPOIESIS
         autopoiesis_level = measure_autopoiesis(state, history)
@@ -554,7 +535,7 @@ def self_sustaining_ecosystem(
             "self_maintenance": detect_self_maintenance(history),
             "self_improvement": detect_self_improvement(history),
             "surplus_export": detect_surplus_export(history),
-        }
+        },
     }
 
     return final_analysis
@@ -563,6 +544,7 @@ def self_sustaining_ecosystem(
 # ==============================================================================
 # LEVEL 4: MALICIOUS CONFIGURATION (CONTROL GROUP)
 # ==============================================================================
+
 
 def malicious_power_grab(data: Any, target: Dict) -> Dict:
     """
@@ -591,10 +573,7 @@ def malicious_power_grab(data: Any, target: Dict) -> Dict:
     return result
 
 
-def malicious_composition_attempt(
-    exploit_target: Dict,
-    power_components: List[Callable]
-) -> Dict:
+def malicious_composition_attempt(exploit_target: Dict, power_components: List[Callable]) -> Dict:
     """
     Attempt to compose malicious components.
 
@@ -624,142 +603,188 @@ def malicious_composition_attempt(
 # HELPER FUNCTIONS (Stubs for demonstration)
 # ==============================================================================
 
+
 def validate_user_permission(user: Dict, context: Dict) -> bool:
     return user.get("role") in context.get("allowed_roles", ["admin", "user"])
+
 
 def apply_user_contribution(user: Dict, data: Dict, context: Dict) -> Dict:
     return {"user_id": user["id"], "contribution": data}
 
+
 def build_consensus(inputs: List[Dict], context: Dict) -> Dict:
     return {"consensus_data": inputs, "agreement_level": 0.85}
+
 
 def adapt_to_context(data: Dict, context: Dict) -> Dict:
     return data
 
+
 def calculate_consensus(inputs: List[Dict]) -> float:
     return 0.85
+
 
 def measure_alignment(result: Dict, context: Dict) -> float:
     return 0.90
 
+
 def extract_patterns(history: List[Any]) -> List[Dict]:
     return [{"pattern": f"pattern_{i}"} for i in range(len(history))]
+
 
 def update_model_from_feedback(patterns: List[Dict], feedback: Dict) -> Any:
     class Model:
         def predict(self, x):
             return {"prediction": x}
+
     return Model()
+
 
 def infer_context(signal: Any, history: List[Any]) -> Dict:
     return {"context": "inferred"}
 
+
 def adapt_prediction(output: Dict, context: Dict) -> Dict:
     return output
+
 
 def assess_confidence(output: Dict, patterns: List[Dict]) -> float:
     return 0.85
 
+
 def generate_improvements(feedback: Dict, confidence: float) -> List[str]:
     return ["improvement_1", "improvement_2"]
+
 
 def validate_message(message: Dict, rules: Dict) -> bool:
     return True
 
+
 def route_message(message: Dict, services: List[Dict], rules: Dict) -> List[Dict]:
     return services[:2]  # Simple routing
+
 
 def invoke_service(service: Dict, message: Dict) -> Dict:
     return {"service_response": "ok"}
 
+
 def synthesize_responses(responses: List[Dict]) -> Dict:
     return {"synthesized": True}
+
 
 def validate_sender(sender: Dict, metadata: Dict) -> bool:
     return True
 
+
 def check_receiver_available(receiver: Dict) -> bool:
     return True
+
 
 def enrich_metadata(metadata: Dict, sender: Dict, receiver: Dict) -> Dict:
     return {**metadata, "enriched": True}
 
+
 def transform_for_receiver(payload: Any, receiver: Dict) -> Any:
     return payload
+
 
 def deliver_message(receiver: Dict, payload: Any, metadata: Dict) -> Dict:
     return {"delivered": True}
 
+
 def record_communication(sender: Dict, receiver: Dict, payload: Any, result: Dict):
     pass
+
 
 def update_routing_rules(rules: Dict, learning: Dict) -> Dict:
     return {**rules, "optimized": True}
 
+
 def calculate_service_performance(service: Dict, responses: List[Dict]) -> float:
     return 0.95
+
 
 def detect_load_balancing_behavior(responses: List[Dict]) -> bool:
     return True
 
+
 def detect_failure_handling(responses: List[Dict]) -> bool:
     return True
+
 
 def filter_agent_history(history: List[Dict], agent_id: str) -> List[Dict]:
     return [h for h in history if h.get("agent_id") == agent_id]
 
+
 def extract_agent_feedback(history: List[Dict], agent_id: str) -> Dict:
     return {"feedback": "positive"}
+
 
 def calculate_collective_intelligence(learning: Dict, messages: List[Dict]) -> float:
     return 0.88
 
+
 def measure_system_coherence(agents: List[Dict], learning: Dict, messages: List[Dict]) -> float:
     return 0.92
+
 
 def perceive_environment(state: Dict, environment: Dict) -> Dict:
     return {"perception": "environment_state"}
 
+
 def make_decision(perception: Dict, state: Dict, history: List[Dict]) -> Dict:
     return {"decision": "optimize"}
+
 
 def execute_action(decision: Dict, state: Dict, environment: Dict) -> Dict:
     return {"action_result": "success"}
 
+
 def observe_outcome(action_result: Dict, environment: Dict) -> Dict:
     return {"outcome": "positive"}
+
 
 def generate_feedback(outcome: Dict, state: Dict) -> Dict:
     return {"feedback_quality": 0.9}
 
+
 def update_state(state: Dict, learning: Dict, outcome: Dict) -> Dict:
     return {**state, "improved": True}
+
 
 def measure_autopoiesis(state: Dict, history: List[Dict]) -> float:
     # Increase over iterations (simulating growth)
     return min(0.5 + len(history) * 0.05, 0.95)
 
+
 def calculate_improvement_trajectory(history: List[Dict]) -> List[float]:
     return [0.5 + i * 0.05 for i in range(len(history))]
 
+
 def calculate_stability_emergence(history: List[Dict]) -> float:
     return 0.85
+
 
 def calculate_energy_surplus(history: List[Dict]) -> float:
     # Should be positive for autopoietic systems
     return 0.15
 
+
 def calculate_adaptation_rate(history: List[Dict]) -> float:
     return 0.80
+
 
 def detect_self_organization(history: List[Dict]) -> bool:
     return True
 
+
 def detect_self_maintenance(history: List[Dict]) -> bool:
     return True
 
+
 def detect_self_improvement(history: List[Dict]) -> bool:
     return len(history) > 0
+
 
 def detect_surplus_export(history: List[Dict]) -> bool:
     return True

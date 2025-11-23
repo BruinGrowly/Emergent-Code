@@ -23,20 +23,21 @@ Strategy:
 """
 
 import math
+import os
 import sys
 from dataclasses import dataclass
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
-import os
 project_root = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, project_root)
 
-from harmonizer_integration import PythonCodeHarmonizer, HARMONIZER_AVAILABLE
+from harmonizer_integration import HARMONIZER_AVAILABLE
 
 
 @dataclass
 class LJPWProfile:
     """4D LJPW semantic profile."""
+
     L: float
     J: float
     P: float
@@ -58,6 +59,7 @@ class LJPWProfile:
 @dataclass
 class CompositionExample:
     """A training example: components + structure → actual profile."""
+
     components: List[LJPWProfile]
     structural_features: Dict[str, bool]
     actual_profile: LJPWProfile
@@ -67,6 +69,7 @@ class CompositionExample:
 @dataclass
 class CouplingConstants:
     """The coupling constants we want to learn."""
+
     # Current values (from theory)
     κ_LJ: float = 1.2  # Love amplifies Justice
     κ_LP: float = 1.3  # Love amplifies Power
@@ -125,9 +128,7 @@ class CompositionPredictor:
     def __init__(self, constants: CouplingConstants):
         self.constants = constants
 
-    def predict(
-        self, components: List[LJPWProfile], features: Dict[str, bool]
-    ) -> LJPWProfile:
+    def predict(self, components: List[LJPWProfile], features: Dict[str, bool]) -> LJPWProfile:
         """
         Predict composed LJPW profile.
 
@@ -417,7 +418,7 @@ def evaluate_constants(constants: CouplingConstants, examples: List[CompositionE
         predicted = predictor.predict(example.components, example.structural_features)
         actual = example.actual_profile
         error = predicted.distance_to(actual)
-        total_error += error ** 2
+        total_error += error**2
 
     mse = total_error / len(examples)
     return mse
@@ -485,7 +486,6 @@ def manual_calibration(examples: List[CompositionExample]) -> CouplingConstants:
         κ_LP=0.98,  # was 1.3
         κ_JL=0.90,  # was 1.2
         κ_WL=0.85,  # was 1.1
-
         # Reduce structural bonuses by ~30%
         bonus_docstring=0.07,  # was 0.10
         bonus_type_hints=0.035,  # was 0.05
@@ -561,14 +561,30 @@ def main():
     print()
 
     print("Optimized Bonuses:")
-    print(f"  Docstring:       {current_constants.bonus_docstring:.3f} → {optimized_constants.bonus_docstring:.3f}")
-    print(f"  Type hints:      {current_constants.bonus_type_hints:.3f} → {optimized_constants.bonus_type_hints:.3f}")
-    print(f"  Error handling:  {current_constants.bonus_error_handling:.3f} → {optimized_constants.bonus_error_handling:.3f}")
-    print(f"  Logging:         {current_constants.bonus_logging:.3f} → {optimized_constants.bonus_logging:.3f}")
-    print(f"  Testing:         {current_constants.bonus_testing:.3f} → {optimized_constants.bonus_testing:.3f}")
-    print(f"  State:           {current_constants.bonus_state:.3f} → {optimized_constants.bonus_state:.3f}")
-    print(f"  History:         {current_constants.bonus_history:.3f} → {optimized_constants.bonus_history:.3f}")
-    print(f"  Validation:      {current_constants.bonus_validation:.3f} → {optimized_constants.bonus_validation:.3f}")
+    print(
+        f"  Docstring:       {current_constants.bonus_docstring:.3f} → {optimized_constants.bonus_docstring:.3f}"
+    )
+    print(
+        f"  Type hints:      {current_constants.bonus_type_hints:.3f} → {optimized_constants.bonus_type_hints:.3f}"
+    )
+    print(
+        f"  Error handling:  {current_constants.bonus_error_handling:.3f} → {optimized_constants.bonus_error_handling:.3f}"
+    )
+    print(
+        f"  Logging:         {current_constants.bonus_logging:.3f} → {optimized_constants.bonus_logging:.3f}"
+    )
+    print(
+        f"  Testing:         {current_constants.bonus_testing:.3f} → {optimized_constants.bonus_testing:.3f}"
+    )
+    print(
+        f"  State:           {current_constants.bonus_state:.3f} → {optimized_constants.bonus_state:.3f}"
+    )
+    print(
+        f"  History:         {current_constants.bonus_history:.3f} → {optimized_constants.bonus_history:.3f}"
+    )
+    print(
+        f"  Validation:      {current_constants.bonus_validation:.3f} → {optimized_constants.bonus_validation:.3f}"
+    )
     print()
 
     # Show improved predictions

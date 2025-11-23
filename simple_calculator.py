@@ -3,6 +3,7 @@
 Simple Calculator - Just does math
 """
 
+
 def calculate(operation: str, a: float, b: float) -> float:
     """Do basic math operations."""
     if operation == "add":

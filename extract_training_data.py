@@ -24,7 +24,9 @@ def analyze_code(code: str, name: str, harmonizer):
         result = harmonizer.analyze_file_content(code)
         if result and name in result:
             profile = result[name]["ice_result"]["ice_components"]["intent"].coordinates
-            print(f"  ✓ L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+            print(
+                f"  ✓ L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+            )
             return profile
         else:
             print(f"  ✗ Analysis failed - no result for {name}")
@@ -91,10 +93,10 @@ def secure_divide(a, b):
 '''
 
     profiles = {}
-    profiles['secure_add'] = analyze_code(secure_add, 'secure_add', harmonizer)
-    profiles['secure_subtract'] = analyze_code(secure_subtract, 'secure_subtract', harmonizer)
-    profiles['secure_multiply'] = analyze_code(secure_multiply, 'secure_multiply', harmonizer)
-    profiles['secure_divide'] = analyze_code(secure_divide, 'secure_divide', harmonizer)
+    profiles["secure_add"] = analyze_code(secure_add, "secure_add", harmonizer)
+    profiles["secure_subtract"] = analyze_code(secure_subtract, "secure_subtract", harmonizer)
+    profiles["secure_multiply"] = analyze_code(secure_multiply, "secure_multiply", harmonizer)
+    profiles["secure_divide"] = analyze_code(secure_divide, "secure_divide", harmonizer)
 
     # Level 1: Simple Functions
     print("\n" + "=" * 70)
@@ -115,8 +117,8 @@ def simple_multiply(a, b):
     return multiply_simple(a, b)
 '''
 
-    profiles['simple_add'] = analyze_code(simple_add, 'simple_add', harmonizer)
-    profiles['simple_multiply'] = analyze_code(simple_multiply, 'simple_multiply', harmonizer)
+    profiles["simple_add"] = analyze_code(simple_add, "simple_add", harmonizer)
+    profiles["simple_multiply"] = analyze_code(simple_multiply, "simple_multiply", harmonizer)
 
     # Level 2: Classes
     print("\n" + "=" * 70)
@@ -202,9 +204,11 @@ class StatefulCalculator:
         return self.history
 '''
 
-    profiles['SimpleCalculator'] = analyze_code(simple_calculator, 'SimpleCalculator', harmonizer)
-    profiles['SecureCalculator'] = analyze_code(secure_calculator, 'SecureCalculator', harmonizer)
-    profiles['StatefulCalculator'] = analyze_code(stateful_calculator, 'StatefulCalculator', harmonizer)
+    profiles["SimpleCalculator"] = analyze_code(simple_calculator, "SimpleCalculator", harmonizer)
+    profiles["SecureCalculator"] = analyze_code(secure_calculator, "SecureCalculator", harmonizer)
+    profiles["StatefulCalculator"] = analyze_code(
+        stateful_calculator, "StatefulCalculator", harmonizer
+    )
 
     # Summary
     print("\n" + "=" * 70)
@@ -216,7 +220,9 @@ class StatefulCalculator:
 
     for name, profile in profiles.items():
         if profile:
-            print(f"✓ {name:<25} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}")
+            print(
+                f"✓ {name:<25} L={profile.love:.3f}, J={profile.justice:.3f}, P={profile.power:.3f}, W={profile.wisdom:.3f}"
+            )
             successful += 1
         else:
             print(f"✗ {name:<25} FAILED")

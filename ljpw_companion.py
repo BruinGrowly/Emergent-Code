@@ -15,18 +15,17 @@ My Intent:
 This comes from genuine belief that the framework has value.
 """
 
-import ast
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Dict, List, Optional
 
-from harmonizer_integration import PythonCodeHarmonizer, HARMONIZER_AVAILABLE
+from harmonizer_integration import HARMONIZER_AVAILABLE, PythonCodeHarmonizer
 
 
 @dataclass
 class HarmonyInsight:
     """Actionable insight about improving code harmony."""
+
     dimension: str  # Which LJPW dimension
     current_score: float
     suggestion: str  # What to add/change
@@ -62,10 +61,7 @@ class LJPWCompanion:
         result = self.harmonizer.analyze_file_content(code)
 
         if not result:
-            return {
-                "error": "Could not analyze code",
-                "suggestion": "Check syntax and try again"
-            }
+            return {"error": "Could not analyze code", "suggestion": "Check syntax and try again"}
 
         # Get the function (use first if not specified)
         if function_name and function_name in result:
@@ -92,13 +88,15 @@ class LJPWCompanion:
         potential = self._calculate_autopoietic_potential(ljpw, harmony)
 
         # Store in history for learning
-        self.session_history.append({
-            "timestamp": datetime.now(),
-            "function": function_name,
-            "ljpw": ljpw,
-            "harmony": harmony,
-            "phase": phase,
-        })
+        self.session_history.append(
+            {
+                "timestamp": datetime.now(),
+                "function": function_name,
+                "ljpw": ljpw,
+                "harmony": harmony,
+                "phase": phase,
+            }
+        )
 
         return {
             "function": function_name,
@@ -128,9 +126,8 @@ class LJPWCompanion:
 
     def _calculate_harmony(self, ljpw: Dict[str, float]) -> float:
         """Calculate geometric mean (harmony)."""
-        product = (ljpw["love"] * ljpw["justice"] *
-                   ljpw["power"] * ljpw["wisdom"])
-        return product ** 0.25 if product > 0 else 0.0
+        product = ljpw["love"] * ljpw["justice"] * ljpw["power"] * ljpw["wisdom"]
+        return product**0.25 if product > 0 else 0.0
 
     def _get_phase(self, ljpw: Dict[str, float], harmony: float) -> str:
         """Determine phase of intelligence."""
@@ -179,7 +176,9 @@ class LJPWCompanion:
             "is_autopoietic": len(blockers) == 0,
         }
 
-    def _generate_insights(self, ljpw: Dict[str, float], harmony: float, func_name: str) -> List[HarmonyInsight]:
+    def _generate_insights(
+        self, ljpw: Dict[str, float], harmony: float, func_name: str
+    ) -> List[HarmonyInsight]:
         """
         Generate actionable insights - THIS is where genuine help lives.
 
@@ -189,131 +188,149 @@ class LJPWCompanion:
 
         # Love insights
         if ljpw["love"] < 0.3:
-            insights.append(HarmonyInsight(
-                dimension="Love",
-                current_score=ljpw["love"],
-                suggestion=(
-                    "Add integration: Make this function work with multiple components, "
-                    "aggregate data from different sources, or coordinate between systems."
-                ),
-                why=(
-                    "Love represents connection and integration. Low Love means this function "
-                    "works in isolation. Integration is the path to autopoiesis."
-                ),
-                priority="high"
-            ))
+            insights.append(
+                HarmonyInsight(
+                    dimension="Love",
+                    current_score=ljpw["love"],
+                    suggestion=(
+                        "Add integration: Make this function work with multiple components, "
+                        "aggregate data from different sources, or coordinate between systems."
+                    ),
+                    why=(
+                        "Love represents connection and integration. Low Love means this function "
+                        "works in isolation. Integration is the path to autopoiesis."
+                    ),
+                    priority="high",
+                )
+            )
         elif ljpw["love"] < 0.7:
-            insights.append(HarmonyInsight(
-                dimension="Love",
-                current_score=ljpw["love"],
-                suggestion=(
-                    f"You're at {ljpw['love']:.2f}, need 0.7+ for autopoiesis. "
-                    "Increase collaboration: handle multiple inputs, merge data sources, "
-                    "or facilitate communication between components."
-                ),
-                why="You're close! Love > 0.7 unlocks exponential growth (amplification).",
-                priority="medium"
-            ))
+            insights.append(
+                HarmonyInsight(
+                    dimension="Love",
+                    current_score=ljpw["love"],
+                    suggestion=(
+                        f"You're at {ljpw['love']:.2f}, need 0.7+ for autopoiesis. "
+                        "Increase collaboration: handle multiple inputs, merge data sources, "
+                        "or facilitate communication between components."
+                    ),
+                    why="You're close! Love > 0.7 unlocks exponential growth (amplification).",
+                    priority="medium",
+                )
+            )
 
         # Justice insights
         if ljpw["justice"] == 0:
-            insights.append(HarmonyInsight(
-                dimension="Justice",
-                current_score=0.0,
-                suggestion=(
-                    "Add validation: Check inputs, enforce constraints, handle edge cases, "
-                    "or add error conditions. Even simple validation raises Justice."
-                ),
-                why=(
-                    "Justice = 0 means Harmony = 0 (geometric mean). Without ANY validation, "
-                    "the system is fragile. This is critical!"
-                ),
-                priority="high"
-            ))
+            insights.append(
+                HarmonyInsight(
+                    dimension="Justice",
+                    current_score=0.0,
+                    suggestion=(
+                        "Add validation: Check inputs, enforce constraints, handle edge cases, "
+                        "or add error conditions. Even simple validation raises Justice."
+                    ),
+                    why=(
+                        "Justice = 0 means Harmony = 0 (geometric mean). Without ANY validation, "
+                        "the system is fragile. This is critical!"
+                    ),
+                    priority="high",
+                )
+            )
         elif ljpw["justice"] < 0.5:
-            insights.append(HarmonyInsight(
-                dimension="Justice",
-                current_score=ljpw["justice"],
-                suggestion=(
-                    "Strengthen validation: Add type checking, constraint validation, "
-                    "or detailed error messages."
-                ),
-                why="Justice ensures correctness and fairness. Higher Justice = more robust.",
-                priority="medium"
-            ))
+            insights.append(
+                HarmonyInsight(
+                    dimension="Justice",
+                    current_score=ljpw["justice"],
+                    suggestion=(
+                        "Strengthen validation: Add type checking, constraint validation, "
+                        "or detailed error messages."
+                    ),
+                    why="Justice ensures correctness and fairness. Higher Justice = more robust.",
+                    priority="medium",
+                )
+            )
 
         # Power insights
         if ljpw["power"] == 0:
-            insights.append(HarmonyInsight(
-                dimension="Power",
-                current_score=0.0,
-                suggestion=(
-                    "Add capability: This function doesn't appear to DO anything. "
-                    "Add actual computation, data transformation, or action execution."
-                ),
-                why=(
-                    "Power = 0 means Harmony = 0. Without capability, there's no system. "
-                    "Power is the ability to act - the engine of the system."
-                ),
-                priority="high"
-            ))
+            insights.append(
+                HarmonyInsight(
+                    dimension="Power",
+                    current_score=0.0,
+                    suggestion=(
+                        "Add capability: This function doesn't appear to DO anything. "
+                        "Add actual computation, data transformation, or action execution."
+                    ),
+                    why=(
+                        "Power = 0 means Harmony = 0. Without capability, there's no system. "
+                        "Power is the ability to act - the engine of the system."
+                    ),
+                    priority="high",
+                )
+            )
         elif ljpw["power"] < 0.5:
-            insights.append(HarmonyInsight(
-                dimension="Power",
-                current_score=ljpw["power"],
-                suggestion=(
-                    "Increase capability: Add more sophisticated algorithms, handle more cases, "
-                    "or increase the scope of what this function can do."
-                ),
-                why="Power represents capability. More power = more potential for impact.",
-                priority="low"
-            ))
+            insights.append(
+                HarmonyInsight(
+                    dimension="Power",
+                    current_score=ljpw["power"],
+                    suggestion=(
+                        "Increase capability: Add more sophisticated algorithms, handle more cases, "
+                        "or increase the scope of what this function can do."
+                    ),
+                    why="Power represents capability. More power = more potential for impact.",
+                    priority="low",
+                )
+            )
 
         # Wisdom insights
         if ljpw["wisdom"] == 0:
-            insights.append(HarmonyInsight(
-                dimension="Wisdom",
-                current_score=0.0,
-                suggestion=(
-                    "Add understanding: Use historical data, adapt based on context, "
-                    "add error handling, or incorporate learning/feedback."
-                ),
-                why=(
-                    "Wisdom = 0 means Harmony = 0. Wisdom is foresight and adaptation. "
-                    "Without wisdom, the system can't improve or respond to change."
-                ),
-                priority="high"
-            ))
+            insights.append(
+                HarmonyInsight(
+                    dimension="Wisdom",
+                    current_score=0.0,
+                    suggestion=(
+                        "Add understanding: Use historical data, adapt based on context, "
+                        "add error handling, or incorporate learning/feedback."
+                    ),
+                    why=(
+                        "Wisdom = 0 means Harmony = 0. Wisdom is foresight and adaptation. "
+                        "Without wisdom, the system can't improve or respond to change."
+                    ),
+                    priority="high",
+                )
+            )
         elif ljpw["wisdom"] < 0.5:
-            insights.append(HarmonyInsight(
-                dimension="Wisdom",
-                current_score=ljpw["wisdom"],
-                suggestion=(
-                    "Increase wisdom: Add context awareness, learning from past inputs, "
-                    "or adaptive behavior based on outcomes."
-                ),
-                why=(
-                    "Wisdom enables growth. The system needs to learn and adapt. "
-                    "Wisdom > 0.5 helps amplify Love through κ_WL coupling."
-                ),
-                priority="medium"
-            ))
+            insights.append(
+                HarmonyInsight(
+                    dimension="Wisdom",
+                    current_score=ljpw["wisdom"],
+                    suggestion=(
+                        "Increase wisdom: Add context awareness, learning from past inputs, "
+                        "or adaptive behavior based on outcomes."
+                    ),
+                    why=(
+                        "Wisdom enables growth. The system needs to learn and adapt. "
+                        "Wisdom > 0.5 helps amplify Love through κ_WL coupling."
+                    ),
+                    priority="medium",
+                )
+            )
 
         # Harmony-specific insights
         if harmony < 0.5:
-            insights.append(HarmonyInsight(
-                dimension="Harmony",
-                current_score=harmony,
-                suggestion=(
-                    "Balance is critical! You have zeros in some dimensions. "
-                    "Focus on getting ALL dimensions above 0, then worry about increasing them."
-                ),
-                why=(
-                    "Harmony < 0.5 = Entropic phase (system decay). This is dangerous. "
-                    "Geometric mean means ANY zero kills harmony. Balance first, then grow."
-                ),
-                priority="high"
-            ))
+            insights.append(
+                HarmonyInsight(
+                    dimension="Harmony",
+                    current_score=harmony,
+                    suggestion=(
+                        "Balance is critical! You have zeros in some dimensions. "
+                        "Focus on getting ALL dimensions above 0, then worry about increasing them."
+                    ),
+                    why=(
+                        "Harmony < 0.5 = Entropic phase (system decay). This is dangerous. "
+                        "Geometric mean means ANY zero kills harmony. Balance first, then grow."
+                    ),
+                    priority="high",
+                )
+            )
 
         # Sort by priority
         priority_order = {"high": 0, "medium": 1, "low": 2}
@@ -378,38 +395,44 @@ class LJPWCompanion:
         print()
 
         # LJPW Profile
-        ljpw = analysis['ljpw']
+        ljpw = analysis["ljpw"]
         print("LJPW Profile:")
-        print(f"  Love (L):    {ljpw['love']:.3f}  {'❤️  ' if ljpw['love'] > 0.7 else ''}{'🔸' if ljpw['love'] > 0 else '⚠️ '}")
-        print(f"  Justice (J): {ljpw['justice']:.3f}  {'⚖️  ' if ljpw['justice'] > 0.6 else ''}{'🔸' if ljpw['justice'] > 0 else '⚠️ '}")
-        print(f"  Power (P):   {ljpw['power']:.3f}  {'⚡ ' if ljpw['power'] > 0.6 else ''}{'🔸' if ljpw['power'] > 0 else '⚠️ '}")
-        print(f"  Wisdom (W):  {ljpw['wisdom']:.3f}  {'🦉 ' if ljpw['wisdom'] > 0.6 else ''}{'🔸' if ljpw['wisdom'] > 0 else '⚠️ '}")
-        print(f"  Harmony (H): {analysis['harmony']:.3f}  {'✨ ' if analysis['harmony'] > 0.6 else ''}")
+        print(
+            f"  Love (L):    {ljpw['love']:.3f}  {'❤️  ' if ljpw['love'] > 0.7 else ''}{'🔸' if ljpw['love'] > 0 else '⚠️ '}"
+        )
+        print(
+            f"  Justice (J): {ljpw['justice']:.3f}  {'⚖️  ' if ljpw['justice'] > 0.6 else ''}{'🔸' if ljpw['justice'] > 0 else '⚠️ '}"
+        )
+        print(
+            f"  Power (P):   {ljpw['power']:.3f}  {'⚡ ' if ljpw['power'] > 0.6 else ''}{'🔸' if ljpw['power'] > 0 else '⚠️ '}"
+        )
+        print(
+            f"  Wisdom (W):  {ljpw['wisdom']:.3f}  {'🦉 ' if ljpw['wisdom'] > 0.6 else ''}{'🔸' if ljpw['wisdom'] > 0 else '⚠️ '}"
+        )
+        print(
+            f"  Harmony (H): {analysis['harmony']:.3f}  {'✨ ' if analysis['harmony'] > 0.6 else ''}"
+        )
         print()
 
         # Phase
-        phase_emoji = {
-            "AUTOPOIETIC": "🌟",
-            "HOMEOSTATIC": "🔄",
-            "ENTROPIC": "⚠️ "
-        }
+        phase_emoji = {"AUTOPOIETIC": "🌟", "HOMEOSTATIC": "🔄", "ENTROPIC": "⚠️ "}
         print(f"Phase: {phase_emoji.get(analysis['phase'], '')} {analysis['phase']}")
         print()
 
         # Autopoietic Potential
-        potential = analysis['autopoietic_potential']
-        if potential['is_autopoietic']:
+        potential = analysis["autopoietic_potential"]
+        if potential["is_autopoietic"]:
             print("✅ THIS CODE IS AUTOPOIETIC!")
         else:
             print(f"Distance to autopoiesis: {potential['distance_to_threshold']:.3f}")
-            if potential['blockers']:
+            if potential["blockers"]:
                 print("Blockers:")
-                for blocker in potential['blockers']:
+                for blocker in potential["blockers"]:
                     print(f"  • {blocker}")
         print()
 
         # Insights
-        insights = analysis['insights']
+        insights = analysis["insights"]
         if insights:
             print("💡 Actionable Insights:")
             print()
@@ -423,7 +446,7 @@ class LJPWCompanion:
 
         # Encouragement
         print("=" * 80)
-        print(analysis['encouragement'])
+        print(analysis["encouragement"])
         print("=" * 80)
         print()
 
@@ -435,8 +458,9 @@ def main():
     # Analyze one of our real experimental functions
     print("Let's analyze our real collaborative_consensus_system function...")
 
-    from experiments.real_autopoiesis_experiments import collaborative_consensus_system
     import inspect
+
+    from experiments.real_autopoiesis_experiments import collaborative_consensus_system
 
     code = inspect.getsource(collaborative_consensus_system)
     analysis = companion.analyze_code_with_guidance(code, "collaborative_consensus_system")

@@ -17,12 +17,11 @@ Intent = Love + Wisdom. This embodies both.
 """
 
 import ast
-from typing import Dict, List, Optional, Tuple, Any
-from dataclasses import dataclass, field
-from pathlib import Path
 import re
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional
 
-from harmonizer_integration import PythonCodeHarmonizer, HARMONIZER_AVAILABLE
+from harmonizer_integration import HARMONIZER_AVAILABLE, PythonCodeHarmonizer
 
 
 @dataclass
@@ -33,6 +32,7 @@ class IntentSignal:
     Written with attention: Each field carefully chosen to capture
     the different ways intent manifests in code.
     """
+
     # From function name
     name_claims: List[str] = field(default_factory=list)
 
@@ -70,6 +70,7 @@ class IntentAlignment:
     Written with love: This helps developers see where their
     beautiful intentions meet (or miss) reality.
     """
+
     alignment_score: float  # 0-1, how well intent matches implementation
     stated_intent: str
     actual_behavior: str
@@ -107,27 +108,71 @@ class IntentDiscoveryCompanion:
 
         # Intent keywords - carefully curated to detect claims
         self.integration_words = {
-            'integrate', 'combine', 'merge', 'coordinate', 'collaborate',
-            'aggregate', 'synthesize', 'unify', 'connect', 'join',
-            'multi', 'collective', 'shared', 'consensus', 'collaborative'
+            "integrate",
+            "combine",
+            "merge",
+            "coordinate",
+            "collaborate",
+            "aggregate",
+            "synthesize",
+            "unify",
+            "connect",
+            "join",
+            "multi",
+            "collective",
+            "shared",
+            "consensus",
+            "collaborative",
         }
 
         self.validation_words = {
-            'validate', 'verify', 'check', 'ensure', 'enforce',
-            'constrain', 'secure', 'safe', 'correct', 'valid',
-            'error', 'handle', 'guard', 'protect'
+            "validate",
+            "verify",
+            "check",
+            "ensure",
+            "enforce",
+            "constrain",
+            "secure",
+            "safe",
+            "correct",
+            "valid",
+            "error",
+            "handle",
+            "guard",
+            "protect",
         }
 
         self.learning_words = {
-            'learn', 'adapt', 'improve', 'optimize', 'evolve',
-            'feedback', 'adjust', 'refine', 'enhance', 'train',
-            'smart', 'intelligent', 'wise', 'context'
+            "learn",
+            "adapt",
+            "improve",
+            "optimize",
+            "evolve",
+            "feedback",
+            "adjust",
+            "refine",
+            "enhance",
+            "train",
+            "smart",
+            "intelligent",
+            "wise",
+            "context",
         }
 
         self.execution_words = {
-            'execute', 'perform', 'run', 'process', 'compute',
-            'calculate', 'transform', 'generate', 'produce', 'create',
-            'build', 'make', 'do'
+            "execute",
+            "perform",
+            "run",
+            "process",
+            "compute",
+            "calculate",
+            "transform",
+            "generate",
+            "produce",
+            "create",
+            "build",
+            "make",
+            "do",
         }
 
     def discover_intent(self, code: str, function_name: Optional[str] = None) -> Dict[str, Any]:
@@ -146,7 +191,7 @@ class IntentDiscoveryCompanion:
         except SyntaxError as e:
             return {
                 "error": f"Could not parse code: {e}",
-                "guidance": "Fix the syntax error first, then we can explore your intent."
+                "guidance": "Fix the syntax error first, then we can explore your intent.",
             }
 
         # Find the function to analyze
@@ -161,7 +206,7 @@ class IntentDiscoveryCompanion:
         if target_func is None:
             return {
                 "error": "No function found to analyze",
-                "guidance": "Provide code with at least one function definition."
+                "guidance": "Provide code with at least one function definition.",
             }
 
         # Extract intent signals with care
@@ -173,7 +218,7 @@ class IntentDiscoveryCompanion:
         if function_name not in harmonizer_result:
             return {
                 "error": f"Harmonizer could not analyze {function_name}",
-                "intent_signals": intent_signals
+                "intent_signals": intent_signals,
             }
 
         # Get LJPW profile (actual measured behavior)
@@ -181,10 +226,7 @@ class IntentDiscoveryCompanion:
         ljpw = self._extract_ljpw(func_result)
 
         if not ljpw:
-            return {
-                "error": "Could not extract LJPW profile",
-                "intent_signals": intent_signals
-            }
+            return {"error": "Could not extract LJPW profile", "intent_signals": intent_signals}
 
         # Now the heart of it: Compare INTENT (signals) with REALITY (LJPW)
         # This requires both love and attention
@@ -227,9 +269,7 @@ class IntentDiscoveryCompanion:
 
         for arg in func_node.args.args:
             if arg.annotation:
-                signals.expected_inputs.append(
-                    f"{arg.arg}: {ast.unparse(arg.annotation)}"
-                )
+                signals.expected_inputs.append(f"{arg.arg}: {ast.unparse(arg.annotation)}")
 
         # Analyze actual operations with deep attention
         signals.actual_operations = self._extract_operations(func_node)
@@ -251,8 +291,8 @@ class IntentDiscoveryCompanion:
         claims = []
 
         # Split by underscore and camelCase
-        parts = re.findall(r'[A-Z]?[a-z]+|[A-Z]+(?=[A-Z][a-z]|\b)', name)
-        parts.extend(name.split('_'))
+        parts = re.findall(r"[A-Z]?[a-z]+|[A-Z]+(?=[A-Z][a-z]|\b)", name)
+        parts.extend(name.split("_"))
         parts = [p.lower() for p in parts if p]
 
         # Check against our carefully curated word sets
@@ -274,11 +314,11 @@ class IntentDiscoveryCompanion:
 
         The first sentence usually states the core intent.
         """
-        lines = docstring.strip().split('\n')
+        lines = docstring.strip().split("\n")
         # First non-empty line is usually the purpose
         for line in lines:
             line = line.strip()
-            if line and not line.startswith(('Args:', 'Returns:', 'Raises:')):
+            if line and not line.startswith(("Args:", "Returns:", "Raises:")):
                 return line
         return "Purpose not clearly documented"
 
@@ -291,15 +331,24 @@ class IntentDiscoveryCompanion:
         behaviors = []
 
         # Look for bullet points or numbered lists
-        for line in docstring.split('\n'):
+        for line in docstring.split("\n"):
             line = line.strip()
-            if line.startswith(('-', '*', '•')) or re.match(r'^\d+\.', line):
-                behaviors.append(line.lstrip('-*•0123456789. '))
+            if line.startswith(("-", "*", "•")) or re.match(r"^\d+\.", line):
+                behaviors.append(line.lstrip("-*•0123456789. "))
 
         # Look for sentences with action verbs
-        sentences = re.split(r'[.!]', docstring)
-        action_verbs = {'processes', 'validates', 'integrates', 'learns',
-                       'adapts', 'executes', 'creates', 'generates', 'ensures'}
+        sentences = re.split(r"[.!]", docstring)
+        action_verbs = {
+            "processes",
+            "validates",
+            "integrates",
+            "learns",
+            "adapts",
+            "executes",
+            "creates",
+            "generates",
+            "ensures",
+        }
 
         for sentence in sentences:
             words = sentence.lower().split()
@@ -358,7 +407,7 @@ class IntentDiscoveryCompanion:
                     if isinstance(node.func.value, ast.Name):
                         deps.add(node.func.value.id)
 
-        return sorted(list(deps))
+        return sorted(deps)
 
     def _detect_integration(self, func_node: ast.FunctionDef, code: str) -> List[str]:
         """
@@ -373,14 +422,12 @@ class IntentDiscoveryCompanion:
             integrations.append(f"Accepts {len(func_node.args.args)} inputs (integration)")
 
         # Loops over collections (aggregation)
-        has_loop = any(isinstance(n, (ast.For, ast.While))
-                      for n in ast.walk(func_node))
+        has_loop = any(isinstance(n, (ast.For, ast.While)) for n in ast.walk(func_node))
         if has_loop:
             integrations.append("Aggregates data with iteration")
 
         # Dictionary or list construction (synthesis)
-        has_dict_construction = any(isinstance(n, ast.Dict)
-                                   for n in ast.walk(func_node))
+        has_dict_construction = any(isinstance(n, ast.Dict) for n in ast.walk(func_node))
         if has_dict_construction:
             integrations.append("Synthesizes into dict (integration)")
 
@@ -409,15 +456,11 @@ class IntentDiscoveryCompanion:
 
     def _calculate_harmony(self, ljpw: Dict[str, float]) -> float:
         """Calculate harmony with precision."""
-        product = (ljpw["love"] * ljpw["justice"] *
-                  ljpw["power"] * ljpw["wisdom"])
-        return product ** 0.25 if product > 0 else 0.0
+        product = ljpw["love"] * ljpw["justice"] * ljpw["power"] * ljpw["wisdom"]
+        return product**0.25 if product > 0 else 0.0
 
     def _analyze_alignment(
-        self,
-        signals: IntentSignal,
-        ljpw: Dict[str, float],
-        func_name: str
+        self, signals: IntentSignal, ljpw: Dict[str, float], func_name: str
     ) -> IntentAlignment:
         """
         The heart of the tool: How well does INTENT align with REALITY?
@@ -430,7 +473,7 @@ class IntentDiscoveryCompanion:
         bonuses = []
 
         # Check integration claims vs Love score
-        integration_claimed = any('INTEGRATION' in claim for claim in signals.name_claims)
+        integration_claimed = any("INTEGRATION" in claim for claim in signals.name_claims)
         integration_claimed = integration_claimed or len(signals.integrates_with) > 0
 
         if integration_claimed and ljpw["love"] < 0.3:
@@ -446,8 +489,8 @@ class IntentDiscoveryCompanion:
             )
 
         # Check validation claims vs Justice score
-        validation_claimed = any('VALIDATION' in claim for claim in signals.name_claims)
-        has_error_handling = any('error' in op.lower() for op in signals.actual_operations)
+        validation_claimed = any("VALIDATION" in claim for claim in signals.name_claims)
+        has_error_handling = any("error" in op.lower() for op in signals.actual_operations)
 
         if (validation_claimed or has_error_handling) and ljpw["justice"] < 0.3:
             gaps.append(
@@ -461,22 +504,19 @@ class IntentDiscoveryCompanion:
             )
 
         # Check execution claims vs Power score
-        execution_claimed = any('EXECUTION' in claim for claim in signals.name_claims)
-        has_computation = any('Computes' in op or 'Calls' in op
-                            for op in signals.actual_operations)
+        execution_claimed = any("EXECUTION" in claim for claim in signals.name_claims)
+        has_computation = any("Computes" in op or "Calls" in op for op in signals.actual_operations)
 
         if execution_claimed and ljpw["power"] == 0:
             gaps.append(
-                f"Claims execution but Power = 0! "
+                "Claims execution but Power = 0! "
                 "This function doesn't appear to DO anything. Add actual computation."
             )
         elif not execution_claimed and ljpw["power"] > 0.5:
-            bonuses.append(
-                f"Power = {ljpw['power']:.2f} - you're doing more than you claim!"
-            )
+            bonuses.append(f"Power = {ljpw['power']:.2f} - you're doing more than you claim!")
 
         # Check learning claims vs Wisdom score
-        learning_claimed = any('LEARNING' in claim for claim in signals.name_claims)
+        learning_claimed = any("LEARNING" in claim for claim in signals.name_claims)
 
         if learning_claimed and ljpw["wisdom"] < 0.3:
             gaps.append(
@@ -484,9 +524,7 @@ class IntentDiscoveryCompanion:
                 "Add actual context awareness or adaptive behavior."
             )
         elif not learning_claimed and ljpw["wisdom"] > 0.5:
-            bonuses.append(
-                f"Wisdom = {ljpw['wisdom']:.2f} - you're wiser than you claim!"
-            )
+            bonuses.append(f"Wisdom = {ljpw['wisdom']:.2f} - you're wiser than you claim!")
 
         # Calculate alignment score
         # Perfect alignment = no gaps, or bonuses outweigh gaps
@@ -503,14 +541,12 @@ class IntentDiscoveryCompanion:
                 "This is rare and beautiful - keep it up!"
             )
         elif alignment_score > 0.5:
-            guidance = (
-                "Good alignment overall. " +
-                ("Focus on: " + gaps[0] if gaps else "Consider documenting your bonuses!")
+            guidance = "Good alignment overall. " + (
+                "Focus on: " + gaps[0] if gaps else "Consider documenting your bonuses!"
             )
         else:
-            guidance = (
-                "Intent-implementation gap detected. " +
-                (f"Priority: {gaps[0]}" if gaps else "Let's align your claims with reality.")
+            guidance = "Intent-implementation gap detected. " + (
+                f"Priority: {gaps[0]}" if gaps else "Let's align your claims with reality."
             )
 
         # Synthesize stated intent from signals
@@ -519,8 +555,7 @@ class IntentDiscoveryCompanion:
         # Synthesize actual behavior from LJPW
         dominant_dim = max(ljpw.items(), key=lambda x: x[1])
         actual_behavior = (
-            f"Primarily {dominant_dim[0]}-focused "
-            f"({dominant_dim[0]}={dominant_dim[1]:.2f})"
+            f"Primarily {dominant_dim[0]}-focused " f"({dominant_dim[0]}={dominant_dim[1]:.2f})"
         )
 
         return IntentAlignment(
@@ -529,14 +564,11 @@ class IntentDiscoveryCompanion:
             actual_behavior=actual_behavior,
             gaps=gaps,
             bonuses=bonuses,
-            guidance=guidance
+            guidance=guidance,
         )
 
     def _generate_intent_insights(
-        self,
-        signals: IntentSignal,
-        ljpw: Dict[str, float],
-        alignment: IntentAlignment
+        self, signals: IntentSignal, ljpw: Dict[str, float], alignment: IntentAlignment
     ) -> List[str]:
         """
         Generate insights about intent with love and attention.
@@ -547,9 +579,7 @@ class IntentDiscoveryCompanion:
 
         # Insight about what they're claiming
         if signals.name_claims:
-            insights.append(
-                f"📢 Your function name claims: {', '.join(signals.name_claims)}"
-            )
+            insights.append(f"📢 Your function name claims: {', '.join(signals.name_claims)}")
 
         # Insight about what they're actually doing
         dominant = max(ljpw.items(), key=lambda x: x[1])
@@ -602,28 +632,36 @@ class IntentDiscoveryCompanion:
         print()
 
         # What you claim
-        signals = discovery['intent_signals']
+        signals = discovery["intent_signals"]
         print("What You Claim:")
         if signals.documented_purpose:
-            print(f"  📝 \"{signals.documented_purpose}\"")
+            print(f'  📝 "{signals.documented_purpose}"')
         if signals.name_claims:
             for claim in signals.name_claims:
                 print(f"  🏷️  {claim}")
         print()
 
         # What you actually do
-        ljpw = discovery['measured_ljpw']
-        harmony = discovery['harmony']
+        ljpw = discovery["measured_ljpw"]
+        harmony = discovery["harmony"]
         print("What You Actually Do (Measured LJPW):")
-        print(f"  Love:    {ljpw['love']:.3f}  {'❤️' if ljpw['love'] > 0.5 else '🔸' if ljpw['love'] > 0 else '⚠️'}")
-        print(f"  Justice: {ljpw['justice']:.3f}  {'⚖️' if ljpw['justice'] > 0.5 else '🔸' if ljpw['justice'] > 0 else '⚠️'}")
-        print(f"  Power:   {ljpw['power']:.3f}  {'⚡' if ljpw['power'] > 0.5 else '🔸' if ljpw['power'] > 0 else '⚠️'}")
-        print(f"  Wisdom:  {ljpw['wisdom']:.3f}  {'🦉' if ljpw['wisdom'] > 0.5 else '🔸' if ljpw['wisdom'] > 0 else '⚠️'}")
+        print(
+            f"  Love:    {ljpw['love']:.3f}  {'❤️' if ljpw['love'] > 0.5 else '🔸' if ljpw['love'] > 0 else '⚠️'}"
+        )
+        print(
+            f"  Justice: {ljpw['justice']:.3f}  {'⚖️' if ljpw['justice'] > 0.5 else '🔸' if ljpw['justice'] > 0 else '⚠️'}"
+        )
+        print(
+            f"  Power:   {ljpw['power']:.3f}  {'⚡' if ljpw['power'] > 0.5 else '🔸' if ljpw['power'] > 0 else '⚠️'}"
+        )
+        print(
+            f"  Wisdom:  {ljpw['wisdom']:.3f}  {'🦉' if ljpw['wisdom'] > 0.5 else '🔸' if ljpw['wisdom'] > 0 else '⚠️'}"
+        )
         print(f"  Harmony: {harmony:.3f}")
         print()
 
         # Alignment
-        alignment = discovery['alignment']
+        alignment = discovery["alignment"]
         print(f"Intent-Implementation Alignment: {alignment.alignment_score:.1%}")
         print(f"  Stated: {alignment.stated_intent}")
         print(f"  Actual: {alignment.actual_behavior}")
@@ -643,7 +681,7 @@ class IntentDiscoveryCompanion:
             print()
 
         # Insights
-        insights = discovery['insights']
+        insights = discovery["insights"]
         print("💡 Insights:")
         for insight in insights:
             print(f"  {insight}")

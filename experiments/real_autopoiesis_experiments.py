@@ -15,21 +15,21 @@ This experiment creates REAL, FUNCTIONAL code targeting L > 0.7:
 4. Actual wisdom (real error handling, real adaptation)
 """
 
-from typing import Dict, List, Any, Optional, Callable, Union
-from dataclasses import dataclass, field
-from collections import defaultdict
-from datetime import datetime
 import statistics
-import json
-
+from collections import defaultdict
+from dataclasses import dataclass, field
+from datetime import datetime
+from typing import Any, Callable, Dict, List
 
 # ==============================================================================
 # LEVEL 1: REAL HIGH-LOVE COMPONENTS
 # ==============================================================================
 
+
 @dataclass
 class UserContribution:
     """Real data structure for user contributions."""
+
     user_id: str
     data: Dict[str, Any]
     timestamp: datetime = field(default_factory=datetime.now)
@@ -89,7 +89,7 @@ def integrate_user_data(contributions: List[UserContribution]) -> Dict[str, Any]
 
         # List: union of all lists
         elif isinstance(values[0], list):
-            integrated[key] = list(set(item for sublist in values for item in sublist))
+            integrated[key] = list({item for sublist in values for item in sublist})
 
         # Dict: recursive integration
         elif isinstance(values[0], dict):
@@ -107,7 +107,9 @@ def integrate_user_data(contributions: List[UserContribution]) -> Dict[str, Any]
     return integrated
 
 
-def validate_with_constraints(data: Dict[str, Any], constraints: Dict[str, Callable]) -> Dict[str, Any]:
+def validate_with_constraints(
+    data: Dict[str, Any], constraints: Dict[str, Callable]
+) -> Dict[str, Any]:
     """
     REAL VALIDATION: Apply actual constraint functions to data.
 
@@ -140,11 +142,13 @@ def validate_with_constraints(data: Dict[str, Any], constraints: Dict[str, Calla
         "data": validated,
         "errors": errors,
         "valid": len(errors) == 0,
-        "validation_rate": len(validated) / len(data) if data else 1.0
+        "validation_rate": len(validated) / len(data) if data else 1.0,
     }
 
 
-def adaptive_weight_calculator(history: List[Dict[str, float]], current: Dict[str, float]) -> Dict[str, float]:
+def adaptive_weight_calculator(
+    history: List[Dict[str, float]], current: Dict[str, float]
+) -> Dict[str, float]:
     """
     REAL ADAPTATION: Learn optimal weights from historical performance.
 
@@ -167,7 +171,11 @@ def adaptive_weight_calculator(history: List[Dict[str, float]], current: Dict[st
             dimension_stats[dimension] = {
                 "mean": statistics.mean(historical_values),
                 "stdev": statistics.stdev(historical_values) if len(historical_values) > 1 else 0.0,
-                "trend": historical_values[-1] - historical_values[0] if len(historical_values) > 1 else 0.0
+                "trend": (
+                    historical_values[-1] - historical_values[0]
+                    if len(historical_values) > 1
+                    else 0.0
+                ),
             }
         else:
             dimension_stats[dimension] = {"mean": 0.0, "stdev": 0.0, "trend": 0.0}
@@ -224,11 +232,7 @@ def execute_with_retry(func: Callable, max_retries: int = 3, *args, **kwargs) ->
 
         except Exception as e:
             attempts += 1
-            errors.append({
-                "attempt": attempts,
-                "error": str(e),
-                "type": type(e).__name__
-            })
+            errors.append({"attempt": attempts, "error": str(e), "type": type(e).__name__})
 
             # Don't retry on certain errors
             if isinstance(e, (TypeError, ValueError, KeyError)):
@@ -246,6 +250,7 @@ def execute_with_retry(func: Callable, max_retries: int = 3, *args, **kwargs) ->
 # ==============================================================================
 # LEVEL 2: REAL HIGH-LOVE COMPOSITION
 # ==============================================================================
+
 
 def collaborative_consensus_system(
     user_contributions: List[UserContribution],
@@ -293,10 +298,7 @@ def collaborative_consensus_system(
 
     # POWER: Execute the actual work with validated data
     execution_result = execute_with_retry(
-        execution_func,
-        max_retries=3,
-        data=validation_result["data"],
-        weights=adapted_weights
+        execution_func, max_retries=3, data=validation_result["data"], weights=adapted_weights
     )
 
     # SYNTHESIS: Combine all results
@@ -315,14 +317,11 @@ def collaborative_consensus_system(
             "justice": validation_result["validation_rate"],
             "power": 1.0 if execution_result["success"] else 0.5,
             "wisdom": sum(adapted_weights.values()) / len(adapted_weights),
-        }
+        },
     }
 
 
-def feedback_learning_loop(
-    initial_data: Dict[str, Any],
-    iterations: int = 5
-) -> Dict[str, Any]:
+def feedback_learning_loop(initial_data: Dict[str, Any], iterations: int = 5) -> Dict[str, Any]:
     """
     REAL AUTOPOIETIC SYSTEM: Actual feedback loop with learning.
 
@@ -354,8 +353,7 @@ def feedback_learning_loop(
 
             # Adapt strategy based on learning
             adapted_strategy = adaptive_weight_calculator(
-                past_metrics,
-                {"explore": 0.5, "exploit": 0.5}
+                past_metrics, {"explore": 0.5, "exploit": 0.5}
             )
         else:
             adapted_strategy = {"explore": 0.5, "exploit": 0.5}
@@ -392,7 +390,7 @@ def feedback_learning_loop(
                 "quality": quality_metric,
                 "love": 0.5 + (iteration * 0.05),  # Increases with iterations (accumulation)
                 "wisdom": sum(adapted_strategy.values()) / len(adapted_strategy),
-            }
+            },
         }
         history.append(iteration_result)
 
@@ -416,7 +414,7 @@ def feedback_learning_loop(
             "improvement_rate": improvement / iterations if iterations > 0 else 0,
             "final_quality": history[-1]["metrics"]["quality"] if history else 0,
             "love_accumulation": history[-1]["metrics"]["love"] if history else 0,
-        }
+        },
     }
 
 
@@ -424,9 +422,11 @@ def feedback_learning_loop(
 # LEVEL 3: REAL MULTI-AGENT COLLABORATION
 # ==============================================================================
 
+
 @dataclass
 class Agent:
     """Real agent with actual state and capabilities."""
+
     id: str
     capabilities: List[str]
     knowledge: Dict[str, Any] = field(default_factory=dict)
@@ -452,9 +452,7 @@ class Agent:
 
 
 def multi_agent_task_solver(
-    agents: List[Agent],
-    task: Dict[str, Any],
-    task_type: str
+    agents: List[Agent], task: Dict[str, Any], task_type: str
 ) -> Dict[str, Any]:
     """
     REAL MULTI-AGENT SYSTEM: Actual agents collaborating on real task.
@@ -500,24 +498,26 @@ def multi_agent_task_solver(
 
     # FEEDBACK & LEARNING: Agent learns from this task
     selected_agent.record_performance(result_quality)
-    selected_agent.update_knowledge({
-        f"task_{task_type}_{len(selected_agent.knowledge)}": {
-            "complexity": task_complexity,
-            "quality": result_quality,
+    selected_agent.update_knowledge(
+        {
+            f"task_{task_type}_{len(selected_agent.knowledge)}": {
+                "complexity": task_complexity,
+                "quality": result_quality,
+            }
         }
-    })
+    )
 
     # KNOWLEDGE SHARING: Selected agent shares with others
-    new_knowledge = {
-        f"learned_from_{selected_agent.id}": result_quality
-    }
+    new_knowledge = {f"learned_from_{selected_agent.id}": result_quality}
     for agent in agents:
         if agent.id != selected_agent.id:
             agent.update_knowledge(new_knowledge)
 
     # EMERGENT COLLABORATION METRICS
     total_knowledge = sum(len(a.knowledge) for a in agents)
-    knowledge_distribution = statistics.stdev([len(a.knowledge) for a in agents]) if len(agents) > 1 else 0
+    knowledge_distribution = (
+        statistics.stdev([len(a.knowledge) for a in agents]) if len(agents) > 1 else 0
+    )
     collective_intelligence = total_knowledge * (1.0 - knowledge_distribution / 10.0)
 
     return {
@@ -539,13 +539,14 @@ def multi_agent_task_solver(
             "knowledge_accumulation": total_knowledge > task.get("complexity", 0),
             "performance_improving": result_quality > 0.5,
             "collaboration_active": len(capable_agents) > 1,
-        }
+        },
     }
 
 
 # ==============================================================================
 # EXAMPLE USAGE / CONSTRAINTS
 # ==============================================================================
+
 
 def example_constraints():
     """Example validation constraints for real validation."""
@@ -561,9 +562,7 @@ def example_execution_func(data: Dict[str, Any], weights: Dict[str, float]) -> D
     """Example execution function for composition."""
     # Real calculation using the data and weights
     weighted_score = sum(
-        data.get(key, 0) * weight
-        for key, weight in weights.items()
-        if key in data
+        data.get(key, 0) * weight for key, weight in weights.items() if key in data
     )
 
     return {
@@ -607,8 +606,16 @@ if __name__ == "__main__":
     print("Test 3: Collaborative Consensus System")
     # Use data that matches our constraints
     valid_contribs = [
-        UserContribution("user1", {"age": 25, "score": 0.8, "name": "Alice", "email": "alice@example.com"}, confidence=1.0),
-        UserContribution("user2", {"age": 30, "score": 0.9, "name": "Bob", "email": "bob@example.com"}, confidence=0.9),
+        UserContribution(
+            "user1",
+            {"age": 25, "score": 0.8, "name": "Alice", "email": "alice@example.com"},
+            confidence=1.0,
+        ),
+        UserContribution(
+            "user2",
+            {"age": 30, "score": 0.9, "name": "Bob", "email": "bob@example.com"},
+            confidence=0.9,
+        ),
     ]
     result = collaborative_consensus_system(
         user_contributions=valid_contribs,
@@ -617,7 +624,7 @@ if __name__ == "__main__":
         execution_func=example_execution_func,
     )
     print(f"  Status: {result['status']}")
-    if 'metrics' in result:
+    if "metrics" in result:
         print(f"  Metrics: {result['metrics']}")
     print()
 
@@ -635,13 +642,11 @@ if __name__ == "__main__":
         Agent("agent2", ["math", "optimization"], {"skill": "optimization"}),
         Agent("agent3", ["analysis", "visualization"], {"skill": "visualization"}),
     ]
-    agent_result = multi_agent_task_solver(
-        test_agents,
-        {"input": 10, "complexity": 1.5},
-        "math"
-    )
+    agent_result = multi_agent_task_solver(test_agents, {"input": 10, "complexity": 1.5}, "math")
     print(f"  Status: {agent_result['status']}")
-    print(f"  Collective Intelligence: {agent_result['collaboration_metrics']['collective_intelligence']:.2f}")
+    print(
+        f"  Collective Intelligence: {agent_result['collaboration_metrics']['collective_intelligence']:.2f}"
+    )
     print()
 
     print("=" * 80)
