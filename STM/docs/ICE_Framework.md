@@ -1,0 +1,1 @@
+### ICE is a Framework. It stands for: Intent, Context, Execution

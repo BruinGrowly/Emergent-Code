@@ -1,8 +1,7 @@
-from typing import List, Dict, Optional, Union
-
 # Custom Exceptions
 class CalculatorError(Exception):
     """Custom exception for QualityModule."""
+
     pass
 
 
@@ -17,7 +16,7 @@ class SecureCalculator:
         if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
             raise TypeError("Inputs must be numeric")
         result = a + b
-        self.history.append(('add', a, b, result))
+        self.history.append(("add", a, b, result))
         return result
 
     def subtract(self, a, b):
@@ -25,7 +24,7 @@ class SecureCalculator:
         if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
             raise TypeError("Inputs must be numeric")
         result = a - b
-        self.history.append(('subtract', a, b, result))
+        self.history.append(("subtract", a, b, result))
         return result
 
 
@@ -43,7 +42,7 @@ class CalculatorConfig:
     """Configuration management for calculator."""
 
     DEFAULT_PRECISION = 10
-    DEFAULT_MODE = 'strict'
+    DEFAULT_MODE = "strict"
 
     def __init__(self, precision=None, mode=None):
         self.precision = precision or self.DEFAULT_PRECISION
@@ -57,4 +56,3 @@ class CalculatorConfig:
     def set(self, key, value):
         """Set configuration value."""
         self.settings[key] = value
-

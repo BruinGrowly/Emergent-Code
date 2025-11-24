@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="World Clock - Display time across multiple timezones with Phase 3 LJPW principles">
+    <title>World Clock - LJPW Enhanced</title>
+    <style>
+        /**
+         * World Clock Styles
+         *
+         * Design Philosophy (Phase 3 Wisdom):
+         * - Semantic structure (clear hierarchy)
+         * - Responsive layout (mobile-first)
+         * - Accessible colors (WCAG AA compliant)
+         * - Maintainable CSS (clear naming, documentation)
+         */
+
+        :root {
+            /* Color palette - documented for maintainability (Love) */
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-card: #0f3460;
+            --text-primary: #e4e4e4;
+            --text-secondary: #94a3b8;
+            --accent-primary: #53a8ff;
+            --accent-success: #4ade80;
+            --accent-warning: #fbbf24;
+            --accent-error: #ef4444;
+
+            /* Spacing system (Wisdom) */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: var(--spacing-md);
+            line-height: 1.6;
+        }
+
+        /* Header section (Semantic structure - Wisdom) */
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--accent-primary);
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Status indicator (Love - Observability) */
+        .status {
+            text-align: center;
+            padding: var(--spacing-sm);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            font-weight: 600;
+        }
+
+        .status.success {
+            background: rgba(74, 222, 128, 0.1);
+            color: var(--accent-success);
+            border: 2px solid var(--accent-success);
+        }
+
+        .status.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--accent-error);
+            border: 2px solid var(--accent-error);
+        }
+
+        .status.loading {
+            background: rgba(83, 168, 255, 0.1);
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-primary);
+        }
+
+        /* Clock grid - Responsive (Wisdom) */
+        .clock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Clock card (Well-structured - Wisdom) */
+        .clock-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: var(--spacing-lg);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clock-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(83, 168, 255, 0.2);
+        }
+
+        .clock-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-success));
+        }
+
+        .city-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--accent-primary);
+        }
+
+        .timezone {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .time-display {
+            font-size: 3rem;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--spacing-sm);
+            text-align: center;
+        }
+
+        .date-display {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Loading animation (User experience - Love) */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--text-secondary);
+            border-radius: 50%;
+            border-top-color: var(--accent-primary);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error state (Justice - Clear error communication) */
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid var(--accent-error);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-md);
+            color: var(--accent-error);
+        }
+
+        .error-message h3 {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .error-message p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Footer (Documentation - Love) */
+        .footer {
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive adjustments (Wisdom) */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .time-display {
+                font-size: 2.5rem;
+            }
+
+            .clock-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌍 World Clock</h1>
+        <p>Real-time display across multiple timezones</p>
+    </div>
+
+    <!-- Status indicator (Love - Observability) -->
+    <div id="status" class="status loading">
+        <span class="loading"></span> Initializing clocks...
+    </div>
+
+    <!-- Clock grid -->
+    <div id="clock-grid" class="clock-grid" role="main" aria-live="polite">
+        <!-- Clocks will be dynamically inserted here -->
+    </div>
+
+    <!-- Error display (Justice - Error communication) -->
+    <div id="error-container"></div>
+
+    <div class="footer">
+        <p>Built with LJPW principles: Love (Observability), Justice (Error Handling), Power (Performance), Wisdom (Architecture)</p>
+        <p>Phase 3-informed generation: H>0.5 target (73% above ecosystem baseline)</p>
+    </div>
+
+    <script>
+        /**
+         * World Clock Application
+         *
+         * LJPW-Enhanced Implementation (Phase 3 Principles)
+         *
+         * Love (0.45+ target):
+         * - Comprehensive documentation (every function)
+         * - Console logging for debugging
+         * - Clear error messages
+         * - Status indicators for users
+         *
+         * Justice (0.50+ target):
+         * - Input validation (all parameters)
+         * - Error handling (all external operations)
+         * - Type checking (runtime validation)
+         * - Graceful degradation
+         *
+         * Power (0.45+ target):
+         * - Efficient updates (only changed clocks)
+         * - RequestAnimationFrame (smooth rendering)
+         * - Minimal DOM manipulation
+         *
+         * Wisdom (0.50+ target):
+         * - Clear separation of concerns
+         * - Modular functions (single responsibility)
+         * - Documented architecture
+         * - Maintainable structure
+         */
+
+        // Configuration (Wisdom - Centralized config)
+        const CONFIG = {
+            timezones: [
+                { city: 'New York', timezone: 'America/New_York' },
+                { city: 'London', timezone: 'Europe/London' },
+                { city: 'Tokyo', timezone: 'Asia/Tokyo' },
+                { city: 'Sydney', timezone: 'Australia/Sydney' },
+                { city: 'Dubai', timezone: 'Asia/Dubai' },
+                { city: 'Los Angeles', timezone: 'America/Los_Angeles' },
+            ],
+            updateInterval: 1000, // 1 second
+            logLevel: 'info', // 'debug', 'info', 'warn', 'error'
+        };
+
+        /**
+         * Logger utility (Love - Observability)
+         *
+         * Provides structured logging for debugging and monitoring.
+         * Phase 3 lesson: Ecosystem Love=0.225 due to minimal logging.
+         *
+         * @param {string} level - Log level (debug, info, warn, error)
+         * @param {string} message - Log message
+         * @param {Object} context - Additional context data
+         */
+        function log(level, message, context = {}) {
+            const timestamp = new Date().toISOString();
+            const logEntry = {
+                timestamp,
+                level,
+                message,
+                ...context
+            };
+
+            // Only log if level is appropriate
+            const levels = ['debug', 'info', 'warn', 'error'];
+            const configLevel = levels.indexOf(CONFIG.logLevel);
+            const currentLevel = levels.indexOf(level);
+
+            if (currentLevel >= configLevel) {
+                const method = console[level] || console.log;
+                method(`[${timestamp}] [${level.toUpperCase()}]`, message, context);
+            }
+        }
+
+        /**
+         * Validate timezone string (Justice - Input validation)
+         *
+         * Phase 3 lesson: Ecosystem Justice=0.252 due to missing validation.
+         *
+         * @param {string} timezone - IANA timezone string
+         * @returns {boolean} True if valid
+         * @throws {Error} If timezone is invalid
+         */
+        function validateTimezone(timezone) {
+            // Justice: Type checking
+            if (typeof timezone !== 'string') {
+                throw new TypeError(`Timezone must be string, got ${typeof timezone}`);
+            }
+
+            // Justice: Empty string check
+            if (!timezone || timezone.trim().length === 0) {
+                throw new Error('Timezone cannot be empty');
+            }
+
+            // Justice: Format validation
+            try {
+                Intl.DateTimeFormat(undefined, { timeZone: timezone });
+                log('debug', 'Timezone validated', { timezone });
+                return true;
+            } catch (error) {
+                log('error', 'Invalid timezone', { timezone, error: error.message });
+                throw new Error(`Invalid timezone: ${timezone}. Use IANA timezone format (e.g., 'America/New_York')`);
+            }
+        }
+
+        /**
+         * Format time for display (Power - Efficient formatting)
+         *
+         * @param {Date} date - Date object to format
+         * @param {string} timezone - IANA timezone string
+         * @returns {Object} Formatted time and date strings
+         * @throws {Error} If formatting fails
+         */
+        function formatTime(date, timezone) {
+            // Justice: Validate inputs
+            if (!(date instanceof Date) || isNaN(date.getTime())) {
+                throw new Error('Invalid date object');
+            }
+
+            validateTimezone(timezone);
+
+            try {
+                // Power: Use efficient Intl API
+                const timeFormat = new Intl.DateTimeFormat('en-US', {
+                    timeZone: timezone,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false,
+                });
+
+                const dateFormat = new Intl.DateTimeFormat('en-US', {
+                    timeZone: timezone,
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                });
+
+                const result = {
+                    time: timeFormat.format(date),
+                    date: dateFormat.format(date),
+                };
+
+                log('debug', 'Time formatted', { timezone, result });
+                return result;
+
+            } catch (error) {
+                // Justice: Handle formatting errors
+                log('error', 'Time formatting failed', { timezone, error: error.message });
+                throw new Error(`Failed to format time for ${timezone}: ${error.message}`);
+            }
+        }
+
+        /**
+         * Create clock card element (Wisdom - DOM factory)
+         *
+         * @param {Object} config - Clock configuration
+         * @param {string} config.city - City name
+         * @param {string} config.timezone - IANA timezone
+         * @returns {HTMLElement} Clock card element
+         */
+        function createClockCard({ city, timezone }) {
+            // Justice: Validate inputs
+            if (!city || typeof city !== 'string') {
+                throw new Error('City name is required and must be string');
+            }
+
+            validateTimezone(timezone);
+
+            // Wisdom: Create semantic structure
+            const card = document.createElement('article');
+            card.className = 'clock-card';
+            card.setAttribute('aria-label', `Clock for ${city}`);
+            card.dataset.timezone = timezone;
+
+            card.innerHTML = `
+                <h2 class="city-name">${escapeHtml(city)}</h2>
+                <p class="timezone">${escapeHtml(timezone)}</p>
+                <div class="time-display" aria-live="off">--:--:--</div>
+                <div class="date-display">Loading...</div>
+            `;
+
+            log('info', 'Clock card created', { city, timezone });
+            return card;
+        }
+
+        /**
+         * Escape HTML to prevent XSS (Justice - Security)
+         *
+         * Phase 3 lesson: Security is part of Justice.
+         *
+         * @param {string} str - String to escape
+         * @returns {string} Escaped string
+         */
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        /**
+         * Update clock display (Power - Efficient updates)
+         *
+         * @param {HTMLElement} card - Clock card element
+         * @param {Date} now - Current time
+         */
+        function updateClock(card, now) {
+            try {
+                const timezone = card.dataset.timezone;
+                const { time, date } = formatTime(now, timezone);
+
+                // Power: Only update if changed (avoid unnecessary reflows)
+                const timeDisplay = card.querySelector('.time-display');
+                const dateDisplay = card.querySelector('.date-display');
+
+                if (timeDisplay.textContent !== time) {
+                    timeDisplay.textContent = time;
+                }
+
+                if (dateDisplay.textContent !== date) {
+                    dateDisplay.textContent = date;
+                }
+
+            } catch (error) {
+                // Justice: Handle update errors gracefully
+                log('error', 'Clock update failed', {
+                    timezone: card.dataset.timezone,
+                    error: error.message
+                });
+                displayError(`Failed to update clock: ${error.message}`);
+            }
+        }
+
+        /**
+         * Display error message to user (Love - Clear communication)
+         *
+         * @param {string} message - Error message
+         * @param {string} details - Additional details
+         */
+        function displayError(message, details = '') {
+            const container = document.getElementById('error-container');
+
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.setAttribute('role', 'alert');
+            errorDiv.innerHTML = `
+                <h3>⚠️ Error</h3>
+                <p><strong>${escapeHtml(message)}</strong></p>
+                ${details ? `<p>${escapeHtml(details)}</p>` : ''}
+            `;
+
+            container.appendChild(errorDiv);
+
+            // Love: Log for debugging
+            log('error', 'Error displayed to user', { message, details });
+        }
+
+        /**
+         * Update status indicator (Love - User feedback)
+         *
+         * @param {string} type - Status type ('loading', 'success', 'error')
+         * @param {string} message - Status message
+         */
+        function updateStatus(type, message) {
+            const statusElement = document.getElementById('status');
+            statusElement.className = `status ${type}`;
+
+            if (type === 'loading') {
+                statusElement.innerHTML = `<span class="loading"></span> ${message}`;
+            } else {
+                statusElement.textContent = message;
+            }
+
+            log('info', 'Status updated', { type, message });
+        }
+
+        /**
+         * Initialize world clock application (Wisdom - Entry point)
+         *
+         * Phase 3-informed initialization:
+         * - Comprehensive error handling (Justice)
+         * - Status feedback (Love)
+         * - Efficient rendering (Power)
+         * - Clear structure (Wisdom)
+         */
+        function initializeWorldClock() {
+            log('info', 'Initializing World Clock', { config: CONFIG });
+
+            try {
+                // Justice: Validate configuration
+                if (!CONFIG.timezones || !Array.isArray(CONFIG.timezones)) {
+                    throw new Error('Invalid configuration: timezones must be array');
+                }
+
+                if (CONFIG.timezones.length === 0) {
+                    throw new Error('Invalid configuration: at least one timezone required');
+                }
+
+                // Wisdom: Get DOM references once
+                const grid = document.getElementById('clock-grid');
+                if (!grid) {
+                    throw new Error('Clock grid element not found');
+                }
+
+                // Create clock cards
+                updateStatus('loading', 'Creating clocks...');
+
+                const clockCards = CONFIG.timezones.map(config => {
+                    try {
+                        return createClockCard(config);
+                    } catch (error) {
+                        // Justice: Handle individual clock creation errors
+                        log('error', 'Failed to create clock', { config, error: error.message });
+                        displayError(`Failed to create clock for ${config.city}`, error.message);
+                        return null;
+                    }
+                }).filter(card => card !== null);
+
+                if (clockCards.length === 0) {
+                    throw new Error('No clocks could be created');
+                }
+
+                // Add cards to grid
+                clockCards.forEach(card => grid.appendChild(card));
+
+                // Start clock updates (Power - Efficient animation loop)
+                updateStatus('success', `✓ ${clockCards.length} clocks active`);
+
+                function updateAllClocks() {
+                    const now = new Date();
+                    clockCards.forEach(card => updateClock(card, now));
+
+                    // Power: Use requestAnimationFrame for smooth updates
+                    setTimeout(() => requestAnimationFrame(updateAllClocks), CONFIG.updateInterval);
+                }
+
+                updateAllClocks();
+                log('info', 'World Clock initialized successfully', {
+                    clockCount: clockCards.length
+                });
+
+            } catch (error) {
+                // Justice: Handle initialization errors
+                log('error', 'Initialization failed', { error: error.message, stack: error.stack });
+                updateStatus('error', '✗ Initialization failed');
+                displayError(
+                    'Failed to initialize World Clock',
+                    `${error.message}. Please check the console for details.`
+                );
+            }
+        }
+
+        /**
+         * Application entry point
+         *
+         * Phase 3 principle: Initialize when DOM is ready
+         */
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeWorldClock);
+        } else {
+            initializeWorldClock();
+        }
+
+        // Love: Log application info for debugging
+        log('info', 'World Clock script loaded', {
+            ljpw: {
+                love: 'Comprehensive logging, status indicators, clear errors',
+                justice: 'Input validation, error handling, type checking',
+                power: 'Efficient updates, requestAnimationFrame, minimal DOM manipulation',
+                wisdom: 'Modular functions, clear separation, documented architecture',
+            },
+            targetHarmony: '>0.5 (73% above ecosystem baseline H=0.29)',
+        });
+    </script>
+</body>
+</html>
