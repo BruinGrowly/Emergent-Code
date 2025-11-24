@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Calculator - Art + Function Unified</title>
+    <style>
+        /* ============================================
+           BEAUTIFUL CALCULATOR CSS
+           Art + Function Unified
+           ============================================ */
+
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Golden Ratio (Visual Harmony) */
+            --golden-ratio: 1.618;
+
+            /* Color Palette (Functional Color Coding) */
+            --display-bg: #1A1A2E;
+            --display-text: #00FFA3;
+            --number-bg: #16213E;
+            --number-text: #E0E0E0;
+            --operator-bg: #FF6B35;
+            --operator-text: #FFFFFF;
+            --special-bg: #0F3460;
+            --special-text: #00D9FF;
+            --equals-bg: #00D9FF;
+            --equals-text: #1A1A2E;
+            --background: #0F0F1E;
+            --shadow-color: rgba(0, 255, 163, 0.3);
+
+            /* Typography */
+            --font-display: 'Courier New', Courier, monospace;
+            --font-button: 'Roboto', -apple-system, sans-serif;
+
+            /* Motion */
+            --press-duration: 0.1s;
+            --press-scale: 0.95;
+            --press-ease: cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        /* BODY - Focus on calculator */
+        body {
+            font-family: var(--font-button);
+            background: var(--background);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* CALCULATOR CONTAINER - Golden ratio proportions */
+        .calculator {
+            width: 100%;
+            max-width: 400px;
+            background: var(--display-bg);
+            border-radius: 24px;
+            padding: 1.5rem;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                0 0 80px var(--shadow-color);
+
+            /* Beauty: Smooth entrance */
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* DISPLAY CONTAINER - Visual hierarchy */
+        .display-container {
+            background: var(--display-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(0, 255, 163, 0.2);
+
+            /* Beauty: Subtle glow animation */
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow:
+                    0 0 20px var(--shadow-color),
+                    inset 0 0 20px rgba(0, 255, 163, 0.1);
+            }
+            50% {
+                box-shadow:
+                    0 0 40px var(--shadow-color),
+                    inset 0 0 30px rgba(0, 255, 163, 0.15);
+            }
+        }
+
+        /* DISPLAY - Retro calculator aesthetic */
+        .display {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            color: var(--display-text);
+            text-align: right;
+            min-height: 3rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+
+            /* Beauty: Text shadow for depth */
+            text-shadow:
+                0 0 10px var(--display-text),
+                0 0 20px var(--display-text);
+
+            /* Function: Smooth updates */
+            transition: all 0.2s ease;
+        }
+
+        /* BUTTON GRID - Golden ratio spacing */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+        }
+
+        /* BUTTON BASE - Function + Beauty unified */
+        .btn {
+            font-family: var(--font-button);
+            font-size: 1.5rem;
+            font-weight: 400;
+
+            padding: 1.5rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+
+            /* Function: Clear interaction */
+            transition: all var(--press-duration) var(--press-ease);
+
+            /* Beauty: Subtle depth */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:active {
+            /* Function: Immediate feedback */
+            transform: scale(var(--press-scale));
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* NUMBER BUTTONS - Calm, neutral (most used) */
+        .btn-number {
+            background: var(--number-bg);
+            color: var(--number-text);
+        }
+
+        .btn-number:hover {
+            background: lighten(var(--number-bg), 10%);
+        }
+
+        /* OPERATOR BUTTONS - Warm, prominent (visual hierarchy) */
+        .btn-operator {
+            background: var(--operator-bg);
+            color: var(--operator-text);
+            font-weight: 600;
+        }
+
+        .btn-operator:hover {
+            background: #FF7F50;
+            /* Beauty: Extra glow for operators */
+            box-shadow: 0 6px 12px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-operator.active {
+            /* Function: Show active operator */
+            background: #FFD700;
+            color: #1A1A2E;
+        }
+
+        /* SPECIAL BUTTONS - Cool, functional */
+        .btn-special {
+            background: var(--special-bg);
+            color: var(--special-text);
+        }
+
+        .btn-special:hover {
+            background: #1A4F7A;
+        }
+
+        /* EQUALS BUTTON - Cyan, completion (spans 2 cols) */
+        .btn-equals {
+            grid-column: span 2;
+            background: var(--equals-bg);
+            color: var(--equals-text);
+            font-weight: 700;
+
+            /* Beauty: Extra prominence */
+            box-shadow:
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-equals:hover {
+            background: #00E5FF;
+            /* Beauty: Bright glow on hover */
+            box-shadow:
+                0 6px 12px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(0, 217, 255, 0.5);
+        }
+
+        /* ZERO BUTTON - Spans 2 columns (golden ratio) */
+        .btn-zero {
+            grid-column: span 2;
+        }
+
+        /* ERROR STATE - Beauty serves function (clear feedback) */
+        .display.error {
+            color: #FF6B6B;
+            /* Beauty: Shake animation for errors */
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* ACCESSIBILITY - Justice (inclusive design) */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* RESPONSIVE - Wisdom (adaptive) */
+        @media (max-width: 480px) {
+            .calculator {
+                max-width: 100%;
+            }
+
+            .display {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 1.2rem;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display-container">
+            <div class="display" id="display">0</div>
+        </div>
+
+        <div class="button-grid">
+            <!-- Row 1: Special functions -->
+            <button class="btn btn-special" data-action="clear">C</button>
+            <button class="btn btn-special" data-action="toggle-sign">±</button>
+            <button class="btn btn-special" data-action="percent">%</button>
+            <button class="btn btn-operator" data-operator="/">÷</button>
+
+            <!-- Row 2: 7-8-9 × -->
+            <button class="btn btn-number" data-number="7">7</button>
+            <button class="btn btn-number" data-number="8">8</button>
+            <button class="btn btn-number" data-number="9">9</button>
+            <button class="btn btn-operator" data-operator="*">×</button>
+
+            <!-- Row 3: 4-5-6 − -->
+            <button class="btn btn-number" data-number="4">4</button>
+            <button class="btn btn-number" data-number="5">5</button>
+            <button class="btn btn-number" data-number="6">6</button>
+            <button class="btn btn-operator" data-operator="-">−</button>
+
+            <!-- Row 4: 1-2-3 + -->
+            <button class="btn btn-number" data-number="1">1</button>
+            <button class="btn btn-number" data-number="2">2</button>
+            <button class="btn btn-number" data-number="3">3</button>
+            <button class="btn btn-operator" data-operator="+">+</button>
+
+            <!-- Row 5: 0 . = -->
+            <button class="btn btn-number btn-zero" data-number="0">0</button>
+            <button class="btn btn-number" data-number=".">.</button>
+            <button class="btn btn-equals" data-action="equals">=</button>
+        </div>
+    </div>
+    <script>
+        /**
+         * BEAUTIFUL CALCULATOR
+         * Art + Function Unified
+         *
+         * LJPW (Technical Excellence):
+         * - Love: Logging, clear errors
+         * - Justice: Validation, error handling
+         * - Power: Efficient computation
+         * - Wisdom: Modular architecture
+         *
+         * Beauty (Aesthetic Excellence):
+         * - Motion feedback on interaction
+         * - Color-coded visual hierarchy
+         * - Smooth state transitions
+         * - Clear visual feedback
+         */
+
+        // ============================================
+        // STATE MANAGEMENT (Wisdom - W)
+        // ============================================
+
+        /**
+         * Calculator state.
+         *
+         * Wisdom (W): Clean state management
+         * Justice (J): Validated state transitions
+         */
+        const state = {
+            display: '0',
+            previousValue: null,
+            operator: null,
+            waitingForNewValue: false,
+        };
+
+        // ============================================
+        // LOGGING (Love - L)
+        // ============================================
+
+        /**
+         * Log calculator operations.
+         *
+         * Phase 3 insight: Observability aids debugging
+         *
+         * @param {string} action - Action performed
+         * @param {Object} data - Additional context
+         */
+        function log(action, data = {}) {
+            const timestamp = new Date().toISOString();
+            console.log(`[${timestamp}] ${action}`, {
+                state: { ...state },
+                ...data
+            });
+        }
+
+        // ============================================
+        // DISPLAY UPDATE (Love + Beauty)
+        // ============================================
+
+        /**
+         * Update display with smooth transition.
+         *
+         * Love (L): Clear feedback
+         * Beauty (M): Smooth animation
+         *
+         * @param {string} value - Value to display
+         */
+        function updateDisplay(value) {
+            const displayElement = document.getElementById('display');
+
+            // Justice (J): Validate display element
+            if (!displayElement) {
+                log('ERROR: Display element not found');
+                return;
+            }
+
+            // Beauty (M): Smooth fade transition
+            displayElement.style.opacity = '0.7';
+
+            setTimeout(() => {
+                displayElement.textContent = value;
+                displayElement.style.opacity = '1';
+                state.display = value;
+                log('Display updated', { value });
+            }, 100);
+        }
+
+        // ============================================
+        // ERROR HANDLING (Justice - J)
+        // ============================================
+
+        /**
+         * Display error with visual feedback.
+         *
+         * Justice (J): Clear error communication
+         * Beauty (M): Shake animation
+         *
+         * @param {string} message - Error message
+         */
+        function displayError(message) {
+            log('ERROR', { message });
+
+            const displayElement = document.getElementById('display');
+            displayElement.textContent = 'Error';
+            displayElement.classList.add('error');
+
+            // Beauty: Remove error class after animation
+            setTimeout(() => {
+                displayElement.classList.remove('error');
+                reset();
+            }, 1000);
+        }
+
+        // ============================================
+        // VALIDATION (Justice - J)
+        // ============================================
+
+        /**
+         * Validate numeric input.
+         *
+         * Phase 3 insight: Validation prevents errors
+         *
+         * @param {string} value - Value to validate
+         * @returns {boolean} True if valid
+         */
+        function validateNumber(value) {
+            // Justice (J): Type checking
+            if (typeof value !== 'string') {
+                log('WARN: Invalid type for validateNumber', {
+                    type: typeof value
+                });
+                return false;
+            }
+
+            // Justice (J): Format validation
+            const parsed = parseFloat(value);
+            if (isNaN(parsed)) {
+                log('WARN: Not a number', { value });
+                return false;
+            }
+
+            // Justice (J): Range validation
+            if (!isFinite(parsed)) {
+                log('ERROR: Infinite value', { value });
+                return false;
+            }
+
+            return true;
+        }
+
+        // ============================================
+        // COMPUTATION (Power - P + Justice - J)
+        // ============================================
+
+        /**
+         * Perform calculation with error handling.
+         *
+         * Power (P): Efficient computation
+         * Justice (J): Error handling
+         *
+         * @param {number} a - First operand
+         * @param {number} b - Second operand
+         * @param {string} operator - Operator (+, -, *, /)
+         * @returns {number} Result
+         */
+        function calculate(a, b, operator) {
+            try {
+                log('Calculate', { a, b, operator });
+
+                // Justice (J): Validate inputs
+                if (!validateNumber(String(a)) || !validateNumber(String(b))) {
+                    throw new Error('Invalid operands');
+                }
+
+                // Power (P): Efficient switch
+                switch (operator) {
+                    case '+':
+                        return a + b;
+                    case '-':
+                        return a - b;
+                    case '*':
+                        return a * b;
+                    case '/':
+                        // Justice (J): Division by zero check
+                        if (b === 0) {
+                            throw new Error('Division by zero');
+                        }
+                        return a / b;
+                    default:
+                        throw new Error(`Unknown operator: ${operator}`);
+                }
+
+            } catch (error) {
+                log('ERROR in calculate', {
+                    error: error.message,
+                    a, b, operator
+                });
+                displayError(error.message);
+                return 0;
+            }
+        }
+
+        // ============================================
+        // BUTTON HANDLERS (Wisdom - W: Modularity)
+        // ============================================
+
+        /**
+         * Handle number button press.
+         *
+         * Wisdom (W): Clear responsibility
+         * Love (L): Logging
+         *
+         * @param {string} number - Number pressed
+         */
+        function handleNumber(number) {
+            log('Number pressed', { number });
+
+            if (state.waitingForNewValue) {
+                updateDisplay(number);
+                state.waitingForNewValue = false;
+            } else {
+                const newDisplay = state.display === '0'
+                    ? number
+                    : state.display + number;
+                updateDisplay(newDisplay);
+            }
+        }
+
+        /**
+         * Handle operator button press.
+         *
+         * Wisdom (W): Clear logic flow
+         * Beauty: Visual feedback (highlight active)
+         *
+         * @param {string} operator - Operator pressed
+         */
+        function handleOperator(operator) {
+            log('Operator pressed', { operator });
+
+            const currentValue = parseFloat(state.display);
+
+            // If we have a pending operation, calculate it first
+            if (state.operator && !state.waitingForNewValue) {
+                const result = calculate(
+                    state.previousValue,
+                    currentValue,
+                    state.operator
+                );
+                updateDisplay(String(result));
+                state.previousValue = result;
+            } else {
+                state.previousValue = currentValue;
+            }
+
+            state.operator = operator;
+            state.waitingForNewValue = true;
+
+            // Beauty: Highlight active operator
+            highlightOperator(operator);
+        }
+
+        /**
+         * Handle equals button press.
+         *
+         * Wisdom (W): Completion logic
+         */
+        function handleEquals() {
+            log('Equals pressed');
+
+            if (!state.operator || !state.previousValue) {
+                return;
+            }
+
+            const currentValue = parseFloat(state.display);
+            const result = calculate(
+                state.previousValue,
+                currentValue,
+                state.operator
+            );
+
+            updateDisplay(String(result));
+            state.operator = null;
+            state.previousValue = null;
+            state.waitingForNewValue = true;
+
+            // Beauty: Clear operator highlight
+            clearOperatorHighlight();
+        }
+
+        /**
+         * Handle special functions (C, ±, %).
+         */
+        function handleSpecial(action) {
+            log('Special action', { action });
+
+            switch (action) {
+                case 'clear':
+                    reset();
+                    break;
+
+                case 'toggle-sign':
+                    const current = parseFloat(state.display);
+                    updateDisplay(String(-current));
+                    break;
+
+                case 'percent':
+                    const value = parseFloat(state.display);
+                    updateDisplay(String(value / 100));
+                    break;
+            }
+        }
+
+        /**
+         * Reset calculator to initial state.
+         */
+        function reset() {
+            log('Reset');
+            state.display = '0';
+            state.previousValue = null;
+            state.operator = null;
+            state.waitingForNewValue = false;
+            updateDisplay('0');
+            clearOperatorHighlight();
+        }
+
+        // ============================================
+        // VISUAL FEEDBACK (Beauty - M)
+        // ============================================
+
+        /**
+         * Highlight active operator button.
+         *
+         * Beauty (M): Visual feedback enhances understanding
+         *
+         * @param {string} operator - Active operator
+         */
+        function highlightOperator(operator) {
+            // Clear previous highlights
+            clearOperatorHighlight();
+
+            // Find and highlight new operator
+            const buttons = document.querySelectorAll('[data-operator]');
+            buttons.forEach(btn => {
+                if (btn.dataset.operator === operator) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        /**
+         * Clear operator highlights.
+         */
+        function clearOperatorHighlight() {
+            const buttons = document.querySelectorAll('.btn-operator');
+            buttons.forEach(btn => btn.classList.remove('active'));
+        }
+
+        // ============================================
+        // EVENT LISTENERS (Wisdom - W: Clean setup)
+        // ============================================
+
+        /**
+         * Initialize calculator event listeners.
+         *
+         * Wisdom (W): Organized initialization
+         * Love (L): Clear logging
+         */
+        function initialize() {
+            try {
+                log('Initializing calculator');
+
+                // Number buttons
+                document.querySelectorAll('[data-number]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        handleNumber(btn.dataset.number);
+                    });
+                });
+
+                // Operator buttons
+                document.querySelectorAll('[data-operator]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        handleOperator(btn.dataset.operator);
+                    });
+                });
+
+                // Special action buttons
+                document.querySelectorAll('[data-action]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const action = btn.dataset.action;
+                        if (action === 'equals') {
+                            handleEquals();
+                        } else {
+                            handleSpecial(action);
+                        }
+                    });
+                });
+
+                // Keyboard support (Justice - J: Accessibility)
+                document.addEventListener('keydown', (e) => {
+                    if (/[0-9.]/.test(e.key)) {
+                        handleNumber(e.key);
+                    } else if (['+', '-', '*', '/'].includes(e.key)) {
+                        handleOperator(e.key);
+                    } else if (e.key === 'Enter' || e.key === '=') {
+                        handleEquals();
+                    } else if (e.key === 'Escape' || e.key === 'c') {
+                        reset();
+                    }
+                });
+
+                log('Calculator initialized successfully');
+
+            } catch (error) {
+                log('ERROR: Initialization failed', {
+                    error: error.message,
+                    stack: error.stack,
+                });
+                displayError('Failed to initialize');
+            }
+        }
+
+        // ============================================
+        // START APPLICATION
+        // ============================================
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initialize);
+        } else {
+            initialize();
+        }
+
+    </script>
+</body>
+</html>
