@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="To-Do List - Phase 3 LJPW-Enhanced Application">
+    <title>To-Do List - LJPW Enhanced</title>
+    <style>
+        /**
+         * To-Do List Styles
+         *
+         * Phase 3 Wisdom: Maintainable, documented, accessible
+         */
+
+        :root {
+            /* Color palette (documented for maintainability) */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+
+            /* Spacing system */
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: var(--spacing-md);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Status indicator (Love - Observability) */
+        .status {
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .status.visible {
+            display: block;
+        }
+
+        .status.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 2px solid var(--success);
+        }
+
+        .status.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 2px solid var(--error);
+        }
+
+        /* Form styles */
+        .add-task-form {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .task-input {
+            flex: 1;
+            padding: var(--spacing-md);
+            border: 2px solid var(--bg-card);
+            border-radius: 8px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .task-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .btn {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: var(--error);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            font-size: 0.9rem;
+        }
+
+        /* Task list */
+        .task-list {
+            list-style: none;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .task-item {
+            background: var(--bg-card);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            transition: all 0.2s;
+        }
+
+        .task-item:hover {
+            transform: translateX(4px);
+        }
+
+        .task-item.completed {
+            opacity: 0.6;
+        }
+
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .task-text {
+            flex: 1;
+        }
+
+        /* Error display (Justice - Clear errors) */
+        #error-container:empty {
+            display: none;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid var(--error);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-md);
+            color: var(--error);
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--bg-card);
+        }
+
+        .stats {
+            margin-top: var(--spacing-sm);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📝 To-Do List</h1>
+            <p class="subtitle">Phase 3-informed generation (H>0.5 target)</p>
+        </header>
+
+        <!-- Status indicator (Love - User feedback) -->
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+
+        <!-- Add task form -->
+        <form id="add-task-form" class="add-task-form" aria-label="Add new task">
+            <input
+                type="text"
+                id="task-input"
+                class="task-input"
+                placeholder="What needs to be done?"
+                aria-label="Task description"
+                required
+                maxlength="200"
+            >
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </form>
+
+        <!-- Task list -->
+        <ul id="task-list" class="task-list" role="list" aria-label="Tasks">
+            <!-- Tasks will be inserted here dynamically -->
+        </ul>
+
+        <!-- Error container (Justice - Error communication) -->
+        <div id="error-container" role="alert" aria-live="assertive"></div>
+
+        <footer class="footer">
+            <p>Built with Phase 3 LJPW principles</p>
+            <p class="stats">
+                <span id="stats-total">0</span> total tasks |
+                <span id="stats-completed">0</span> completed
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        /**
+         * To-Do List Application
+         *
+         * Phase 3-Informed Implementation
+         *
+         * LJPW Targets (above ecosystem baseline):
+         * - Love: 0.45+ (logging, docs, feedback)
+         * - Justice: 0.50+ (validation, error handling)
+         * - Power: 0.45+ (efficient updates)
+         * - Wisdom: 0.50+ (modular, maintainable)
+         * - Harmony: 0.50+ (73% above ecosystem H=0.29)
+         */
+
+        // Application state (Wisdom - Clear state management)
+        let tasks = [];
+        let nextId = 1;
+
+        /**
+         * Logger utility (Love - Observability)
+         *
+         * Phase 3 lesson: Ecosystem Love=0.225 due to minimal logging.
+         * We fix this with strategic logging throughout.
+         *
+         * @param {string} level - Log level
+         * @param {string} message - Log message
+         * @param {Object} context - Additional context
+         */
+        function log(level, message, context = {}) {
+            const timestamp = new Date().toISOString();
+            const entry = { timestamp, level, message, ...context };
+
+            const levels = { debug: 0, info: 1, warn: 2, error: 3 };
+            if (levels[level] >= levels['info']) {
+                console[level](`[${timestamp}] [${level.toUpperCase()}]`, message, context);
+            }
+        }
+
+        /**
+         * Validate task text (Justice - Input validation)
+         *
+         * Phase 3 lesson: Ecosystem Justice=0.252 due to missing validation.
+         *
+         * @param {string} text - Task text to validate
+         * @returns {Object} Validation result
+         * @throws {Error} If validation fails
+         */
+        function validateTaskText(text) {
+            // Justice: Type checking
+            if (typeof text !== 'string') {
+                throw new TypeError(`Task text must be string, got ${typeof text}`);
+            }
+
+            // Justice: Empty check
+            const trimmed = text.trim();
+            if (trimmed.length === 0) {
+                throw new Error('Task text cannot be empty');
+            }
+
+            // Justice: Length check
+            if (trimmed.length > 200) {
+                throw new Error('Task text cannot exceed 200 characters');
+            }
+
+            log('debug', 'Task text validated', { text: trimmed, length: trimmed.length });
+
+            return { valid: true, text: trimmed };
+        }
+
+        /**
+         * Display status message (Love - User feedback)
+         *
+         * @param {string} message - Status message
+         * @param {string} type - Status type ('success' or 'error')
+         */
+        function showStatus(message, type = 'success') {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = `status visible ${type}`;
+
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                statusEl.classList.remove('visible');
+            }, 3000);
+
+            log('info', 'Status displayed', { message, type });
+        }
+
+        /**
+         * Display error message (Justice - Clear error communication)
+         *
+         * Phase 3 lesson: Clear, actionable error messages.
+         *
+         * @param {string} message - Error message
+         */
+        function showError(message) {
+            const container = document.getElementById('error-container');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = `⚠️ Error: ${message}`;
+
+            container.innerHTML = '';
+            container.appendChild(errorDiv);
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+
+            log('error', 'Error displayed to user', { message });
+        }
+
+        /**
+         * Escape HTML to prevent XSS (Justice - Security)
+         *
+         * @param {string} str - String to escape
+         * @returns {string} Escaped string
+         */
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        /**
+         * Update statistics display (Love - User feedback)
+         */
+        function updateStats() {
+            try {
+                const total = tasks.length;
+                const completed = tasks.filter(t => t.completed).length;
+
+                document.getElementById('stats-total').textContent = total;
+                document.getElementById('stats-completed').textContent = completed;
+
+                log('debug', 'Stats updated', { total, completed });
+
+            } catch (error) {
+                log('error', 'Stats update failed', { error: error.message });
+            }
+        }
+
+        /**
+         * Add new task (Justice - Comprehensive error handling)
+         *
+         * @param {string} text - Task text
+         * @returns {Object} Created task
+         */
+        function addTask(text) {
+            try {
+                // Justice: Validate input
+                const { text: validText } = validateTaskText(text);
+
+                // Create task
+                const task = {
+                    id: nextId++,
+                    text: validText,
+                    completed: false,
+                    createdAt: new Date().toISOString()
+                };
+
+                tasks.push(task);
+
+                log('info', 'Task added', { taskId: task.id, text: validText });
+
+                return task;
+
+            } catch (error) {
+                // Justice: Handle errors gracefully
+                log('error', 'Failed to add task', { text, error: error.message });
+                throw error;
+            }
+        }
+
+        /**
+         * Toggle task completion (Justice - Error handling)
+         *
+         * @param {number} taskId - Task ID
+         */
+        function toggleTask(taskId) {
+            try {
+                // Justice: Validate ID
+                if (typeof taskId !== 'number') {
+                    throw new TypeError('Task ID must be number');
+                }
+
+                const task = tasks.find(t => t.id === taskId);
+
+                if (!task) {
+                    throw new Error(`Task not found: ${taskId}`);
+                }
+
+                task.completed = !task.completed;
+
+                log('info', 'Task toggled', { taskId, completed: task.completed });
+
+                return task;
+
+            } catch (error) {
+                log('error', 'Failed to toggle task', { taskId, error: error.message });
+                throw error;
+            }
+        }
+
+        /**
+         * Delete task (Justice - Error handling)
+         *
+         * @param {number} taskId - Task ID
+         */
+        function deleteTask(taskId) {
+            try {
+                // Justice: Validate ID
+                if (typeof taskId !== 'number') {
+                    throw new TypeError('Task ID must be number');
+                }
+
+                const index = tasks.findIndex(t => t.id === taskId);
+
+                if (index === -1) {
+                    throw new Error(`Task not found: ${taskId}`);
+                }
+
+                const deleted = tasks.splice(index, 1)[0];
+
+                log('info', 'Task deleted', { taskId, text: deleted.text });
+
+                return deleted;
+
+            } catch (error) {
+                log('error', 'Failed to delete task', { taskId, error: error.message });
+                throw error;
+            }
+        }
+
+        /**
+         * Render task list (Power - Efficient rendering)
+         *
+         * Phase 3 lesson: Efficient DOM manipulation.
+         */
+        function renderTasks() {
+            try {
+                const listEl = document.getElementById('task-list');
+
+                // Power: Clear efficiently
+                listEl.innerHTML = '';
+
+                // Render each task
+                tasks.forEach(task => {
+                    const li = document.createElement('li');
+                    li.className = `task-item ${task.completed ? 'completed' : ''}`;
+                    li.innerHTML = `
+                        <input
+                            type="checkbox"
+                            class="task-checkbox"
+                            ${task.completed ? 'checked' : ''}
+                            data-task-id="${task.id}"
+                            aria-label="Mark task as ${task.completed ? 'incomplete' : 'complete'}"
+                        >
+                        <span class="task-text">${escapeHtml(task.text)}</span>
+                        <button
+                            class="btn btn-danger"
+                            data-task-id="${task.id}"
+                            aria-label="Delete task"
+                        >Delete</button>
+                    `;
+
+                    listEl.appendChild(li);
+                });
+
+                // Update stats
+                updateStats();
+
+                log('debug', 'Tasks rendered', { count: tasks.length });
+
+            } catch (error) {
+                // Justice: Handle rendering errors
+                log('error', 'Rendering failed', { error: error.message });
+                showError('Failed to render tasks. Please refresh the page.');
+            }
+        }
+
+        /**
+         * Initialize application (Wisdom - Entry point)
+         *
+         * Phase 3 principle: Clear initialization with error handling.
+         */
+        function initializeApp() {
+            log('info', 'Initializing To-Do List application');
+
+            try {
+                // Get form element
+                const form = document.getElementById('add-task-form');
+                const input = document.getElementById('task-input');
+
+                // Justice: Validate DOM elements exist
+                if (!form || !input) {
+                    throw new Error('Required DOM elements not found');
+                }
+
+                // Handle form submission
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    try {
+                        const text = input.value;
+
+                        // Add task
+                        addTask(text);
+
+                        // Render
+                        renderTasks();
+
+                        // Clear input
+                        input.value = '';
+
+                        // Love: User feedback
+                        showStatus('Task added successfully!', 'success');
+
+                    } catch (error) {
+                        // Justice: Show error to user
+                        showError(error.message);
+                    }
+                });
+
+                // Handle task interactions (event delegation for efficiency)
+                document.getElementById('task-list').addEventListener('click', (e) => {
+                    try {
+                        const taskId = parseInt(e.target.dataset.taskId);
+
+                        if (e.target.classList.contains('task-checkbox')) {
+                            // Toggle completion
+                            toggleTask(taskId);
+                            renderTasks();
+                            showStatus('Task updated!', 'success');
+
+                        } else if (e.target.classList.contains('btn-danger')) {
+                            // Delete task
+                            deleteTask(taskId);
+                            renderTasks();
+                            showStatus('Task deleted!', 'success');
+                        }
+
+                    } catch (error) {
+                        showError(error.message);
+                    }
+                });
+
+                // Initial render
+                renderTasks();
+
+                log('info', 'Application initialized successfully');
+
+            } catch (error) {
+                // Justice: Handle initialization errors
+                log('error', 'Initialization failed', { error: error.message, stack: error.stack });
+                showError('Failed to initialize application. Please refresh the page.');
+            }
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
+        }
+
+        // Love: Log application info
+        log('info', 'To-Do List script loaded', {
+            ljpw: {
+                love: 'Logging, status indicators, clear feedback',
+                justice: 'Validation, error handling, XSS prevention',
+                power: 'Efficient rendering, event delegation',
+                wisdom: 'Modular functions, clear separation'
+            },
+            targetHarmony: '>0.5 (73% above ecosystem H=0.29)'
+        });
+    </script>
+</body>
+</html>
