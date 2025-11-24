@@ -1,0 +1,190 @@
+{
+  "library_name": "flask",
+  "repository_url": "https://github.com/pallets/flask",
+  "total_files": 35,
+  "total_lines": 7315,
+  "overall_harmony": 0.291564622956525,
+  "dimension_averages": {
+    "Love": 0.2551710701198772,
+    "Justice": 0.22166383189397706,
+    "Power": 0.42192098842617654,
+    "Wisdom": 0.34755552677932067
+  },
+  "complexity_stats": {
+    "average": 2.0216309426607517,
+    "max": 4.666666666666667,
+    "min": 0.0
+  },
+  "coupling_stats": {
+    "average": 0.3628571428571428,
+    "max": 1.0,
+    "min": 0.05
+  },
+  "cohesion_stats": {
+    "average": 0.23255320931791523,
+    "max": 1.0,
+    "min": 0.0
+  },
+  "recommendations": [
+    "\ud83c\udfaf PRIORITY: Add error handling - Justice is critically low. Add try/except blocks to all external calls (network, file I/O, parsing).",
+    "\u2705 Low Complexity: Average complexity under 5 - maintainable code!"
+  ],
+  "top_files": [
+    {
+      "file_path": "/tmp/ljpw_flask_9r_oxuwf/src/flask/logging.py",
+      "lines_of_code": 53,
+      "harmony": 0.4326705327906703,
+      "love": 0.5083333333333333,
+      "justice": 0.425,
+      "power": 0.39166666666666666,
+      "wisdom": 0.4141666666666667,
+      "complexity_avg": 3.3333333333333335,
+      "coupling_score": 0.35,
+      "cohesion_avg": 0.0,
+      "issues": []
+    },
+    {
+      "file_path": "/tmp/ljpw_flask_9r_oxuwf/src/flask/wrappers.py",
+      "lines_of_code": 175,
+      "harmony": 0.3785542902429078,
+      "love": 0.29583333333333334,
+      "justice": 0.40740740740740744,
+      "power": 0.36851851851851847,
+      "wisdom": 0.4623569023569024,
+      "complexity_avg": 2.3333333333333335,
+      "coupling_score": 0.3,
+      "cohesion_avg": 0.4727272727272728,
+      "issues": [
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_flask_9r_oxuwf/src/flask/sessions.py",
+      "lines_of_code": 283,
+      "harmony": 0.3743008911424287,
+      "love": 0.3181060606060606,
+      "justice": 0.2480909090909091,
+      "power": 0.48822727272727273,
+      "wisdom": 0.509423076923077,
+      "complexity_avg": 1.5909090909090908,
+      "coupling_score": 0.55,
+      "cohesion_avg": 0.3307692307692307,
+      "issues": [
+        "Low Justice: Add error handling and validation"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_flask_9r_oxuwf/src/flask/blueprints.py",
+      "lines_of_code": 94,
+      "harmony": 0.37375393374121646,
+      "love": 0.3375,
+      "justice": 0.3958333333333333,
+      "power": 0.39166666666666666,
+      "wisdom": 0.3729411764705882,
+      "complexity_avg": 2.25,
+      "coupling_score": 0.45,
+      "cohesion_avg": 1.0,
+      "issues": [
+        "Low Cohesion: Consider splitting classes"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_flask_9r_oxuwf/src/flask/config.py",
+      "lines_of_code": 282,
+      "harmony": 0.3668264109173267,
+      "love": 0.2816433566433566,
+      "justice": 0.2936147186147186,
+      "power": 0.4904761904761905,
+      "wisdom": 0.4464235764235764,
+      "complexity_avg": 3.6363636363636362,
+      "coupling_score": 0.45,
+      "cohesion_avg": 0.45833333333333337,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    }
+  ],
+  "bottom_files": [
+    {
+      "file_path": "/tmp/ljpw_flask_9r_oxuwf/src/flask/signals.py",
+      "lines_of_code": 13,
+      "harmony": 0.1700256549753094,
+      "love": 0.12857142857142856,
+      "justice": 0.1,
+      "power": 0.25,
+      "wisdom": 0.26,
+      "complexity_avg": 0.0,
+      "coupling_score": 0.1,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_flask_9r_oxuwf/src/flask/typing.py",
+      "lines_of_code": 63,
+      "harmony": 0.16928388848790307,
+      "love": 0.15,
+      "justice": 0.1,
+      "power": 0.25,
+      "wisdom": 0.2189935064935065,
+      "complexity_avg": 0.0,
+      "coupling_score": 0.25,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_flask_9r_oxuwf/src/flask/__main__.py",
+      "lines_of_code": 2,
+      "harmony": 0.14965156559141354,
+      "love": 0.075,
+      "justice": 0.1,
+      "power": 0.25,
+      "wisdom": 0.2675,
+      "complexity_avg": 0.0,
+      "coupling_score": 0.05,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_flask_9r_oxuwf/examples/celery/make_celery.py",
+      "lines_of_code": 3,
+      "harmony": 0.14965156559141354,
+      "love": 0.075,
+      "justice": 0.1,
+      "power": 0.25,
+      "wisdom": 0.2675,
+      "complexity_avg": 0.0,
+      "coupling_score": 0.05,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_flask_9r_oxuwf/src/flask/__init__.py",
+      "lines_of_code": 39,
+      "harmony": 0.13698911926977386,
+      "love": 0.075,
+      "justice": 0.1,
+      "power": 0.25,
+      "wisdom": 0.18782051282051282,
+      "complexity_avg": 0.0,
+      "coupling_score": 0.5,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    }
+  ]
+}
