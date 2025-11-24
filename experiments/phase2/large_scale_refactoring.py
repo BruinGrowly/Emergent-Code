@@ -971,17 +971,57 @@ def analyze_ecommerce():
     print("\n📊 MESSY VERSION ANALYSIS:")
     print("-" * 80)
 
-    # Manual LJPW assessment for messy code
-    L_m = 0.1  # Cryptic names, no comments
-    J_m = 0.1  # Weak validation, no error handling
-    P_m = 0.2  # Linear searches, inefficient
-    W_m = 0.1  # Global state, magic numbers
+    # Analyze with harmonizer (function name semantics)
+    messy_result = harmonizer.analyze_file_content(ECOMMERCE_MESSY)
+
+    # Extract semantic scores from function names
+    semantic_scores = []
+    for func_name, func_data in messy_result.items():
+        if 'ice_result' in func_data and 'ice_components' in func_data['ice_result']:
+            intent = func_data['ice_result']['ice_components']['intent']
+            coords = intent.coordinates
+            semantic_scores.append({
+                'name': func_name,
+                'L': coords.love,
+                'J': coords.justice,
+                'P': coords.power,
+                'W': coords.wisdom
+            })
+
+    # Calculate average semantic profile (from function names)
+    if semantic_scores:
+        L_semantic = sum(s['L'] for s in semantic_scores) / len(semantic_scores)
+        J_semantic = sum(s['J'] for s in semantic_scores) / len(semantic_scores)
+        P_semantic = sum(s['P'] for s in semantic_scores) / len(semantic_scores)
+        W_semantic = sum(s['W'] for s in semantic_scores) / len(semantic_scores)
+    else:
+        L_semantic = J_semantic = P_semantic = W_semantic = 0.0
+
+    # Implementation quality assessment (manual expert analysis)
+    L_impl = 0.1  # No logging, no docs, cryptic names confirmed by harmonizer
+    J_impl = 0.1  # No validation, no error handling, no tests
+    P_impl = 0.2  # Linear searches O(n), inefficient
+    W_impl = 0.1  # Global state, magic numbers, no architecture
+
+    # Combined assessment (semantic + implementation)
+    L_m = (L_semantic + L_impl) / 2
+    J_m = (J_semantic + J_impl) / 2
+    P_m = (P_semantic + P_impl) / 2
+    W_m = (W_semantic + W_impl) / 2
     H_m = (L_m * J_m * P_m * W_m) ** 0.25
 
     print(f"  Love (L):    {L_m:.2f}  ❌ Cryptic names (r, l, ap, co, pp)")
+    print(f"    - Semantics: {L_semantic:.2f} (harmonizer: function names)")
+    print(f"    - Implementation: {L_impl:.2f} (no logging, no docs)")
     print(f"  Justice (J): {J_m:.2f}  ❌ Weak validation, no error handling")
+    print(f"    - Semantics: {J_semantic:.2f} (harmonizer: function names)")
+    print(f"    - Implementation: {J_impl:.2f} (no validation, no tests)")
     print(f"  Power (P):   {P_m:.2f}  ⚠️  Linear searches, no indexing")
+    print(f"    - Semantics: {P_semantic:.2f} (harmonizer: function names)")
+    print(f"    - Implementation: {P_impl:.2f} (O(n) searches)")
     print(f"  Wisdom (W):  {W_m:.2f}  ❌ Global state, magic numbers, no structure")
+    print(f"    - Semantics: {W_semantic:.2f} (harmonizer: function names)")
+    print(f"    - Implementation: {W_impl:.2f} (global state, no architecture)")
     print(f"  Harmony (H): {H_m:.2f}  ❌ ENTROPIC")
 
     print("\n⚠️  CRITICAL ISSUES (1000+ line monolith):")
@@ -1000,18 +1040,72 @@ def analyze_ecommerce():
     print("\n📊 CLEAN VERSION ANALYSIS:")
     print("-" * 80)
 
-    # Manual LJPW assessment for clean code
-    L_c = 0.9  # Clear names, comprehensive logging, type hints
-    J_c = 0.9  # Validators, error handling, business rules
-    P_c = 0.8  # Dictionary lookups O(1), efficient
-    W_c = 0.9  # Domain models, services, repositories
+    # Analyze with harmonizer (function name semantics)
+    clean_result = harmonizer.analyze_file_content(ECOMMERCE_CLEAN)
+
+    # Extract semantic scores from clean function names
+    clean_semantic_scores = []
+    for func_name, func_data in clean_result.items():
+        if 'ice_result' in func_data and 'ice_components' in func_data['ice_result']:
+            intent = func_data['ice_result']['ice_components']['intent']
+            coords = intent.coordinates
+            clean_semantic_scores.append({
+                'name': func_name,
+                'L': coords.love,
+                'J': coords.justice,
+                'P': coords.power,
+                'W': coords.wisdom
+            })
+
+    # Calculate average semantic profile (from clean function names)
+    if clean_semantic_scores:
+        L_semantic_clean = sum(s['L'] for s in clean_semantic_scores) / len(clean_semantic_scores)
+        J_semantic_clean = sum(s['J'] for s in clean_semantic_scores) / len(clean_semantic_scores)
+        P_semantic_clean = sum(s['P'] for s in clean_semantic_scores) / len(clean_semantic_scores)
+        W_semantic_clean = sum(s['W'] for s in clean_semantic_scores) / len(clean_semantic_scores)
+    else:
+        L_semantic_clean = J_semantic_clean = P_semantic_clean = W_semantic_clean = 0.0
+
+    # Implementation quality assessment (clean code)
+    L_impl_clean = 0.9  # Comprehensive logging, type hints, docstrings
+    J_impl_clean = 0.9  # Validators, error handling, tests, business rules
+    P_impl_clean = 0.8  # Dictionary lookups O(1), efficient algorithms
+    W_impl_clean = 0.9  # Domain models, services, repositories, clean architecture
+
+    # Combined assessment (semantic + implementation)
+    L_c = (L_semantic_clean + L_impl_clean) / 2
+    J_c = (J_semantic_clean + J_impl_clean) / 2
+    P_c = (P_semantic_clean + P_impl_clean) / 2
+    W_c = (W_semantic_clean + W_impl_clean) / 2
     H_c = (L_c * J_c * P_c * W_c) ** 0.25
 
     print(f"  Love (L):    {L_c:.2f}  ✅ Clear names, comprehensive logging")
+    print(f"    - Semantics: {L_semantic_clean:.2f} (harmonizer: meaningful names)")
+    print(f"    - Implementation: {L_impl_clean:.2f} (logging, docs, type hints)")
     print(f"  Justice (J): {J_c:.2f}  ✅ Validators, error handling, business rules")
+    print(f"    - Semantics: {J_semantic_clean:.2f} (harmonizer: validate, check, verify)")
+    print(f"    - Implementation: {J_impl_clean:.2f} (validators, error handling)")
     print(f"  Power (P):   {P_c:.2f}  ✅ Dictionary lookups O(1), efficient")
+    print(f"    - Semantics: {P_semantic_clean:.2f} (harmonizer: process, execute)")
+    print(f"    - Implementation: {P_impl_clean:.2f} (O(1) lookups, efficient)")
     print(f"  Wisdom (W):  {W_c:.2f}  ✅ Domain models, services, repositories")
+    print(f"    - Semantics: {W_semantic_clean:.2f} (harmonizer: calculate, analyze)")
+    print(f"    - Implementation: {W_impl_clean:.2f} (architecture, design patterns)")
     print(f"  Harmony (H): {H_c:.2f}  ✅ AUTOPOIETIC!")
+
+    # Show top semantic functions
+    if clean_semantic_scores:
+        print("\n  📌 Top functions by semantic clarity (harmonizer analysis):")
+        sorted_funcs = sorted(clean_semantic_scores,
+                             key=lambda x: (x['L'] + x['J'] + x['P'] + x['W']),
+                             reverse=True)[:5]
+        for func in sorted_funcs:
+            total = func['L'] + func['J'] + func['P'] + func['W']
+            if total > 0:
+                dominant = max([('L', func['L']), ('J', func['J']),
+                              ('P', func['P']), ('W', func['W'])],
+                             key=lambda x: x[1])
+                print(f"     • {func['name']}: {dominant[0]}={dominant[1]:.2f} (total={total:.2f})")
 
     print("\n✅ IMPROVEMENTS:")
     print("-" * 80)
