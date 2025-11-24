@@ -1,0 +1,191 @@
+{
+  "library_name": "click",
+  "repository_url": "https://github.com/pallets/click",
+  "total_files": 30,
+  "total_lines": 9244,
+  "overall_harmony": 0.29222662764576907,
+  "dimension_averages": {
+    "Love": 0.22946529171794797,
+    "Justice": 0.23523277996862899,
+    "Power": 0.43034593496770324,
+    "Wisdom": 0.36610010187498443
+  },
+  "complexity_stats": {
+    "average": 2.6529846152907997,
+    "max": 5.161290322580645,
+    "min": 0.0
+  },
+  "coupling_stats": {
+    "average": 0.3766666666666667,
+    "max": 1.0,
+    "min": 0.05
+  },
+  "cohesion_stats": {
+    "average": 0.19859597925716668,
+    "max": 0.7238095238095238,
+    "min": 0.0
+  },
+  "recommendations": [
+    "\ud83c\udfaf PRIORITY: Improve observability - Love is critically low. Add docstrings to public APIs and logging to critical paths.",
+    "\u2705 Low Complexity: Average complexity under 5 - maintainable code!"
+  ],
+  "top_files": [
+    {
+      "file_path": "/tmp/ljpw_click_6a7kgsvl/src/click/shell_completion.py",
+      "lines_of_code": 486,
+      "harmony": 0.3836123093298076,
+      "love": 0.29343102073365235,
+      "justice": 0.3706140350877193,
+      "power": 0.40126705653021444,
+      "wisdom": 0.49625939849624057,
+      "complexity_avg": 3.526315789473684,
+      "coupling_score": 0.55,
+      "cohesion_avg": 0.3571428571428571,
+      "issues": [
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_click_6a7kgsvl/examples/inout/inout.py",
+      "lines_of_code": 25,
+      "harmony": 0.37045699816157285,
+      "love": 0.22499999999999998,
+      "justice": 0.4666666666666667,
+      "power": 0.6833333333333333,
+      "wisdom": 0.2625,
+      "complexity_avg": 4.0,
+      "coupling_score": 0.05,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_click_6a7kgsvl/src/click/parser.py",
+      "lines_of_code": 379,
+      "harmony": 0.35085406837243777,
+      "love": 0.23302987861811392,
+      "justice": 0.3226890756302521,
+      "power": 0.38256302521008406,
+      "wisdom": 0.5267532238120474,
+      "complexity_avg": 4.294117647058823,
+      "coupling_score": 0.5,
+      "cohesion_avg": 0.11111111111111116,
+      "issues": [
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_click_6a7kgsvl/examples/colors/colors.py",
+      "lines_of_code": 33,
+      "harmony": 0.34588912073627337,
+      "love": 0.35,
+      "justice": 0.225,
+      "power": 0.475,
+      "wisdom": 0.38265151515151513,
+      "complexity_avg": 4.0,
+      "coupling_score": 0.05,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_click_6a7kgsvl/src/click/core.py",
+      "lines_of_code": 2504,
+      "harmony": 0.344345185913434,
+      "love": 0.328821310767478,
+      "justice": 0.3067754991409171,
+      "power": 0.4395600760770694,
+      "wisdom": 0.3170860934872862,
+      "complexity_avg": 3.839080459770115,
+      "coupling_score": 1.0,
+      "cohesion_avg": 0.4064673881451162,
+      "issues": [
+        "High Coupling: 25 imports"
+      ]
+    }
+  ],
+  "bottom_files": [
+    {
+      "file_path": "/tmp/ljpw_click_6a7kgsvl/examples/completion/completion.py",
+      "lines_of_code": 32,
+      "harmony": 0.21553662295044695,
+      "love": 0.15,
+      "justice": 0.1,
+      "power": 0.3571428571428571,
+      "wisdom": 0.40285714285714286,
+      "complexity_avg": 1.4285714285714286,
+      "coupling_score": 0.1,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_click_6a7kgsvl/examples/complex/complex/commands/cmd_status.py",
+      "lines_of_code": 8,
+      "harmony": 0.2127188505680563,
+      "love": 0.22499999999999998,
+      "justice": 0.1,
+      "power": 0.35,
+      "wisdom": 0.26,
+      "complexity_avg": 1.0,
+      "coupling_score": 0.1,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_click_6a7kgsvl/examples/complex/complex/commands/cmd_init.py",
+      "lines_of_code": 10,
+      "harmony": 0.2127188505680563,
+      "love": 0.22499999999999998,
+      "justice": 0.1,
+      "power": 0.35,
+      "wisdom": 0.26,
+      "complexity_avg": 2.0,
+      "coupling_score": 0.1,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_click_6a7kgsvl/src/click/_textwrap.py",
+      "lines_of_code": 40,
+      "harmony": 0.20924243215358262,
+      "love": 0.10833333333333334,
+      "justice": 0.16666666666666669,
+      "power": 0.35,
+      "wisdom": 0.3033333333333334,
+      "complexity_avg": 2.3333333333333335,
+      "coupling_score": 0.2,
+      "cohesion_avg": 0.6666666666666667,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_click_6a7kgsvl/docs/conf.py",
+      "lines_of_code": 48,
+      "harmony": 0.18681207988704307,
+      "love": 0.14852941176470588,
+      "justice": 0.1,
+      "power": 0.325,
+      "wisdom": 0.25230392156862746,
+      "complexity_avg": 0.0,
+      "coupling_score": 0.05,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    }
+  ]
+}
