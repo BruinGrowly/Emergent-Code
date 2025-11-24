@@ -35,7 +35,7 @@ sys.path.insert(0, str(project_root))
 
 from experiments.phase2.enhanced_ljpw_analyzer import (
     EnhancedLJPWAnalyzer,
-    EnhancedLJPWResult
+    EnhancedLJPWScore
 )
 
 
@@ -148,7 +148,7 @@ class LibraryAnalyzer:
                 issues.append(f"High Complexity: Average {result.complexity.avg_complexity:.1f}")
             if result.coupling.coupling_score > 0.7:
                 issues.append(f"High Coupling: {result.coupling.total_imports} imports")
-            if result.cohesion.avg_lcom > 0.7:
+            if result.cohesion.lcom_score > 0.7:
                 issues.append("Low Cohesion: Consider splitting classes")
 
             return FileAnalysis(
@@ -161,7 +161,7 @@ class LibraryAnalyzer:
                 wisdom=result.wisdom,
                 complexity_avg=result.complexity.avg_complexity,
                 coupling_score=result.coupling.coupling_score,
-                cohesion_avg=result.cohesion.avg_lcom,
+                cohesion_avg=result.cohesion.lcom_score,
                 issues=issues
             )
 
