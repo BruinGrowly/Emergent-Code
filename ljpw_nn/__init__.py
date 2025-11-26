@@ -33,16 +33,22 @@ from ljpw_nn.layers import FibonacciLayer
 # Activation functions
 from ljpw_nn.activations import DiverseActivation
 
+# Neuroplasticity (adaptive components)
+from ljpw_nn.neuroplasticity import AdaptiveNaturalLayer, AdaptationEvent
+
 # Metrics (coming soon)
 # from ljpw_nn.metrics import measure_harmony, HarmonyScores
 
 # Complete models (coming soon)
-# from ljpw_nn.models import NaturalMNIST
+# from ljpw_nn.models import NaturalMNIST, HomeostaticNetwork
 
 __all__ = [
     'FibonacciLayer',
     'DiverseActivation',
+    'AdaptiveNaturalLayer',
+    'AdaptationEvent',
     # 'measure_harmony',
     # 'HarmonyScores',
     # 'NaturalMNIST',
+    # 'HomeostaticNetwork',
 ]
