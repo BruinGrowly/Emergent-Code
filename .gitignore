@@ -84,3 +84,6 @@ site/
 
 # Data (downloaded datasets, auto-generated)
 data/
+
+# Validation results
+validation_results/
