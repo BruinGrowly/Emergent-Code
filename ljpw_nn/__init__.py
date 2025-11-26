@@ -36,19 +36,23 @@ from ljpw_nn.activations import DiverseActivation
 # Neuroplasticity (adaptive components)
 from ljpw_nn.neuroplasticity import AdaptiveNaturalLayer, AdaptationEvent
 
+# Homeostatic networks (self-regulating)
+from ljpw_nn.homeostatic import HomeostaticNetwork, HarmonyCheckpoint
+
 # Metrics (coming soon)
 # from ljpw_nn.metrics import measure_harmony, HarmonyScores
 
 # Complete models (coming soon)
-# from ljpw_nn.models import NaturalMNIST, HomeostaticNetwork
+# from ljpw_nn.models import NaturalMNIST
 
 __all__ = [
     'FibonacciLayer',
     'DiverseActivation',
     'AdaptiveNaturalLayer',
     'AdaptationEvent',
+    'HomeostaticNetwork',
+    'HarmonyCheckpoint',
     # 'measure_harmony',
     # 'HarmonyScores',
     # 'NaturalMNIST',
-    # 'HomeostaticNetwork',
 ]
