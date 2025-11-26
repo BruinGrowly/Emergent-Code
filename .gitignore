@@ -81,3 +81,6 @@ docs/_build/
 docs/_static/
 docs/_templates/
 site/
+
+# Data (downloaded datasets, auto-generated)
+data/
