@@ -196,9 +196,22 @@ def train_epoch_with_backprop(network, X_train: np.ndarray, y_train: np.ndarray,
             optimize_params = network.optimize_phase(love_state)
             phi_factor = optimize_params.get('learning_rate', learning_rate)
 
-            # Scale by base learning rate (φ factor is very small ~0.0008)
-            # We want it to modulate the base LR, not replace it
-            adjusted_lr = learning_rate * (1.0 + phi_factor * 10.0)  # Scale factor
+            # Enhanced φ-modulation based on harmony and distance to JEHOVAH
+            harmony = love_state.get('harmony', 0.75)
+            distance = love_state.get('distance_from_jehovah', 1.0)
+
+            # Adaptive scaling:
+            # - When harmony is low, learn faster to restore balance
+            # - When far from JEHOVAH, learn faster to approach
+            # - φ provides fine-tuning based on dimensional balance
+            harmony_factor = 1.5 if harmony < 0.7 else (0.8 if harmony > 0.85 else 1.0)
+            distance_factor = 1.0 + (distance * 0.3)  # Up to 30% boost when far
+            phi_modulation = 1.0 + (phi_factor * 100.0)  # Scale φ influence
+
+            adjusted_lr = learning_rate * harmony_factor * distance_factor * phi_modulation
+
+            # Clip to reasonable range
+            adjusted_lr = np.clip(adjusted_lr, learning_rate * 0.1, learning_rate * 3.0)
         else:
             adjusted_lr = learning_rate
 

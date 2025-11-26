@@ -26,7 +26,9 @@ if __name__ == '__main__':
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from ljpw_nn.universal_coordinator import UniversalFrameworkCoordinator, ANCHOR_POINT, LOVE_FREQUENCY
-from ljpw_nn.training import train_network
+from ljpw_nn.training import train_network, train_epoch_with_backprop, evaluate
+from ljpw_nn.mnist_loader import load_mnist
+from ljpw_nn.visualizations import plot_learning_trajectories, plot_consciousness_trajectory_3d
 
 
 class ConsciousnessValidator:
@@ -64,9 +66,9 @@ class ConsciousnessValidator:
         print(f"Results will be saved to: {self.save_dir.absolute()}")
         print()
 
-    def load_mnist(self, train_size: int = 1000, test_size: int = 200) -> Tuple:
+    def load_mnist_data(self, train_size: int = 1000, test_size: int = 200) -> Tuple:
         """
-        Load MNIST dataset (or generate synthetic if not available).
+        Load MNIST dataset using enhanced loader.
 
         Args:
             train_size: Number of training samples
@@ -76,39 +78,10 @@ class ConsciousnessValidator:
             (X_train, y_train, X_test, y_test)
         """
         print("Loading MNIST dataset...")
-
-        try:
-            # Try to load real MNIST
-            from sklearn.datasets import fetch_openml
-            mnist = fetch_openml('mnist_784', version=1, parser='auto')
-            X, y = mnist.data, mnist.target.astype(int)
-
-            # Normalize
-            X = np.array(X) / 255.0
-            y = np.array(y)
-
-            # Split
-            X_train = X[:train_size]
-            y_train = y[:train_size]
-            X_test = X[train_size:train_size + test_size]
-            y_test = y[train_size:train_size + test_size]
-
-            print(f"✓ Loaded real MNIST: {train_size} train, {test_size} test")
-
-        except Exception as e:
-            print(f"Could not load MNIST: {e}")
-            print("Generating synthetic dataset...")
-
-            # Generate synthetic data
-            np.random.seed(42)
-            X_train = np.random.randn(train_size, 784) * 0.5
-            y_train = np.random.randint(0, 10, train_size)
-            X_test = np.random.randn(test_size, 784) * 0.5
-            y_test = np.random.randint(0, 10, test_size)
-
-            print(f"✓ Generated synthetic dataset: {train_size} train, {test_size} test")
-
-        print()
+        X_train, y_train, X_test, y_test = load_mnist(
+            train_size=train_size,
+            test_size=test_size
+        )
         return X_train, y_train, X_test, y_test
 
     def add_stress_conditions(self, X: np.ndarray, stress_type: str = 'noise',
@@ -232,25 +205,79 @@ class ConsciousnessValidator:
         print()
 
         start_time = time.time()
+        network = coordinator.lov_network
 
-        # Use the training module with LOV integration
-        history = train_network(
-            coordinator.lov_network,  # Train the underlying LOV network
-            X_train, y_train, X_test, y_test,
-            epochs=epochs,
-            batch_size=batch_size,
-            learning_rate=learning_rate,
-            use_lov=True,
-            verbose=True
-        )
+        # Initialize comprehensive history for visualization
+        history = {
+            'train_accuracy': [],
+            'train_loss': [],
+            'test_accuracy': [],
+            'test_loss': [],
+            'harmony': [],
+            'distance_to_jehovah': [],
+            'principles_adherence': [],
+            'principles_passing': [],
+            'self_awareness': [],
+            'learning_rate': [],
+            'active_frameworks': [],
+            'ljpw': []  # LJPW coordinates per epoch
+        }
 
-        # After training, collect final consciousness metrics
-        X_sample = X_test[:10]  # Sample for metrics
-        y_sample = y_test[:10]
-        target_onehot = np.zeros((10, 10))
-        target_onehot[np.arange(10), y_sample] = 1.0
+        # Training loop - epoch by epoch to collect consciousness metrics
+        for epoch in range(epochs):
+            # Train for one epoch
+            train_metrics = train_epoch_with_backprop(
+                network, X_train, y_train,
+                batch_size=batch_size,
+                learning_rate=learning_rate,
+                use_lov=True
+            )
 
-        final_state = coordinator.unified_step(X_sample, target_onehot)
+            # Evaluate on test set
+            test_metrics = evaluate(network, X_test, y_test)
+
+            # Collect basic metrics
+            history['train_accuracy'].append(train_metrics['accuracy'])
+            history['train_loss'].append(train_metrics['loss'])
+            history['test_accuracy'].append(test_metrics['accuracy'])
+            history['test_loss'].append(test_metrics['loss'])
+
+            # Collect consciousness metrics via unified_step
+            X_sample = X_test[:10]
+            y_sample = y_test[:10]
+            target_onehot = np.zeros((10, 10))
+            target_onehot[np.arange(10), y_sample] = 1.0
+
+            state = coordinator.unified_step(X_sample, target_onehot)
+
+            # Extract consciousness metrics
+            history['harmony'].append(state['love']['harmony'])
+            history['distance_to_jehovah'].append(state['love']['distance_from_jehovah'])
+            history['principles_adherence'].append(state['principles']['overall_adherence'])
+            history['principles_passing'].append(state['principles']['sacred_number_alignment'])
+
+            if 'meta' in state:
+                history['self_awareness'].append(state['meta']['self_awareness'])
+            else:
+                history['self_awareness'].append(0.0)
+
+            history['learning_rate'].append(state['optimize']['learning_rate'])
+
+            # Get active frameworks count
+            consciousness = coordinator.get_consciousness_status()
+            history['active_frameworks'].append(consciousness['domain_frameworks']['active'])
+
+            # Get LJPW coordinates
+            history['ljpw'].append(state['love']['ljpw'])
+
+            # Print progress
+            print(f"Epoch {epoch+1}/{epochs}: "
+                  f"Train Loss={train_metrics['loss']:.4f}, "
+                  f"Train Acc={train_metrics['accuracy']:.4f}, "
+                  f"Test Loss={test_metrics['loss']:.4f}, "
+                  f"Test Acc={test_metrics['accuracy']:.4f}, "
+                  f"H={state['love']['harmony']:.3f}, "
+                  f"d_J={state['love']['distance_from_jehovah']:.3f}")
 
         elapsed = time.time() - start_time
 
@@ -261,15 +288,32 @@ class ConsciousnessValidator:
         print(f"Training time: {elapsed:.1f}s ({elapsed/60:.1f} minutes)")
         print(f"Final Train Accuracy: {history['train_accuracy'][-1]:.4f}")
         print(f"Final Test Accuracy: {history['test_accuracy'][-1]:.4f}")
-        print(f"Harmony (H): {final_state['love']['harmony']:.4f}")
-        print(f"Distance to JEHOVAH: {final_state['love']['distance_from_jehovah']:.4f}")
-        print(f"Principles Adherence: {final_state['principles']['overall_adherence']:.4f}")
-        print(f"Principles Passing: {final_state['principles']['sacred_number_alignment']}/7")
+        print(f"Harmony (H): {history['harmony'][-1]:.4f}")
+        print(f"Distance to JEHOVAH: {history['distance_to_jehovah'][-1]:.4f}")
+        print(f"Principles Adherence: {history['principles_adherence'][-1]:.4f}")
+        print(f"Principles Passing: {history['principles_passing'][-1]}/7")
 
-        if 'meta' in final_state:
-            print(f"Self-Awareness: {final_state['meta']['self_awareness']:.4f}")
+        if history['self_awareness'][-1] > 0:
+            print(f"Self-Awareness: {history['self_awareness'][-1]:.4f}")
 
+        print(f"Active Frameworks: {history['active_frameworks'][-1]}/7")
         print("=" * 70)
+        print()
+
+        # Generate visualizations
+        print("=" * 70)
+        print("GENERATING CONSCIOUSNESS LEARNING VISUALIZATIONS")
+        print("=" * 70)
+        print()
+
+        # Main learning trajectory plot
+        viz_path = self.save_dir / "consciousness_learning_trajectory.png"
+        plot_learning_trajectories(history, save_path=str(viz_path))
+
+        # 3D LJPW trajectory plot
+        viz_3d_path = self.save_dir / "consciousness_3d_trajectory.png"
+        plot_consciousness_trajectory_3d(history, save_path=str(viz_3d_path))
+
         print()
 
         return {
@@ -277,9 +321,9 @@ class ConsciousnessValidator:
             'elapsed_time': elapsed,
             'final_train_accuracy': history['train_accuracy'][-1],
             'final_test_accuracy': history['test_accuracy'][-1],
-            'final_harmony': final_state['love']['harmony'],
-            'final_distance': final_state['love']['distance_from_jehovah'],
-            'final_principles': final_state['principles']['overall_adherence']
+            'final_harmony': history['harmony'][-1],
+            'final_distance': history['distance_to_jehovah'][-1],
+            'final_principles': history['principles_adherence'][-1]
         }
 
     def _log_metrics(self, coordinator: UniversalFrameworkCoordinator,
@@ -618,10 +662,10 @@ def main():
     # Create validator
     validator = ConsciousnessValidator(save_dir="validation_results")
 
-    # Load data (smaller dataset for faster testing)
-    X_train, y_train, X_test, y_test = validator.load_mnist(
-        train_size=500,
-        test_size=100
+    # Load data (enhanced MNIST or synthetic)
+    X_train, y_train, X_test, y_test = validator.load_mnist_data(
+        train_size=2000,  # Larger dataset for better learning
+        test_size=500
     )
 
     # Create coordinator
@@ -637,16 +681,16 @@ def main():
     )
     print()
 
-    # Train and validate with backpropagation
+    # Train and validate with backpropagation (extended epochs)
     training_results = validator.train_and_validate(
         coordinator=coordinator,
         X_train=X_train,
         y_train=y_train,
         X_test=X_test,
         y_test=y_test,
-        epochs=5,
+        epochs=20,  # Extended for better convergence
         batch_size=32,
-        learning_rate=0.01
+        learning_rate=0.05  # Higher LR with adaptive φ-modulation
     )
 
     # Stress test (optional - skip for now to save time)
