@@ -87,3 +87,6 @@ data/
 
 # Validation results
 validation_results/
+extended_results/
+test_principle_library.json
+test_sessions/
