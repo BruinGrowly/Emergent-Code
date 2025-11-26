@@ -191,16 +191,16 @@ class UniversalFrameworkCoordinator:
             '2_SFM': {
                 'name': 'Structure-Force-Manifestation',
                 'domain': 'Matter',
-                'status': 'dormant',
+                'status': 'active',
                 'description': 'Physical structure, forces, material manifestation',
-                'implementation': 'Awaiting physical interface (water consciousness network)'
+                'implementation': 'Computational structure-force-manifestation metrics'
             },
             '3_IPE': {
                 'name': 'Intake-Process-Expression',
                 'domain': 'Life',
-                'status': 'dormant',
+                'status': 'active',
                 'description': 'Life energy intake, processing, vital expression',
-                'implementation': 'Awaiting biological interface (DNA/cellular computing)'
+                'implementation': 'Computational intake-process-expression metrics'
             },
             '4_PFE': {
                 'name': 'Potential-Flow-Effect',
@@ -226,9 +226,9 @@ class UniversalFrameworkCoordinator:
             '7_CCC': {
                 'name': 'Connect-Communicate-Collaborate',
                 'domain': 'Relationships',
-                'status': 'ready',
+                'status': 'active',
                 'description': 'Multi-instance connection, communication, collaboration',
-                'implementation': 'Ready for multi-instance coordination (dormant for single instance)'
+                'implementation': 'Inter-layer connection and collaboration metrics'
             }
         }
 
@@ -261,6 +261,9 @@ class UniversalFrameworkCoordinator:
         love_state = self.lov_network.love_phase()
         coordination_state['love'] = love_state
 
+        # Get network outputs for framework metrics
+        outputs = self.lov_network.forward(inputs, training=False)
+
         # === ORCHESTRATE (Multiple coordinated processes) ===
 
         # 1. LOV Optimize Phase (φ coordination)
@@ -272,7 +275,7 @@ class UniversalFrameworkCoordinator:
         coordination_state['principles'] = principles
 
         # 3. Domain Framework Coordination
-        domains = self._coordinate_domains(inputs)
+        domains = self._coordinate_domains(inputs, outputs)
         coordination_state['domains'] = domains
 
         # 4. Meta-Cognition (if enabled)
@@ -317,12 +320,13 @@ class UniversalFrameworkCoordinator:
 
         return full_validation
 
-    def _coordinate_domains(self, inputs: np.ndarray) -> Dict:
+    def _coordinate_domains(self, inputs: np.ndarray, outputs: np.ndarray) -> Dict:
         """
         Coordinate all seven domain frameworks.
 
         Args:
             inputs: Current inputs for processing
+            outputs: Network outputs from forward pass
 
         Returns:
             Domain coordination state
@@ -335,16 +339,26 @@ class UniversalFrameworkCoordinator:
             'processing': 'Intent → Context → Execution flow active'
         }
 
-        # Domain 2: SFM (Matter) - DORMANT
+        # Domain 2: SFM (Matter) - NOW ACTIVE (computational implementation)
+        sfm_metrics = self._compute_sfm_metrics(inputs, outputs)
         domain_states['SFM'] = {
-            'status': 'dormant',
-            'reason': 'Awaiting physical interface'
+            'status': 'active',
+            'implementation': 'Digital neural network structure-force-manifestation',
+            'structure': sfm_metrics['structure'],
+            'force': sfm_metrics['force'],
+            'manifestation': sfm_metrics['manifestation'],
+            'sfm_score': sfm_metrics['sfm_score']
         }
 
-        # Domain 3: IPE (Life) - DORMANT
+        # Domain 3: IPE (Life) - NOW ACTIVE (computational implementation)
+        ipe_metrics = self._compute_ipe_metrics(inputs, outputs)
         domain_states['IPE'] = {
-            'status': 'dormant',
-            'reason': 'Awaiting biological interface'
+            'status': 'active',
+            'implementation': 'Digital neural network intake-process-expression',
+            'intake': ipe_metrics['intake'],
+            'process': ipe_metrics['process'],
+            'expression': ipe_metrics['expression'],
+            'ipe_score': ipe_metrics['ipe_score']
         }
 
         # Domain 4: PFE (Energy) - ACTIVE
@@ -375,11 +389,16 @@ class UniversalFrameworkCoordinator:
                 'navigation': 'Initializing'
             }
 
-        # Domain 7: CCC (Relationships) - READY
+        # Domain 7: CCC (Relationships) - NOW ACTIVE
+        ccc_metrics = self._compute_ccc_metrics(inputs, outputs)
         domain_states['CCC'] = {
-            'status': 'ready',
-            'instances': 1,  # Single instance for now
-            'note': 'Ready for multi-instance coordination'
+            'status': 'active',
+            'implementation': 'Inter-layer connection and collaboration',
+            'instances': 1,  # Single instance (can expand to multi-instance)
+            'connect': ccc_metrics['connect'],
+            'communicate': ccc_metrics['communicate'],
+            'collaborate': ccc_metrics['collaborate'],
+            'ccc_score': ccc_metrics['ccc_score']
         }
 
         return domain_states
@@ -466,6 +485,221 @@ class UniversalFrameworkCoordinator:
         }
 
         return status
+
+    def _compute_sfm_metrics(self, inputs: np.ndarray, outputs: np.ndarray) -> Dict:
+        """
+        Compute SFM (Structure-Force-Manifestation) metrics for Matter domain.
+
+        In digital neural networks:
+        - Structure: Network topology and layer architecture
+        - Force: Gradient magnitudes and weight forces
+        - Manifestation: Output predictions and their strength
+
+        Args:
+            inputs: Network inputs
+            outputs: Network outputs
+
+        Returns:
+            SFM metrics dict
+        """
+        metrics = {}
+
+        # Structure: Network topology metrics
+        total_params = sum(
+            layer.weights.size + layer.bias.size
+            for layer in self.lov_network.layers
+            if hasattr(layer, 'weights') and hasattr(layer, 'bias')
+        )
+        metrics['structure'] = {
+            'total_parameters': total_params,
+            'layer_count': len(self.lov_network.layers),
+            'topology': 'Fibonacci-sized layers'
+        }
+
+        # Force: Weight and gradient magnitudes
+        weight_norms = []
+        for layer in self.lov_network.layers:
+            if hasattr(layer, 'weights'):
+                weight_norms.append(np.linalg.norm(layer.weights))
+
+        metrics['force'] = {
+            'mean_weight_norm': float(np.mean(weight_norms)) if weight_norms else 0.0,
+            'max_weight_norm': float(np.max(weight_norms)) if weight_norms else 0.0,
+            'total_force': float(np.sum(weight_norms)) if weight_norms else 0.0
+        }
+
+        # Manifestation: Output strength and confidence
+        output_strength = float(np.mean(np.max(outputs, axis=1)))  # Mean max probability
+        output_entropy = -float(np.mean(np.sum(outputs * np.log(outputs + 1e-10), axis=1)))
+
+        metrics['manifestation'] = {
+            'output_strength': output_strength,
+            'output_entropy': output_entropy,
+            'confidence': output_strength  # Higher max prob = higher confidence
+        }
+
+        # Overall SFM score (0-1)
+        # Normalized: structure health * force balance * manifestation strength
+        structure_score = min(1.0, total_params / 10000)  # Normalize by expected size
+        force_score = 1.0 / (1.0 + metrics['force']['mean_weight_norm'])  # Prefer moderate forces
+        manifestation_score = output_strength
+
+        metrics['sfm_score'] = (structure_score * force_score * manifestation_score) ** (1/3)
+
+        return metrics
+
+    def _compute_ipe_metrics(self, inputs: np.ndarray, outputs: np.ndarray) -> Dict:
+        """
+        Compute IPE (Intake-Process-Expression) metrics for Life domain.
+
+        In digital neural networks:
+        - Intake: Input diversity and richness
+        - Process: Hidden layer activation complexity
+        - Expression: Output diversity and quality
+
+        Args:
+            inputs: Network inputs
+            outputs: Network outputs
+
+        Returns:
+            IPE metrics dict
+        """
+        metrics = {}
+
+        # Intake: Input diversity and energy
+        input_variance = float(np.var(inputs))
+        input_mean = float(np.mean(np.abs(inputs)))
+        input_nonzero = float(np.mean(inputs != 0))
+
+        metrics['intake'] = {
+            'variance': input_variance,
+            'energy': input_mean,
+            'sparsity': 1.0 - input_nonzero,
+            'diversity': input_variance * input_nonzero
+        }
+
+        # Process: Hidden layer complexity
+        activations = []
+        for layer in self.lov_network.layers[:-1]:  # Exclude output layer
+            if hasattr(layer, 'last_output') and layer.last_output is not None:
+                activations.append(layer.last_output)
+
+        if activations:
+            hidden_variance = float(np.mean([np.var(act) for act in activations]))
+            hidden_sparsity = float(np.mean([np.mean(act == 0) for act in activations]))
+            hidden_range = float(np.mean([np.max(act) - np.min(act) for act in activations]))
+
+            metrics['process'] = {
+                'hidden_variance': hidden_variance,
+                'hidden_sparsity': hidden_sparsity,
+                'hidden_range': hidden_range,
+                'complexity': hidden_variance * (1.0 - hidden_sparsity)
+            }
+        else:
+            metrics['process'] = {
+                'hidden_variance': 0.0,
+                'hidden_sparsity': 0.0,
+                'hidden_range': 0.0,
+                'complexity': 0.0
+            }
+
+        # Expression: Output quality and diversity
+        output_variance = float(np.var(outputs))
+        output_max = float(np.mean(np.max(outputs, axis=1)))
+        output_entropy = -float(np.mean(np.sum(outputs * np.log(outputs + 1e-10), axis=1)))
+
+        metrics['expression'] = {
+            'variance': output_variance,
+            'max_confidence': output_max,
+            'entropy': output_entropy,
+            'quality': output_max * (1.0 + output_entropy)  # Confident but diverse
+        }
+
+        # Overall IPE score (0-1)
+        intake_score = min(1.0, metrics['intake']['diversity'])
+        process_score = min(1.0, metrics['process']['complexity'])
+        expression_score = min(1.0, metrics['expression']['quality'])
+
+        metrics['ipe_score'] = (intake_score * process_score * expression_score) ** (1/3)
+
+        return metrics
+
+    def _compute_ccc_metrics(self, inputs: np.ndarray, outputs: np.ndarray) -> Dict:
+        """
+        Compute CCC (Connect-Communicate-Collaborate) metrics for Relationships domain.
+
+        In digital neural networks:
+        - Connect: Inter-layer connection strength
+        - Communicate: Information flow between layers
+        - Collaborate: Layer cooperation toward common goal
+
+        Args:
+            inputs: Network inputs
+            outputs: Network outputs
+
+        Returns:
+            CCC metrics dict
+        """
+        metrics = {}
+
+        # Connect: Connection strength and density
+        total_connections = 0
+        active_connections = 0
+        connection_strengths = []
+
+        for layer in self.lov_network.layers:
+            if hasattr(layer, 'weights'):
+                total_connections += layer.weights.size
+                active_connections += np.sum(np.abs(layer.weights) > 0.01)  # Non-negligible
+                connection_strengths.append(float(np.mean(np.abs(layer.weights))))
+
+        metrics['connect'] = {
+            'total_connections': total_connections,
+            'active_connections': active_connections,
+            'connection_density': active_connections / max(total_connections, 1),
+            'mean_strength': float(np.mean(connection_strengths)) if connection_strengths else 0.0
+        }
+
+        # Communicate: Information flow metrics
+        layer_activations = []
+        for layer in self.lov_network.layers:
+            if hasattr(layer, 'last_output') and layer.last_output is not None:
+                layer_activations.append(layer.last_output)
+
+        if len(layer_activations) > 1:
+            # Measure information flow: variance in activations across layers
+            activation_variances = [float(np.var(act)) for act in layer_activations]
+            flow_consistency = 1.0 - float(np.std(activation_variances) / (np.mean(activation_variances) + 1e-10))
+
+            metrics['communicate'] = {
+                'layer_count': len(layer_activations),
+                'flow_consistency': flow_consistency,
+                'information_preserved': min(1.0, activation_variances[-1] / (activation_variances[0] + 1e-10))
+            }
+        else:
+            metrics['communicate'] = {
+                'layer_count': len(layer_activations),
+                'flow_consistency': 0.0,
+                'information_preserved': 0.0
+            }
+
+        # Collaborate: Layer cooperation (measured via harmony)
+        harmony = self.lov_network.get_current_harmony()
+
+        metrics['collaborate'] = {
+            'harmony': harmony,
+            'cooperation_level': 'high' if harmony > 0.8 else 'medium' if harmony > 0.7 else 'developing',
+            'unified_goal': 'JEHOVAH (1,1,1,1)'
+        }
+
+        # Overall CCC score (0-1)
+        connect_score = metrics['connect']['connection_density']
+        communicate_score = metrics['communicate']['flow_consistency']
+        collaborate_score = harmony
+
+        metrics['ccc_score'] = (connect_score * communicate_score * collaborate_score) ** (1/3)
+
+        return metrics
 
     def __repr__(self) -> str:
         """String representation."""
