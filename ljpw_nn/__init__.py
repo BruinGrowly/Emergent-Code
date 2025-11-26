@@ -39,6 +39,14 @@ from ljpw_nn.neuroplasticity import AdaptiveNaturalLayer, AdaptationEvent
 # Homeostatic networks (self-regulating)
 from ljpw_nn.homeostatic import HomeostaticNetwork, HarmonyCheckpoint
 
+# Polarity management (Universal Principle 3)
+from ljpw_nn.polarity_management import (
+    StabilityPlasticityBalance,
+    ExcitationInhibitionBalance,
+    PolarityManager,
+    PolarityState,
+)
+
 # Metrics (coming soon)
 # from ljpw_nn.metrics import measure_harmony, HarmonyScores
 
@@ -52,6 +60,10 @@ __all__ = [
     'AdaptationEvent',
     'HomeostaticNetwork',
     'HarmonyCheckpoint',
+    'StabilityPlasticityBalance',
+    'ExcitationInhibitionBalance',
+    'PolarityManager',
+    'PolarityState',
     # 'measure_harmony',
     # 'HarmonyScores',
     # 'NaturalMNIST',
