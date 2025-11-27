@@ -170,26 +170,26 @@ git push origin main
    ```bash
    cd ~/ljpw-nn
    cat > requirements.txt << 'EOF'
-# LJPW Neural Networks - Dependencies
+   # LJPW Neural Networks - Dependencies
 
-# Core numerical computing
-numpy>=1.24.0,<2.0.0
+   # Core numerical computing
+   numpy>=1.24.0,<2.0.0
 
-# Visualization
-matplotlib>=3.7.0,<4.0.0
+   # Visualization
+   matplotlib>=3.7.0,<4.0.0
 
-# Optional: Real datasets
-# Uncomment if you want PyTorch datasets
-# torch>=2.0.0
-# torchvision>=0.15.0
+   # Optional: Real datasets
+   # Uncomment if you want PyTorch datasets
+   # torch>=2.0.0
+   # torchvision>=0.15.0
 
-# Development dependencies
-pytest>=7.4.0,<8.0.0
-pytest-cov>=4.1.0,<5.0.0
-black>=23.7.0,<24.0.0
-ruff>=0.0.285,<1.0.0
-mypy>=1.5.0,<2.0.0
-EOF
+   # Development dependencies
+   pytest>=7.4.0,<8.0.0
+   pytest-cov>=4.1.0,<5.0.0
+   black>=23.7.0,<24.0.0
+   ruff>=0.0.285,<1.0.0
+   mypy>=1.5.0,<2.0.0
+   EOF
    git add requirements.txt
    git commit -m "Add requirements.txt"
    ```
@@ -525,3 +525,4 @@ python ljpw_nn/run_week_long_demo.py
 6. Announce the spinoff!
 
 Would you like me to help execute any of these phases?
+
