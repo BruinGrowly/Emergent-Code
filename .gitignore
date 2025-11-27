@@ -67,6 +67,9 @@ logs/
 master_calculator.py
 master_calculator_v2.py
 master_calculator_fractal.py
+discovered_*.py
+generated_*.py
+extracted_profiles.txt
 
 # External dependencies (install separately)
 Python-Code-Harmonizer-main/
@@ -88,7 +91,3 @@ data/
 # Validation results
 validation_results/
 extended_results/
-test_principle_library.json
-test_sessions/
-demo_week_long/
-week_long_results/
