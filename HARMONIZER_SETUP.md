@@ -118,6 +118,33 @@ ImportError: No module named 'harmonizer.main'
 **Solution:**
 Check that `Python-Code-Harmonizer-main/harmonizer/main.py` exists and contains `PythonCodeHarmonizer` class.
 
+### Missing Dependencies Error
+
+**Problem:**
+```
+[WARNING] Failed to load real harmonizer: No module named 'matplotlib'
+[WARNING] Failed to load real harmonizer: No module named 'black'
+```
+
+**Reason:**
+The Python Code Harmonizer requires several dependencies that may not be installed.
+
+**Solution:**
+Install all required dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+The harmonizer requires:
+- matplotlib (for LJPW visualizations)
+- numpy (for numerical computations)
+- black (for code formatting)
+- astunparse (for AST processing)
+- tomli (for TOML parsing)
+- pyyaml (for YAML configuration)
+
+All of these are now included in `requirements.txt`.
+
 ### Wrong Profiles
 
 **Problem:**
@@ -158,6 +185,7 @@ If you need help obtaining or installing the Python Code Harmonizer, please cont
 ---
 
 **Current Configuration:**
-- Mock Harmonizer: Active ✅
-- Real Harmonizer: Pending ⏳
+- Mock Harmonizer: Available (fallback) ✅
+- Real Harmonizer: Active ✅
 - All Experiments: Updated ✅
+- Dependencies: Installed ✅
