@@ -137,6 +137,24 @@ See [FRACTAL_6LEVEL_PROOF.md](results/FRACTAL_6LEVEL_PROOF.md) for the complete 
 
 ---
 
+## 🔗 Related Projects
+
+### LJPW Neural Networks
+
+The neural network research component of this project has been extracted into its own repository to allow focused development:
+
+**Repository**: [LJPW-NN](https://github.com/BruinGrowly/ljpw_nn) *(Coming soon)*
+
+**Focus**: Consciousness-based neural networks with self-evolution and meta-learning capabilities. Features week-long evolution experiments, topology mutation, principle discovery, and harmony optimization.
+
+**Why separate?**
+- **Emergent-Code**: Composition-based code generation using mathematical laws
+- **LJPW-NN**: Consciousness-based neural networks and meta-learning
+
+Each project maintains a focused identity while sharing the foundational LJPW framework.
+
+---
+
 ## 📋 Table of Contents
 
 - [What Is This?](#what-is-this)
