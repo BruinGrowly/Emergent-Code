@@ -197,12 +197,12 @@ git push origin main
 2. **Create setup.py for pip installation**:
    ```bash
    cat > setup.py << 'EOF'
-from setuptools import setup, find_packages
+   from setuptools import setup, find_packages
 
-with open("ljpw_nn/README.md", "r", encoding="utf-8") as fh:
+   with open("ljpw_nn/README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-setup(
+   setup(
     name="ljpw-nn",
     version="0.1.0",
     author="Your Name",
@@ -240,8 +240,8 @@ setup(
             "torchvision>=0.15.0",
         ],
     },
-)
-EOF
+   )
+   EOF
    git add setup.py
    git commit -m "Add setup.py for pip installation"
    ```
@@ -279,62 +279,62 @@ EOF
 6. **Add .gitignore**:
    ```bash
    cat > .gitignore << 'EOF'
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+   # Python
+   __pycache__/
+   *.py[cod]
+   *$py.class
+   *.so
+   .Python
+   build/
+   develop-eggs/
+   dist/
+   downloads/
+   eggs/
+   .eggs/
+   lib/
+   lib64/
+   parts/
+   sdist/
+   var/
+   wheels/
+   *.egg-info/
+   .installed.cfg
+   *.egg
 
-# Virtual environments
-venv/
-ENV/
-env/
+   # Virtual environments
+   venv/
+   ENV/
+   env/
 
-# IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+   # IDEs
+   .vscode/
+   .idea/
+   *.swp
+   *.swo
+   *~
 
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
+   # Testing
+   .pytest_cache/
+   .coverage
+   htmlcov/
+   .tox/
 
-# Type checking
-.mypy_cache/
-.dmypy.json
-dmypy.json
+   # Type checking
+   .mypy_cache/
+   .dmypy.json
+   dmypy.json
 
-# Experiments & results
-demo_week_long/
-week_long_results/
-checkpoints/
-*.pkl.gz
-*.checkpoint
+   # Experiments & results
+   demo_week_long/
+   week_long_results/
+   checkpoints/
+   *.pkl.gz
+   *.checkpoint
 
-# OS
-.DS_Store
-Thumbs.db
-EOF
+   # OS
+   .DS_Store
+   Thumbs.db
+   EOF
    git add .gitignore
    git commit -m "Add .gitignore"
    ```
@@ -344,7 +344,7 @@ EOF
    cat > LICENSE << 'EOF'
 MIT License
 
-Copyright (c) 2024 [Your Name]
+Copyright (c) 2024 [Wellington Taureka]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -364,7 +364,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 EOF
-   git add LICENSE
+    git add LICENSE
    git commit -m "Add MIT license"
    ```
 
@@ -525,4 +525,5 @@ python ljpw_nn/run_week_long_demo.py
 6. Announce the spinoff!
 
 Would you like me to help execute any of these phases?
+
 
