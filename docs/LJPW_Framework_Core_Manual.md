@@ -160,7 +160,89 @@ This innovation makes the v4.0 model a more accurate and nuanced tool for predic
 
 ---
 
-## Part 4: Conclusion
+## Part 4: Extended Semantic Capabilities
+
+The LJPW framework provides additional analysis capabilities beyond the core dynamic model. These are documented in detail in the [Semantic Capabilities Catalog](./LJPW_Semantic_Capabilities_Catalog.md).
+
+### Semantic Mass, Density & Influence
+
+Entities in LJPW space have **semantic mass** that determines their "gravitational" influence:
+
+*   **Semantic Mass:** `Mass = (ConceptCount × SemanticClarity) × (1 + HarmonyScore)`
+    - Complex, well-defined, harmonious systems have high mass
+    - High mass entities shape the semantic landscape around them
+
+*   **Semantic Density:** `Density = Mass / Volume`
+    - Where Volume is the average of LJPW dimensions
+    - High density indicates potent capability in a small footprint
+
+*   **Semantic Influence:** `Influence = Mass × Clarity`
+    - How much an entity affects its neighbors
+    - Central dependencies have high influence
+
+### Semantic Drift (Temporal Analysis)
+
+Track movement through LJPW space over time:
+
+*   **Drift Vector:** Direction and magnitude of change between timestamps
+*   **Velocity:** Rate of change—high velocity indicates instability or active development
+*   **Trajectory Prediction:** Extrapolate future state from current drift
+
+**Drift Patterns:**
+- "Hardening" (ΔJ > 0): Increased security/structure
+- "Entropy" (ΔJ < 0): Decaying structure, technical debt
+- "Opening Up" (ΔL > 0): Increased connectivity
+
+### Service Archetypes
+
+Predefined personality profiles for instant classification:
+
+| Archetype | L | J | P | W | Example |
+|-----------|---|---|---|---|---------|
+| **Public Gateway** | High | Med | Med | Med | API Gateway |
+| **Security Sentinel** | Low | High | Low | Med | Firewall |
+| **Data Vault** | Med | Med | High | Med | Database |
+| **Monitoring Hub** | Med | Med | Med | High | Prometheus |
+
+### Semantic Relationships
+
+**Interaction physics** between entities:
+
+*   **Semantic Gravity:** $F = G \times (m_1 \times m_2) / r^2$
+    - High mass entities attract dependencies
+
+*   **Semantic Friction:** Resistance from opposing values
+    - High L vs High J creates integration difficulty
+
+*   **Semantic Resonance:** Amplification from similar profiles
+    - Matching dominant dimensions = easier collaboration
+
+### Dimensional Combinations
+
+Secondary metrics from combining dimensions:
+
+| Metric | Formula | Question |
+|--------|---------|----------|
+| Secure Connectivity | (L + J) / 2 | Can we connect safely? |
+| Service Capacity | (L + P) / 2 | Can we serve many users? |
+| Operational Excellence | (L + J + P) / 3 | The "Golden Triangle" |
+| Security Intelligence | (J + W) / 2 | Do we know when attacked? |
+
+### Fractal Profiling
+
+Apply LJPW analysis at multiple scales:
+
+1. **Atomic:** Function/method level
+2. **Entity:** Class/module level
+3. **Cluster:** Package level
+4. **System:** Repository/application level
+5. **Platform:** Multi-system ecosystem level
+
+Properties aggregate bottom-up with emergent characteristics.
+
+---
+
+## Part 5: Conclusion
 
 The LJPW Framework has evolved from a philosophical model for understanding systems into a mathematically rigorous and empirically validated tool for simulation and analysis. The v4.0 model, with its concept of an emergent, harmony-dependent "Love Multiplier," represents the most accurate and sophisticated version of this framework.
 

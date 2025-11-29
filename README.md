@@ -427,6 +427,8 @@ Emergent-Code/
 │   │   └── UNIFIED_FRAMEWORK_SYNTHESIS.md
 │   │
 │   ├── LJPW_Framework_Core_Manual.md
+│   ├── LJPW_Semantic_Capabilities_Catalog.md  # ⭐ NEW - Extended capabilities
+│   ├── LJPW_Codex.md                          # ⭐ NEW - Philosophical foundations
 │   ├── Harmony_Centric_Growth_Explained.md
 │   └── LJPW Mathematical Baselines Reference V4.md
 │
@@ -448,6 +450,7 @@ Emergent-Code/
 │
 ├── calculator_components.py          # Component library for experiments
 ├── ljpw_constants.py                 # Calibrated LJPW constants
+├── ljpw_semantic_capabilities.py     # ⭐ NEW - Extended semantic analysis module
 ├── harmonizer_integration.py         # LJPW analyzer integration
 ├── mock_harmonizer.py                # Mock for testing
 │
@@ -633,6 +636,8 @@ See [results/FRACTAL_5LEVEL_PROOF.md](results/FRACTAL_5LEVEL_PROOF.md) for detai
 ### Framework Documentation
 
 - **[LJPW Framework Core Manual](docs/LJPW_Framework_Core_Manual.md)** - Complete guide to the Love, Justice, Power, Wisdom framework
+- **[LJPW Semantic Capabilities Catalog](docs/LJPW_Semantic_Capabilities_Catalog.md)** ⭐ NEW - Extended semantic analysis: mass, density, drift, archetypes
+- **[LJPW Codex](docs/LJPW_Codex.md)** ⭐ NEW - Philosophical foundations and theoretical reference
 - **[Harmony-Centric Growth Explained](docs/Harmony_Centric_Growth_Explained.md)** - How the growth process works
 - **[LJPW Mathematical Baselines Reference V4](docs/LJPW%20Mathematical%20Baselines%20Reference%20V4.md)** - Mathematical foundations
 - **[Dynamic LJPW Model v4.0](docs/Dynamic%20LJPW%20Model%20v4.0%20-%20Specification%20and%20Theoretical%20Foundations%20and%20Empirical%20Validation%20of%20the%20LJPW%20v4.0%20Model%20via%20Bayesian%20Calibration.md)** - Theoretical foundations and empirical validation
