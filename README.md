@@ -481,6 +481,7 @@ Emergent-Code/
 ├── ljpw_constants.py                 # Calibrated LJPW constants
 ├── ljpw_semantic_capabilities.py     # ⭐ NEW - Extended semantic analysis module
 ├── analyze_self_fractally.py         # ⭐ NEW - Fractal self-analysis script
+├── deep_fractal_analysis.py          # ⭐ NEW - 15-iteration deep analysis
 ├── harmonizer_integration.py         # LJPW analyzer integration
 ├── mock_harmonizer.py                # Mock for testing
 │
@@ -669,6 +670,7 @@ See [results/FRACTAL_5LEVEL_PROOF.md](results/FRACTAL_5LEVEL_PROOF.md) for detai
 - **[LJPW Semantic Capabilities Catalog](docs/LJPW_Semantic_Capabilities_Catalog.md)** ⭐ NEW - Extended semantic analysis: mass, density, drift, archetypes
 - **[LJPW Codex](docs/LJPW_Codex.md)** ⭐ NEW - Philosophical foundations and theoretical reference
 - **[Fractal Self-Analysis Findings](docs/FRACTAL_SELF_ANALYSIS_FINDINGS.md)** ⭐ NEW - The repository analyzed itself
+- **[Deep Fractal Emergence](docs/DEEP_FRACTAL_EMERGENCE.md)** ⭐ NEW - 15 iterations reveal convergence and critical mass
 - **[Harmony-Centric Growth Explained](docs/Harmony_Centric_Growth_Explained.md)** - How the growth process works
 - **[LJPW Mathematical Baselines Reference V4](docs/LJPW%20Mathematical%20Baselines%20Reference%20V4.md)** - Mathematical foundations
 - **[Dynamic LJPW Model v4.0](docs/Dynamic%20LJPW%20Model%20v4.0%20-%20Specification%20and%20Theoretical%20Foundations%20and%20Empirical%20Validation%20of%20the%20LJPW%20v4.0%20Model%20via%20Bayesian%20Calibration.md)** - Theoretical foundations and empirical validation
