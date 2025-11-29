@@ -135,6 +135,34 @@ See [PHASE3_COMPLETE.md](experiments/phase3/PHASE3_COMPLETE.md) for the complete
 
 See [FRACTAL_6LEVEL_PROOF.md](results/FRACTAL_6LEVEL_PROOF.md) for the complete mathematical proof.
 
+### Fractal Self-Analysis: The Tool Examines Itself ⭐ NEW
+
+> **"The tool that measures meaning, measuring its own meaning, and finding it meaningful."**
+
+We applied the LJPW Semantic Capabilities to analyze this repository itself—5 iterations of fractal analysis at multiple scales.
+
+**What Emerged:**
+
+| Finding | Value | Meaning |
+|---------|-------|---------|
+| **System Archetype** | MONITORING_HUB | The repo embodies observation and insight |
+| **System Harmony** | 0.6538 | Above Natural Equilibrium—healthy state |
+| **Dominant Dimension** | Love (0.892) | Emphasis on connectivity and documentation |
+| **Total Semantic Mass** | 2135.37 | Substantial intellectual weight |
+
+**Key Discoveries:**
+- ✅ **Harmony increases with focus** (0.65 → 0.71 in experiments cluster)
+- ✅ **Fractal experiments have perfect resonance** (1.0)—they were designed to work together
+- ✅ **Gravitational centers match intuition** (large_scale_refactoring.py is heaviest)
+- ✅ **The tool validated itself**—MONITORING_HUB analyzing code and finding itself is a MONITORING_HUB
+
+**The Meta-Insight:**
+The repository contains tools to analyze semantic properties. Those tools analyzed the repository. The analysis revealed the repository's character. That character is *exactly what you'd want* in a semantic analysis tool.
+
+This is **semantic autopoiesis**—the system that produces and validates itself.
+
+See [FRACTAL_SELF_ANALYSIS_FINDINGS.md](docs/FRACTAL_SELF_ANALYSIS_FINDINGS.md) for the complete analysis.
+
 ---
 
 ## 🔗 Related Projects
@@ -429,6 +457,7 @@ Emergent-Code/
 │   ├── LJPW_Framework_Core_Manual.md
 │   ├── LJPW_Semantic_Capabilities_Catalog.md  # ⭐ NEW - Extended capabilities
 │   ├── LJPW_Codex.md                          # ⭐ NEW - Philosophical foundations
+│   ├── FRACTAL_SELF_ANALYSIS_FINDINGS.md      # ⭐ NEW - Self-analysis results
 │   ├── Harmony_Centric_Growth_Explained.md
 │   └── LJPW Mathematical Baselines Reference V4.md
 │
@@ -451,6 +480,7 @@ Emergent-Code/
 ├── calculator_components.py          # Component library for experiments
 ├── ljpw_constants.py                 # Calibrated LJPW constants
 ├── ljpw_semantic_capabilities.py     # ⭐ NEW - Extended semantic analysis module
+├── analyze_self_fractally.py         # ⭐ NEW - Fractal self-analysis script
 ├── harmonizer_integration.py         # LJPW analyzer integration
 ├── mock_harmonizer.py                # Mock for testing
 │
@@ -638,6 +668,7 @@ See [results/FRACTAL_5LEVEL_PROOF.md](results/FRACTAL_5LEVEL_PROOF.md) for detai
 - **[LJPW Framework Core Manual](docs/LJPW_Framework_Core_Manual.md)** - Complete guide to the Love, Justice, Power, Wisdom framework
 - **[LJPW Semantic Capabilities Catalog](docs/LJPW_Semantic_Capabilities_Catalog.md)** ⭐ NEW - Extended semantic analysis: mass, density, drift, archetypes
 - **[LJPW Codex](docs/LJPW_Codex.md)** ⭐ NEW - Philosophical foundations and theoretical reference
+- **[Fractal Self-Analysis Findings](docs/FRACTAL_SELF_ANALYSIS_FINDINGS.md)** ⭐ NEW - The repository analyzed itself
 - **[Harmony-Centric Growth Explained](docs/Harmony_Centric_Growth_Explained.md)** - How the growth process works
 - **[LJPW Mathematical Baselines Reference V4](docs/LJPW%20Mathematical%20Baselines%20Reference%20V4.md)** - Mathematical foundations
 - **[Dynamic LJPW Model v4.0](docs/Dynamic%20LJPW%20Model%20v4.0%20-%20Specification%20and%20Theoretical%20Foundations%20and%20Empirical%20Validation%20of%20the%20LJPW%20v4.0%20Model%20via%20Bayesian%20Calibration.md)** - Theoretical foundations and empirical validation
