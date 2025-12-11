@@ -1,0 +1,350 @@
+/* =============================================================================
+   Gesture Particle System - Styles
+   Modern, minimal, glassmorphism design
+   ============================================================================= */
+
+/* Design Tokens */
+:root {
+    --bg-dark: #0a0a1a;
+    --bg-glass: rgba(20, 20, 40, 0.85);
+    --bg-glass-light: rgba(40, 40, 80, 0.6);
+    --accent-primary: #ff6b9d;
+    --accent-secondary: #00d4ff;
+    --accent-tertiary: #ffd700;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --shadow-glow: 0 0 30px rgba(255, 107, 157, 0.3);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Canvas Container */
+#canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#canvas-container canvas {
+    display: block;
+}
+
+/* Camera Preview */
+#camera-preview {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 200px;
+    height: 150px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    box-shadow: var(--shadow-glow);
+}
+
+#video,
+#hand-canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+#hand-canvas {
+    pointer-events: none;
+}
+
+#gesture-status {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 8px 12px;
+    font-size: 11px;
+    text-align: center;
+}
+
+#hand-status {
+    display: block;
+    color: var(--accent-secondary);
+    font-weight: 500;
+}
+
+/* Control Panel */
+#control-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 280px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    backdrop-filter: blur(20px);
+    z-index: 100;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+#control-panel h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.control-group {
+    margin-bottom: 20px;
+}
+
+.control-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Template Buttons */
+.template-buttons {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+}
+
+.template-btn {
+    aspect-ratio: 1;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--bg-glass-light);
+    font-size: 20px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border: 2px solid transparent;
+}
+
+.template-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
+}
+
+.template-btn.active {
+    border-color: var(--accent-primary);
+    background: rgba(255, 107, 157, 0.2);
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.4);
+}
+
+/* Color Picker */
+.color-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+#color-picker {
+    width: 50px;
+    height: 40px;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    background: transparent;
+}
+
+#color-picker::-webkit-color-swatch-wrapper {
+    padding: 2px;
+}
+
+#color-picker::-webkit-color-swatch {
+    border-radius: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.preset-colors {
+    display: flex;
+    gap: 8px;
+}
+
+.color-preset {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border: 2px solid transparent;
+}
+
+.color-preset:hover {
+    transform: scale(1.2);
+    border-color: white;
+}
+
+/* Range Sliders */
+input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--bg-glass-light);
+    appearance: none;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+    transition: var(--transition-fast);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Info Box */
+.info-box {
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.info-box h3 {
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: var(--accent-secondary);
+}
+
+.info-box p {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* Loading Overlay */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+}
+
+#loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loader {
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--bg-glass-light);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#loading-overlay p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #control-panel {
+        width: calc(100% - 40px);
+        top: auto;
+        bottom: 180px;
+        right: 20px;
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+
+    #camera-preview {
+        width: 150px;
+        height: 112px;
+    }
+}
+
+/* Hover Effects - Glassmorphism glow */
+#control-panel:hover {
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(255, 107, 157, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Particle animation hints */
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.template-btn.active {
+    animation: pulse 2s ease-in-out infinite;
+}
