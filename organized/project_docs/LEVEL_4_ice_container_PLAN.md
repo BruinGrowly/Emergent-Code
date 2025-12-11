@@ -2,11 +2,11 @@
 
 **Intent:** Level 4 upgrade: Improve P dimension in ice_container.py
 
-**Original Harmony:** 0.6365
+**Original Harmony:** 0.6399
 
 # RESONANCE BLUEPRINT (v6.0)
 # Intent: Level 4 upgrade: Improve P dimension in ice_container.py
-# Context: Self-healing cycle, Current harmony: 0.636
+# Context: Self-healing cycle, Current harmony: 0.640
 
 # TARGET SEMANTIC PROFILE
 # Love (L):    0.900
