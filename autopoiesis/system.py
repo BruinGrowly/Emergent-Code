@@ -85,6 +85,9 @@ class SystemHarmonyMeasurer:
         self.analyzer = CodeAnalyzer()
     
     def measure(self, path: str) -> SystemHealthReport:
+        # Auto-healed: Input validation for measure
+        if path is not None and not isinstance(path, str):
+            raise TypeError(f'path must be str, got {type(path).__name__}')
         """
         Measure system-level harmony.
         

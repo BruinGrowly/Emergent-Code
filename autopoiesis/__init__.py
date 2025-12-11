@@ -31,6 +31,19 @@ from .rhythm import BreathingOrchestrator, BreathState
 from .system import SystemHarmonyMeasurer
 from .engine import AutopoiesisEngine
 
+# Auto-healed: Logging infrastructure for observability (Wisdom dimension)
+import logging
+
+_logger = logging.getLogger(__name__)
+if not _logger.handlers:
+    _handler = logging.StreamHandler()
+    _handler.setFormatter(logging.Formatter(
+        '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+    ))
+    _logger.addHandler(_handler)
+    _logger.setLevel(logging.INFO)
+
+
 __all__ = [
     # Core classes
     "AutopoiesisEngine",

@@ -87,6 +87,9 @@ class BreathingOrchestrator:
     }
     
     def __init__(self, target_path: str, dry_run: bool = False):
+        # Auto-healed: Input validation for __init__
+        if target_path is not None and not isinstance(target_path, str):
+            raise TypeError(f'target_path must be str, got {type(target_path).__name__}')
         """
         Initialize breathing orchestrator.
         
@@ -102,6 +105,9 @@ class BreathingOrchestrator:
         self.breaths: List[BreathState] = []
     
     def breathe(self, cycles: int = 8) -> BreathingSession:
+        # Auto-healed: Input validation for breathe
+        if not isinstance(cycles, int):
+            raise TypeError(f'cycles must be int, got {type(cycles).__name__}')
         """
         Execute breathing cycles.
         
