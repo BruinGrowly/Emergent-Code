@@ -133,7 +133,7 @@ class BreathingOrchestrator:
             self.session.initial_harmony = file_analysis.harmony if file_analysis else 0.0
         
         print(f"\n{'='*70}")
-        print(f"  🌬️ BREATHING AUTOPOIESIS SESSION")
+        print(f"  BREATHING AUTOPOIESIS SESSION")
         print(f"  Target: {self.target_path}")
         print(f"  Cycles: {cycles}")
         print(f"  Initial Harmony: {self.session.initial_harmony:.3f}")
@@ -147,7 +147,7 @@ class BreathingOrchestrator:
             pressure = (cycle / cycles) * 0.8 + 0.2  # 0.2 to 1.0
             
             print(f"\n  Breath {cycle}/{cycles}: {self.DIMENSION_NAMES[dimension]}")
-            print(f"  {'─'*60}")
+            print(f"  {'-'*60}")
             
             # INHALE: Diagnose
             inhale_state = self._inhale(cycle, dimension, pressure)
@@ -181,7 +181,7 @@ class BreathingOrchestrator:
         INHALE: Freedom phase. Diagnose without fixing.
         Low pressure, allow the system to reveal its true state.
         """
-        print(f"    ↑ INHALE (diagnose {dimension})...")
+        print(f"    ^ INHALE (diagnose {dimension})...")
         
         # Analyze current state
         if Path(self.target_path).is_dir():
@@ -224,7 +224,7 @@ class BreathingOrchestrator:
         EXHALE: Structure phase. Apply healing.
         High pressure, enforce constraints, fix deficits.
         """
-        print(f"    ↓ EXHALE (heal {dimension})...")
+        print(f"    v EXHALE (heal {dimension})...")
         
         if self.dry_run:
             print(f"       [DRY RUN] Would apply {dimension} healing")
@@ -304,7 +304,7 @@ class BreathingOrchestrator:
             return
         
         print(f"\n{'='*70}")
-        print(f"  🏆 BREATHING SESSION COMPLETE")
+        print(f"  BREATHING SESSION COMPLETE")
         print(f"{'='*70}")
         
         duration = self.session.end_time - self.session.start_time if self.session.end_time else None
@@ -319,11 +319,11 @@ class BreathingOrchestrator:
         print(f"    Change: {self.session.harmony_improvement:+.3f}")
         
         if self.session.harmony_improvement > 0:
-            print(f"\n  ✨ System harmony improved!")
+            print(f"\n  [+] System harmony improved!")
         elif self.session.harmony_improvement == 0:
-            print(f"\n  ⚖️ System harmony stable")
+            print(f"\n  [=] System harmony stable")
         else:
-            print(f"\n  ⚠️ System harmony decreased - review changes")
+            print(f"\n  [!] System harmony decreased - review changes")
     
     def generate_report(self, output_path: Optional[str] = None) -> str:
         """Generate markdown report of breathing session."""

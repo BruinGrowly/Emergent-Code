@@ -236,10 +236,10 @@ class SystemHarmonyMeasurer:
     
     def print_report(self, report: SystemHealthReport):
         """Print a formatted health report."""
-        phase_emoji = {
-            SystemPhase.ENTROPIC: "🔴",
-            SystemPhase.HOMEOSTATIC: "🟡",
-            SystemPhase.AUTOPOIETIC: "🟢"
+        phase_indicators = {
+            SystemPhase.ENTROPIC: "[!]",
+            SystemPhase.HOMEOSTATIC: "[~]",
+            SystemPhase.AUTOPOIETIC: "[*]"
         }
         
         print(f"\n{'='*70}")
@@ -247,19 +247,19 @@ class SystemHarmonyMeasurer:
         print(f"  {report.path}")
         print(f"{'='*70}")
         
-        print(f"\n  Phase: {phase_emoji[report.phase]} {report.phase.value.upper()}")
+        print(f"\n  Phase: {phase_indicators[report.phase]} {report.phase.value.upper()}")
         
         if report.is_autopoietic:
-            print(f"\n  ✨ SYSTEM IS AUTOPOIETIC! ✨")
+            print(f"\n  ** SYSTEM IS AUTOPOIETIC! **")
         else:
             print(f"\n  Distance to Autopoiesis: {report.distance_to_autopoiesis:.3f}")
         
         print(f"\n  LJPW Dimensions:")
-        print(f"    Love (L):    {report.love:.3f} {'✓' if report.love >= 0.7 else '✗'}")
-        print(f"    Justice (J): {report.justice:.3f} {'✓' if report.justice >= 0.7 else '✗'}")
-        print(f"    Power (P):   {report.power:.3f} {'✓' if report.power >= 0.7 else '✗'}")
-        print(f"    Wisdom (W):  {report.wisdom:.3f} {'✓' if report.wisdom >= 0.7 else '✗'}")
-        print(f"    Harmony (H): {report.harmony:.3f} {'✓' if report.harmony >= 0.6 else '✗'}")
+        print(f"    Love (L):    {report.love:.3f} {'[Y]' if report.love >= 0.7 else '[N]'}")
+        print(f"    Justice (J): {report.justice:.3f} {'[Y]' if report.justice >= 0.7 else '[N]'}")
+        print(f"    Power (P):   {report.power:.3f} {'[Y]' if report.power >= 0.7 else '[N]'}")
+        print(f"    Wisdom (W):  {report.wisdom:.3f} {'[Y]' if report.wisdom >= 0.7 else '[N]'}")
+        print(f"    Harmony (H): {report.harmony:.3f} {'[Y]' if report.harmony >= 0.6 else '[N]'}")
         
         print(f"\n  Composition:")
         print(f"    Files:     {report.total_files}")
@@ -274,6 +274,6 @@ class SystemHarmonyMeasurer:
         
         print(f"\n  Recommendations:")
         for rec in report.recommended_actions:
-            print(f"    • {rec}")
+            print(f"    - {rec}")
         
         print(f"\n{'='*70}")

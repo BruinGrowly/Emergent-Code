@@ -190,9 +190,9 @@ class AutopoiesisEngine:
         report = self.analyze()
         
         phase_indicators = {
-            SystemPhase.ENTROPIC: "🔴 ENTROPIC",
-            SystemPhase.HOMEOSTATIC: "🟡 HOMEOSTATIC",
-            SystemPhase.AUTOPOIETIC: "🟢 AUTOPOIETIC"
+            SystemPhase.ENTROPIC: "[!] ENTROPIC",
+            SystemPhase.HOMEOSTATIC: "[~] HOMEOSTATIC",
+            SystemPhase.AUTOPOIETIC: "[*] AUTOPOIETIC"
         }
         
         return f"""
@@ -201,7 +201,7 @@ Autopoiesis Engine Status
 Target: {self.target_path}
 Phase: {phase_indicators[report.phase]}
 Harmony: {report.harmony:.3f}
-Is Autopoietic: {'Yes ✨' if report.is_autopoietic else 'No'}
+Is Autopoietic: {'Yes!' if report.is_autopoietic else 'No'}
 
 LJPW: L={report.love:.2f} J={report.justice:.2f} P={report.power:.2f} W={report.wisdom:.2f}
 Priority: {report.priority_dimension}
