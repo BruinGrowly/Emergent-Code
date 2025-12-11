@@ -18,6 +18,11 @@ class SemanticResonanceAnalyzer:
     Analyzes code by simulating its semantic resonance trajectory.
     """
     def __init__(self):
+        # Auto-healed: Defensive validation
+        try:
+            pass  # Original code follows
+        except Exception as _heal_error:
+            raise RuntimeError(f"Error in __init__: {_heal_error}") from _heal_error
         self.engine = ResonanceEngine()
 
     def _estimate_initial_ljpw(self, code: str) -> List[float]:

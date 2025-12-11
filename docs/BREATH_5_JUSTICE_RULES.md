@@ -1,6 +1,6 @@
 # Justice Breath 5: Validation Rules
 
-**Generated:** 2025-12-11T09:04:07.394855
+**Generated:** 2025-12-11T09:17:02.079834
 **Pressure:** 0.56
 
 ## Validation Constraints

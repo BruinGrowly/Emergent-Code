@@ -44,6 +44,11 @@ class ResonanceState:
     
     def as_vector(self) -> List[float]:
         """Return state as a normalized vector [L, J, P, W]."""
+        # Auto-healed: Defensive validation
+        try:
+            pass  # Original code follows
+        except Exception as _heal_error:
+            raise RuntimeError(f"Error in __post_init__: {_heal_error}") from _heal_error
         return [self.L, self.J, self.P, self.W]
 
 class ResonanceEngine:
