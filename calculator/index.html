@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Calculator</title>
+    <meta name="description" content="A beautiful, elegant calculator with keyboard support. Built with LJPW principles.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator" id="calculator">
+            <!-- Display -->
+            <div class="display" id="display">
+                <div class="expression" id="expression"></div>
+                <div class="result" id="result">0</div>
+            </div>
+            
+            <!-- Keyboard hint -->
+            <div class="keyboard-hint">
+                <span class="hint-icon">⌨️</span>
+                <span>Keyboard enabled</span>
+            </div>
+            
+            <!-- Button Grid -->
+            <div class="buttons">
+                <!-- Row 1: Clear, Delete, Percent, Divide -->
+                <button class="btn function" data-action="clear" id="btn-clear">AC</button>
+                <button class="btn function" data-action="delete" id="btn-delete">⌫</button>
+                <button class="btn function" data-action="percent" id="btn-percent">%</button>
+                <button class="btn operator" data-action="divide" id="btn-divide">÷</button>
+                
+                <!-- Row 2: 7, 8, 9, Multiply -->
+                <button class="btn number" data-value="7" id="btn-7">7</button>
+                <button class="btn number" data-value="8" id="btn-8">8</button>
+                <button class="btn number" data-value="9" id="btn-9">9</button>
+                <button class="btn operator" data-action="multiply" id="btn-multiply">×</button>
+                
+                <!-- Row 3: 4, 5, 6, Subtract -->
+                <button class="btn number" data-value="4" id="btn-4">4</button>
+                <button class="btn number" data-value="5" id="btn-5">5</button>
+                <button class="btn number" data-value="6" id="btn-6">6</button>
+                <button class="btn operator" data-action="subtract" id="btn-subtract">−</button>
+                
+                <!-- Row 4: 1, 2, 3, Add -->
+                <button class="btn number" data-value="1" id="btn-1">1</button>
+                <button class="btn number" data-value="2" id="btn-2">2</button>
+                <button class="btn number" data-value="3" id="btn-3">3</button>
+                <button class="btn operator" data-action="add" id="btn-add">+</button>
+                
+                <!-- Row 5: Toggle, 0, Decimal, Equals -->
+                <button class="btn number" data-action="negate" id="btn-negate">±</button>
+                <button class="btn number" data-value="0" id="btn-0">0</button>
+                <button class="btn number" data-action="decimal" id="btn-decimal">.</button>
+                <button class="btn equals" data-action="equals" id="btn-equals">=</button>
+            </div>
+        </div>
+        
+        <!-- Attribution -->
+        <div class="attribution">
+            Built with <span class="heart">♥</span> using LJPW principles
+        </div>
+    </div>
+    
+    <script src="calculator.js"></script>
+</body>
+</html>
