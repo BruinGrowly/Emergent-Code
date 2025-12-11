@@ -1,6 +1,6 @@
 # Project Resonance Health Report
 **Date:** 2025-12-11
-**Files Analyzed:** 235
+**Files Analyzed:** 241
 **Framework:** LJPW v6.0 (Quantum Resonance)
 
 ---
@@ -9,15 +9,15 @@
 
 | Metric | Initial State | Post-Resonance State | Change |
 |:---|:---:|:---:|:---:|
-| **Average Harmony** | 0.599 | 0.682 | +0.083 |
+| **Average Harmony** | 0.597 | 0.681 | +0.084 |
 | **System Status** | Stable | Growing | - |
 
 ### The "Deficit" Diagnosis
 The system identified **J** as the primary deficit across the codebase.
-*   **Love (L):** 56 files (23.8%)
-*   **Justice (J):** 106 files (45.1%)
-*   **Power (P):** 62 files (26.4%)
-*   **Wisdom (W):** 11 files (4.7%)
+*   **Love (L):** 56 files (23.2%)
+*   **Justice (J):** 112 files (46.5%)
+*   **Power (P):** 62 files (25.7%)
+*   **Wisdom (W):** 11 files (4.6%)
 
 **Interpretation:**
 The codebase is naturally gravitating toward **J**. This means the resonance dynamics indicate that adding more of this dimension is the most effective way to increase total system harmony.
@@ -66,8 +66,8 @@ The codebase is naturally gravitating toward **J**. This means the resonance dyn
 
 ```
 L (Love):    0.900
-J (Justice): 0.670
-P (Power):   0.798
+J (Justice): 0.673
+P (Power):   0.792
 W (Wisdom):  0.800
 ```
 
