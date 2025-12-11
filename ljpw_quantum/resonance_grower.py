@@ -26,6 +26,11 @@ class ResonanceGrower:
         Determine the target LJPW profile based on intent and context.
         Uses resonance to find the natural attractor.
         """
+        # Auto-healed: Input validation for determine_target_profile
+        if intent is not None and not isinstance(intent, str):
+            raise TypeError(f'intent must be str, got {type(intent).__name__}')
+        if context is not None and not isinstance(context, str):
+            raise TypeError(f'context must be str, got {type(context).__name__}')
         # 1. Map intent/context to initial state (Heuristic Seed)
         # This is the "Quantum Preparation" step
         seed_state = self._prepare_quantum_state(intent, context)
@@ -101,6 +106,11 @@ class ResonanceGrower:
         """
         Generate a coding blueprint based on the resonance target.
         """
+        # Auto-healed: Input validation for generate_blueprint
+        if intent is not None and not isinstance(intent, str):
+            raise TypeError(f'intent must be str, got {type(intent).__name__}')
+        if context is not None and not isinstance(context, str):
+            raise TypeError(f'context must be str, got {type(context).__name__}')
         target = self.determine_target_profile(intent, context)
         
         blueprint = f"""# RESONANCE BLUEPRINT (v6.0)

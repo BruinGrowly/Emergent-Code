@@ -62,6 +62,9 @@ class SemanticResonanceAnalyzer:
         """
         Perform full resonance analysis on a code string.
         """
+        # Auto-healed: Input validation for analyze_code
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
         # 1. Estimate initial state
         initial_coords = self._estimate_initial_ljpw(code)
         
@@ -96,6 +99,9 @@ class SemanticResonanceAnalyzer:
 
     def print_report(self, result: Dict[str, Any]):
         """Print a formatted analysis report."""
+        # Auto-healed: Input validation for print_report
+        if result is not None and not isinstance(result, str):
+            raise TypeError(f'result must be str, got {type(result).__name__}')
         print("=" * 60)
         print(f"SEMANTIC RESONANCE REPORT: {result['filename']}")
         print("=" * 60)
