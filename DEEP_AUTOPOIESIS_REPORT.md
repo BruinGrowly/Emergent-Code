@@ -1,6 +1,6 @@
 # Deep Autopoiesis Report
 
-**Date:** 2025-12-11T07:33:10.733939
+**Date:** 2025-12-11T07:37:05.229621
 
 ## What Makes This 'Deep'?
 
@@ -15,8 +15,8 @@
 |------|---------|---------|---------------|
 | resonance_engine.py | J | 0.728 | 0 |
 | ice_container.py | J | 0.636 | 0 |
-| resonance_grower.py | J | 0.659 | 2 |
-| semantic_resonance_analyzer.py | J | 0.661 | 4 |
-| bicameral_bridge.py | W | 0.584 | 6 |
+| resonance_grower.py | J | 0.666 | 0 |
+| semantic_resonance_analyzer.py | J | 0.665 | 0 |
+| bicameral_bridge.py | J | 0.590 | 0 |
 
-**Total Modifications Applied:** 12
+**Total Modifications Applied:** 0
