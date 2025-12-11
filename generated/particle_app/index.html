@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    A Particle System generated from: 
+    Create a real-time interactive beautiful 3D particle system with Three.js.
+    Requirements:
+    1. Control the scaling and expansion of the particle group by detecting 
+       the tension and closing of both hands through the camera.
+    2. Provide panels that can choose hearts, spheres, spirals, cubes, rings,
+       and explosions as shape templates.
+    3. Support the color selector to adjust the particle color.
+    4. Particles need to respond to gesture changes in real time.
+    5. The interface is simple and modern.
+    
+    
+    Generated: 2025-12-12T01:15:31.577141
+    
+    LJPW Principles Applied:
+    - Love: Clear structure and accessibility
+    - Justice: Valid HTML5, semantic markup
+    - Power: Resilient loading, fallbacks
+    - Wisdom: Meta tags for discoverability
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Particle System generated from: 
+    Create a real-time interactive beautiful 3D particle system with Three.js.
+    Requirements:
+    1. Control the scaling and expansion of the particle group by detecting 
+       the tension and closing of both hands through the camera.
+    2. Provide panels that can choose hearts, spheres, spirals, cubes, rings,
+       and explosions as shape templates.
+    3. Support the color selector to adjust the particle color.
+    4. Particles need to respond to gesture changes in real time.
+    5. The interface is simple and modern.
+    ">
+    <title>Particle System - Generated</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Three.js Canvas Container -->
+    <div id="canvas-container"></div>
+    
+    <!-- Camera Preview -->
+    <div id="camera-preview">
+        <video id="video" autoplay playsinline></video>
+        <canvas id="hand-canvas"></canvas>
+        <div id="gesture-status">Initializing camera...</div>
+    </div>
+
+    <!-- Control Panel -->
+    <div id="control-panel">
+        <h2>Particle Control</h2>
+        
+        <!-- Shape Selection -->
+        <div class="control-group">
+            <label>Shape Template</label>
+            <div class="shape-buttons">
+                <button class="shape-btn active" data-shape="heart">Heart</button>
+                <button class="shape-btn" data-shape="sphere">Sphere</button>
+                <button class="shape-btn" data-shape="spiral">Spiral</button>
+                <button class="shape-btn" data-shape="cube">Cube</button>
+                <button class="shape-btn" data-shape="ring">Ring</button>
+                <button class="shape-btn" data-shape="explosion">Explosion</button>
+            </div>
+        </div>
+        
+        <!-- Color Picker -->
+        <div class="control-group">
+            <label>Particle Color</label>
+            <input type="color" id="color-picker" value="#ff6b9d">
+        </div>
+        
+        <!-- Particle Count -->
+        <div class="control-group">
+            <label>Count: <span id="count-value">2000</span></label>
+            <input type="range" id="particle-count" min="500" max="5000" value="2000" step="100">
+        </div>
+        
+        <!-- Particle Size -->
+        <div class="control-group">
+            <label>Size: <span id="size-value">3</span></label>
+            <input type="range" id="particle-size" min="1" max="10" value="3" step="0.5">
+        </div>
+    </div>
+    
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+        <div class="loader"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
