@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: MIT
+# Manifest for including/excluding files in source distribution
+
+include README.md
+include LICENSE
+include requirements.txt
+include requirements-dev.txt
+include pyproject.toml
+include HARMONIZER_SETUP.md
+include PROJECT_INDEX.md
+include QUICK_REFERENCE.md
+
+# Include documentation
+recursive-include docs *.md *.rst
+recursive-include docs *.py
+
+# Include examples and experiments
+recursive-include examples *.py *.json
+recursive-include experiments *.py
+
+# Include result documents
+recursive-include results *.md
+
+# Include master gene pool configurations
+recursive-include master_gene_pool *.json *.txt
+recursive-include master_gene_pool/abstract_dna *.txt
+
+# Exclude compiled Python files
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude *$py.class
+global-exclude *.so
+
+# Exclude development and build artifacts
+exclude .gitignore
+recursive-exclude * .git
+recursive-exclude * .mypy_cache
+recursive-exclude * .pytest_cache
+recursive-exclude * .ruff_cache
+recursive-exclude * *.egg-info
+
+# Exclude external dependencies
+prune Python-Code-Harmonizer
+prune Python-Code-Harmonizer-main
+
+# Exclude generated files
+prune generated

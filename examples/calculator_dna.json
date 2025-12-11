@@ -1,0 +1,78 @@
+{
+    "filename": "master_calculator.py",
+    "docstring": "\"\"\"A calculator grown from a \"golden standard\" DNA blueprint, with guaranteed robustness.\"\"\"",
+    "archetype_queries": {
+        "simple_power": {
+            "source": "lodash",
+            "criteria": "max_power"
+        },
+        "robust_justice": {
+            "source": "lodash",
+            "criteria": "max_justice"
+        },
+        "wise_structure": {
+            "source": "django",
+            "criteria": "max_wisdom"
+        }
+    },
+    "required_components": {
+        "main": {
+            "intent": "A main block matching the semantic profile of a wise configuration file.",
+            "archetype": "wise_structure",
+            "candidates": [
+                "main_parser_simple",
+                "main_parser_robust"
+            ],
+            "minimum_profile": {
+                "L": 0.3,
+                "J": 0.3,
+                "P": 0.0,
+                "W": 0.3
+            }
+        },
+        "add": {
+            "intent": "A high-power addition function.",
+            "archetype": "simple_power",
+            "candidates": [
+                "add_simple",
+                "add_robust"
+            ],
+            "minimum_profile": {
+                "P": 0.0
+            }
+        },
+        "subtract": {
+            "intent": "A robust subtraction function.",
+            "archetype": "robust_justice",
+            "candidates": [
+                "subtract_simple",
+                "subtract_robust"
+            ],
+            "minimum_profile": {
+                "J": 0.0
+            }
+        },
+        "multiply": {
+            "intent": "A high-power multiplication function.",
+            "archetype": "simple_power",
+            "candidates": [
+                "multiply_simple",
+                "multiply_robust"
+            ],
+            "minimum_profile": {
+                "P": 0.0
+            }
+        },
+        "divide": {
+            "intent": "A robust division function.",
+            "archetype": "robust_justice",
+            "candidates": [
+                "divide_robust",
+                "divide_simple"
+            ],
+            "minimum_profile": {
+                "J": 0.0
+            }
+        }
+    }
+}

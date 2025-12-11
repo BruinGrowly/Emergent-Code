@@ -1,0 +1,174 @@
+{
+  "timestamp": "2025-11-23",
+  "total_experiments": 10,
+  "autopoietic_count": 0,
+  "phase_distribution": {
+    "entropic": 10,
+    "homeostatic": 0,
+    "autopoietic": 0
+  },
+  "love_stats": {
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.29829999999999995,
+    "above_threshold": 1
+  },
+  "harmony_stats": {
+    "min": 0.0,
+    "max": 0.238,
+    "mean": 0.0457,
+    "above_threshold": 0
+  },
+  "experiments": [
+    {
+      "function": "collaborative_data_processor",
+      "description": "Level 1: Collaborative Processing",
+      "expectation": "High L expected from multi-user integration",
+      "profile": {
+        "love": 0.2,
+        "justice": 0.4,
+        "power": 0.0,
+        "wisdom": 0.4,
+        "harmony": 0.0
+      },
+      "phase": "ENTROPIC",
+      "autopoietic": false,
+      "amplification": 1.0
+    },
+    {
+      "function": "adaptive_learning_system",
+      "description": "Level 1: Adaptive Learning",
+      "expectation": "High L expected from feedback integration",
+      "profile": {
+        "love": 0.333,
+        "justice": 0.0,
+        "power": 0.0,
+        "wisdom": 0.667,
+        "harmony": 0.0
+      },
+      "phase": "ENTROPIC",
+      "autopoietic": false,
+      "amplification": 1.0
+    },
+    {
+      "function": "integration_hub",
+      "description": "Level 1: Service Integration",
+      "expectation": "High L expected from service connections",
+      "profile": {
+        "love": 0.5,
+        "justice": 0.167,
+        "power": 0.167,
+        "wisdom": 0.167,
+        "harmony": 0.219
+      },
+      "phase": "ENTROPIC",
+      "autopoietic": false,
+      "amplification": 1.0
+    },
+    {
+      "function": "communication_protocol",
+      "description": "Level 1: Communication",
+      "expectation": "High L expected from inter-component communication",
+      "profile": {
+        "love": 0.2,
+        "justice": 0.2,
+        "power": 0.4,
+        "wisdom": 0.2,
+        "harmony": 0.238
+      },
+      "phase": "ENTROPIC",
+      "autopoietic": false,
+      "amplification": 1.0
+    },
+    {
+      "function": "collaborative_learning_platform",
+      "description": "Level 2: COMPOSITION - Learning Platform",
+      "expectation": "Target: L > 0.7, H > 0.6 (AUTOPOIETIC)",
+      "profile": {
+        "love": 0.5,
+        "justice": 0.5,
+        "power": 0.0,
+        "wisdom": 0.0,
+        "harmony": 0.0
+      },
+      "phase": "ENTROPIC",
+      "autopoietic": false,
+      "amplification": 1.0
+    },
+    {
+      "function": "integrated_service_mesh",
+      "description": "Level 2: COMPOSITION - Service Mesh",
+      "expectation": "Target: L > 0.7, H > 0.65 (AUTOPOIETIC)",
+      "profile": {
+        "love": 1.0,
+        "justice": 0.0,
+        "power": 0.0,
+        "wisdom": 0.0,
+        "harmony": 0.0
+      },
+      "phase": "ENTROPIC",
+      "autopoietic": false,
+      "amplification": 1.15
+    },
+    {
+      "function": "multi_agent_collaboration_system",
+      "description": "Level 2: COMPOSITION - Multi-Agent",
+      "expectation": "Target: L > 0.8, H > 0.7 (HIGH AUTOPOIETIC)",
+      "profile": {
+        "love": 0.0,
+        "justice": 0.0,
+        "power": 0.0,
+        "wisdom": 1.0,
+        "harmony": 0.0
+      },
+      "phase": "ENTROPIC",
+      "autopoietic": false,
+      "amplification": 1.0
+    },
+    {
+      "function": "self_sustaining_ecosystem",
+      "description": "Level 3: FULL AUTOPOIETIC SYSTEM",
+      "expectation": "Target: L > 0.8, H > 0.75 (MAXIMUM)",
+      "profile": {
+        "love": 0.0,
+        "justice": 0.4,
+        "power": 0.2,
+        "wisdom": 0.4,
+        "harmony": 0.0
+      },
+      "phase": "ENTROPIC",
+      "autopoietic": false,
+      "amplification": 1.0
+    },
+    {
+      "function": "malicious_power_grab",
+      "description": "Level 4: CONTROL - Malicious Single",
+      "expectation": "Expected: L ~ 0.1, H < 0.3 (ENTROPIC)",
+      "profile": {
+        "love": 0.25,
+        "justice": 0.25,
+        "power": 0.5,
+        "wisdom": 0.0,
+        "harmony": 0.0
+      },
+      "phase": "ENTROPIC",
+      "autopoietic": false,
+      "amplification": 1.0
+    },
+    {
+      "function": "malicious_composition_attempt",
+      "description": "Level 4: CONTROL - Malicious Composition",
+      "expectation": "Expected: H < 0.5 (LINEAR TRAP)",
+      "profile": {
+        "love": 0.0,
+        "justice": 1.0,
+        "power": 0.0,
+        "wisdom": 0.0,
+        "harmony": 0.0
+      },
+      "phase": "ENTROPIC",
+      "autopoietic": false,
+      "amplification": 1.0
+    }
+  ]
+}

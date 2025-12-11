@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emergent World Clock</title>
+    <style>:root {
+    --bg-gradient: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+    --glass: rgba(255, 255, 255, 0.15);
+    --border: 1px solid rgba(255, 255, 255, 0.2);
+    --text-main: #f8fafc;
+    --text-dim: #94a3b8;
+    --accent: #f43f5e;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-gradient);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+h1 {
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+.clock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.city-card {
+    background: var(--glass);
+    backdrop-filter: blur(18px);
+    border: var(--border);
+    border-radius: 22px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.city-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255, 0.2);
+}
+
+.city-card.primary {
+    border-color: rgba(244, 63, 94, 0.5);
+    box-shadow: 0 0 30px rgba(244, 63, 94, 0.2);
+}
+
+.city-name {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.time-display {
+    font-size: 3.5rem;
+    font-weight: 200;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -2px;
+}
+
+.date-display {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+}
+
+.analog-ring {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    pointer-events: none;
+}
+    </style>
+</head>
+<body>
+    <h1>Global Resonance Time</h1>
+    <div class="clock-grid"></div>
+    <script>const cities = [
+    { name: 'PORT MORESBY', tz: 'Pacific/Port_Moresby', primary: true },
+    { name: 'NEW YORK', tz: 'America/New_York' },
+    { name: 'LONDON', tz: 'Europe/London' },
+    { name: 'TOKYO', tz: 'Asia/Tokyo' },
+    { name: 'SYDNEY', tz: 'Australia/Sydney' }
+ ];
+
+const container = document.querySelector('.clock-grid');
+
+cities.forEach(city => {
+    const card = document.createElement('div');
+    const primaryClass = city.primary ? 'primary' : '';
+    card.className = 'city-card ' + primaryClass;
+    card.innerHTML = `
+        <div class="analog-ring"></div>
+        <div>
+            <div class="city-name">${city.name}</div>
+            <div class="time-display" id="time-${city.name}">--:--</div>
+            <div class="date-display" id="date-${city.name}">Loading...</div>
+        </div>
+    `;
+    container.appendChild(card);
+});
+
+function updateClocks() {
+    const now = new Date();
+    cities.forEach(city => {
+        const options = { 
+            timeZone: city.tz, 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit',
+            hour12: false 
+        };
+        const dateOptions = {
+            timeZone: city.tz,
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        };
+        const timeStr = new Intl.DateTimeFormat('en-US', options).format(now);
+        const dateStr = new Intl.DateTimeFormat('en-US', dateOptions).format(now);
+        document.getElementById(`time-${city.name}`).textContent = timeStr;
+        document.getElementById(`date-${city.name}`).textContent = dateStr;
+    });
+}
+
+    function update() {
+        updateClocks();
+        requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+    </script>
+</body>
+</html>

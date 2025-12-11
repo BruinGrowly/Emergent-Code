@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Clock - Beautiful & Harmonious</title>
+    <style>
+        /* ============================================
+           BEAUTIFUL CSS - Phase 3 + Beauty Integration
+           ============================================ */
+
+        /* RESET & BASE (Wisdom - W: Clean foundation) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Palette (Color Theory - C: Harmonious colors) */
+            --color-primary: #2D3748;
+            --color-secondary: #4A5568;
+            --color-accent: #63B3ED;
+            --color-highlight: #F6AD55;
+            --color-background: #1A202C;
+            --color-surface: #2D3748;
+            --color-text-primary: #E2E8F0;
+            --color-text-secondary: #A0AEC0;
+
+            /* Typography Scale (Typography - T: Musical intervals) */
+            --font-size-base: 1rem;
+            --font-size-small: 0.889rem;
+            --font-size-large: 1.125rem;
+            --font-size-xl: 1.266rem;
+            --font-size-display: 2.566rem;
+
+            /* Spacing Scale (Visual Harmony - V: Golden ratio) */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.618rem;
+            --space-xl: 2.618rem;
+            --space-xxl: 4.236rem;
+
+            /* Motion (Motion - M: Natural easing) */
+            --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+            --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1);
+            --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+
+            /* Golden Ratio (Visual Harmony - V: φ ≈ 1.618) */
+            --golden-ratio: 1.618;
+        }
+
+        /* BODY (Visual Harmony - V: Balanced canvas) */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                         'Helvetica Neue', Arial, sans-serif;
+            font-size: var(--font-size-base);
+            line-height: 1.618; /* Golden ratio for readability */
+            color: var(--color-text-primary);
+            background: linear-gradient(135deg,
+                        var(--color-background) 0%,
+                        var(--color-primary) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--space-md);
+        }
+
+        /* CONTAINER (Visual Harmony - V: Golden ratio width) */
+        .container {
+            max-width: calc(1000px / var(--golden-ratio)); /* ~618px */
+            width: 100%;
+            background: rgba(45, 55, 72, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: var(--space-md);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+                        0 0 1px rgba(255, 255, 255, 0.1) inset;
+            overflow: hidden;
+            /* Motion - M: Smooth entrance */
+            animation: fadeIn 0.8s var(--ease-out);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* HEADER (Typography - T: Clear hierarchy) */
+        .header {
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            background: linear-gradient(180deg,
+                        rgba(99, 179, 237, 0.1) 0%,
+                        transparent 100%);
+            border-bottom: 1px solid rgba(99, 179, 237, 0.2);
+        }
+
+        .title {
+            font-size: var(--font-size-display);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-accent);
+            margin-bottom: var(--space-sm);
+            /* Motion - M: Subtle glow animation */
+            text-shadow: 0 0 30px rgba(99, 179, 237, 0.3);
+        }
+
+        .subtitle {
+            font-size: var(--font-size-large);
+            color: var(--color-text-secondary);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        /* MAIN CONTENT (Visual Harmony - V: Breathing room) */
+        .main {
+            padding: var(--space-xl) var(--space-lg);
+        }
+
+        /* CLOCK GRID (Visual Harmony - V: Balanced layout) */
+        .clock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        /* CLOCK CARD (Color Theory - C: Surface elevation) */
+        .clock-card {
+            background: var(--color-surface);
+            border-radius: var(--space-sm);
+            padding: var(--space-lg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(99, 179, 237, 0.1);
+            /* Motion - M: Smooth transitions */
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .clock-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3),
+                        0 0 0 1px rgba(99, 179, 237, 0.3);
+            border-color: var(--color-accent);
+        }
+
+        /* CLOCK CITY (Typography - T: Clear labels) */
+        .clock-city {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: var(--space-sm);
+        }
+
+        /* CLOCK TIME (Typography - T: Display hierarchy) */
+        .clock-time {
+            font-size: calc(var(--font-size-display) * 1.2);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-xs);
+        }
+
+        /* CLOCK DATE (Typography - T: Supporting text) */
+        .clock-date {
+            font-size: var(--font-size-small);
+            color: var(--color-text-secondary);
+            font-weight: 400;
+        }
+
+        /* FOOTER (Visual Harmony - V: Grounded base) */
+        .footer {
+            padding: var(--space-md) var(--space-lg);
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(99, 179, 237, 0.1);
+        }
+
+        /* STATUS (Color Theory - C: Contextual colors) */
+        .status {
+            font-size: var(--font-size-small);
+            color: var(--color-text-secondary);
+            text-align: center;
+            /* Motion - M: Pulse animation for loading */
+            animation: pulse 2s var(--ease-in-out) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .status.loaded {
+            animation: none;
+            opacity: 0.7;
+        }
+
+        /* RESPONSIVE (Wisdom - W: Adaptive design) */
+        @media (max-width: 640px) {
+            .clock-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .title {
+                font-size: var(--font-size-xl);
+            }
+        }
+
+        /* ACCESSIBILITY (Justice - J: Inclusive design) */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">World Clock</h1>
+            <p class="subtitle">Time Across the Globe</p>
+        </header>
+
+        <main class="main">
+            <div class="clock-grid" id="clockGrid">
+                <!-- Clocks will be dynamically generated -->
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="status" id="status">Loading timezones...</div>
+        </footer>
+    </div>
+    <script>
+        /**
+         * BEAUTIFUL WORLD CLOCK - Phase 3 + Beauty Integration
+         *
+         * Technical Excellence (LJPW):
+         * - Love: Comprehensive documentation and logging
+         * - Justice: Validation and error handling
+         * - Power: Efficient rendering and updates
+         * - Wisdom: Modular architecture
+         *
+         * Aesthetic Excellence (Beauty):
+         * - Motion: Smooth transitions and animations
+         * - Visual: Clean, balanced interface
+         * - Color: Harmonious palette
+         * - Typography: Clear hierarchy
+         */
+
+        // ============================================
+        // LOGGING SYSTEM (Love - L: Observability)
+        // ============================================
+
+        /**
+         * Centralized logging system for observability.
+         *
+         * Phase 3 insight: Ecosystem lacks logging (L=0.225)
+         * Our target: L>0.45 through comprehensive logging
+         *
+         * @param {string} level - Log level (debug, info, warn, error)
+         * @param {string} message - Log message
+         * @param {Object} data - Additional context
+         */
+        function log(level, message, data = {}) {
+            const timestamp = new Date().toISOString();
+            const logEntry = {
+                timestamp,
+                level,
+                message,
+                ...data
+            };
+
+            if (level === 'error') {
+                console.error(`[${timestamp}] ${message}`, data);
+            } else if (level === 'warn') {
+                console.warn(`[${timestamp}] ${message}`, data);
+            } else {
+                console.log(`[${timestamp}] ${message}`, data);
+            }
+        }
+
+        // ============================================
+        // STATUS SYSTEM (Love - L: User Feedback)
+        // ============================================
+
+        /**
+         * Update status display with smooth transition.
+         *
+         * Beauty (M): Smooth fade transitions
+         * Love (L): Clear user feedback
+         *
+         * @param {string} message - Status message to display
+         */
+        function updateStatus(message) {
+            log('debug', 'Updating status', { message });
+
+            const statusElement = document.getElementById('status');
+            if (!statusElement) {
+                log('warn', 'Status element not found');
+                return;
+            }
+
+            // Beauty (M): Smooth fade transition
+            statusElement.style.transition = 'opacity 0.3s ease';
+            statusElement.style.opacity = '0';
+
+            setTimeout(() => {
+                statusElement.textContent = message;
+                statusElement.classList.add('loaded');
+                statusElement.style.opacity = '1';
+            }, 300);
+        }
+
+        // ============================================
+        // ERROR HANDLING (Justice - J: Correctness)
+        // ============================================
+
+        /**
+         * Display error message to user.
+         *
+         * Justice (J): Clear error communication
+         * Love (L): User-friendly messaging
+         *
+         * @param {string} message - Error message
+         */
+        function displayError(message) {
+            log('error', 'Displaying error to user', { message });
+            updateStatus(`⚠️ ${message}`);
+        }
+
+        // ============================================
+        // TIMEZONE DATA (Wisdom - W: Organized data)
+        // ============================================
+
+        /**
+         * World cities with their timezones.
+         *
+         * Wisdom (W): Well-organized data structure
+         *
+         * @type {Array<{city: string, timezone: string}>}
+         */
+        const WORLD_CITIES = [
+            { city: 'New York', timezone: 'America/New_York' },
+            { city: 'London', timezone: 'Europe/London' },
+            { city: 'Tokyo', timezone: 'Asia/Tokyo' },
+            { city: 'Sydney', timezone: 'Australia/Sydney' },
+            { city: 'Dubai', timezone: 'Asia/Dubai' },
+            { city: 'Los Angeles', timezone: 'America/Los_Angeles' },
+        ];
+
+        // ============================================
+        // VALIDATION (Justice - J: Input correctness)
+        // ============================================
+
+        /**
+         * Validate timezone string.
+         *
+         * Phase 3 insight: Ecosystem lacks validation (J=0.252)
+         * Our target: J>0.50 through comprehensive validation
+         *
+         * @param {string} timezone - Timezone identifier
+         * @returns {boolean} True if valid
+         * @throws {TypeError} If timezone is invalid type
+         */
+        function validateTimezone(timezone) {
+            if (typeof timezone !== 'string') {
+                throw new TypeError(`Timezone must be string, got ${typeof timezone}`);
+            }
+
+            if (timezone.length === 0) {
+                throw new Error('Timezone cannot be empty');
+            }
+
+            // Justice (J): Format validation
+            if (!/^[A-Z][a-z]+\/[A-Z][a-z_]+$/.test(timezone)) {
+                log('warn', 'Timezone format may be invalid', { timezone });
+            }
+
+            return true;
+        }
+
+        // ============================================
+        // TIME FORMATTING (Power - P: Efficiency)
+        // ============================================
+
+        /**
+         * Format time for display with error handling.
+         *
+         * Power (P): Efficient formatting
+         * Justice (J): Error handling
+         *
+         * @param {Date} date - Date object
+         * @param {string} timezone - Timezone identifier
+         * @returns {{time: string, date: string}} Formatted strings
+         */
+        function formatTime(date, timezone) {
+            try {
+                // Justice (J): Validate inputs
+                if (!(date instanceof Date)) {
+                    throw new TypeError('date must be Date instance');
+                }
+                validateTimezone(timezone);
+
+                // Power (P): Efficient formatting with Intl API
+                const timeFormatter = new Intl.DateTimeFormat('en-US', {
+                    timeZone: timezone,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false,
+                });
+
+                const dateFormatter = new Intl.DateTimeFormat('en-US', {
+                    timeZone: timezone,
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                });
+
+                return {
+                    time: timeFormatter.format(date),
+                    date: dateFormatter.format(date),
+                };
+
+            } catch (error) {
+                log('error', 'Time formatting failed', {
+                    error: error.message,
+                    timezone,
+                });
+                throw error;
+            }
+        }
+
+        // ============================================
+        // CLOCK RENDERING (Wisdom - W: Modularity)
+        // ============================================
+
+        /**
+         * Create clock card element with beautiful styling.
+         *
+         * Wisdom (W): Modular component creation
+         * Beauty (V): Clean structure
+         *
+         * @param {string} city - City name
+         * @param {string} time - Formatted time
+         * @param {string} date - Formatted date
+         * @returns {HTMLElement} Clock card element
+         */
+        function createClockCard(city, time, date) {
+            log('debug', 'Creating clock card', { city });
+
+            const card = document.createElement('div');
+            card.className = 'clock-card';
+
+            // Beauty (V): Semantic structure
+            card.innerHTML = `
+                <div class="clock-city">${city}</div>
+                <div class="clock-time">${time}</div>
+                <div class="clock-date">${date}</div>
+            `;
+
+            return card;
+        }
+
+        // ============================================
+        // UPDATE SYSTEM (Power - P: Efficiency)
+        // ============================================
+
+        /**
+         * Update all clocks with current time.
+         *
+         * Power (P): Efficient batch updates
+         * Love (L): Logging for observability
+         * Justice (J): Error handling
+         */
+        function updateClocks() {
+            try {
+                log('debug', 'Updating all clocks');
+
+                const now = new Date();
+                const grid = document.getElementById('clockGrid');
+
+                // Justice (J): Validate grid element exists
+                if (!grid) {
+                    throw new Error('Clock grid element not found');
+                }
+
+                // Power (P): Efficient DOM update (batch)
+                grid.innerHTML = '';
+
+                // Wisdom (W): Process each city
+                WORLD_CITIES.forEach(({ city, timezone }) => {
+                    try {
+                        const { time, date } = formatTime(now, timezone);
+                        const card = createClockCard(city, time, date);
+                        grid.appendChild(card);
+
+                    } catch (error) {
+                        log('error', 'Failed to create clock', {
+                            city,
+                            timezone,
+                            error: error.message,
+                        });
+                        // Justice (J): Graceful degradation
+                        const errorCard = createClockCard(
+                            city,
+                            '--:--:--',
+                            'Error loading time'
+                        );
+                        grid.appendChild(errorCard);
+                    }
+                });
+
+                log('info', 'Clocks updated successfully', {
+                    count: WORLD_CITIES.length,
+                });
+
+            } catch (error) {
+                log('error', 'Clock update failed', {
+                    error: error.message,
+                });
+                displayError('Failed to update clocks');
+            }
+        }
+
+        // ============================================
+        // INITIALIZATION (Wisdom - W: Clean startup)
+        // ============================================
+
+        /**
+         * Initialize world clock application.
+         *
+         * Wisdom (W): Clean initialization
+         * Love (L): Clear feedback
+         * Justice (J): Error handling
+         */
+        function initialize() {
+            try {
+                log('info', 'Initializing World Clock application');
+
+                // Initial render
+                updateClocks();
+
+                // Power (P): Efficient updates (1 second interval)
+                setInterval(updateClocks, 1000);
+
+                // Love (L): User feedback
+                updateStatus('🌍 Live updates every second');
+
+                log('info', 'World Clock initialized successfully');
+
+            } catch (error) {
+                log('error', 'Initialization failed', {
+                    error: error.message,
+                    stack: error.stack,
+                });
+                displayError('Failed to initialize application');
+            }
+        }
+
+        // ============================================
+        // START APPLICATION
+        // ============================================
+
+        // Wisdom (W): Wait for DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initialize);
+        } else {
+            initialize();
+        }
+
+    </script>
+</body>
+</html>

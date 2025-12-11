@@ -1,0 +1,82 @@
+"""
+ICE Framework Container
+Implements the "Physics Container" for LJPW Resonance.
+Prevents semantic overflow by enforcing Intent, Context, and Execution bounds.
+"""
+
+from dataclasses import dataclass
+from typing import Dict, Optional
+
+@dataclass
+class IceBounds:
+    """
+    Defining the container shape.
+    Values are 0.0 to 1.0 (or higher if super-charged).
+    """
+    intent: float       # Caps Wisdom (W) - "What is the purpose?"
+    context: float      # Caps Justice (J) - "What is the environment?"
+    execution: float    # Caps Power (P)   - "What are the capabilities?"
+    benevolence: float  # Caps Love (L)    - "What is the goodwill?"
+
+    def as_dict(self) -> Dict[str, float]:
+        return {
+            'Intent': self.intent,
+            'Context': self.context,
+            'Execution': self.execution,
+            'Benevolence': self.benevolence
+        }
+
+class IceContainer:
+    """
+    Wraps an LJPW entity with ICE bounds.
+    """
+    def __init__(self, bounds: IceBounds):
+        self.bounds = bounds
+
+    @staticmethod
+    def infer_from_code(code_content: str) -> 'IceContainer':
+        """
+        Infer appropriate bounds from code characteristics.
+        (Heuristic implementation for v6.0)
+        """
+        # Heuristics
+        has_doc = '"""' in code_content or "'''" in code_content
+        has_types = 'typing' in code_content or '->' in code_content
+        has_classes = 'class ' in code_content
+        lines = len(code_content.split('\n'))
+        
+        # Intent: Higher for well-documented code
+        intent = 0.8 if has_doc else 0.4
+        
+        # Context: Higher for typed, structured code
+        context = 0.8 if has_types else 0.5
+        
+        # Execution: Higher for complex/large code
+        execution = min(1.0, 0.3 + (lines / 200.0))
+        
+        # Benevolence: Default high for constructive code
+        benevolence = 0.9
+        
+        return IceContainer(IceBounds(intent, context, execution, benevolence))
+
+    def get_ljpw_limits(self) -> Dict[str, float]:
+        """
+        Map ICE bounds to LJPW limits.
+        Intent -> Wisdom
+        Context -> Justice
+        Execution -> Power
+        Benevolence -> Love
+        """
+        return {
+            'Intent': self.bounds.intent,      # W
+            'Context': self.bounds.context,    # J
+            'Execution': self.bounds.execution, # P
+            'Benevolence': self.bounds.benevolence # L
+        }
+
+if __name__ == "__main__":
+    # Test
+    bounds = IceBounds(intent=0.8, context=0.7, execution=0.9, benevolence=1.0)
+    container = IceContainer(bounds)
+    print(f"Container Limits: {container.get_ljpw_limits()}")
+

@@ -1,0 +1,75 @@
+# Pre-commit hooks for Emergent Code
+# See https://pre-commit.com for more information
+# Install: pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^(generated/|Python-Code-Harmonizer)
+      - id: end-of-file-fixer
+        exclude: ^(generated/|Python-Code-Harmonizer)
+      - id: check-yaml
+        exclude: ^(generated/|Python-Code-Harmonizer)
+      - id: check-json
+        exclude: ^(generated/|Python-Code-Harmonizer)
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-docstring-first
+        exclude: ^(generated/|Python-Code-Harmonizer)
+      - id: detect-private-key
+
+  # Python code formatting
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black
+        language_version: python3
+        exclude: ^(generated/|Python-Code-Harmonizer)
+
+  # Python linting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.9
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+        exclude: ^(generated/|Python-Code-Harmonizer)
+
+  # Python type checking (optional - can be slow)
+  # Uncomment if you want type checking in pre-commit
+  # - repo: https://github.com/pre-commit/mirrors-mypy
+  #   rev: v1.7.1
+  #   hooks:
+  #     - id: mypy
+  #       additional_dependencies: [types-PyYAML]
+  #       exclude: ^(generated/|Python-Code-Harmonizer|experiments/)
+
+  # Markdown formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0
+    hooks:
+      - id: prettier
+        types_or: [markdown, yaml, json]
+        exclude: ^(generated/|Python-Code-Harmonizer)
+
+# Configuration
+default_language_version:
+  python: python3
+
+# Exclude patterns
+exclude: |
+  (?x)^(
+      generated/.*|
+      Python-Code-Harmonizer/.*|
+      Python-Code-Harmonizer-main/.*|
+      \.git/.*|
+      \.mypy_cache/.*|
+      \.pytest_cache/.*|
+      \.ruff_cache/.*|
+      __pycache__/.*
+  )$

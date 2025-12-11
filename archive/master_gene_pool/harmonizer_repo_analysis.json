@@ -1,0 +1,646 @@
+[
+  {
+    "file": "harmonizer_repo\\check_harmony.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.13
+    ],
+    "genome": "L9J8P0W1",
+    "dist_to_ne": 1.0486925611374383,
+    "dist_to_anchor": 1.3385284859819009,
+    "health": 47.565371943128085,
+    "loc": 95
+  },
+  {
+    "file": "harmonizer_repo\\examples\\demo_ljpw_v4.py",
+    "coords": [
+      0.54,
+      0.828428,
+      0.0,
+      0.08
+    ],
+    "genome": "L5J8P0W1",
+    "dist_to_ne": 1.0339862509646827,
+    "dist_to_anchor": 1.444796508572747,
+    "health": 48.30068745176587,
+    "loc": 101
+  },
+  {
+    "file": "harmonizer_repo\\examples\\demo_semantic_naming.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.38
+    ],
+    "genome": "L9J8P0W4",
+    "dist_to_ne": 0.9384860615826961,
+    "dist_to_anchor": 1.191284394166649,
+    "health": 53.0756969208652,
+    "loc": 243
+  },
+  {
+    "file": "harmonizer_repo\\examples\\demo_v2.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.38
+    ],
+    "genome": "L9J8P0W4",
+    "dist_to_ne": 0.9384860615826961,
+    "dist_to_anchor": 1.191284394166649,
+    "health": 53.0756969208652,
+    "loc": 145
+  },
+  {
+    "file": "harmonizer_repo\\examples\\disharmonious_class_method.py",
+    "coords": [
+      0.11699999999999999,
+      0.5694,
+      0.0,
+      0.1014
+    ],
+    "genome": "L1J6P0W1",
+    "dist_to_ne": 1.0680190635002729,
+    "dist_to_anchor": 1.6651088012499364,
+    "health": 46.59904682498636,
+    "loc": 25
+  },
+  {
+    "file": "harmonizer_repo\\examples\\realistic_code_samples.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.8619384,
+      0.9010910999999999
+    ],
+    "genome": "L9J8P9W9",
+    "dist_to_ne": 0.5755721124922315,
+    "dist_to_anchor": 0.25219532842376363,
+    "health": 71.22139437538843,
+    "loc": 293
+  },
+  {
+    "file": "harmonizer_repo\\examples\\real_world_bugs.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.9010910999999999
+    ],
+    "genome": "L9J8P0W9",
+    "dist_to_ne": 0.9088943798287071,
+    "dist_to_anchor": 1.0220281201044372,
+    "health": 54.555281008564634,
+    "loc": 436
+  },
+  {
+    "file": "harmonizer_repo\\examples\\refactoring_journey.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.8619384,
+      0.9010910999999999
+    ],
+    "genome": "L9J8P9W9",
+    "dist_to_ne": 0.5755721124922315,
+    "dist_to_anchor": 0.25219532842376363,
+    "health": 71.22139437538843,
+    "loc": 679
+  },
+  {
+    "file": "harmonizer_repo\\examples\\severity_levels.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.8619384,
+      0.9010910999999999
+    ],
+    "genome": "L9J8P9W9",
+    "dist_to_ne": 0.5755721124922315,
+    "dist_to_anchor": 0.25219532842376363,
+    "health": 71.22139437538843,
+    "loc": 781
+  },
+  {
+    "file": "harmonizer_repo\\examples\\test_code.py",
+    "coords": [
+      0.6,
+      0.828428,
+      0.0,
+      0.28
+    ],
+    "genome": "L6J8P0W3",
+    "dist_to_ne": 0.9263733411449188,
+    "dist_to_anchor": 1.3068423589645386,
+    "health": 53.681332942754054,
+    "loc": 57
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\ast_semantic_parser.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.9010910999999999
+    ],
+    "genome": "L9J8P0W9",
+    "dist_to_ne": 0.9088943798287071,
+    "dist_to_anchor": 1.0220281201044372,
+    "health": 54.555281008564634,
+    "loc": 207
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\ast_semantic_parser_v2.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.9010910999999999
+    ],
+    "genome": "L9J8P0W9",
+    "dist_to_ne": 0.9088943798287071,
+    "dist_to_anchor": 1.0220281201044372,
+    "health": 54.555281008564634,
+    "loc": 373
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\config.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.3,
+      0.35
+    ],
+    "genome": "L9J8P3W4",
+    "dist_to_ne": 0.7480882887634319,
+    "dist_to_anchor": 0.9732720625729477,
+    "health": 62.5955855618284,
+    "loc": 117
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\dependency_engine.py",
+    "coords": [
+      0.44999999999999996,
+      0.828428,
+      0.0,
+      0.9010910999999999
+    ],
+    "genome": "L4J8P0W9",
+    "dist_to_ne": 0.8710915411615533,
+    "dist_to_anchor": 1.1583263450699937,
+    "health": 56.44542294192234,
+    "loc": 103
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\divine_invitation_engine_V2.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.8619384,
+      0.9010910999999999
+    ],
+    "genome": "L9J8P9W9",
+    "dist_to_ne": 0.5755721124922315,
+    "dist_to_anchor": 0.25219532842376363,
+    "health": 71.22139437538843,
+    "loc": 1068
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\legacy_mapper.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.8619384,
+      0.9010910999999999
+    ],
+    "genome": "L9J8P9W9",
+    "dist_to_ne": 0.5755721124922315,
+    "dist_to_anchor": 0.25219532842376363,
+    "health": 71.22139437538843,
+    "loc": 1633
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\ljpw_baselines.py",
+    "coords": [
+      0.6599999999999999,
+      0.828428,
+      0.0,
+      0.9010910999999999
+    ],
+    "genome": "L7J8P0W9",
+    "dist_to_ne": 0.8557689367365527,
+    "dist_to_anchor": 1.0746254797291985,
+    "health": 57.21155316317237,
+    "loc": 554
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\main.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.75,
+      0.9010910999999999
+    ],
+    "genome": "L9J8P8W9",
+    "dist_to_ne": 0.558201570836387,
+    "dist_to_anchor": 0.3271719399401636,
+    "health": 72.08992145818065,
+    "loc": 526
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\programming_constructs_vocabulary.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.44999999999999996,
+      0.33000000000000007
+    ],
+    "genome": "L9J8P4W3",
+    "dist_to_ne": 0.6861895421711117,
+    "dist_to_anchor": 0.8866558000627978,
+    "health": 65.69052289144442,
+    "loc": 409
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\refactorer.py",
+    "coords": [
+      0.75,
+      0.828428,
+      0.0,
+      0.53
+    ],
+    "genome": "L8J8P0W5",
+    "dist_to_ne": 0.8551418403890667,
+    "dist_to_anchor": 1.1457909718548143,
+    "health": 57.24290798054666,
+    "loc": 129
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\semantic_map.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.5800000000000001
+    ],
+    "genome": "L9J8P0W6",
+    "dist_to_ne": 0.89193950903915,
+    "dist_to_anchor": 1.1005264684617992,
+    "health": 55.4030245480425,
+    "loc": 294
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\semantic_naming.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.8619384,
+      0.48
+    ],
+    "genome": "L9J8P9W5",
+    "dist_to_ne": 0.5773650065422739,
+    "dist_to_anchor": 0.5694027688548414,
+    "health": 71.13174967288631,
+    "loc": 456
+  },
+  {
+    "file": "harmonizer_repo\\harmonizer\\visualizer.py",
+    "coords": [
+      0.3,
+      0.828428,
+      0.0,
+      0.28
+    ],
+    "genome": "L3J8P0W3",
+    "dist_to_ne": 0.9792688942185389,
+    "dist_to_anchor": 1.4275282663345057,
+    "health": 51.03655528907305,
+    "loc": 411
+  },
+  {
+    "file": "harmonizer_repo\\scripts\\anchor_analysis_V2.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.15,
+      0.13
+    ],
+    "genome": "L9J8P2W1",
+    "dist_to_ne": 0.9522899179267834,
+    "dist_to_anchor": 1.2305114821833236,
+    "health": 52.38550410366083,
+    "loc": 194
+  },
+  {
+    "file": "harmonizer_repo\\scripts\\run_validation.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.13
+    ],
+    "genome": "L9J8P0W1",
+    "dist_to_ne": 1.0486925611374383,
+    "dist_to_anchor": 1.3385284859819009,
+    "health": 47.565371943128085,
+    "loc": 163
+  },
+  {
+    "file": "harmonizer_repo\\scripts\\verify_tech_debt.py",
+    "coords": [
+      0.87,
+      0.828428,
+      0.0,
+      0.08
+    ],
+    "genome": "L9J8P0W1",
+    "dist_to_ne": 1.061389451230791,
+    "dist_to_anchor": 1.3757677678968934,
+    "health": 46.930527438460445,
+    "loc": 68
+  },
+  {
+    "file": "harmonizer_repo\\tests\\conftest.py",
+    "coords": [
+      0.0,
+      0.0,
+      0.0,
+      0.0464
+    ],
+    "genome": "L0J0P0W0",
+    "dist_to_ne": 1.219399671969777,
+    "dist_to_anchor": 1.977208375462738,
+    "health": 39.03001640151115,
+    "loc": 11
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_engine.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.3,
+      0.6300000000000001
+    ],
+    "genome": "L9J8P3W6",
+    "dist_to_ne": 0.667799436795959,
+    "dist_to_anchor": 0.8134239409957146,
+    "health": 66.61002816020205,
+    "loc": 130
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_enhanced_parser.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.44999999999999996,
+      0.9010910999999999
+    ],
+    "genome": "L9J8P4W9",
+    "dist_to_ne": 0.6183760940432691,
+    "dist_to_anchor": 0.5891022647080981,
+    "health": 69.08119529783654,
+    "loc": 389
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_example.py",
+    "coords": [
+      0.48,
+      0.828428,
+      0.0,
+      0.28
+    ],
+    "genome": "L5J8P0W3",
+    "dist_to_ne": 0.9364227502490529,
+    "dist_to_anchor": 1.3484201686358743,
+    "health": 53.17886248754735,
+    "loc": 40
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_harmonizer.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.68
+    ],
+    "genome": "L9J8P0W7",
+    "dist_to_ne": 0.8848480591519654,
+    "dist_to_anchor": 1.0663763443479979,
+    "health": 55.75759704240173,
+    "loc": 155
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_harmonizer_enhanced.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.8619384,
+      0.48
+    ],
+    "genome": "L9J8P9W5",
+    "dist_to_ne": 0.5773650065422739,
+    "dist_to_anchor": 0.5694027688548414,
+    "health": 71.13174967288631,
+    "loc": 199
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_language_semantics.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.15,
+      0.48
+    ],
+    "genome": "L9J8P2W5",
+    "dist_to_ne": 0.7970295400955977,
+    "dist_to_anchor": 1.0137349297449507,
+    "health": 60.14852299522011,
+    "loc": 432
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_legacy_mapper.py",
+    "coords": [
+      0.44999999999999996,
+      0.828428,
+      0.0,
+      0.13
+    ],
+    "genome": "L4J8P0W1",
+    "dist_to_ne": 1.0161041123743177,
+    "dist_to_anchor": 1.4452809246592857,
+    "health": 49.19479438128411,
+    "loc": 87
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_ljpw_baselines.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.9010910999999999
+    ],
+    "genome": "L9J8P0W9",
+    "dist_to_ne": 0.9088943798287071,
+    "dist_to_anchor": 1.0220281201044372,
+    "health": 54.555281008564634,
+    "loc": 322
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_mixing_formula.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.38
+    ],
+    "genome": "L9J8P0W4",
+    "dist_to_ne": 0.9384860615826961,
+    "dist_to_anchor": 1.191284394166649,
+    "health": 53.0756969208652,
+    "loc": 342
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_parser.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.53
+    ],
+    "genome": "L9J8P0W5",
+    "dist_to_ne": 0.8996421998689257,
+    "dist_to_anchor": 1.1205616929848172,
+    "health": 55.01789000655371,
+    "loc": 110
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_primitives.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.08
+    ],
+    "genome": "L9J8P0W1",
+    "dist_to_ne": 1.0763624332839752,
+    "dist_to_anchor": 1.3715533193372396,
+    "health": 46.181878335801244,
+    "loc": 107
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_refactorer.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.5800000000000001
+    ],
+    "genome": "L9J8P0W6",
+    "dist_to_ne": 0.89193950903915,
+    "dist_to_anchor": 1.1005264684617992,
+    "health": 55.4030245480425,
+    "loc": 104
+  },
+  {
+    "file": "harmonizer_repo\\tests\\test_semantic_naming.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.6,
+      0.9010910999999999
+    ],
+    "genome": "L9J8P6W9",
+    "dist_to_ne": 0.5696393540514999,
+    "dist_to_anchor": 0.4522626209230761,
+    "health": 71.51803229742501,
+    "loc": 385
+  },
+  {
+    "file": "harmonizer_repo\\tests\\user_validation\\complex_clean.py",
+    "coords": [
+      0.459,
+      0.828428,
+      0.0,
+      0.342
+    ],
+    "genome": "L5J8P0W3",
+    "dist_to_ne": 0.9141972255394346,
+    "dist_to_anchor": 1.3247950600692924,
+    "health": 54.29013872302827,
+    "loc": 31
+  },
+  {
+    "file": "harmonizer_repo\\tests\\user_validation\\complex_god.py",
+    "coords": [
+      0.0,
+      0.828428,
+      0.0,
+      0.43000000000000005
+    ],
+    "genome": "L0J8P0W4",
+    "dist_to_ne": 1.0669430946325114,
+    "dist_to_anchor": 1.5343848771361115,
+    "health": 46.652845268374435,
+    "loc": 44
+  },
+  {
+    "file": "harmonizer_repo\\tests\\user_validation\\complex_spaghetti.py",
+    "coords": [
+      0.927051,
+      0.828428,
+      0.0,
+      0.38
+    ],
+    "genome": "L9J8P0W4",
+    "dist_to_ne": 0.9384860615826961,
+    "dist_to_anchor": 1.191284394166649,
+    "health": 53.0756969208652,
+    "loc": 37
+  },
+  {
+    "file": "harmonizer_repo\\tests\\user_validation\\simple_data.py",
+    "coords": [
+      0.0,
+      0.3136,
+      0.0,
+      0.11520000000000001
+    ],
+    "genome": "L0J3P0W1",
+    "dist_to_ne": 1.1141727873180174,
+    "dist_to_anchor": 1.8038891318481853,
+    "health": 44.29136063409913,
+    "loc": 9
+  },
+  {
+    "file": "harmonizer_repo\\tests\\user_validation\\simple_hello.py",
+    "coords": [
+      0.0,
+      0.279,
+      0.0,
+      0.0806
+    ],
+    "genome": "L0J3P0W1",
+    "dist_to_ne": 1.1360927602973272,
+    "dist_to_anchor": 1.8344310725671868,
+    "health": 43.19536198513364,
+    "loc": 9
+  },
+  {
+    "file": "harmonizer_repo\\tests\\user_validation\\simple_math.py",
+    "coords": [
+      0.0,
+      0.44200000000000006,
+      0.0,
+      0.12240000000000001
+    ],
+    "genome": "L0J4P0W1",
+    "dist_to_ne": 1.1062623377843068,
+    "dist_to_anchor": 1.7554332114894033,
+    "health": 44.686883110784656,
+    "loc": 14
+  }
+]

@@ -1,0 +1,3 @@
+"""
+LJPW Quantum Linguistics Package
+"""

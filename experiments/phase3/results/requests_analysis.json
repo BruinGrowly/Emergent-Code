@@ -1,0 +1,185 @@
+{
+  "library_name": "requests",
+  "repository_url": "https://github.com/psf/requests",
+  "total_files": 35,
+  "total_lines": 8412,
+  "overall_harmony": 0.28448919394659494,
+  "dimension_averages": {
+    "Love": 0.19237811369091457,
+    "Justice": 0.29912892735841173,
+    "Power": 0.3912439718837127,
+    "Wisdom": 0.3635371184514847
+  },
+  "complexity_stats": {
+    "average": 2.2124218153678776,
+    "max": 6.5,
+    "min": 0.0
+  },
+  "coupling_stats": {
+    "average": 0.2842857142857142,
+    "max": 1.0,
+    "min": 0.0
+  },
+  "cohesion_stats": {
+    "average": 0.10187237507205486,
+    "max": 0.8701754385964913,
+    "min": 0.0
+  },
+  "recommendations": [
+    "\ud83c\udfaf PRIORITY: Improve observability - Love is critically low. Add docstrings to public APIs and logging to critical paths.",
+    "\u2705 Low Complexity: Average complexity under 5 - maintainable code!"
+  ],
+  "top_files": [
+    {
+      "file_path": "/tmp/ljpw_requests_laaypl27/src/requests/help.py",
+      "lines_of_code": 112,
+      "harmony": 0.40380322595055795,
+      "love": 0.32172619047619044,
+      "justice": 0.39722222222222225,
+      "power": 0.5638888888888889,
+      "wisdom": 0.3689484126984127,
+      "complexity_avg": 4.0,
+      "coupling_score": 0.5,
+      "cohesion_avg": 0.0,
+      "issues": []
+    },
+    {
+      "file_path": "/tmp/ljpw_requests_laaypl27/src/requests/adapters.py",
+      "lines_of_code": 572,
+      "harmony": 0.39035731368338245,
+      "love": 0.3248546085100707,
+      "justice": 0.45441176470588235,
+      "power": 0.451609477124183,
+      "wisdom": 0.3482953181272509,
+      "complexity_avg": 4.176470588235294,
+      "coupling_score": 0.6,
+      "cohesion_avg": 0.40476190476190477,
+      "issues": []
+    },
+    {
+      "file_path": "/tmp/ljpw_requests_laaypl27/src/requests/compat.py",
+      "lines_of_code": 68,
+      "harmony": 0.3837193853613737,
+      "love": 0.3,
+      "justice": 0.30000000000000004,
+      "power": 0.35,
+      "wisdom": 0.6882471264367815,
+      "complexity_avg": 4.0,
+      "coupling_score": 0.45,
+      "cohesion_avg": 0.0,
+      "issues": []
+    },
+    {
+      "file_path": "/tmp/ljpw_requests_laaypl27/src/requests/_internal_utils.py",
+      "lines_of_code": 40,
+      "harmony": 0.3761051053641776,
+      "love": 0.22499999999999998,
+      "justice": 0.45,
+      "power": 0.38749999999999996,
+      "wisdom": 0.51,
+      "complexity_avg": 2.5,
+      "coupling_score": 0.1,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_requests_laaypl27/tests/test_testserver.py",
+      "lines_of_code": 123,
+      "harmony": 0.37330020087025817,
+      "love": 0.2809754521963824,
+      "justice": 0.4402777777777779,
+      "power": 0.3638888888888889,
+      "wisdom": 0.431388888888889,
+      "complexity_avg": 3.5,
+      "coupling_score": 0.3,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Love: Add docstrings and logging"
+      ]
+    }
+  ],
+  "bottom_files": [
+    {
+      "file_path": "/tmp/ljpw_requests_laaypl27/docs/conf.py",
+      "lines_of_code": 77,
+      "harmony": 0.18283239503744156,
+      "love": 0.15,
+      "justice": 0.1,
+      "power": 0.325,
+      "wisdom": 0.2292123287671233,
+      "complexity_avg": 0.0,
+      "coupling_score": 0.15,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_requests_laaypl27/src/requests/__version__.py",
+      "lines_of_code": 10,
+      "harmony": 0.17920123171078603,
+      "love": 0.15,
+      "justice": 0.1,
+      "power": 0.25,
+      "wisdom": 0.275,
+      "complexity_avg": 0.0,
+      "coupling_score": 0.0,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_requests_laaypl27/src/requests/packages.py",
+      "lines_of_code": 15,
+      "harmony": 0.17670594215246976,
+      "love": 0.15,
+      "justice": 0.1,
+      "power": 0.25,
+      "wisdom": 0.26,
+      "complexity_avg": 0.0,
+      "coupling_score": 0.1,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_requests_laaypl27/src/requests/certs.py",
+      "lines_of_code": 12,
+      "harmony": 0.1725946722478677,
+      "love": 0.13269230769230766,
+      "justice": 0.1,
+      "power": 0.25,
+      "wisdom": 0.2675,
+      "complexity_avg": 0.0,
+      "coupling_score": 0.05,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    },
+    {
+      "file_path": "/tmp/ljpw_requests_laaypl27/setup.py",
+      "lines_of_code": 95,
+      "harmony": 0.16040204943484274,
+      "love": 0.0904639175257732,
+      "justice": 0.1,
+      "power": 0.325,
+      "wisdom": 0.22515463917525774,
+      "complexity_avg": 0.0,
+      "coupling_score": 0.2,
+      "cohesion_avg": 0.0,
+      "issues": [
+        "Low Justice: Add error handling and validation",
+        "Low Love: Add docstrings and logging"
+      ]
+    }
+  ]
+}

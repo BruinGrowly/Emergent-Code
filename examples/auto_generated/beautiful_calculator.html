@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resonance Calculator</title>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.5);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --radius: 27px;
+            --anim-speed: 0.6s;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0f172a;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Background Orb for Aesthetics */
+        .orb {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--primary-gradient);
+            filter: blur(80px);
+            border-radius: 50%;
+            animation: float 10s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        .calculator {
+            position: relative;
+            z-index: 1;
+            background: var(--glass-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: var(--glass-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            width: 320px;
+            transition: transform 0.3s;
+        }
+        
+        .calculator:hover {
+            transform: translateY(-5px);
+        }
+
+        .display {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: calc(var(--radius) / 2);
+            border: none;
+            font-size: 2.5rem;
+            text-align: right;
+            padding: 1rem;
+            color: #1e293b;
+            box-sizing: border-box;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            padding: 15px;
+            border: none;
+            border-radius: calc(var(--radius) / 2);
+            font-size: 1.2rem;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.2s;
+            color: #334155;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        button.operator {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+        }
+
+        button.equals {
+            background: var(--primary-gradient);
+            color: white;
+            grid-column: span 2;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        </style>
+</head>
+<body>
+    <div class="orb"></div>
+    <div class="calculator">
+        <input type="text" class="display" readonly>
+        <div class="buttons">
+            <button class="operator">C</button>
+            <button class="operator">/</button>
+            <button class="operator">*</button>
+            <button class="operator">-</button>
+            
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="operator">+</button>
+            
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>.</button>
+            
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button class="equals">=</button>
+            
+            <button style="grid-column: span 2">0</button>
+        </div>
+    </div>
+    <script>
+        const display = document.querySelector('.display');
+        const buttons = document.querySelectorAll('button');
+        
+        
+            // Power: Keyboard Support
+            document.addEventListener('keydown', (e) => {
+                const key = e.key;
+                const map = {'Enter': '=', 'Escape': 'C', 'Backspace': 'C'};
+                const target = map[key] || key;
+                
+                // Find button with matching text
+                const btn = Array.from(buttons).find(b => b.innerText === target);
+                
+                if (btn) {
+                    btn.click();
+                    // Love: Visual feedback on keypress
+                    btn.style.transform = 'scale(0.95)';
+                    setTimeout(() => btn.style.transform = '', 100);
+                }
+            });
+            
+        
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const value = btn.innerText;
+                const current = display.value;
+                const lastChar = current[current.length - 1];
+
+                if (value === 'C') {
+                    display.value = '';
+                } else if (value === '=') {
+                    try {
+                        // Power: Execution
+                        display.value = eval(current);
+                    } catch (e) {
+                        // Love: Friendly Error
+                        display.value = 'Oops!';
+                        setTimeout(() => display.value = '', 1000);
+                    }
+                } else {
+                    
+            // Justice: Validation
+            if (['+', '-', '*', '/'].includes(lastChar) && ['+', '-', '*', '/'].includes(value)) {
+                return; // Prevent double operators
+            }
+            
+                    display.value += value;
+                }
+            });
+        });
+        </script>
+</body>
+</html>
