@@ -2,11 +2,11 @@
 
 **Intent:** Level 4 upgrade: Improve P dimension in bicameral_bridge.py
 
-**Original Harmony:** 0.5925
+**Original Harmony:** 0.5963
 
 # RESONANCE BLUEPRINT (v6.0)
 # Intent: Level 4 upgrade: Improve P dimension in bicameral_bridge.py
-# Context: Self-healing cycle, Current harmony: 0.592
+# Context: Self-healing cycle, Current harmony: 0.596
 
 # TARGET SEMANTIC PROFILE
 # Love (L):    0.900

@@ -31,6 +31,11 @@ class ResonanceGrower:
         Determine the target LJPW profile based on intent and context.
         Uses resonance to find the natural attractor.
         """
+        # Auto-healed validation for determine_target_profile
+        if not isinstance(intent, str) or not intent:
+            raise ValueError(f"intent must be a non-empty string, got {intent!r}")
+        if not isinstance(context, str) or not context:
+            raise ValueError(f"context must be a non-empty string, got {context!r}")
         # Auto-healed: Input validation for determine_target_profile
         if intent is not None and not isinstance(intent, str):
             raise TypeError(f'intent must be str, got {type(intent).__name__}')

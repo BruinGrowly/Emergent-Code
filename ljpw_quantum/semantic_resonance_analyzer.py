@@ -31,6 +31,9 @@ class SemanticResonanceAnalyzer:
         Ideally, this would use the full PythonCodeHarmonizer if available.
         For v6.0 demo, we use a robust heuristic based on 'deep_fractal_analysis.py'.
         """
+        # Auto-healed validation for _estimate_initial_ljpw
+        if not isinstance(code, str) or not code:
+            raise ValueError(f"code must be a non-empty string, got {code!r}")
         lines = code.split('\n')
         content = code
         total_lines = max(len(lines), 1)
