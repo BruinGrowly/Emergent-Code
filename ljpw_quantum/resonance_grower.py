@@ -27,15 +27,6 @@ class ResonanceGrower:
         self.engine = ResonanceEngine()
 
     def determine_target_profile(self, intent: str, context: str) -> Dict[str, float]:
-        # Auto-healed: Error handling for determine_target_profile
-        try:
-            pass  # Original body follows
-        except TypeError as e:
-            raise TypeError(f"Invalid argument in determine_target_profile: {e}") from e
-        except ValueError as e:
-            raise ValueError(f"Invalid value in determine_target_profile: {e}") from e
-        except Exception as e:
-            raise RuntimeError(f"Error in determine_target_profile: {e}") from e
         """
         Determine the target LJPW profile based on intent and context.
         Uses resonance to find the natural attractor.
@@ -122,15 +113,6 @@ class ResonanceGrower:
         return IceBounds(intent_bound, context_bound, exec_bound, benev_bound)
 
     def generate_blueprint(self, intent: str, context: str) -> str:
-        # Auto-healed: Error handling for generate_blueprint
-        try:
-            pass  # Original body follows
-        except TypeError as e:
-            raise TypeError(f"Invalid argument in generate_blueprint: {e}") from e
-        except ValueError as e:
-            raise ValueError(f"Invalid value in generate_blueprint: {e}") from e
-        except Exception as e:
-            raise RuntimeError(f"Error in generate_blueprint: {e}") from e
         """
         Generate a coding blueprint based on the resonance target.
         """

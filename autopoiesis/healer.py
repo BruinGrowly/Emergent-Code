@@ -120,9 +120,33 @@ class Healer:
                         stripped = lines[insert_idx].strip()
                         if stripped.startswith('"""') or stripped.startswith("'''"):
                             continue  # Already has docstring
+                    # Insert the code
+                    lines.insert(insert_idx, solution.code_to_insert)
                 
-                # Insert the code
-                lines.insert(insert_idx, solution.code_to_insert)
+                # Handle error_handling (body replacement)
+                elif solution.solution_type == 'error_handling':
+                    # Check if we have the required attributes for replacement
+                    if hasattr(solution, '_replace_end') and hasattr(solution, '_body_start'):
+                        body_start = solution._body_start
+                        replace_end = solution._replace_end
+                        
+                        # Replace the body lines with the wrapped version
+                        # Delete the old body
+                        del lines[body_start:replace_end]
+                        
+                        # Insert the wrapped body as a single string
+                        # Split it into lines to maintain the list structure
+                        wrapped_lines = solution.code_to_insert.splitlines(keepends=True)
+                        for i, line in enumerate(wrapped_lines):
+                            lines.insert(body_start + i, line)
+                    else:
+                        # Fallback: simple insert (old behavior)
+                        lines.insert(insert_idx, solution.code_to_insert)
+                
+                # Default: insert at position
+                else:
+                    lines.insert(insert_idx, solution.code_to_insert)
+                
                 solution.applied = True
                 applied_count += 1
                 self.solutions_applied.append(solution)
@@ -195,7 +219,7 @@ class Healer:
         return solutions
     
     def _heal_power(self, file_analysis: FileAnalysis) -> List[NovelSolution]:
-        """Generate Power (resilience) healing."""
+        """Generate Power (resilience) healing - proper function wrapping."""
         solutions = []
         
         for func in file_analysis.functions:
@@ -206,16 +230,73 @@ class Healer:
             if func.name.startswith('_'):
                 continue
             
-            wrapper = self._generate_error_wrapper(func)
-            solutions.append(NovelSolution(
-                target_file=file_analysis.path,
-                dimension='P',
-                function_name=func.name,
-                solution_type='error_handling',
-                code_to_insert=wrapper,
-                insertion_point=func.lineno,
-                rationale=f"Added error handling for complex function {func.name} (complexity={func.complexity})"
-            ))
+            # Read the actual function body
+            try:
+                with open(file_analysis.path, 'r', encoding='utf-8') as f:
+                    lines = f.readlines()
+                
+                # Find the function start and end
+                func_start = func.lineno - 1  # 0-indexed
+                func_end = func_start + func.body_lines
+                
+                if func_end > len(lines):
+                    func_end = len(lines)
+                
+                # Get the def line and body
+                def_line = lines[func_start]
+                
+                # Find where the body starts (skip def line, decorators, docstring)
+                body_start = func_start + 1
+                
+                # Skip docstring if present
+                if body_start < len(lines):
+                    check_line = lines[body_start].strip()
+                    if check_line.startswith('"""') or check_line.startswith("'''"):
+                        quote = check_line[:3]
+                        # Find end of docstring
+                        if check_line.count(quote) == 1:  # Multi-line docstring
+                            for i in range(body_start + 1, func_end):
+                                if quote in lines[i]:
+                                    body_start = i + 1
+                                    break
+                        else:  # Single-line docstring
+                            body_start += 1
+                
+                # Get the body lines
+                body_lines = lines[body_start:func_end]
+                if not body_lines:
+                    continue
+                
+                # Determine base indentation from first non-empty body line
+                base_indent = ""
+                for line in body_lines:
+                    if line.strip():
+                        base_indent = line[:len(line) - len(line.lstrip())]
+                        break
+                
+                if not base_indent:
+                    base_indent = "        "  # Default 8 spaces
+                
+                # Generate the wrapped body
+                wrapper = self._generate_wrapped_body(func, body_lines, base_indent)
+                
+                if wrapper:
+                    solutions.append(NovelSolution(
+                        target_file=file_analysis.path,
+                        dimension='P',
+                        function_name=func.name,
+                        solution_type='error_handling',
+                        code_to_insert=wrapper,
+                        insertion_point=body_start,  # Where to start replacement
+                        rationale=f"Wrapped {func.name} body with error handling (complexity={func.complexity})",
+                        # Store extra info for proper application
+                    ))
+                    # Store the end line for replacement
+                    solutions[-1]._replace_end = func_end
+                    solutions[-1]._body_start = body_start
+                    
+            except Exception:
+                continue
         
         return solutions
     
@@ -347,18 +428,35 @@ class Healer:
         
         return None
     
-    def _generate_error_wrapper(self, func: FunctionAnalysis) -> str:
-        """Generate try-except wrapper."""
-        return f'''        # Auto-healed: Error handling for {func.name}
-        try:
-            pass  # Original body follows
-        except TypeError as e:
-            raise TypeError(f"Invalid argument in {func.name}: {{e}}") from e
-        except ValueError as e:
-            raise ValueError(f"Invalid value in {func.name}: {{e}}") from e
-        except Exception as e:
-            raise RuntimeError(f"Error in {func.name}: {{e}}") from e
-'''
+    def _generate_wrapped_body(self, func: FunctionAnalysis, body_lines: List[str], base_indent: str) -> Optional[str]:
+        """Generate a properly wrapped function body with try-except."""
+        if not body_lines:
+            return None
+        
+        # Calculate one level of additional indentation
+        extra_indent = "    "
+        
+        result = []
+        result.append(f"{base_indent}# Auto-healed: Error handling wrapper for {func.name}\n")
+        result.append(f"{base_indent}try:\n")
+        
+        # Re-indent each body line
+        for line in body_lines:
+            if line.strip():  # Non-empty line
+                # Add extra indentation
+                result.append(extra_indent + line)
+            else:
+                result.append(line)  # Keep empty lines as-is
+        
+        # Add except blocks
+        result.append(f"{base_indent}except TypeError as e:\n")
+        result.append(f"{base_indent}    raise TypeError(f\"Type error in {func.name}: {{e}}\") from e\n")
+        result.append(f"{base_indent}except ValueError as e:\n")
+        result.append(f"{base_indent}    raise ValueError(f\"Value error in {func.name}: {{e}}\") from e\n")
+        result.append(f"{base_indent}except Exception as e:\n")
+        result.append(f"{base_indent}    raise RuntimeError(f\"Error in {func.name}: {{e}}\") from e\n")
+        
+        return ''.join(result)
     
     def _generate_logging_setup(self) -> str:
         """Generate logging infrastructure code."""
