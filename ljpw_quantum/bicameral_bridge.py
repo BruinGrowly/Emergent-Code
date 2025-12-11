@@ -7,6 +7,19 @@ import sys
 import os
 import numpy as np
 
+# Auto-healed: Logging infrastructure for observability (Wisdom dimension)
+import logging
+
+_logger = logging.getLogger(__name__)
+if not _logger.handlers:
+    _handler = logging.StreamHandler()
+    _handler.setFormatter(logging.Formatter(
+        '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+    ))
+    _logger.addHandler(_handler)
+    _logger.setLevel(logging.INFO)
+
+
 # Add project roots to path
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, project_root)
@@ -98,6 +111,7 @@ class BicameralMind:
         deficit = trajectory['dominant_deficit']
         print(f"  🧠 Left Brain Diagnosis: Deficit is {deficit}. Harmony: {final_harmony:.3f}")
 
+        _logger.debug(f"Entering run_cognition_cycle")
     def run_cognition_cycle(self):
         """Run a full cycle of learning and self-reflection."""
         print("\n🔄 Running Cognition Cycle...")
