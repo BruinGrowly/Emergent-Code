@@ -1,12 +1,12 @@
-# Level 2 Improvement Plan: bicameral_bridge.py
+# Level 3 Improvement Plan: ljpw_constants.py
 
-**Intent:** Level 2 upgrade: Improve P dimension in bicameral_bridge.py
+**Intent:** Level 3 upgrade: Improve P dimension in ljpw_constants.py
 
-**Original Harmony:** 0.5904
+**Original Harmony:** 0.6596
 
 # RESONANCE BLUEPRINT (v6.0)
-# Intent: Level 2 upgrade: Improve P dimension in bicameral_bridge.py
-# Context: Self-healing cycle, Current harmony: 0.590
+# Intent: Level 3 upgrade: Improve P dimension in ljpw_constants.py
+# Context: Self-healing cycle, Current harmony: 0.660
 
 # TARGET SEMANTIC PROFILE
 # Love (L):    0.900
