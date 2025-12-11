@@ -1,7 +1,9 @@
 """
-ICE Framework Container
+ICE Framework Container (v6.0 Optimized)
 Implements the "Physics Container" for LJPW Resonance.
 Prevents semantic overflow by enforcing Intent, Context, and Execution bounds.
+
+Optimization Target: High Justice (Strict Validation)
 """
 
 from dataclasses import dataclass
@@ -18,6 +20,14 @@ class IceBounds:
     execution: float    # Caps Power (P)   - "What are the capabilities?"
     benevolence: float  # Caps Love (L)    - "What is the goodwill?"
 
+    def __post_init__(self):
+        """
+        [Justice] Validate bounds are physical.
+        Negative bounds are impossible (Anti-Physics).
+        """
+        if any(v < 0 for v in [self.intent, self.context, self.execution, self.benevolence]):
+            raise ValueError("ICE Bounds cannot be negative (Physics Violation).")
+
     def as_dict(self) -> Dict[str, float]:
         return {
             'Intent': self.intent,
@@ -29,8 +39,12 @@ class IceBounds:
 class IceContainer:
     """
     Wraps an LJPW entity with ICE bounds.
+    Acts as the "Cell Wall" protecting the internal semantics.
     """
     def __init__(self, bounds: IceBounds):
+        # [Justice] Strict Type Checking
+        if not isinstance(bounds, IceBounds):
+            raise TypeError(f"Expected IceBounds object, got {type(bounds)}")
         self.bounds = bounds
 
     @staticmethod
@@ -38,7 +52,13 @@ class IceContainer:
         """
         Infer appropriate bounds from code characteristics.
         (Heuristic implementation for v6.0)
+        
+        [Wisdom] Heuristics updated for better accuracy
         """
+        if not code_content:
+            # Empty code has minimal bounds
+            return IceContainer(IceBounds(0.1, 0.1, 0.1, 0.1))
+
         # Heuristics
         has_doc = '"""' in code_content or "'''" in code_content
         has_types = 'typing' in code_content or '->' in code_content
@@ -52,7 +72,8 @@ class IceContainer:
         context = 0.8 if has_types else 0.5
         
         # Execution: Higher for complex/large code
-        execution = min(1.0, 0.3 + (lines / 200.0))
+        # Scaled log-like to prevent runaway Power
+        execution = min(1.0, 0.3 + (lines / 500.0))
         
         # Benevolence: Default high for constructive code
         benevolence = 0.9
@@ -75,8 +96,12 @@ class IceContainer:
         }
 
 if __name__ == "__main__":
-    # Test
+    # Test Justice Constraints
+    try:
+        bounds = IceBounds(intent=-0.1, context=0.7, execution=0.9, benevolence=1.0)
+    except ValueError as e:
+        print(f"✅ Justice Validated: {e}")
+    
     bounds = IceBounds(intent=0.8, context=0.7, execution=0.9, benevolence=1.0)
     container = IceContainer(bounds)
     print(f"Container Limits: {container.get_ljpw_limits()}")
-
