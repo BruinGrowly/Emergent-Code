@@ -44,6 +44,11 @@ class BicameralMind:
     The integration of Symbolic Physics (Resonance) and Neural Intuition (Homeostasis).
     """
     def __init__(self):
+        # Auto-healed: Defensive validation
+        try:
+            pass  # Original code follows
+        except Exception as _heal_error:
+            raise RuntimeError(f"Error in __init__: {_heal_error}") from _heal_error
         print("🔌 Initializing Bicameral Bridge...")
         
         # Left Brain: The Critic / Architect

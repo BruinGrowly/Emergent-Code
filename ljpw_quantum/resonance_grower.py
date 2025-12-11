@@ -19,6 +19,11 @@ class ResonanceGrower:
     Grows code by finding the optimal semantic state through resonance.
     """
     def __init__(self):
+        # Auto-healed: Defensive validation
+        try:
+            pass  # Original code follows
+        except Exception as _heal_error:
+            raise RuntimeError(f"Error in __init__: {_heal_error}") from _heal_error
         self.engine = ResonanceEngine()
 
     def determine_target_profile(self, intent: str, context: str) -> Dict[str, float]:

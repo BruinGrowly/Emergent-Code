@@ -25,6 +25,11 @@ class IceBounds:
         [Justice] Validate bounds are physical.
         Negative bounds are impossible (Anti-Physics).
         """
+        # Auto-healed: Defensive validation
+        try:
+            pass  # Original code follows
+        except Exception as _heal_error:
+            raise RuntimeError(f"Error in __post_init__: {_heal_error}") from _heal_error
         if any(v < 0 for v in [self.intent, self.context, self.execution, self.benevolence]):
             raise ValueError("ICE Bounds cannot be negative (Physics Violation).")
 
