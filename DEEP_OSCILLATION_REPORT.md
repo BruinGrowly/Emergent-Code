@@ -1,22 +1,22 @@
 # Deep Oscillation Report: 100,000 Cycles
 
-**Date:** 2025-12-11T09:36:33.627498
+**Date:** 2025-12-11T09:39:59.560131
 
 ## Summary
 
 - **Total Cycles:** 100,000
 - **Duration:** 0.56 seconds
-- **Rate:** 178255 cycles/second
+- **Rate:** 179215 cycles/second
 
 ## Harmony Statistics
 
 | Metric | Value |
 |--------|-------|
-| Initial | 0.660293 |
-| Final | 0.660293 |
-| Average | 0.660293 |
-| Minimum | 0.660293 |
-| Maximum | 0.660293 |
+| Initial | 0.663499 |
+| Final | 0.663499 |
+| Average | 0.663499 |
+| Minimum | 0.663499 |
+| Maximum | 0.663499 |
 | Variance | 0.00000000 |
 
 ## Deficit Distribution
@@ -24,26 +24,26 @@
 | Dimension | Percentage |
 |-----------|------------|
 | L (Love) | 0.0% |
-| J (Justice) | 100.0% |
-| P (Power) | 0.0% |
+| J (Justice) | 0.0% |
+| P (Power) | 100.0% |
 | W (Wisdom) | 0.0% |
 
-**Primary Deficit:** J (Justice)
+**Primary Deficit:** P (Power)
 
 ## Snapshots (sampled every 1000 cycles)
 
 | Cycle | Phase | Dimension | Harmony | Deficit | Pressure |
 |-------|-------|-----------|---------|---------|----------|
-| 0 | INHALE | L | 0.6603 | J | 0.70 |
-| 10,000 | EXHALE | L | 0.6603 | J | 0.70 |
-| 20,000 | EXHALE | L | 0.6603 | J | 0.70 |
-| 30,000 | EXHALE | L | 0.6603 | J | 0.70 |
-| 40,000 | EXHALE | L | 0.6603 | J | 0.70 |
-| 50,000 | EXHALE | L | 0.6603 | J | 0.70 |
-| 60,000 | EXHALE | L | 0.6603 | J | 0.70 |
-| 70,000 | EXHALE | L | 0.6603 | J | 0.70 |
-| 80,000 | EXHALE | L | 0.6603 | J | 0.70 |
-| 90,000 | INHALE | L | 0.6603 | J | 0.70 |
+| 0 | INHALE | L | 0.6635 | P | 0.70 |
+| 10,000 | EXHALE | L | 0.6635 | P | 0.70 |
+| 20,000 | EXHALE | L | 0.6635 | P | 0.70 |
+| 30,000 | EXHALE | L | 0.6635 | P | 0.70 |
+| 40,000 | EXHALE | L | 0.6635 | P | 0.70 |
+| 50,000 | EXHALE | L | 0.6635 | P | 0.70 |
+| 60,000 | EXHALE | L | 0.6635 | P | 0.70 |
+| 70,000 | EXHALE | L | 0.6635 | P | 0.70 |
+| 80,000 | EXHALE | L | 0.6635 | P | 0.70 |
+| 90,000 | INHALE | L | 0.6635 | P | 0.70 |
 
 ## Insight
 
