@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    Scientific Calculator - Grown by Bicameral Autopoiesis
+    ======================================================
+    
+    This calculator was grown using:
+    - Left Brain (ljpw_quantum): Resonance-based semantic targeting
+    - Right Brain (web_grower): Template-based code generation  
+    - Autopoiesis: Self-measurement and health validation
+    
+    Target Profile:
+      L: 0.900, J: 0.700, P: 0.800, W: 0.800
+      Harmony: 0.702
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Beautiful scientific calculator with advanced functions">
+    <title>SciCalc - Bicameral Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>SciCalc</h1>
+            <p class="subtitle">Grown by Bicameral Autopoiesis</p>
+        </header>
+        
+        <main id="calculator">
+            <!-- Display -->
+            <div id="display-container">
+                <div id="expression"></div>
+                <div id="result">0</div>
+            </div>
+            
+            <!-- Mode Toggle -->
+            <div id="mode-toggle">
+                <button class="mode-btn active" data-mode="deg">DEG</button>
+                <button class="mode-btn" data-mode="rad">RAD</button>
+            </div>
+            
+            <!-- Scientific Functions -->
+            <div id="scientific-functions">
+                <button class="func-btn" data-func="sin">sin</button>
+                <button class="func-btn" data-func="cos">cos</button>
+                <button class="func-btn" data-func="tan">tan</button>
+                <button class="func-btn" data-func="log">log</button>
+                <button class="func-btn" data-func="ln">ln</button>
+                <button class="func-btn" data-func="sqrt">√</button>
+                <button class="func-btn" data-func="pow">x^y</button>
+                <button class="func-btn" data-func="exp">e^x</button>
+                <button class="func-btn" data-func="pi">π</button>
+                <button class="func-btn" data-func="e">e</button>
+                <button class="func-btn" data-func="factorial">n!</button>
+                <button class="func-btn" data-func="abs">|x|</button>
+            </div>
+            
+            <!-- Number Pad -->
+            <div id="number-pad">
+                <button class="num-btn clear" data-action="clear">C</button>
+                <button class="num-btn" data-action="backspace">⌫</button>
+                <button class="num-btn" data-action="parenthesis">()</button>
+                <button class="num-btn operator" data-op="/">÷</button>
+                
+                <button class="num-btn" data-num="7">7</button>
+                <button class="num-btn" data-num="8">8</button>
+                <button class="num-btn" data-num="9">9</button>
+                <button class="num-btn operator" data-op="*">×</button>
+                
+                <button class="num-btn" data-num="4">4</button>
+                <button class="num-btn" data-num="5">5</button>
+                <button class="num-btn" data-num="6">6</button>
+                <button class="num-btn operator" data-op="-">−</button>
+                
+                <button class="num-btn" data-num="1">1</button>
+                <button class="num-btn" data-num="2">2</button>
+                <button class="num-btn" data-num="3">3</button>
+                <button class="num-btn operator" data-op="+">+</button>
+                
+                <button class="num-btn" data-action="negate">±</button>
+                <button class="num-btn" data-num="0">0</button>
+                <button class="num-btn" data-num=".">.</button>
+                <button class="num-btn equals" data-action="equals">=</button>
+            </div>
+
+            <!-- History Panel -->
+            <div id="history-panel" class="hidden">
+                <h3>History</h3>
+                <div id="history-list"></div>
+                <button id="clear-history" class="secondary-btn">Clear</button>
+            </div>
+
+            <!-- Help Tooltip -->
+            <div id="help-tooltip" class="hidden">
+                <p>Use keyboard for input. Scientific functions available.</p>
+            </div>
+
+        </main>
+        
+        <footer>
+            <p>L:0.90 J:0.70 P:0.80 W:0.80 H:0.70</p>
+        </footer>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

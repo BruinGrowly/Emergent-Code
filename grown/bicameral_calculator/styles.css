@@ -1,0 +1,367 @@
+/*
+ * SciCalc Styles - Bicameral Autopoiesis
+ * ======================================
+ * 
+ * Generated with target profile:
+ *   L: 0.900 (influences warmth, accessibility)
+ *   J: 0.700 (influences consistency, predictability)
+ *   P: 0.800 (influences contrast, responsiveness)
+ *   W: 0.800 (influences organization, clarity)
+ */
+
+/* =============================================================================
+   DESIGN TOKENS (Wisdom: organized, documented)
+   ============================================================================= */
+
+:root {
+    /* Colors - Generated based on resonance profile */
+    --primary-hue: 276;
+    --primary: hsl(var(--primary-hue), 84%, 55%);
+    --primary-dark: hsl(var(--primary-hue), 84%, 40%);
+    --primary-light: hsl(var(--primary-hue), 84%, 70%);
+    
+    --bg-dark: #0f0f1a;
+    --bg-card: #1a1a2e;
+    --bg-button: #25253a;
+    --bg-glass: rgba(30, 30, 50, 0.85);
+    
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.4);
+    
+    --accent-green: #10b981;
+    --accent-orange: #f59e0b;
+    --accent-blue: #3b82f6;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px hsla(var(--primary-hue), 60%, 50%, 0.3);
+    
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+    
+    /* Transitions (Power: responsive) */
+    --transition-fast: 100ms ease;
+    --transition-normal: 200ms ease;
+    --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =============================================================================
+   RESET & BASE (Justice: fair baseline)
+   ============================================================================= */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #0a0a14 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-lg);
+}
+
+/* =============================================================================
+   APP CONTAINER (Love: welcoming)
+   ============================================================================= */
+
+#app {
+    width: 100%;
+    max-width: 400px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-xs);
+}
+
+.subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =============================================================================
+   CALCULATOR MAIN (Wisdom: organized structure)
+   ============================================================================= */
+
+#calculator {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* =============================================================================
+   DISPLAY (Love: clear communication)
+   ============================================================================= */
+
+#display-container {
+    background: var(--bg-dark);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-md);
+    text-align: right;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#expression {
+    font-size: 14px;
+    color: var(--text-muted);
+    min-height: 20px;
+    margin-bottom: var(--space-sm);
+    word-wrap: break-word;
+}
+
+#result {
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    overflow-x: auto;
+}
+
+/* =============================================================================
+   MODE TOGGLE (Justice: clear state)
+   ============================================================================= */
+
+#mode-toggle {
+    display: flex;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+    background: var(--bg-button);
+    border-radius: var(--radius-sm);
+    padding: 2px;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: var(--space-sm) var(--space-md);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.mode-btn.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: var(--shadow-glow);
+}
+
+/* =============================================================================
+   SCIENTIFIC FUNCTIONS (Wisdom: organized grid)
+   ============================================================================= */
+
+#scientific-functions {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+}
+
+.func-btn {
+    padding: var(--space-sm) var(--space-xs);
+    background: var(--bg-button);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    color: var(--accent-blue);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.func-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.func-btn:active {
+    transform: scale(0.95);
+}
+
+/* =============================================================================
+   NUMBER PAD (Power: efficient, responsive)
+   ============================================================================= */
+
+#number-pad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+}
+
+.num-btn {
+    aspect-ratio: 1;
+    font-size: 22px;
+    font-weight: 500;
+    background: var(--bg-button);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.num-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.num-btn:active {
+    transform: scale(0.95);
+}
+
+.num-btn.operator {
+    background: var(--bg-card);
+    color: var(--accent-orange);
+    font-size: 24px;
+}
+
+.num-btn.operator:hover {
+    background: var(--accent-orange);
+    color: white;
+}
+
+.num-btn.clear {
+    color: var(--accent-orange);
+}
+
+.num-btn.equals {
+    background: var(--primary);
+    color: white;
+    font-size: 26px;
+}
+
+.num-btn.equals:hover {
+    background: var(--primary-light);
+    box-shadow: var(--shadow-glow);
+}
+
+/* =============================================================================
+   HISTORY PANEL (Wisdom: memory)
+   ============================================================================= */
+
+#history-panel {
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-dark);
+    border-radius: var(--radius-md);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#history-panel h3 {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--space-sm);
+}
+
+#history-list {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.history-item {
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.secondary-btn {
+    margin-top: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* =============================================================================
+   FOOTER (Love: transparent about generation)
+   ============================================================================= */
+
+footer {
+    text-align: center;
+    margin-top: var(--space-lg);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-family: monospace;
+}
+
+/* =============================================================================
+   UTILITIES
+   ============================================================================= */
+
+.hidden {
+    display: none !important;
+}
+
+/* =============================================================================
+   RESPONSIVE (Power: works everywhere)
+   ============================================================================= */
+
+@media (max-width: 400px) {
+    body {
+        padding: var(--space-md);
+    }
+    
+    #calculator {
+        padding: var(--space-md);
+    }
+    
+    .num-btn {
+        font-size: 18px;
+    }
+    
+    #result {
+        font-size: 28px;
+    }
+}
