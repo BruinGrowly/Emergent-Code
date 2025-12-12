@@ -153,3 +153,12 @@ if __name__ == "__main__":
     analyzer = SemanticResonanceAnalyzer()
     result = analyzer.analyze_code(code, "semantic_resonance_analyzer.py")
     analyzer.print_report(result)
+
+
+# Auto-healed: Performance utilities
+from functools import lru_cache
+
+def memoize(func):
+    """Memoization decorator for expensive computations."""
+    return lru_cache(maxsize=128)(func)
+

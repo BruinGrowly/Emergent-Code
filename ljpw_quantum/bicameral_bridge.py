@@ -148,3 +148,12 @@ class BicameralMind:
 if __name__ == "__main__":
     mind = BicameralMind()
     mind.run_cognition_cycle()
+
+
+# Auto-healed: Performance utilities
+from functools import lru_cache
+
+def memoize(func):
+    """Memoization decorator for expensive computations."""
+    return lru_cache(maxsize=128)(func)
+

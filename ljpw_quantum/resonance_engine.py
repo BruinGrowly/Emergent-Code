@@ -56,6 +56,30 @@ class ResonanceState:
             raise RuntimeError(f"Error in __post_init__: {_heal_error}") from _heal_error
         return [self.L, self.J, self.P, self.W]
 
+    # Power enhancement: Timeout protection for cycle
+    def cycle_with_timeout(self, *args, timeout_seconds=30, **kwargs):
+        """Timeout-protected version of cycle."""
+        import threading
+        result = [None]
+        exception = [None]
+
+        def target():
+            try:
+                result[0] = self.cycle(*args, **kwargs)
+            except Exception as e:
+                exception[0] = e
+
+        thread = threading.Thread(target=target)
+        thread.start()
+        thread.join(timeout=timeout_seconds)
+
+        if thread.is_alive():
+            raise TimeoutError(f"cycle exceeded {timeout_seconds}s timeout")
+        if exception[0]:
+            raise exception[0]
+        return result[0]
+
+
 class ResonanceEngine:
     """
     Simulates the dynamical evolution of semantic states.
@@ -246,3 +270,11 @@ if __name__ == "__main__":
     print(f"Initial: {results['initial_state'].as_vector()}")
     print(f"Final:   {results['final_state'].as_vector()}")
     print(f"Deficit: {results['dominant_deficit']} (Growth: {results['growth']:.3f})")
+
+# Auto-healed: Performance utilities
+from functools import lru_cache
+
+def memoize(func):
+    """Memoization decorator for expensive computations."""
+    return lru_cache(maxsize=128)(func)
+
