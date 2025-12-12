@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    SkyView - Flight Tracker - Grown by Autopoiesis System
+    =======================================
+    
+    LJPW Principles Applied:
+    - Love: Beautiful design, intuitive interface
+    - Justice: Fair error handling, input validation
+    - Power: Resilient API calls, graceful degradation
+    - Wisdom: Status indicators, logging, tooltips
+    
+    Generated: 2025-12-12T19:07:35.711038
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkyView - Flight Tracker - Real-time tracking application">
+    <title>SkyView - Flight Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <span class="logo-icon">✈</span>
+            <span class="logo-text">SkyView - Flight Tracker</span>
+        </div>
+        <div class="header-stats">
+            <div class="stat">
+                <span class="stat-value" id="total-count">--</span>
+                <span class="stat-label">Tracked</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="update-time">--</span>
+                <span class="stat-label">Last Update</span>
+            </div>
+            <div class="stat status-indicator">
+                <span class="status-dot" id="api-status"></span>
+                <span class="stat-label" id="api-status-text">Connecting...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <main id="main">
+        <!-- Map Container -->
+        <div id="map-container">
+            <div id="map"></div>
+            
+            <!-- Map Controls -->
+            <div id="map-controls">
+                <button class="map-btn" id="btn-refresh" title="Refresh Data">↻</button>
+                <button class="map-btn" id="btn-center" title="Reset View">◎</button>
+                <button class="map-btn" id="btn-fullscreen" title="Fullscreen">⛶</button>
+            </div>
+            
+            <!-- Loading Overlay -->
+            <div id="map-loading">
+                <div class="loader"></div>
+                <p>Loading data...</p>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <aside id="sidebar">
+
+            <!-- Search -->
+            <div class="sidebar-section">
+                <h3>Search</h3>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search...">
+                    <button id="search-btn" class="btn-primary">Search</button>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="sidebar-section">
+                <h3>Region</h3>
+                <div class="filter-group">
+                    <select id="filter-region">
+                        <option value="world">Worldwide</option>
+                        <option value="europe">Europe</option>
+                        <option value="namerica">North America</option>
+                        <option value="asia">Asia</option>
+                        <option value="oceania">Oceania</option>
+                        <option value="australia">Australia</option>
+                        <option value="pacific">Pacific</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Altitude</h3>
+                <div class="filter-group">
+                    <select id="filter-altitude">
+                        <option value="all">All Altitudes</option>
+                        <option value="ground">On Ground</option>
+                        <option value="low">Low (&lt; 10,000 ft)</option>
+                        <option value="mid">Medium (10k - 30k ft)</option>
+                        <option value="high">High (&gt; 30,000 ft)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Item List -->
+            <div class="sidebar-section item-list-section">
+                <h3>Nearby <span id="item-count">(0)</span></h3>
+                <div id="item-list" class="item-list">
+                    <div class="item-list-empty">
+                        <p>No items in current view</p>
+                        <p class="hint">Zoom out or change region</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+    
+    <!-- Detail Panel -->
+    <div id="detail-panel" class="hidden">
+        <button class="close-btn" id="close-detail">&times;</button>
+        <div class="detail-header">
+            <div class="detail-title" id="detail-title">--</div>
+            <div class="detail-subtitle" id="detail-subtitle">--</div>
+        </div>
+        <div class="detail-grid" id="detail-grid">
+            <!-- Dynamic content -->
+        </div>
+        <button class="btn-primary btn-track" id="btn-track">Track</button>
+    </div>
+    
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

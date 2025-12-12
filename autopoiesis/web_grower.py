@@ -63,10 +63,17 @@ WEB_APP_TYPES = {
         'components': ['scene', 'interactions', 'timeline', 'audio'],
         'features': ['scroll-driven', 'gestures', 'animations'],
     },
+    'map_tracker': {
+        'name': 'Map Tracker',
+        'libraries': ['leaflet'],
+        'components': ['map', 'sidebar', 'search', 'filters', 'details', 'markers'],
+        'features': ['realtime', 'tracking', 'regions', 'search'],
+    },
 }
 
 # Keywords to detect app type
 APP_TYPE_KEYWORDS = {
+    'map_tracker': ['flight', 'tracker', 'track', 'aircraft', 'plane', 'ship', 'vessel', 'map', 'opensky', 'aviation'],
     'particle': ['particle', 'particles', '3d', 'three.js', 'webgl', 'points', 'firework'],
     'visualization': ['chart', 'graph', 'data', 'visualization', 'plot', 'd3'],
     'game': ['game', 'play', 'score', 'player', 'level', 'sprite'],
@@ -275,8 +282,60 @@ class WebAppGenerator:
         
         if parsed.app_type == 'particle':
             files = self._generate_particle_app(parsed)
+        elif parsed.app_type == 'map_tracker':
+            files = self._generate_map_tracker_app(parsed)
         else:
             files = self._generate_generic_app(parsed)
+        
+        return files
+    
+    def _generate_map_tracker_app(self, parsed: ParsedWebIntent) -> Dict[str, str]:
+        """Generate a map-based tracker application."""
+        from autopoiesis.map_templates import (
+            generate_map_html,
+            generate_map_css,
+            generate_map_js,
+            REGIONS
+        )
+        
+        # Determine which regions to include based on intent
+        intent_lower = parsed.raw_intent.lower()
+        regions = ['world', 'europe', 'namerica', 'asia', 'oceania', 'australia', 'pacific']
+        
+        # Detect default region from intent
+        default_region = 'world'
+        region_keywords = {
+            'oceania': ['oceania', 'pacific', 'fiji', 'new zealand', 'samoa'],
+            'australia': ['australia', 'australian', 'sydney', 'melbourne'],
+            'europe': ['europe', 'european', 'uk', 'germany', 'france'],
+            'asia': ['asia', 'asian', 'china', 'japan', 'india'],
+            'namerica': ['america', 'usa', 'us', 'canada', 'north america'],
+        }
+        
+        for region, keywords in region_keywords.items():
+            if any(kw in intent_lower for kw in keywords):
+                default_region = region
+                break
+        
+        # Generate files
+        files = {}
+        files['index.html'] = generate_map_html(
+            app_name=parsed.app_name,
+            title='SkyView - Flight Tracker',
+            regions=regions,
+            has_search=True
+        )
+        files['styles.css'] = generate_map_css(
+            primary_color='#3b82f6',
+            secondary_color='#06b6d4'
+        )
+        files['app.js'] = generate_map_js(
+            app_name=parsed.app_name,
+            api_type='opensky',
+            regions=regions,
+            default_region=default_region,
+            refresh_interval=15000
+        )
         
         return files
     
