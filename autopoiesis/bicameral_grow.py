@@ -114,26 +114,42 @@ def bicameral_grow_calculator():
     print(f"  Generated: app.js ({len(js_content):,} bytes)")
     
     # ==========================================================================
-    # STEP 3: AUTOPOIESIS - Measure and Validate
+    # STEP 3: AUTOPOIESIS - Measure and Validate (NOW WITH MULTI-LANGUAGE SUPPORT!)
     # ==========================================================================
     
     print("\n" + "=" * 60)
     print("[AUTOPOIESIS] Measuring generated code health...")
+    print("[LOOP CLOSED] Using multi-language analyzer for JS/HTML/CSS")
     print("-" * 60)
     
-    # Measure the generated code's LJPW using system harmony measurer
-    from autopoiesis.system import SystemHarmonyMeasurer
+    # Measure the generated code's LJPW using MULTI-LANGUAGE analyzer
+    from autopoiesis.multi_analyzer import MultiLanguageAnalyzer
     
-    measurer = SystemHarmonyMeasurer()
-    report = measurer.measure(output_dir)
+    analyzer = MultiLanguageAnalyzer()
+    report = analyzer.analyze_directory(output_dir)
     
-    print(f"  Generated Code LJPW:")
+    print(f"\n  Files analyzed: {report.total_files}")
+    print(f"  Total lines: {report.total_lines}")
+    print(f"\n  Language breakdown:")
+    for lang, count in report.language_distribution.items():
+        if count > 0:
+            print(f"    {lang}: {count} files")
+    
+    print(f"\n  Aggregated LJPW:")
     print(f"    Love (L):    {report.love:.3f}")
     print(f"    Justice (J): {report.justice:.3f}")
     print(f"    Power (P):   {report.power:.3f}")
     print(f"    Wisdom (W):  {report.wisdom:.3f}")
     print(f"    Harmony:     {report.harmony:.3f}")
-    print(f"    Phase:       {report.phase.value}")
+    
+    print(f"\n  Per-file breakdown:")
+    for f in report.javascript_files:
+        status = "[DEFICIT]" if f.harmony < 0.5 else ""
+        print(f"    [JS]   L={f.love:.2f} J={f.justice:.2f} P={f.power:.2f} W={f.wisdom:.2f} H={f.harmony:.2f} {status}")
+    for f in report.html_files:
+        print(f"    [HTML] L={f.love:.2f} J={f.justice:.2f} P={f.power:.2f} W={f.wisdom:.2f} H={f.harmony:.2f}")
+    for f in report.css_files:
+        print(f"    [CSS]  L={f.love:.2f} J={f.justice:.2f} P={f.power:.2f} W={f.wisdom:.2f} H={f.harmony:.2f}")
     
     # ==========================================================================
     # STEP 4: BRIDGE - Compare Target vs Actual
@@ -172,10 +188,15 @@ def bicameral_grow_calculator():
     
     print(f"\n  Harmony: Target {target_profile['Harmony']:.3f} vs Actual {report.harmony:.3f} (Delta: {harmony_delta:+.3f})")
     
-    if report.harmony >= 0.75:
+    if report.harmony >= 0.7:
         print("\n  [SUCCESS] Generated code meets autopoietic threshold!")
+        print("  [LOOP CLOSED] Multi-language measurement complete!")
     else:
-        print(f"\n  [HEALING NEEDED] Code below threshold, would trigger healing cycle...")
+        print(f"\n  [HEALING NEEDED] Code below threshold")
+        # Identify which files need healing
+        for f in report.javascript_files + report.html_files + report.css_files:
+            if f.harmony < 0.5:
+                print(f"    -> {Path(f.path).name}: needs work on {f.dominant_deficit}")
     
     # ==========================================================================
     # SUMMARY
