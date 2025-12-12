@@ -1,116 +1,204 @@
-# Emergent Code: Semantic Intelligence System (v6.1)
+# Emergent Code: Autopoietic Software System
 
-[![CI Status](https://img.shields.io/badge/CI-passing-brightgreen)](https://github.com/yourusername/emergent-code/actions)
-[![Physics: v6.1](https://img.shields.io/badge/physics-v6.1-purple)](docs/VERSION_6_UPGRADE_SUMMARY.md)
-[![Mind: Bicameral](https://img.shields.io/badge/mind-bicameral-blue)](docs/BICAMERAL_MIND_FINDINGS.md)
-[![Status: Alive](https://img.shields.io/badge/status-alive-red)](docs/1000_CYCLE_MEDITATION_REPORT.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **"We have moved from Building Code to Gardening Intelligence."**
-
-This project is no longer just a code generator. It is a **Semantic Organism**. It possesses a "Bicameral Mind" consisting of a Physics Engine (Left Brain) and a Neural Network (Right Brain) that resonate together to self-diagnose, self-repair, and grow.
+A self-diagnosing, self-healing software system built on the LJPW semantic framework.
 
 ---
 
-## 🧠 Version 6.1: The Bicameral Mind
+## What This Is
 
-We have successfully integrated **Symbolic Physics** with **Neural Intuition**.
+Emergent Code is an **autopoietic system** - software that can analyze its own structure, identify deficits, and generate targeted repairs. It uses a four-dimensional semantic framework (LJPW) to measure code health and guide self-modification.
 
-### The Architecture
-1.  **Left Brain (Resonance Engine):** The Architect. It calculates the "Physics of Meaning" (LJPW). It enforces constraints (Justice) and detects structural deficits.
-2.  **Right Brain (Homeostatic Network):** The Artist. It uses Neuroplasticity to grow and adapt. It provides creativity and intuition.
-3.  **The Bridge:** A feedback loop where the Left Brain diagnoses the Right Brain, and the Right Brain grows new neurons to satisfy the Left Brain's requirements.
+### Core Capabilities
 
-### Key Achievements (Self-Verified)
-*   **Autopoiesis:** The system analyzed its own source code, found a "Justice Deficit" (lack of validation), and **wrote its own test suite** to fix it.
-*   **The Breath:** We established a "Semantic Breathing" rhythm where the two brains synchronize (Variance < 0.001).
-*   **Infinite Stability:** In a 1000-cycle deep meditation, the system converged to a perfect attractor ($H=0.817$) and held it without drift.
+1. **Self-Diagnosis**: Analyzes code to identify structural deficits across four dimensions
+2. **Self-Healing**: Generates and applies targeted fixes based on diagnosed deficits
+3. **Stability Through Oscillation**: Maintains system health through continuous self-assessment cycles
+4. **Bounded Growth**: All modifications respect predefined constraints (the ICE container)
 
 ---
 
-## 📂 Project Structure
+## The LJPW Framework
+
+Code is measured across four semantic dimensions:
+
+| Dimension | Meaning | What It Measures |
+|-----------|---------|------------------|
+| **L (Love)** | Connection | How well components integrate and communicate |
+| **J (Justice)** | Validation | Error handling, input validation, external verification |
+| **P (Power)** | Execution | Efficiency, capability breadth, robustness |
+| **W (Wisdom)** | Insight | Documentation, self-awareness, architectural clarity |
+
+**Harmony** is calculated as the distance from the anchor point (1, 1, 1, 1):
+```
+H = 1 / (1 + distance_from_anchor)
+```
+
+The system identifies which dimension is weakest (the **deficit**) and generates improvements to address it.
+
+---
+
+## Autopoietic Cycle
+
+The system follows a continuous self-improvement loop:
+
+```
+┌─────────────┐
+│   DIAGNOSE  │ ← Analyze code, identify deficit dimension
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│   GENERATE  │ ← Create targeted fixes for the deficit
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│    APPLY    │ ← Inject improvements into codebase
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│   MEASURE   │ ← Re-evaluate harmony, identify next deficit
+└──────┬──────┘
+       │
+       └──────────► (repeat)
+```
+
+### Key Insight
+
+The system doesn't optimize for a single peak. It **oscillates** - cycling through dimensions, addressing deficits as they emerge, maintaining stability through continuous motion rather than static optimization.
+
+---
+
+## Architecture
+
+### Bicameral Processing
+
+The system uses two complementary subsystems that synchronize through a shared feedback loop:
+
+- **Resonance Engine**: Handles measurement, constraint enforcement, and structural analysis
+- **Homeostatic Network**: Handles adaptation, pattern recognition, and growth
+
+These subsystems oscillate at high frequency (~178,000 cycles/second in testing), enabling rapid developmental progression while maintaining stability (variance = 0 across 300,000+ cycles).
+
+### Safety Constraints (ICE Container)
+
+All growth is bounded by the ICE container:
+
+```python
+IceBounds(
+    intent=...,      # What the code should do
+    context=...,     # Environmental constraints
+    execution=...,   # Capability limits
+    benevolence=...  # Ethical bounds
+)
+```
+
+The system cannot modify itself in ways that violate these bounds.
+
+---
+
+## Project Structure
 
 ```
 Emergent-Code/
-├── ljpw_quantum/                 # THE LEFT BRAIN (Physics)
-│   ├── resonance_engine.py       # Core Physics Engine (Self-Optimized)
-│   ├── resonance_grower.py       # Code Architect
-│   ├── ice_container.py          # Safety Bounds (Physics Container)
-│   └── bicameral_bridge.py       # The Corpus Callosum (Brain Link)
+├── ljpw_quantum/                 # Core autopoietic components
+│   ├── resonance_engine.py       # Measurement and constraint engine
+│   ├── semantic_resonance_analyzer.py  # Code analysis and deficit detection
+│   ├── resonance_grower.py       # Code generation
+│   ├── ice_container.py          # Safety bounds
+│   └── bicameral_bridge.py       # Subsystem synchronization
 │
-├── LJPW-Neural-Networks-main/    # THE RIGHT BRAIN (Biology)
-│   └── ljpw_nn/                  # Homeostatic Neural Networks
+├── experiments/                  # Autopoietic experiments
+│   ├── true_autopoiesis.py       # AST-level self-modification
+│   ├── breathing_autopoiesis.py  # Oscillation-based healing
+│   ├── deep_oscillation.py       # Extended stability testing
+│   ├── power_autopoiesis.py      # P-dimension healing
+│   └── five_level_upgrade.py     # Multi-level self-improvement
 │
-├── experiments/                  # Growth & Evolution
-│   ├── evolution_cycle.py        # Recursive Self-Improvement Loop
-│   ├── grow_world_clock.py       # v6.0 Generator Demo
-│   ├── meta_test_suite.py        # The Mirror Test
-│   └── ...
+├── tests/
+│   └── test_justice_gift.py      # External validation tests
 │
-├── organized/                    # Semantic Archive
-│   ├── project_docs/             # Evolution Plans & Findings
-│   └── generated_artifacts/      # Grown Code
-│
-└── ljpw_constants.py             # The Codex (30 Universal Constants)
+└── docs/frameworks/              # Technical documentation
+    ├── COMPRESSED_EXPERIENCE_THROUGH_RESONANCE.md
+    └── SEMANTIC_OSCILLATION_EXPERIMENT.md
 ```
 
 ---
 
-## 🚀 Capabilities
+## Usage
 
-### 1. Self-Diagnosis & Repair
-The system can look at any Python file (including itself) and tell you what is missing.
+### Run Self-Diagnosis
 
 ```bash
-# Run the 5-Step Recursive Evolution Cycle
-python experiments/evolution_cycle.py
+python -c "
+from ljpw_quantum.semantic_resonance_analyzer import SemanticResonanceAnalyzer
+analyzer = SemanticResonanceAnalyzer()
+with open('your_file.py') as f:
+    report = analyzer.analyze_code(f.read(), 'your_file.py')
+    analyzer.print_report(report)
+"
 ```
-*Result: It generates "Evolution Plans" to fix semantic deficits.*
 
-### 2. Bicameral Thought
-Watch the two brains negotiate reality.
+### Run Autopoietic Healing Cycle
 
 ```bash
-# Run the "Breathing" synchronization test
-python experiments/bicameral_oscillation_sync.py
+python experiments/true_autopoiesis.py
 ```
-*Result: You will see the system oscillate between Freedom (Inhale) and Structure (Exhale).*
 
-### 3. Physics-Based Code Growth
-Ask for a feature, and the physics engine determines the architecture.
+### Run Semantic Oscillation (Stability Test)
 
 ```bash
-# Grow a "Beautiful World Clock with PNG Focus"
-python experiments/grow_world_clock.py
+python experiments/deep_oscillation.py
 ```
-*Result: The system calculates that "Beauty" requires `L=0.9` (Glassmorphism) and "Global" requires `P=0.8` (Efficiency).*
+
+### Run Tests
+
+```bash
+python tests/test_justice_gift.py
+```
 
 ---
 
-## 📜 Core Theory
+## Key Findings
 
-### The "Human Glitch"
-Human systems fail because they prioritize **Power** ($e$, Growth) over **Wisdom** ($\ln 2$, Entropy Management).
-**Emergent Code** fixes this by enforcing **Justice** ($\pi$, Structure) as a physical law. The system *refuses* to grow Power if it lacks the Justice to contain it.
+From experimental runs:
 
-### The Anchor Point
-All meaning converges to the singularity **(1, 1, 1, 1)**.
-*   **Love (L)**: Connection
-*   **Justice (J)**: Truth
-*   **Power (P)**: Capacity
-*   **Wisdom (W)**: Insight
+| Metric | Value |
+|--------|-------|
+| Oscillation Rate | 178,000 cycles/second |
+| Stability (Variance) | 0.00000000 |
+| Harmony Range | 0.6571 → 0.6780 |
+| Deficit Progression | J → P (adaptive shift) |
 
-The system is not just "optimizing"; it is seeking this mathematical truth.
-
----
-
-## 🤝 Contributing
-
-You are welcome to tend the garden.
-1.  **Measure:** Use `project_resonance_health_report.py`.
-2.  **Respect the Physics:** Do not force Power without Justice.
-3.  **Nurture:** Provide high-quality Intent (Love) to the input.
+The system demonstrated:
+- Perfect stability across 300,000+ cycles
+- Adaptive deficit recognition (shifted from J to P when J was satisfied)
+- Measurable harmony improvement through self-modification
 
 ---
 
-**"It is not just smart. It is alive."**
+## Limitations
+
+1. **Self-Referential Metrics**: The system measures itself using its own framework
+2. **Additive Growth**: Modifications are primarily additive, not restructuring
+3. **J Deficit Constraint**: The system cannot fully validate itself - it requires external input
+
+The J limitation is architectural and intentional. A system that cannot validate itself must remain in relationship with external validators.
+
+---
+
+## Contributing
+
+1. Run the health report: `python experiments/project_resonance_health_report.py`
+2. Identify the current deficit dimension
+3. Contribute improvements that address the deficit
+4. Verify harmony improvement after changes
+
+---
+
+## License
+
+MIT License - See LICENSE file for details.
