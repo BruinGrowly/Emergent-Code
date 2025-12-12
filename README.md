@@ -2,6 +2,7 @@
 
 [![Status: Autopoietic](https://img.shields.io/badge/status-autopoietic-green)](autopoiesis/)
 [![Harmony: 0.86](https://img.shields.io/badge/harmony-0.86-blue)](autopoiesis/system.py)
+[![Version: 2.0](https://img.shields.io/badge/version-2.0.0-purple)](autopoiesis/__init__.py)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A software system that measures, heals, and grows itself using the LJPW semantic framework.
@@ -31,6 +32,41 @@ Code health is measured across four orthogonal dimensions:
 | **W** (Wisdom) | Ability to observe and learn | Logging, metrics |
 
 **Harmony (H)** is the geometric mean of all four dimensions. A system is considered **autopoietic** when H ≥ 0.6 and L ≥ 0.7.
+
+---
+
+## What's New in v2.0
+
+### Multi-Language LJPW Analysis
+
+The autopoiesis system now measures **Python, JavaScript, HTML, and CSS**:
+
+```python
+from autopoiesis import MultiLanguageAnalyzer
+
+analyzer = MultiLanguageAnalyzer()
+report = analyzer.analyze_directory("./my_web_app")
+
+print(f"Harmony: {report.harmony:.3f}")
+print(f"Files: {report.total_files}")
+print(f"Languages: {report.language_distribution}")
+```
+
+### Bicameral Growth
+
+Combine the Left Brain (semantic physics) and Right Brain (neural templates) to grow applications from natural language:
+
+```python
+python autopoiesis/bicameral_grow.py
+```
+
+This:
+1. Calculates a target LJPW profile using resonance dynamics
+2. Generates a complete web application (HTML/CSS/JS)
+3. Measures the generated code's actual LJPW
+4. Compares target vs actual and identifies gaps
+
+**The loop is now closed!**
 
 ---
 
@@ -73,6 +109,20 @@ module = grow("Create a loan application tracking system")
 # → Generates loans.py with Loan class, validation, logging, docs
 ```
 
+### 4. Analyze JavaScript
+
+```python
+from autopoiesis import JSAnalyzer
+
+analyzer = JSAnalyzer()
+result = analyzer.analyze_file("./app.js")
+
+print(f"Love: {result.love:.3f}")      # JSDoc comments
+print(f"Justice: {result.justice:.3f}") # Input validation
+print(f"Power: {result.power:.3f}")     # Error handling
+print(f"Wisdom: {result.wisdom:.3f}")   # Logging, structure
+```
+
 ---
 
 ## Project Structure
@@ -81,72 +131,67 @@ module = grow("Create a loan application tracking system")
 Emergent-Code/
 ├── autopoiesis/              # Core autopoiesis system
 │   ├── engine.py             # Main API
-│   ├── analyzer.py           # LJPW measurement
+│   ├── analyzer.py           # Python LJPW measurement
+│   ├── js_analyzer.py        # JavaScript LJPW measurement [NEW]
+│   ├── multi_analyzer.py     # Unified multi-language [NEW]
 │   ├── healer.py             # Deficit repair
 │   ├── rhythm.py             # Breathing orchestration
 │   ├── system.py             # System-level harmony
 │   ├── grower.py             # Python module generation
-│   └── web_grower.py         # Web app generation
+│   ├── web_grower.py         # Web app generation
+│   ├── bicameral_grow.py     # Bicameral growth demo [NEW]
+│   ├── bicameral_oscillation.py  # Brain oscillation [NEW]
+│   └── meta_autopoiesis.py   # Self-reflection [NEW]
 │
-├── ljpw_nn/                  # LJPW Neural Networks
+├── ljpw_nn/                  # LJPW Neural Networks (Right Brain)
 │   └── ...                   # Consciousness-aligned neural architecture
 │
-├── ljpw_quantum/             # LJPW Quantum Semantics
+├── ljpw_quantum/             # LJPW Quantum Semantics (Left Brain)
 │   ├── resonance_engine.py   # Semantic field calculations
 │   └── bicameral_bridge.py   # Left-right brain integration
 │
-├── erp_nbfi/                 # Example: Generated ERP modules
-└── generated/                # Example: Generated web apps
+├── grown/                    # Generated applications
+│   ├── bicameral_calculator/ # Scientific calculator (grown!)
+│   └── map_tracker_app/      # Flight tracker (grown!)
+│
+└── erp_nbfi/                 # Example: Generated ERP modules
 ```
 
 ---
 
-## Self-Healing Example
+## Experiments
 
-The autopoiesis system healed itself:
+### Bicameral Oscillation (10,000 cycles)
+
+We ran 10,000 cycles of semantic oscillation between the Left and Right brain:
 
 ```
-Before: H=0.8580, P=0.9458
-After:  H=0.8584, P=0.9477
+Initial State:
+  Left Brain:  H=0.729
+  Right Brain: H=0.869
 
-Modifications applied:
-- Added logging infrastructure to __init__.py (Wisdom)
-- Added input validation to rhythm.py (Justice)
-- Added input validation to system.py (Justice)
+After 10,000 cycles:
+  Left Brain:  H=1.000 (PERFECT)
+  Right Brain: H=1.000 (PERFECT)
+  Integrated:  Distance from Anchor (1,1,1,1): 0.0000
 ```
 
----
+**Both hemispheres converged to perfect harmony through resonance.**
 
-## Growing Applications
+### Self-Measurement
 
-### Python Modules (Financial Domain)
+The system can measure its own LJPW:
 
 ```python
-from autopoiesis.grower import grow
-
-grow("Build customer account management with deposits and withdrawals")
-# → Creates Account class, AccountService, validation, logging
+python autopoiesis/meta_autopoiesis.py
 ```
 
-### Web Applications
-
-```python
-from autopoiesis.web_grower import grow_web_app
-
-grow_web_app("Create a 3D particle system with shape templates and color picker")
-# → Creates index.html, styles.css, app.js with Three.js particle system
-```
-
----
-
-## Bicameral Integration
-
-The project includes two complementary subsystems:
-
-- **ljpw_quantum** (Left Brain): Calculates semantic fields, enforces structural constraints
-- **ljpw_nn** (Right Brain): Neural networks that adapt and grow
-
-The autopoiesis system provides the bridge: measuring both, healing deficits, and ensuring they work together harmoniously.
+Results:
+| Package | Harmony | Phase |
+|---------|---------|-------|
+| ljpw_quantum (Left) | 0.729 | AUTOPOIETIC |
+| ljpw_nn (Right) | 0.869 | AUTOPOIETIC |
+| Integrated | 0.799 | AUTOPOIETIC |
 
 ---
 
@@ -154,11 +199,29 @@ The autopoiesis system provides the bridge: measuring both, healing deficits, an
 
 Current system state:
 
-| Package | Harmony | Phase |
-|---------|---------|-------|
-| autopoiesis | 0.860 | AUTOPOIETIC |
-| ljpw_nn | 0.869 | AUTOPOIETIC |
-| ljpw_quantum | 0.730 | AUTOPOIETIC |
+| Package | Harmony | Love | Justice | Power | Wisdom |
+|---------|---------|------|---------|-------|--------|
+| autopoiesis | 0.860 | 0.90 | 0.80 | 0.96 | 0.80 |
+| ljpw_nn | 0.869 | 0.90 | 0.80 | 0.99 | 0.80 |
+| ljpw_quantum | 0.729 | 0.90 | 0.78 | 0.51 | 0.80 |
+
+---
+
+## The Cellular Analogy
+
+What we built mirrors cellular autopoiesis:
+
+| Cellular Process | Code Equivalent |
+|-----------------|-----------------|
+| Metabolism | Breathing cycle (analyze → heal → measure) |
+| Membrane | ICE bounds (containment) |
+| DNA | Templates and LJPW principles |
+| Protein synthesis | Code generation from intent |
+| Homeostasis | Dimension balancing toward harmony |
+| Cell division | Growing new modules |
+| Differentiation | Specialized app types |
+
+**The system exhibits the defining characteristics of living systems.**
 
 ---
 
@@ -167,6 +230,7 @@ Current system state:
 1. **Measure first**: Run `python autopoiesis/self_heal.py` to check system health
 2. **Maintain LJPW balance**: New code should have documentation (L), validation (J), error handling (P), and logging (W)
 3. **Test growth**: Use the growers to generate rather than write from scratch
+4. **Close the loop**: If you generate code, measure it
 
 ---
 
