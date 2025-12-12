@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--
+    Flight Tracker - Grown by Autopoiesis System
+    ============================================
+    
+    A beautiful, user-friendly flight tracking application.
+    
+    LJPW Principles:
+    - Love: Beautiful design, intuitive interface, helpful tooltips
+    - Justice: Reliable data handling, fair error messages
+    - Power: Resilient API calls, graceful degradation
+    - Wisdom: Status indicators, informative displays
+    
+    Generated: 2024-12-12
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Beautiful real-time flight tracker with live aircraft positions">
+    <title>SkyView | Flight Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <span class="logo-icon">✈</span>
+            <span class="logo-text">SkyView</span>
+        </div>
+        <div class="header-stats">
+            <div class="stat">
+                <span class="stat-value" id="total-flights">--</span>
+                <span class="stat-label">Flights</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="update-time">--</span>
+                <span class="stat-label">Last Update</span>
+            </div>
+            <div class="stat status-indicator">
+                <span class="status-dot" id="api-status"></span>
+                <span class="stat-label" id="api-status-text">Connecting...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main">
+        <!-- Map Container -->
+        <div id="map-container">
+            <div id="map"></div>
+
+            <!-- Map Controls -->
+            <div id="map-controls">
+                <button class="map-btn" id="btn-refresh" title="Refresh Data">
+                    <span class="btn-icon">↻</span>
+                </button>
+                <button class="map-btn" id="btn-center" title="Center Map">
+                    <span class="btn-icon">◎</span>
+                </button>
+                <button class="map-btn" id="btn-fullscreen" title="Fullscreen">
+                    <span class="btn-icon">⛶</span>
+                </button>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div id="map-loading" class="hidden">
+                <div class="loader"></div>
+                <p>Loading flights...</p>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <!-- Search -->
+            <div class="sidebar-section">
+                <h3>Search Flights</h3>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Flight, airline, or callsign...">
+                    <button id="search-btn" class="search-submit">Search</button>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="sidebar-section">
+                <h3>Filters</h3>
+                <div class="filter-group">
+                    <label>Region</label>
+                    <select id="filter-region">
+                        <option value="world">Worldwide</option>
+                        <option value="europe">Europe</option>
+                        <option value="namerica">North America</option>
+                        <option value="asia">Asia</option>
+                        <option value="australia">Australia</option>
+                        <option value="custom">Current View</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Altitude</label>
+                    <select id="filter-altitude">
+                        <option value="all">All Altitudes</option>
+                        <option value="ground">On Ground</option>
+                        <option value="low">Low (&lt; 10,000 ft)</option>
+                        <option value="mid">Medium (10,000 - 30,000 ft)</option>
+                        <option value="high">High (&gt; 30,000 ft)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Flight List -->
+            <div class="sidebar-section flight-list-section">
+                <h3>Nearby Flights <span id="flight-count">(0)</span></h3>
+                <div id="flight-list" class="flight-list">
+                    <div class="flight-list-empty">
+                        <p>No flights in current view</p>
+                        <p class="hint">Zoom out or change region</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Flight Detail Panel (slides in when flight selected) -->
+    <div id="flight-detail" class="hidden">
+        <button class="close-btn" id="close-detail">×</button>
+        <div class="detail-header">
+            <div class="detail-callsign" id="detail-callsign">--</div>
+            <div class="detail-route" id="detail-route">-- → --</div>
+        </div>
+        <div class="detail-grid">
+            <div class="detail-item">
+                <span class="detail-label">Altitude</span>
+                <span class="detail-value" id="detail-altitude">--</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Speed</span>
+                <span class="detail-value" id="detail-speed">--</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Heading</span>
+                <span class="detail-value" id="detail-heading">--</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Vertical Rate</span>
+                <span class="detail-value" id="detail-vrate">--</span>
+            </div>
+            <div class="detail-item wide">
+                <span class="detail-label">Aircraft</span>
+                <span class="detail-value" id="detail-aircraft">--</span>
+            </div>
+            <div class="detail-item wide">
+                <span class="detail-label">Registration</span>
+                <span class="detail-value" id="detail-registration">--</span>
+            </div>
+        </div>
+        <button class="track-btn" id="btn-track">Track This Flight</button>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
