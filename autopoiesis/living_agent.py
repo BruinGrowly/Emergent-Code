@@ -411,6 +411,7 @@ class LivingAgent:
         self._multi_analyzer = None
         self._system_analyzer = None
         self._engine = None
+        self._learner = None
     
     @property
     def multi_analyzer(self):
@@ -435,6 +436,15 @@ class LivingAgent:
             from autopoiesis.engine import AutopoiesisEngine
             self._engine = AutopoiesisEngine(str(self.target_path), dry_run=self.dry_run)
         return self._engine
+    
+    @property
+    def learner(self):
+        """Lazy load the learner component."""
+        if self._learner is None:
+            from autopoiesis.learner import AgentLearner
+            learning_path = self.target_path / "autopoiesis" / "agent_learning.json"
+            self._learner = AgentLearner(str(learning_path))
+        return self._learner
     
     def _measure_harmony(self) -> Dict:
         """Measure current harmony of the codebase."""
@@ -503,7 +513,14 @@ class LivingAgent:
             recommendation = self.cortex.recommend_action(harmony, ljpw, changes)
             
             if recommendation['action'] in ['heal', 'emergency_heal']:
-                dim = recommendation['dimension']
+                # Use learner to recommend which dimension (if we have enough data)
+                learned_rec = self.learner.recommend_next_action(str(self.target_path))
+                if learned_rec['confidence'] in ['medium', 'high']:
+                    dim = learned_rec['dimension']
+                    self.voice.think(f"Learning suggests: {learned_rec['reason']}")
+                else:
+                    dim = recommendation['dimension']
+                
                 self.voice.think(recommendation['reason'])
                 self.voice.act(f"Healing {dim} dimension...")
                 
@@ -520,7 +537,26 @@ class LivingAgent:
                         # Re-measure
                         new_measurement = self._measure_harmony()
                         new_harmony = new_measurement['harmony']
-                        self.voice.feel(f"Harmony changed: {harmony:.3f} → {new_harmony:.3f}")
+                        
+                        # LEARN from this experience!
+                        exp = self.learner.record_experience(
+                            file_path=str(self.target_path),
+                            dimension=dim,
+                            harmony_before=harmony,
+                            harmony_after=new_harmony,
+                            strategy_used=f"heal_{dim.lower()}"
+                        )
+                        
+                        if exp.success:
+                            self.voice.feel(f"Healing worked! {harmony:.3f} -> {new_harmony:.3f} (+{exp.delta:.3f})")
+                        else:
+                            self.voice.observe(f"Healing didn't help: {harmony:.3f} -> {new_harmony:.3f} ({exp.delta:+.3f})")
+                        
+                        # Periodically adapt priorities
+                        if self.memory.total_heals % 5 == 0:
+                            new_priorities = self.learner.adapt_priorities()
+                            self.voice.think(f"Adapted priorities: {' -> '.join(new_priorities)}")
+                        
                     except Exception as e:
                         self.voice.observe(f"Healing error: {e}")
                 else:
@@ -581,6 +617,13 @@ class LivingAgent:
         self._heartbeat_thread.start()
         
         self.voice.feel("I am alive. Watching and breathing...")
+        
+        # Share learning insights if available
+        insights = self.learner.get_insights()
+        if insights['total_experiences'] > 0:
+            self.voice.observe(f"I have {insights['total_experiences']} learning experiences.")
+            self.voice.think(f"Best dimension to heal: {insights['best_dimension']}")
+        
         print()
         print("  (Press Ctrl+C to gracefully stop the agent)")
         print()

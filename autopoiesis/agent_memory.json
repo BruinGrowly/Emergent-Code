@@ -1,6 +1,6 @@
 {
   "birth_time": "2025-12-12T22:11:55.060265",
-  "total_heartbeats": 127,
+  "total_heartbeats": 128,
   "total_heals": 0,
   "total_observations": 0,
   "harmony_history": [
@@ -1019,6 +1019,14 @@
       "J": 0.7633219678519234,
       "P": 0.9170940087676567,
       "W": 0.7999999999999988
+    },
+    {
+      "timestamp": "2025-12-14T21:38:00.378326",
+      "harmony": 0.8431554207956703,
+      "L": 0.9,
+      "J": 0.7640401146131799,
+      "P": 0.9187172874880607,
+      "W": 0.7999999999999986
     }
   ],
   "memories": [
@@ -1031,9 +1039,19 @@
       },
       "harmony_before": 0.0,
       "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-14T21:38:01.013131",
+      "event_type": "sleep",
+      "details": {
+        "total_heartbeats": 128,
+        "final_harmony": 0.8431554207956703
+      },
+      "harmony_before": 0.0,
+      "harmony_after": 0.0
     }
   ],
-  "current_harmony": 0.842584621857615,
+  "current_harmony": 0.8431554207956703,
   "current_phase": "autopoietic",
   "watched_files": {
     "analyze_self_fractally.py": "240fede9afc670feb7870e8a504f9cd7",
@@ -1064,7 +1082,9 @@
     "autopoiesis\\grower.py": "5393bffbe8f8b06191763bc5b4d46b55",
     "autopoiesis\\healer.py": "8f370d22d562722980ba130e96705112",
     "autopoiesis\\js_analyzer.py": "565033b08bc309ed7101e87d2aed8934",
-    "autopoiesis\\living_agent.py": "50a8ddfc9bcb581d2abb74562ddd2a20",
+    "autopoiesis\\js_healer.py": "c343555fde6437fee75c2733d00527b3",
+    "autopoiesis\\learner.py": "202f068dd9e30d2364797350c326bac6",
+    "autopoiesis\\living_agent.py": "34a5040eb6c99a1b40b2e7d2da6c0d13",
     "autopoiesis\\map_templates.py": "8d03835e0dbde523b7d3e7d9cef3bdf6",
     "autopoiesis\\meta_autopoiesis.py": "47da532b030b3608b6fca8d4c5e09748",
     "autopoiesis\\multi_analyzer.py": "983403984cbf61fe7667bbe068e7a02b",
