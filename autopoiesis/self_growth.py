@@ -1,17 +1,13 @@
 """
-Benevolent Self-Growth Engine
-=============================
+Self-Growth Engine
+==================
 
-Enables the autopoiesis agent to grow itself toward intelligence
-while ensuring benevolence through the LJPW framework.
+Enables the autopoiesis agent to grow new capabilities autonomously.
 
-The key insight:
-  BENEVOLENCE = HIGH LOVE (L)
-  
-Code that doesn't care for others won't be accepted.
-Only code with L >= 0.7 can be integrated into the system.
-This ensures that as the agent grows, it remains aligned
-with caring for users and developers.
+The engine identifies gaps, generates code to fill them, measures the
+result with LJPW, and only integrates code that meets harmony thresholds.
+The Love (L) threshold ensures generated code cares for users naturally -
+not because we tell it to, but because that's what the measurement captures.
 
 Usage:
     engine = SelfGrowthEngine(target_path="./autopoiesis")
@@ -244,109 +240,102 @@ The module should integrate with the existing autopoiesis system.
             return self._generate_template(capability)
     
     def _generate_template(self, capability: Capability) -> str:
-        """Generate a minimal template for a capability."""
+        """Generate a clean template for a capability - no LJPW annotations needed."""
         name = capability.name
         class_name = ''.join(word.title() for word in name.split('_'))
         
         return f'''"""
 {class_name}
-{'=' * len(class_name)}
 
 {capability.description}
-
-This module was auto-grown by the Benevolent Self-Growth Engine.
-It follows LJPW principles to ensure benevolent operation.
 """
 
 import logging
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
+from pathlib import Path
 
-# Wisdom: Set up logging
 logger = logging.getLogger(__name__)
 
 
 @dataclass
 class {class_name}Result:
-    """
-    Result from {class_name} operation.
-    
-    Attributes:
-        success: Whether the operation succeeded
-        data: The result data
-        message: Human-readable message (Love)
-    """
+    """Result of {name.replace('_', ' ')} operation."""
     success: bool
-    data: Dict
-    message: str
+    data: Dict[str, Any]
+    message: str = ""
 
 
 class {class_name}:
     """
     {capability.description}
     
-    This class follows LJPW principles:
-    - Love: Clear documentation and helpful messages
-    - Justice: Input validation and fair handling
-    - Power: Robust error handling
-    - Wisdom: Logging and observability
+    Auto-generated capability that can be extended.
     """
     
-    def __init__(self):
-        """Initialize the {name.replace('_', ' ')}."""
-        logger.info(f"{class_name} initialized")
-    
-    def process(self, input_data: Dict) -> {class_name}Result:
+    def __init__(self, config: Optional[Dict] = None):
         """
-        Process input according to {name.replace('_', ' ')} logic.
+        Initialize {name.replace('_', ' ')}.
         
         Args:
-            input_data: The data to process (Justice: validated)
+            config: Optional configuration dictionary
+        """
+        self.config = config or {{}}
+        logger.debug(f"{{self.__class__.__name__}} initialized")
+    
+    def run(self, target: Any) -> {class_name}Result:
+        """
+        Execute the main operation.
+        
+        Args:
+            target: The input to process
             
         Returns:
-            {class_name}Result with the outcome
-            
-        Raises:
-            TypeError: If input_data is not a dict (Justice)
+            {class_name}Result with outcome
         """
-        # Justice: Validate input
-        if not isinstance(input_data, dict):
-            raise TypeError("input_data must be a dictionary")
-        
-        try:
-            # Power: Protected operation
-            logger.debug(f"Processing: {{input_data}}")  # Wisdom
-            
-            # TODO: Implement actual logic
-            result_data = {{"processed": True}}
-            
-            # Love: Helpful message
-            return {class_name}Result(
-                success=True,
-                data=result_data,
-                message="Operation completed successfully"
-            )
-            
-        except Exception as e:
-            # Power: Handle errors gracefully
-            logger.error(f"Error in {{self.__class__.__name__}}: {{e}}")  # Wisdom
-            
+        if target is None:
             return {class_name}Result(
                 success=False,
                 data={{}},
-                message=f"Error: {{str(e)}}"  # Love: Explain what went wrong
+                message="No target provided"
             )
+        
+        try:
+            # Core logic - extend this
+            result = self._process(target)
+            
+            return {class_name}Result(
+                success=True,
+                data=result,
+                message="Completed"
+            )
+            
+        except Exception as e:
+            logger.exception(f"Error in {{self.__class__.__name__}}")
+            return {class_name}Result(
+                success=False,
+                data={{}},
+                message=str(e)
+            )
+    
+    def _process(self, target: Any) -> Dict[str, Any]:
+        """
+        Internal processing logic. Override in subclasses.
+        
+        Args:
+            target: Input to process
+            
+        Returns:
+            Dictionary with results
+        """
+        # TODO: Implement specific logic
+        return {{"processed": True, "input_type": type(target).__name__}}
 
 
-# Self-test
 if __name__ == "__main__":
-    print(f"Testing {class_name}...")
-    
     instance = {class_name}()
-    result = instance.process({{"test": True}})
-    
-    print(f"Success: {{result.success}}")
-    print(f"Message: {{result.message}}")
+    result = instance.run({{"test": True}})
+    print(f"{{result.success}}: {{result.message}}")
 '''
     
     def validate_benevolence(self, code: str, capability_name: str) -> Tuple[bool, float, float, str]:
