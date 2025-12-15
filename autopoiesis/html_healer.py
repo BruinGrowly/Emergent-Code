@@ -78,7 +78,7 @@ class HTMLHealer:
             changes.append(f"Added alt text to image: {src}")
         
         # Add aria-label to buttons without text
-        button_pattern = r'<button\s+(?![^>]*aria-label=)[^>]*><\/button>'
+        button_pattern = r'<button\s+(?![^>]*aria-label=)[^>]*></button>'
         content = re.sub(button_pattern, 
                         lambda m: m.group(0).replace('<button ', '<button aria-label="button" '),
                         content)

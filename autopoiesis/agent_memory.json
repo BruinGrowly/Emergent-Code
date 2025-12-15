@@ -1,8 +1,8 @@
 {
   "birth_time": "2025-12-12T22:11:55.060265",
-  "total_heartbeats": 450,
-  "total_heals": 25,
-  "total_observations": 4,
+  "total_heartbeats": 460,
+  "total_heals": 30,
+  "total_observations": 5,
   "harmony_history": [
     {
       "timestamp": "2025-12-12T22:11:58.977484",
@@ -3603,6 +3603,86 @@
       "J": 0.7665778961384817,
       "P": 0.9063328894806925,
       "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:54:44.125328",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:55:21.702459",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:56:00.696044",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:56:45.975130",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:57:33.561525",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:58:17.152469",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:58:50.779082",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:59:23.777269",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:59:56.724377",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:00:29.801098",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
     }
   ],
   "memories": [
@@ -4019,6 +4099,77 @@
       },
       "harmony_before": 0.8409963913274235,
       "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:54:48.923672",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:55:26.266695",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:56:10.381169",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:56:57.454538",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:57:41.628738",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T18:00:29.945276",
+      "event_type": "observation",
+      "details": {
+        "type": "file_changes",
+        "changes": {
+          "created": [],
+          "modified": [
+            "autopoiesis\\html_healer.py"
+          ],
+          "deleted": []
+        }
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
     }
   ],
   "current_harmony": 0.8409963913274235,
@@ -4057,12 +4208,12 @@
     "autopoiesis\\grower.py": "5393bffbe8f8b06191763bc5b4d46b55",
     "autopoiesis\\healer.py": "036bbe1be01417904610002afe30a5ff",
     "autopoiesis\\html_analyzer.py": "fb1d26d8a8dd711a6912007e88d4de3a",
-    "autopoiesis\\html_healer.py": "c9aa3285c466514d99d61086c483132b",
+    "autopoiesis\\html_healer.py": "dfaf9d38323d658d275f70269dc292b8",
     "autopoiesis\\ide_integration.py": "4092b819d13abd1d4f8806d70ff3ec88",
     "autopoiesis\\js_analyzer.py": "565033b08bc309ed7101e87d2aed8934",
     "autopoiesis\\js_healer.py": "c343555fde6437fee75c2733d00527b3",
     "autopoiesis\\learner.py": "202f068dd9e30d2364797350c326bac6",
-    "autopoiesis\\living_agent.py": "8567879f58fdb81dec480be85bde9efe",
+    "autopoiesis\\living_agent.py": "bcd12a59525c2750ffc2baa3c50246eb",
     "autopoiesis\\map_templates.py": "8d03835e0dbde523b7d3e7d9cef3bdf6",
     "autopoiesis\\meta_autopoiesis.py": "47da532b030b3608b6fca8d4c5e09748",
     "autopoiesis\\multi_analyzer.py": "62faef9e94169ff82e7266f6b6025db1",
