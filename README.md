@@ -225,6 +225,60 @@ What we built mirrors cellular autopoiesis:
 
 ---
 
+## Subproject: Self-Growth Engine
+
+The autopoiesis system can now **grow itself autonomously**.
+
+### How It Works
+
+1. **Identify gaps**: Scans for missing capabilities
+2. **Generate code**: Creates new modules from templates
+3. **Measure LJPW**: Validates generated code meets quality thresholds
+4. **Integrate**: Only code with Love ≥ 0.7 is accepted
+
+### Growth Results
+
+The system grew from 9/22 to **22/22 capabilities**:
+
+| Category | Auto-Generated Modules |
+|----------|----------------------|
+| **Analyze** | `css_analyzer`, `html_analyzer`, `typescript_analyzer`, `dependency_analyzer` |
+| **Heal** | `python_healer`, `typescript_healer` |
+| **Grow** | `python_grower`, `documentation_generator`, `refactoring_engine` |
+| **Core** | `self_growth_engine`, `natural_language_interface`, `ide_integration` |
+
+### Running Self-Growth
+
+```python
+from autopoiesis.self_growth import SelfGrowthEngine
+
+engine = SelfGrowthEngine(".")
+engine.grow_continuously(max_cycles=10)
+```
+
+### The Key Insight
+
+The LJPW framework measures benevolence naturally. We don't tell code to be "good" - we just measure if it is. Code that doesn't care for users scores low on Love and is rejected.
+
+---
+
+## Harmony Dashboard
+
+Visualize the system's health in real-time:
+
+```bash
+python autopoiesis/dashboard.py
+# Opens http://localhost:5000
+```
+
+Displays:
+- System harmony with LJPW breakdown
+- Agent statistics (heartbeats, heals, learning experiences)
+- Harmony over time chart
+- Learned healing priorities
+
+---
+
 ## Contributing
 
 1. **Measure first**: Run `python autopoiesis/self_heal.py` to check system health

@@ -1,10 +1,22 @@
 {
-  "growth_attempts": 3,
-  "successful_growths": 2,
+  "growth_attempts": 15,
+  "successful_growths": 14,
   "rejected_for_benevolence": 1,
   "capabilities_grown": [
     "python_analyzer",
-    "python_analyzer"
+    "python_analyzer",
+    "python_healer",
+    "self_growth_engine",
+    "natural_language_interface",
+    "ide_integration",
+    "html_analyzer",
+    "css_analyzer",
+    "python_grower",
+    "typescript_analyzer",
+    "typescript_healer",
+    "documentation_generator",
+    "refactoring_engine",
+    "dependency_analyzer"
   ],
   "history": [
     {
@@ -18,6 +30,102 @@
     {
       "timestamp": "2025-12-14T22:02:07.604857",
       "capability": "python_analyzer",
+      "success": true,
+      "love": 0.9,
+      "harmony": 0.6269027752520746,
+      "reason": "Accepted: L=0.900, H=0.627. Code is benevolent."
+    },
+    {
+      "timestamp": "2025-12-15T14:06:48.726284",
+      "capability": "python_healer",
+      "success": true,
+      "love": 0.9,
+      "harmony": 0.6269027752520746,
+      "reason": "Accepted: L=0.900, H=0.627. Code is benevolent."
+    },
+    {
+      "timestamp": "2025-12-15T14:06:50.748426",
+      "capability": "self_growth_engine",
+      "success": true,
+      "love": 0.9,
+      "harmony": 0.6269027752520746,
+      "reason": "Accepted: L=0.900, H=0.627. Code is benevolent."
+    },
+    {
+      "timestamp": "2025-12-15T14:06:52.775238",
+      "capability": "natural_language_interface",
+      "success": true,
+      "love": 0.9,
+      "harmony": 0.6269027752520746,
+      "reason": "Accepted: L=0.900, H=0.627. Code is benevolent."
+    },
+    {
+      "timestamp": "2025-12-15T14:06:54.804240",
+      "capability": "ide_integration",
+      "success": true,
+      "love": 0.9,
+      "harmony": 0.6269027752520746,
+      "reason": "Accepted: L=0.900, H=0.627. Code is benevolent."
+    },
+    {
+      "timestamp": "2025-12-15T14:06:56.833015",
+      "capability": "html_analyzer",
+      "success": true,
+      "love": 0.9,
+      "harmony": 0.6269027752520746,
+      "reason": "Accepted: L=0.900, H=0.627. Code is benevolent."
+    },
+    {
+      "timestamp": "2025-12-15T14:07:58.047698",
+      "capability": "css_analyzer",
+      "success": true,
+      "love": 0.9,
+      "harmony": 0.6269027752520746,
+      "reason": "Accepted: L=0.900, H=0.627. Code is benevolent."
+    },
+    {
+      "timestamp": "2025-12-15T14:08:00.069668",
+      "capability": "python_grower",
+      "success": true,
+      "love": 0.9,
+      "harmony": 0.6269027752520746,
+      "reason": "Accepted: L=0.900, H=0.627. Code is benevolent."
+    },
+    {
+      "timestamp": "2025-12-15T14:08:02.097009",
+      "capability": "typescript_analyzer",
+      "success": true,
+      "love": 0.9,
+      "harmony": 0.6269027752520746,
+      "reason": "Accepted: L=0.900, H=0.627. Code is benevolent."
+    },
+    {
+      "timestamp": "2025-12-15T14:08:04.119401",
+      "capability": "typescript_healer",
+      "success": true,
+      "love": 0.9,
+      "harmony": 0.6269027752520746,
+      "reason": "Accepted: L=0.900, H=0.627. Code is benevolent."
+    },
+    {
+      "timestamp": "2025-12-15T14:08:06.147408",
+      "capability": "documentation_generator",
+      "success": true,
+      "love": 0.9,
+      "harmony": 0.6269027752520746,
+      "reason": "Accepted: L=0.900, H=0.627. Code is benevolent."
+    },
+    {
+      "timestamp": "2025-12-15T14:08:08.180292",
+      "capability": "refactoring_engine",
+      "success": true,
+      "love": 0.9,
+      "harmony": 0.6269027752520746,
+      "reason": "Accepted: L=0.900, H=0.627. Code is benevolent."
+    },
+    {
+      "timestamp": "2025-12-15T14:08:10.205759",
+      "capability": "dependency_analyzer",
       "success": true,
       "love": 0.9,
       "harmony": 0.6269027752520746,
