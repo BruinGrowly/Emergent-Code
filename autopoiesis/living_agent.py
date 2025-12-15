@@ -861,6 +861,20 @@ class LivingAgent:
             f"Files: {measurement['total_files']}"
         )
         
+        # Read guidance file if present
+        guidance_path = self.target_path / "autopoiesis" / "agent_guidance.md"
+        if guidance_path.exists():
+            try:
+                guidance = guidance_path.read_text(encoding='utf-8')
+                # Extract growth priorities from guidance
+                if 'Priority 1:' in guidance:
+                    priority_line = [l for l in guidance.split('\n') if 'Priority 1:' in l]
+                    if priority_line:
+                        self.voice.think(f"Reading guidance: {priority_line[0].strip()}")
+                self.voice.observe("I have read my guidance for this session.")
+            except Exception as e:
+                pass  # Guidance is optional
+        
         # Start heartbeat in background thread
         self._heartbeat_thread = threading.Thread(
             target=self._heartbeat_loop, 
