@@ -290,7 +290,7 @@ class AgentCortex:
     The agent's brain - makes decisions based on state.
     """
     
-    HARMONY_THRESHOLD = 0.7  # Below this, healing is triggered
+    HARMONY_THRESHOLD = 0.80  # Below this, healing is triggered (proactive optimization)
     CRITICAL_THRESHOLD = 0.5  # Emergency healing
     
     def __init__(self, memory: AgentMemory):
