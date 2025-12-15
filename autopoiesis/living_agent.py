@@ -296,9 +296,24 @@ class AgentCortex:
     def __init__(self, memory: AgentMemory):
         self.memory = memory
     
-    def should_heal(self, harmony: float) -> bool:
-        """Decide if healing is needed."""
-        return harmony < self.HARMONY_THRESHOLD
+    def should_heal(self, harmony: float, ljpw: Dict = None) -> bool:
+        """
+        Decide if healing is needed.
+        
+        Healing triggers if:
+        - Overall harmony < threshold, OR
+        - Any individual dimension < threshold (proactive optimization)
+        """
+        if harmony < self.HARMONY_THRESHOLD:
+            return True
+        
+        # Also check individual dimensions for proactive optimization
+        if ljpw:
+            for dim, value in ljpw.items():
+                if value < self.HARMONY_THRESHOLD:
+                    return True
+        
+        return False
     
     def is_critical(self, harmony: float) -> bool:
         """Check if situation is critical."""
@@ -341,12 +356,14 @@ class AgentCortex:
                 'reason': f'Harmony {harmony:.3f} is critically low'
             }
         
-        if self.should_heal(harmony):
+        if self.should_heal(harmony, ljpw):
+            weak_dim = self.prioritize_dimension(ljpw)
+            weak_val = ljpw.get(weak_dim, 0)
             return {
                 'action': 'heal',
-                'dimension': self.prioritize_dimension(ljpw),
+                'dimension': weak_dim,
                 'urgency': 'normal',
-                'reason': f'Harmony {harmony:.3f} is below threshold'
+                'reason': f'{weak_dim}={weak_val:.3f} below {self.HARMONY_THRESHOLD}'
             }
         
         if change_impact in ['moderate', 'significant']:
