@@ -1,8 +1,8 @@
 {
   "birth_time": "2025-12-12T22:11:55.060265",
-  "total_heartbeats": 465,
-  "total_heals": 35,
-  "total_observations": 5,
+  "total_heartbeats": 480,
+  "total_heals": 40,
+  "total_observations": 6,
   "harmony_history": [
     {
       "timestamp": "2025-12-12T22:11:58.977484",
@@ -3723,6 +3723,126 @@
       "J": 0.7665778961384817,
       "P": 0.9063328894806925,
       "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:06:07.595390",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:06:46.749738",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:07:25.988554",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:08:04.860657",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:08:44.864946",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:09:25.875316",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:09:58.053053",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:10:30.613748",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:11:02.926256",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:11:34.597636",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:12:06.326414",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:12:38.352442",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:13:10.201386",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:13:41.987073",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:14:14.136557",
+      "harmony": 0.8411126793535881,
+      "L": 0.9,
+      "J": 0.766740282685512,
+      "P": 0.9066422261484098,
+      "W": 0.799999999999999
     }
   ],
   "memories": [
@@ -4265,9 +4385,80 @@
       },
       "harmony_before": 0.8409963913274235,
       "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T18:06:13.482580",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T18:06:52.812871",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T18:07:31.589150",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T18:08:10.831965",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T18:08:51.352928",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T18:14:14.249237",
+      "event_type": "observation",
+      "details": {
+        "type": "file_changes",
+        "changes": {
+          "created": [
+            "autopoiesis\\syntax_healer.py"
+          ],
+          "modified": [],
+          "deleted": []
+        }
+      },
+      "harmony_before": 0.8411126793535881,
+      "harmony_after": 0.0
     }
   ],
-  "current_harmony": 0.8409963913274235,
+  "current_harmony": 0.8411126793535881,
   "current_phase": "autopoietic",
   "watched_files": {
     "analyze_self_fractally.py": "240fede9afc670feb7870e8a504f9cd7",
@@ -4322,6 +4513,7 @@
     "autopoiesis\\self_growth_engine.py": "b680972e70dc24c37861815b8dd2286f",
     "autopoiesis\\self_heal.py": "2a69e3d0224f388dbcb892970ad87d8e",
     "autopoiesis\\self_reflect.py": "b8ed3118023ced0e2d32323e170faeb1",
+    "autopoiesis\\syntax_healer.py": "3b171c6706722779c49f18e34f17e3ef",
     "autopoiesis\\system.py": "1cdbe2d2d4ba0ad82850cf00c499600e",
     "autopoiesis\\test_generator.py": "e3dd950e5111fbd1262837c38aa469f8",
     "autopoiesis\\test_grower.py": "d0ef8a9438d64bc30116dd9dc3893135",
@@ -4520,7 +4712,7 @@
     "experiments\\phase2\\test_gold_standard_code.py": "0754229a3bb6337242a12711d502ff44",
     "experiments\\phase3\\analyze_library.py": "1cecf8be78937827974bde2b6e0e11d6",
     "experiments\\phase3\\generate_beautiful_calculator.py": "3e98b0520c60c33d4b11956376c8fdc6",
-    "experiments\\phase3\\generate_beautiful_code.py": "dc48ffe1db8775cf396b31eba30f6c1c",
+    "experiments\\phase3\\generate_beautiful_code.py": "1271321dc4aff77b7783bf5a078da5a4",
     "experiments\\phase3\\generate_phase3_code.py": "2561c4a1f903061d49df9deb938f48ba",
     "examples\\auto_generated\\analyze_beautiful_calculator.py": "aa9b467b01defb4ba4bd3a6be10222b2",
     "examples\\auto_generated\\analyze_todo.py": "d358d827eb93260bd8d7cb094f39c293",

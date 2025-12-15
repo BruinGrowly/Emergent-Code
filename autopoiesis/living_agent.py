@@ -637,6 +637,7 @@ class LivingAgent:
         self._system_analyzer = None
         self._engine = None
         self._learner = None
+        self._syntax_healer = None
     
     @property
     def multi_analyzer(self):
@@ -670,6 +671,14 @@ class LivingAgent:
             learning_path = self.target_path / "autopoiesis" / "agent_learning.json"
             self._learner = AgentLearner(str(learning_path))
         return self._learner
+    
+    @property
+    def syntax_healer(self):
+        """Lazy load the syntax healer component."""
+        if self._syntax_healer is None:
+            from autopoiesis.syntax_healer import SyntaxHealer
+            self._syntax_healer = SyntaxHealer(dry_run=self.dry_run)
+        return self._syntax_healer
     
     def _measure_harmony(self) -> Dict:
         """Measure current harmony of the codebase."""
@@ -733,6 +742,22 @@ class LivingAgent:
                     'changes': changes
                 }, harmony_before=harmony)
                 self.memory.total_observations += 1
+            
+            # Periodic syntax healing (every 10 heartbeats, before LJPW)
+            if beat_num % 10 == 0 and not self.dry_run:
+                try:
+                    autopoiesis_path = self.target_path / "autopoiesis"
+                    syntax_results = self.syntax_healer.heal_codebase(str(autopoiesis_path))
+                    
+                    total_fixed = sum(r.issues_fixed for r in syntax_results)
+                    if total_fixed > 0:
+                        self.voice.act(f"Fixed {total_fixed} syntax issues (self-healing)")
+                        self.memory.add_memory('syntax_heal', {
+                            'issues_fixed': total_fixed,
+                            'files': [r.file_path for r in syntax_results if r.issues_fixed > 0]
+                        }, harmony_before=harmony)
+                except Exception as e:
+                    self.voice.observe(f"Syntax check error: {e}")
             
             # Decide action
             recommendation = self.cortex.recommend_action(harmony, ljpw, changes)
