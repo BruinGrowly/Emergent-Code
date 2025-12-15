@@ -130,11 +130,17 @@ class MultiLanguageAnalyzer:
         self.js_analyzer = JSAnalyzer()
     
     def detect_file_type(self, path: str) -> FileType:
+        # Auto-healed: Input validation for detect_file_type
+        if path is not None and not isinstance(path, str):
+            raise TypeError(f'path must be str, got {type(path).__name__}')
         """Detect file type from extension."""
         ext = Path(path).suffix.lower()
         return self.EXTENSION_MAP.get(ext, FileType.UNKNOWN)
     
     def analyze_file(self, file_path: str) -> Optional[UnifiedFileAnalysis]:
+        # Auto-healed: Input validation for analyze_file
+        if file_path is not None and not isinstance(file_path, str):
+            raise TypeError(f'file_path must be str, got {type(file_path).__name__}')
         """
         Analyze a single file, routing to appropriate analyzer.
         
@@ -324,6 +330,9 @@ class MultiLanguageAnalyzer:
             return UnifiedFileAnalysis(path=path, file_type=FileType.CSS)
     
     def analyze_directory(self, dir_path: str) -> MultiLanguageReport:
+        # Auto-healed: Input validation for analyze_directory
+        if dir_path is not None and not isinstance(dir_path, str):
+            raise TypeError(f'dir_path must be str, got {type(dir_path).__name__}')
         """
         Analyze all supported files in a directory.
         

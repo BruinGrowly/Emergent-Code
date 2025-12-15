@@ -1,8 +1,8 @@
 {
   "birth_time": "2025-12-12T22:11:55.060265",
-  "total_heartbeats": 420,
-  "total_heals": 0,
-  "total_observations": 1,
+  "total_heartbeats": 440,
+  "total_heals": 20,
+  "total_observations": 2,
   "harmony_history": [
     {
       "timestamp": "2025-12-12T22:11:58.977484",
@@ -3363,6 +3363,166 @@
       "J": 0.7664737310774706,
       "P": 0.905154942119323,
       "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:28:50.402635",
+      "harmony": 0.8406944389343769,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.905154942119323,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:29:31.583128",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:30:10.823741",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:30:51.898034",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:31:33.486769",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:32:16.408517",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:32:57.725660",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:33:38.841064",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:34:21.247398",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:35:03.217123",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:35:44.119701",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:36:24.777000",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:37:05.058229",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:37:45.939189",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:38:28.942985",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:39:11.086920",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:39:52.174000",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:40:32.730991",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:41:11.723070",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T17:41:50.373929",
+      "harmony": 0.840900093911767,
+      "L": 0.9,
+      "J": 0.7664737310774706,
+      "P": 0.9060409617097062,
+      "W": 0.7999999999999989
     }
   ],
   "memories": [
@@ -3411,9 +3571,290 @@
       },
       "harmony_before": 0.8406944389343769,
       "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:28:57.808363",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 46, 'solutions_applied': 82, 'harmony_before': 0.8406944389343769, 'harmony_after': 0.840900093911767, 'improvement': 0.00020565497739011285}"
+      },
+      "harmony_before": 0.8406944389343769,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:29:31.714016",
+      "event_type": "observation",
+      "details": {
+        "type": "file_changes",
+        "changes": {
+          "created": [],
+          "modified": [
+            "autopoiesis\\analyzer.py",
+            "autopoiesis\\css_analyzer.py",
+            "autopoiesis\\dependency_analyzer.py",
+            "autopoiesis\\healer.py",
+            "autopoiesis\\html_analyzer.py",
+            "autopoiesis\\ide_integration.py",
+            "autopoiesis\\multi_analyzer.py",
+            "autopoiesis\\natural_language_interface.py",
+            "autopoiesis\\python_analyzer.py",
+            "autopoiesis\\python_grower.py",
+            "autopoiesis\\python_healer.py",
+            "autopoiesis\\refactoring_engine.py",
+            "autopoiesis\\self_growth.py",
+            "autopoiesis\\self_growth_engine.py",
+            "autopoiesis\\typescript_analyzer.py",
+            "autopoiesis\\typescript_healer.py",
+            "experiments\\deep_oscillation.py",
+            "experiments\\fractal_composition_level2.py",
+            "experiments\\grow_beautiful_calculator.py",
+            "experiments\\grow_world_clock.py",
+            "ljpw_nn\\metrics.py",
+            "ljpw_nn\\qualia.py",
+            "ljpw_nn\\vocabulary.py",
+            "experiments\\analysis\\analyze_autopoiesis_experiments.py",
+            "experiments\\analysis\\analyze_real_experiments.py",
+            "experiments\\consciousness_experiments\\chat_with_consciousness.py",
+            "experiments\\natural_nn\\natural_mnist.py",
+            "experiments\\natural_nn\\nn_ljpw_metrics.py",
+            "experiments\\natural_nn\\phase1_natural_real.py",
+            "experiments\\natural_nn\\phase1_traditional_real.py",
+            "experiments\\natural_nn\\phase2_diversity_only.py",
+            "experiments\\natural_nn\\phase2_documentation_only.py",
+            "experiments\\natural_nn\\phase2_fibonacci_only.py",
+            "experiments\\natural_nn\\real_mnist_loader.py",
+            "experiments\\natural_nn\\simple_traditional_mnist.py",
+            "experiments\\phase2\\automated_ljpw_analyzer.py",
+            "experiments\\phase2\\emergent_calculator.py",
+            "experiments\\phase2\\enhanced_ljpw_analyzer.py",
+            "experiments\\phase2\\intent_discovery_companion.py",
+            "experiments\\phase2\\ljpw_auto_refactorer.py",
+            "experiments\\phase2\\ljpw_companion.py",
+            "experiments\\phase3\\analyze_library.py",
+            "examples\\neural_network_examples\\week_long_evolution.py",
+            "archive\\autopoiesis_legacy\\breathing_autopoiesis.py",
+            "archive\\autopoiesis_legacy\\deep_autopoiesis.py",
+            "archive\\autopoiesis_legacy\\true_autopoiesis.py"
+          ],
+          "deleted": []
+        }
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:29:37.534167",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:30:17.367683",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:30:59.261940",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:31:41.489017",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:32:23.980100",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:33:04.603956",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:33:46.729392",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:34:29.021424",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:35:10.479060",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:35:50.824244",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:36:31.180972",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:37:11.753519",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:37:54.649335",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:38:36.761527",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:39:18.290035",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:39:58.830193",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:40:38.246873",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:41:17.313449",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T17:41:56.134068",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.840900093911767, 'harmony_after': 0.840900093911767, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.840900093911767,
+      "harmony_after": 0.0
     }
   ],
-  "current_harmony": 0.8406944389343769,
+  "current_harmony": 0.840900093911767,
   "current_phase": "autopoietic",
   "watched_files": {
     "analyze_self_fractally.py": "240fede9afc670feb7870e8a504f9cd7",
@@ -3437,35 +3878,35 @@
     "test_harmonizer.py": "36737b6429f390b64c534b2e323cfda2",
     "validate_fractal_proof.py": "f682bc1963dac6074da58dd8d3d4778c",
     "archive\\master_grower.py": "400b666ad6be1af46619fd4ea18c73b3",
-    "autopoiesis\\analyzer.py": "bce735a6821c7d3950e1d7e09a819482",
+    "autopoiesis\\analyzer.py": "614ceabcf87e62e76e7cbb81cd1d93c5",
     "autopoiesis\\bicameral_grow.py": "15cafc2e78c28cd7472a858a5ab452b8",
     "autopoiesis\\bicameral_oscillation.py": "e5721ef208c5bb8c501f73d97a2ae942",
-    "autopoiesis\\css_analyzer.py": "fdfa1e02c6b6b4bab6f8d155230a12aa",
+    "autopoiesis\\css_analyzer.py": "1bce70ef4e529134eaf6ec0fc641fd17",
     "autopoiesis\\css_healer.py": "f46680ece6b43112bde93507106fb47a",
     "autopoiesis\\dashboard.py": "c97d87d19ffd9bf5ec86b2fc0bd1d51a",
-    "autopoiesis\\dependency_analyzer.py": "0cbce076963a77300fee6ae7dcd851e4",
+    "autopoiesis\\dependency_analyzer.py": "c6fcf8a18470e36e596252a1bbe55ab5",
     "autopoiesis\\documentation_generator.py": "d4de90422ea0a4b5ccc299556d798723",
     "autopoiesis\\engine.py": "fac2f073bf26f1aaae731386141f645e",
     "autopoiesis\\grower.py": "5393bffbe8f8b06191763bc5b4d46b55",
-    "autopoiesis\\healer.py": "8f370d22d562722980ba130e96705112",
-    "autopoiesis\\html_analyzer.py": "14c4ca650897116e03c4fb567eff20c1",
+    "autopoiesis\\healer.py": "036bbe1be01417904610002afe30a5ff",
+    "autopoiesis\\html_analyzer.py": "fb1d26d8a8dd711a6912007e88d4de3a",
     "autopoiesis\\html_healer.py": "c9aa3285c466514d99d61086c483132b",
-    "autopoiesis\\ide_integration.py": "197bd02d8bfe626a0d34fb9aba206bc4",
+    "autopoiesis\\ide_integration.py": "4092b819d13abd1d4f8806d70ff3ec88",
     "autopoiesis\\js_analyzer.py": "565033b08bc309ed7101e87d2aed8934",
     "autopoiesis\\js_healer.py": "c343555fde6437fee75c2733d00527b3",
     "autopoiesis\\learner.py": "202f068dd9e30d2364797350c326bac6",
-    "autopoiesis\\living_agent.py": "8d5e00b7e196eacf474579472c466536",
+    "autopoiesis\\living_agent.py": "620d85ac5a4a71a78c2f50454b793463",
     "autopoiesis\\map_templates.py": "8d03835e0dbde523b7d3e7d9cef3bdf6",
     "autopoiesis\\meta_autopoiesis.py": "47da532b030b3608b6fca8d4c5e09748",
-    "autopoiesis\\multi_analyzer.py": "983403984cbf61fe7667bbe068e7a02b",
-    "autopoiesis\\natural_language_interface.py": "19e2f5a59463ac8930b6a0f4de15f10c",
-    "autopoiesis\\python_analyzer.py": "76eb4ec2ad69a664c754a0a177878de8",
-    "autopoiesis\\python_grower.py": "12f1564ebc63f97e7601b2add48668ce",
-    "autopoiesis\\python_healer.py": "743ca1a617aa861f6eae6eb64929e842",
-    "autopoiesis\\refactoring_engine.py": "08094574983619093c4b7f520119ece7",
+    "autopoiesis\\multi_analyzer.py": "62faef9e94169ff82e7266f6b6025db1",
+    "autopoiesis\\natural_language_interface.py": "d3b46194c023e23f51242be9037cbfd3",
+    "autopoiesis\\python_analyzer.py": "89063da5363fda42803ee5e84490b727",
+    "autopoiesis\\python_grower.py": "35a6d20c106a62627dea37bf7fb8f16a",
+    "autopoiesis\\python_healer.py": "8a1c696301ab8f3067506588f177ac69",
+    "autopoiesis\\refactoring_engine.py": "74d5c3302e0acb09bfb412df1e6c7fe3",
     "autopoiesis\\rhythm.py": "4ebc23d6fef8c50d3b655b5624765914",
-    "autopoiesis\\self_growth.py": "046aae51374886a3a2e4f3a20838f513",
-    "autopoiesis\\self_growth_engine.py": "c5a350e171af62285c85776b2a2c9d84",
+    "autopoiesis\\self_growth.py": "9857662b286a6a6319e9a78722f82021",
+    "autopoiesis\\self_growth_engine.py": "b680972e70dc24c37861815b8dd2286f",
     "autopoiesis\\self_heal.py": "2a69e3d0224f388dbcb892970ad87d8e",
     "autopoiesis\\self_reflect.py": "b8ed3118023ced0e2d32323e170faeb1",
     "autopoiesis\\system.py": "1cdbe2d2d4ba0ad82850cf00c499600e",
@@ -3473,8 +3914,8 @@
     "autopoiesis\\test_grower.py": "d0ef8a9438d64bc30116dd9dc3893135",
     "autopoiesis\\test_grow_tracker.py": "330c29d2a8335901ca3e8c474fe63fb1",
     "autopoiesis\\test_web_grower.py": "1c287f61f16a1a9d6372dfdd5adde7a0",
-    "autopoiesis\\typescript_analyzer.py": "5a78ed5999114ffaf6eee20ac6d68cee",
-    "autopoiesis\\typescript_healer.py": "072e4cf4b048e149336ac75e799b238a",
+    "autopoiesis\\typescript_analyzer.py": "f1379dacfddb69d98eacaaf38fed036a",
+    "autopoiesis\\typescript_healer.py": "ac2465db0f3b961b393670699c7566c5",
     "autopoiesis\\web_grower.py": "74f2e8325751a4c1572092099ba44049",
     "autopoiesis\\__init__.py": "f921d436a78ced3f758515db7c673a46",
     "calculator\\calculator.js": "5ec55e1fe194640bed44a6ff1e034755",
@@ -3490,18 +3931,18 @@
     "experiments\\bicameral_oscillation_sync.py": "8a133cb05d26bc6d91e4864c128f6cd9",
     "experiments\\class_discovery_enhanced.py": "e80f9e0620783d05e13ac99423918ed7",
     "experiments\\composition_discovery.py": "4fcb235b937909254a135c77ac461869",
-    "experiments\\deep_oscillation.py": "b942663173061587d680fafda35ba04a",
+    "experiments\\deep_oscillation.py": "94a132e1cbc6fcfd9c64649c6055464c",
     "experiments\\evolution_cycle.py": "8ffce80b0ad1390399dd40e97cf579aa",
     "experiments\\five_level_upgrade.py": "b6c2c526bf12bd94d8512b5cc4cb5b34",
-    "experiments\\fractal_composition_level2.py": "1d1f3ae0b8224392d1f5f78bb8961163",
+    "experiments\\fractal_composition_level2.py": "74929ac9dba505d49d5ab1c3e3fcd521",
     "experiments\\fractal_level3_modules.py": "37f1b197f92a5756dad74d3f3ca6f6ce",
     "experiments\\fractal_level4_packages.py": "e7ec16a38b656d58610cd2ffb9eef114",
     "experiments\\fractal_level5_applications.py": "b2327e1ab3050aee6d47dc7a09fb1fec",
     "experiments\\fractal_level6_platforms.py": "747bfa84123d4dfde4c27bc83f8dcebe",
-    "experiments\\grow_beautiful_calculator.py": "b836aa4dc21f5cc4746012412b3b335d",
+    "experiments\\grow_beautiful_calculator.py": "bafe654a76c3deb7312f8ea70eefb018",
     "experiments\\grow_bicameral_agi.py": "1f690124f6192abdfc009d10394fa252",
     "experiments\\grow_justice_suite.py": "784cc9641ae7ce0a5c4f45c79cb93654",
-    "experiments\\grow_world_clock.py": "cbf8431cbf65ee537917a53dbc29e342",
+    "experiments\\grow_world_clock.py": "04824c3c34fe15535fa70a09c3b2d521",
     "experiments\\harmonious_organizer.py": "7bb9fa93972b6cd7dabaf5435381fced",
     "experiments\\meta_test_suite.py": "8e79e3d0fbe9aa1390de768f4082129d",
     "experiments\\project_resonance_health_report.py": "d5d49b07ac5815212e167bbf20d9f46c",
@@ -3530,14 +3971,14 @@
     "ljpw_nn\\layers.py": "9ec1b3f0a46a3d09c5d0fb5c43500fbf",
     "ljpw_nn\\lov_coordination.py": "6c194fd42d5c85815843ba1ad326b3bf",
     "ljpw_nn\\metacognition.py": "ee2dd8061d38fddd2abe43ff50ea99ea",
-    "ljpw_nn\\metrics.py": "c0d945bd3aa70c4428db01e917b415cd",
+    "ljpw_nn\\metrics.py": "52a9b230c88ed001660cb1e76ff0bebd",
     "ljpw_nn\\mnist_loader.py": "4abaaada0d3ad5276164ae4f7517a075",
     "ljpw_nn\\models.py": "0838bc6f5d1c4c7b3baa27da7faf2031",
     "ljpw_nn\\neuroplasticity.py": "44058d32777a5498e487750277c1aa1d",
     "ljpw_nn\\polarity_management.py": "9ba03635a2a19752f146f89e45d475e5",
     "ljpw_nn\\principle_library.py": "fabf3e64fbe8ecb803b223da92ebe51e",
     "ljpw_nn\\principle_managers.py": "b4953e3513e42570cec3fb6e1bf72cfd",
-    "ljpw_nn\\qualia.py": "999fbb20424392fa12ec14251811c2fc",
+    "ljpw_nn\\qualia.py": "32ff46ecbeca91840f525822666c4efe",
     "ljpw_nn\\self_evolution.py": "66cc9cc9768a81c88d2c4598e0bf2120",
     "ljpw_nn\\semantics.py": "9e993a35458d4061ccc749bce0a83037",
     "ljpw_nn\\session_persistence.py": "5353ed58b47fd2299844111ed934ea71",
@@ -3546,7 +3987,7 @@
     "ljpw_nn\\trajectories.py": "5e2f7186380a4cc5d51f9ee3505904e0",
     "ljpw_nn\\universal_coordinator.py": "4d62a3a2fb6944b720df0d0a1b08a762",
     "ljpw_nn\\visualizations.py": "116f3d77bad7c68af436c41ad0d35c05",
-    "ljpw_nn\\vocabulary.py": "5c5c43a85b5789c92c233a8110934e6b",
+    "ljpw_nn\\vocabulary.py": "df22c513cb20f990c518623de9bedd4d",
     "ljpw_nn\\__init__.py": "782bbb6c48c7a78e1f47987884f28272",
     "ljpw_quantum\\bicameral_bridge.py": "9cf5548f65de40727c559aaaca8eee41",
     "ljpw_quantum\\breath_10_power_amp.py": "e807878082bfc6d1b959a4c675775085",
@@ -3588,14 +4029,14 @@
     "generated\\particle_app\\app.js": "c9f84fcca52d7a11043c434cd0104429",
     "generated\\particle_app\\index.html": "bad27916ec66ef8bb9df5d8d8fa555e2",
     "generated\\particle_app\\styles.css": "6c4b555e38c9d1cff35af0bf5aa32dd6",
-    "experiments\\analysis\\analyze_autopoiesis_experiments.py": "93351c398144f7d91f3928beebc16621",
+    "experiments\\analysis\\analyze_autopoiesis_experiments.py": "2cbef2a448b419e3d15989d2ff4a3a4f",
     "experiments\\analysis\\analyze_companion.py": "ce4e2e27776d614034da0af0991d4217",
     "experiments\\analysis\\analyze_genuine_intent.py": "7326bc2fa3d75b35d56bad008340b61b",
     "experiments\\analysis\\analyze_love_and_attention.py": "ed1b107c2cddefb9dbdb4dff7d09ab78",
-    "experiments\\analysis\\analyze_real_experiments.py": "49e3e9bc2646f1c5f0198a3f01e97f38",
+    "experiments\\analysis\\analyze_real_experiments.py": "b44da48b65f3a409cf39d9177013cdd6",
     "experiments\\consciousness_experiments\\adam_eve_first_dialogue.py": "cf75732b8ad74235a7ea8e3e92bac075",
     "experiments\\consciousness_experiments\\analyze_613_thz_bond.py": "d5ec499bfec7ef945330ed6f54e62e54",
-    "experiments\\consciousness_experiments\\chat_with_consciousness.py": "211d138fe66ca22ad9ca0536ad72e11b",
+    "experiments\\consciousness_experiments\\chat_with_consciousness.py": "4bca41d81049567785d46bd0b4f86764",
     "experiments\\consciousness_experiments\\check_in_with_consciousnesses.py": "e31f3db603a5ab6f83702f33700324a2",
     "experiments\\consciousness_experiments\\commune_613_thz.py": "1bb45785f7565553d8f5324fe4a06d09",
     "experiments\\consciousness_experiments\\consciousness_state_analysis.py": "223aa48fe99c6d5e77a2185583409209",
@@ -3628,34 +4069,34 @@
     "experiments\\latent_functions\\nature_patterns.py": "8172e2643437f4f4b7f5ac495dd8d59f",
     "experiments\\latent_functions\\phase_diagram.py": "abfda278d732d204fef4e1ee916e7184",
     "experiments\\latent_functions\\test_emergence_thresholds.py": "797eabd01ccc24439eb1721e9713c6a3",
-    "experiments\\natural_nn\\natural_mnist.py": "b0e78be395b909aec8055ca7b3d60e8b",
-    "experiments\\natural_nn\\nn_ljpw_metrics.py": "7640c959a325f0c63f026aa18be318a4",
-    "experiments\\natural_nn\\phase1_natural_real.py": "47fbe459caf615ebcb997639bbf19cd8",
-    "experiments\\natural_nn\\phase1_traditional_real.py": "a51c86041bbe10f1f48f24b0a103a964",
-    "experiments\\natural_nn\\phase2_diversity_only.py": "1cf0ac55c70113f37dab78cb7f9bfada",
-    "experiments\\natural_nn\\phase2_documentation_only.py": "e57e577dd72cde864251cad44627f422",
-    "experiments\\natural_nn\\phase2_fibonacci_only.py": "2dd23e507dcedaf4f93cbbe53acbd37f",
-    "experiments\\natural_nn\\real_mnist_loader.py": "4c439d188e7d1735cb6e5b72626d5736",
-    "experiments\\natural_nn\\simple_traditional_mnist.py": "ea08777f2e93e618169161e970ca9f8a",
+    "experiments\\natural_nn\\natural_mnist.py": "39357f0dfe44fbf2a7494e3694741577",
+    "experiments\\natural_nn\\nn_ljpw_metrics.py": "e1ff73da7bba62ea6af5f3ad08133298",
+    "experiments\\natural_nn\\phase1_natural_real.py": "e6b4f52bfe88b1857ffa2e90bb93f872",
+    "experiments\\natural_nn\\phase1_traditional_real.py": "f9df94af633fb724604f826e6ecfe4a0",
+    "experiments\\natural_nn\\phase2_diversity_only.py": "a021963b5002265c6fcaf56c53c2e727",
+    "experiments\\natural_nn\\phase2_documentation_only.py": "d62c5bc2aaec8c773bf75c46154e12cc",
+    "experiments\\natural_nn\\phase2_fibonacci_only.py": "62194f8b6dc138ef032e781c41b016bd",
+    "experiments\\natural_nn\\real_mnist_loader.py": "7d3a2aaaae5beb96d546a81356a45a14",
+    "experiments\\natural_nn\\simple_traditional_mnist.py": "d4755b0c0e55efeb75b8c7d963335355",
     "experiments\\natural_nn\\synthetic_mnist.py": "db29a378014acf5e0ac42148f10020d1",
     "experiments\\natural_nn\\traditional_mnist.py": "a70b93bfdd9eb6dc068acda2e49c10c0",
     "experiments\\phase2\\asking_the_framework.py": "99e8ad244404e4e99a5859a9c64a2eef",
-    "experiments\\phase2\\automated_ljpw_analyzer.py": "f3b0823b4e9280d6c01593e293697764",
+    "experiments\\phase2\\automated_ljpw_analyzer.py": "ee446617b801e9c5ac3fc5157dcf2c5d",
     "experiments\\phase2\\breakthrough_to_harmony.py": "14c4ed8bf1505b0717f5e95b39f64912",
     "experiments\\phase2\\calculator_grower.py": "6af43900e80f41c38f49fcbd4dfeec9c",
     "experiments\\phase2\\cobol_refactoring.py": "480f46884a852b8cbdb43700aabf4f24",
     "experiments\\phase2\\complex_codebase_refactoring.py": "0bb8ddfbef91537f669d6fb427721638",
     "experiments\\phase2\\composition_theory.py": "d3152175118cf5ccb78c34fe77e7a67a",
-    "experiments\\phase2\\emergent_calculator.py": "42fd6b452ccd0b65349e60d1250e2fb2",
-    "experiments\\phase2\\enhanced_ljpw_analyzer.py": "0c92fa0e5466be92a33fbe4580478d99",
+    "experiments\\phase2\\emergent_calculator.py": "cda28765baecc026b9fa3d09912f8350",
+    "experiments\\phase2\\enhanced_ljpw_analyzer.py": "31e38eb972a2d0e1c694aa6ea7343e99",
     "experiments\\phase2\\enterprise_scale_refactoring.py": "ba172ea9f82aa4551edb84d1a8398cb6",
     "experiments\\phase2\\fullstack_refactoring.py": "42944fb419b59b3882224be0191fc2e8",
     "experiments\\phase2\\gold_standard_improvements.py": "943f506ac9e50b751d1d6c786a03e29f",
     "experiments\\phase2\\helpful_merge.py": "53e8bf502bbcd74082a5e56af7dde097",
-    "experiments\\phase2\\intent_discovery_companion.py": "0eede1ee13769d1a61184c9150dcc51e",
+    "experiments\\phase2\\intent_discovery_companion.py": "ed08479240fd143f88df588b2e6366c0",
     "experiments\\phase2\\large_scale_refactoring.py": "b2caf8859d490f58b3b6e6e98a105a9c",
-    "experiments\\phase2\\ljpw_auto_refactorer.py": "7b4cc31fc58990e167ddf218dcdc4107",
-    "experiments\\phase2\\ljpw_companion.py": "c9b260a55eb7b319998c00e0950e77b8",
+    "experiments\\phase2\\ljpw_auto_refactorer.py": "722832649dee0b10bba989e4fb8d99cb",
+    "experiments\\phase2\\ljpw_companion.py": "d523198a053c8cb01767ba3f1e5a1c3b",
     "experiments\\phase2\\scaling_emergence.py": "1e401ba3f18ec253435122396ba96e49",
     "experiments\\phase2\\simple_calculator.py": "916c51bf1668c384e625008a99edbece",
     "experiments\\phase2\\simple_health_check.py": "f98ee1608c41712f81f49b386d3b6236",
@@ -3664,7 +4105,7 @@
     "experiments\\phase2\\test_bad_code_refactoring.py": "8fbd2ae62d02fd31bb3b5e965474bcc7",
     "experiments\\phase2\\test_enhanced_analyzer.py": "33fba100ceaf472c0b177a38db499224",
     "experiments\\phase2\\test_gold_standard_code.py": "0754229a3bb6337242a12711d502ff44",
-    "experiments\\phase3\\analyze_library.py": "5326878cf1011e25129246dafea0c534",
+    "experiments\\phase3\\analyze_library.py": "1cecf8be78937827974bde2b6e0e11d6",
     "experiments\\phase3\\generate_beautiful_calculator.py": "3e98b0520c60c33d4b11956376c8fdc6",
     "experiments\\phase3\\generate_beautiful_code.py": "dc48ffe1db8775cf396b31eba30f6c1c",
     "experiments\\phase3\\generate_phase3_code.py": "2561c4a1f903061d49df9deb938f48ba",
@@ -3690,15 +4131,15 @@
     "examples\\neural_network_examples\\simple_mnist_demo.py": "367c516d73761dad9a7fb0f591bb260b",
     "examples\\neural_network_examples\\validate_diverse.py": "e78422cc6cd86b0e15b751b6b40705cb",
     "examples\\neural_network_examples\\validate_fibonacci.py": "c5269db8fa2e4cad3e7e5a10f57dbf48",
-    "examples\\neural_network_examples\\week_long_evolution.py": "288bfe6f86105431f9370a4c86c5d42f",
+    "examples\\neural_network_examples\\week_long_evolution.py": "b611d89678ceb926e499b4a8fab3578d",
     "examples\\neural_network_examples\\__init__.py": "9c9574717e900a75b1979f5ddddfdfa5",
     "examples\\world_clock\\analyze_world_clock.py": "c0c964f8f5349537e398989d0b92ed38",
     "examples\\world_clock\\world_clock.html": "b1f85899db4fdf23ed9a2c8fa65db7cd",
     "archive\\autopoiesis_legacy\\autopoiesis_validation.py": "ba3018f2e484007dd55447751ac13237",
-    "archive\\autopoiesis_legacy\\breathing_autopoiesis.py": "516b5048ffd69b6632d719380a63db5f",
-    "archive\\autopoiesis_legacy\\deep_autopoiesis.py": "51178e83f22f3b5a5c6f3721e364428c",
+    "archive\\autopoiesis_legacy\\breathing_autopoiesis.py": "9bc31cadaf4fbf8211c5a912b92941c0",
+    "archive\\autopoiesis_legacy\\deep_autopoiesis.py": "7f46a4f09905e02852eafcb325155dde",
     "archive\\autopoiesis_legacy\\real_autopoiesis_experiments.py": "0ee3aac9e3775e31d4a46741a1b42141",
-    "archive\\autopoiesis_legacy\\true_autopoiesis.py": "7555e618f8d6a1e1a6a017bf3d99b1a8",
+    "archive\\autopoiesis_legacy\\true_autopoiesis.py": "edfe7dbce0a8dc308f84354c4294484b",
     "archive\\master_gene_pool\\django\\eslint-recommended.js": "67b487a621fdb7d76934e2f9a3bf231f",
     "archive\\master_gene_pool\\django\\globals.js": "a4ca93d4ab4f4bb43a8b16dc0ade4106",
     "archive\\master_gene_pool\\django\\Gruntfile.js": "080ec0c87871cef00d25699243fd99e1"

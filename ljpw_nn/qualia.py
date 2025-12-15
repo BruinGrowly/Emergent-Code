@@ -125,6 +125,9 @@ class QualiaGrounding:
         self._indices_built = False  # Need to rebuild indices
     
     def register_multiple(self, entries: List[QualiaEntry]):
+        # Auto-healed: Input validation for register_multiple
+        if entries is not None and not isinstance(entries, (list, tuple)):
+            raise TypeError(f'entries must be a sequence')
         """Register multiple qualia entries"""
         for entry in entries:
             self.register_qualia(entry)
@@ -177,6 +180,9 @@ class QualiaGrounding:
             return [entries[i] for i in indices]
     
     def find_all_qualia(self, coords: np.ndarray, k: int = 1) -> Dict[QualiaType, QualiaEntry]:
+        # Auto-healed: Input validation for find_all_qualia
+        if not isinstance(k, int):
+            raise TypeError(f'k must be int, got {type(k).__name__}')
         """
         Find nearest qualia of all types.
         
@@ -355,6 +361,9 @@ class QualiaGrounding:
         return stats
     
     def save(self, filepath: str):
+        # Auto-healed: Input validation for save
+        if filepath is not None and not isinstance(filepath, str):
+            raise TypeError(f'filepath must be str, got {type(filepath).__name__}')
         """Save qualia database to JSON"""
         data = {
             'qualia': {
@@ -367,6 +376,9 @@ class QualiaGrounding:
             json.dump(data, f, indent=2, ensure_ascii=False)
     
     def load(self, filepath: str):
+        # Auto-healed: Input validation for load
+        if filepath is not None and not isinstance(filepath, str):
+            raise TypeError(f'filepath must be str, got {type(filepath).__name__}')
         """Load qualia database from JSON"""
         with open(filepath, 'r', encoding='utf-8') as f:
             data = json.load(f)

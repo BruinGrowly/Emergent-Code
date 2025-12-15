@@ -170,6 +170,9 @@ class EmergentCalculator:
         return new_ops
 
     def grow(self, operation_name: str) -> bool:
+        # Auto-healed: Input validation for grow
+        if operation_name is not None and not isinstance(operation_name, str):
+            raise TypeError(f'operation_name must be str, got {type(operation_name).__name__}')
         """
         Grow by adding a new operation.
 

@@ -51,6 +51,9 @@ class Healer:
     """
     
     def __init__(self, max_modifications_per_file: int = 5):
+        # Auto-healed: Input validation for __init__
+        if not isinstance(max_modifications_per_file, int):
+            raise TypeError(f'max_modifications_per_file must be int, got {type(max_modifications_per_file).__name__}')
         self.max_mods = max_modifications_per_file
         self.solutions_generated: List[NovelSolution] = []
         self.solutions_applied: List[NovelSolution] = []

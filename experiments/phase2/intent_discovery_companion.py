@@ -588,6 +588,9 @@ class IntentDiscoveryCompanion:
         return insights
 
     def display_discovery(self, discovery: Dict):
+        # Auto-healed: Input validation for display_discovery
+        if discovery is not None and not isinstance(discovery, dict):
+            raise TypeError(f'discovery must be a dict')
         """
         Display the intent discovery with love and clarity.
 

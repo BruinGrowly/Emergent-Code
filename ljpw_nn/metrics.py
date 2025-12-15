@@ -274,6 +274,9 @@ class NeuralNetworkLJPW:
     """
 
     def measure(self, model: Any = None, model_info: Optional[Dict] = None) -> HarmonyScores:
+        # Auto-healed: Input validation for measure
+        if model_info is not None and not isinstance(model_info, dict):
+            raise TypeError(f'model_info must be a dict')
         """
         Measure LJPW scores for a model.
 

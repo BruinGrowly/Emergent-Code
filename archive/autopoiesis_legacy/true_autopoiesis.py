@@ -54,6 +54,9 @@ class CodeAnalyzer:
         self.analyzer = SemanticResonanceAnalyzer()
 
     def analyze_file_deeply(self, filepath: str) -> CodeDeficit:
+        # Auto-healed: Input validation for analyze_file_deeply
+        if filepath is not None and not isinstance(filepath, str):
+            raise TypeError(f'filepath must be str, got {type(filepath).__name__}')
         """Perform deep analysis of a file to find specific deficits."""
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()

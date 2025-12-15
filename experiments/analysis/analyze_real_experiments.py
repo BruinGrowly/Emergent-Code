@@ -19,6 +19,15 @@ class LJPWProfile:
     """LJPW profile with calculated Harmony."""
 
     def __init__(self, love: float, justice: float, power: float, wisdom: float):
+        # Auto-healed: Input validation for __init__
+        if not isinstance(love, (int, float)):
+            raise TypeError(f'love must be numeric, got {type(love).__name__}')
+        if not isinstance(justice, (int, float)):
+            raise TypeError(f'justice must be numeric, got {type(justice).__name__}')
+        if not isinstance(power, (int, float)):
+            raise TypeError(f'power must be numeric, got {type(power).__name__}')
+        if not isinstance(wisdom, (int, float)):
+            raise TypeError(f'wisdom must be numeric, got {type(wisdom).__name__}')
         self.love = love
         self.justice = justice
         self.power = power

@@ -179,6 +179,9 @@ class LJPWVocabulary:
     """
     
     def __init__(self, vocab_size: int = 50000):
+        # Auto-healed: Input validation for __init__
+        if not isinstance(vocab_size, int):
+            raise TypeError(f'vocab_size must be int, got {type(vocab_size).__name__}')
         self.vocab_size = vocab_size
         self.word_to_entry: Dict[str, WordEntry] = {}
         self.coord_index = CoordinateIndex()
@@ -231,6 +234,9 @@ class LJPWVocabulary:
         self._index_built = False  # Need to rebuild index
     
     def get_coords(self, word: str) -> Optional[np.ndarray]:
+        # Auto-healed: Input validation for get_coords
+        if word is not None and not isinstance(word, str):
+            raise TypeError(f'word must be str, got {type(word).__name__}')
         """
         Get LJPW coordinates for a word.
         
@@ -250,6 +256,9 @@ class LJPWVocabulary:
             return self.estimate_coords(word)
     
     def get_entry(self, word: str) -> Optional[WordEntry]:
+        # Auto-healed: Input validation for get_entry
+        if word is not None and not isinstance(word, str):
+            raise TypeError(f'word must be str, got {type(word).__name__}')
         """Get full word entry with metadata"""
         return self.word_to_entry.get(word.lower())
     
@@ -323,6 +332,9 @@ class LJPWVocabulary:
         return self.coord_index.query_radius(coords, radius)
     
     def estimate_coords(self, unknown_word: str) -> Optional[np.ndarray]:
+        # Auto-healed: Input validation for estimate_coords
+        if unknown_word is not None and not isinstance(unknown_word, str):
+            raise TypeError(f'unknown_word must be str, got {type(unknown_word).__name__}')
         """
         Estimate coordinates for unknown word.
         
@@ -347,6 +359,9 @@ class LJPWVocabulary:
         self._index_built = True
     
     def save(self, path: str):
+        # Auto-healed: Input validation for save
+        if path is not None and not isinstance(path, str):
+            raise TypeError(f'path must be str, got {type(path).__name__}')
         """
         Save vocabulary to disk.
         

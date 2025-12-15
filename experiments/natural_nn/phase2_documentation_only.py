@@ -194,6 +194,11 @@ class WellDocumentedTraditionalMNIST:
         self.b1 -= learning_rate * db1
 
     def train(self, X_train, y_train, X_val, y_val, epochs=10, batch_size=128, lr=0.01):
+        # Auto-healed: Input validation for train
+        if batch_size is not None and not isinstance(batch_size, int):
+            raise TypeError(f'batch_size must be an integer')
+        if batch_size is not None and batch_size < 0:
+            raise ValueError(f'batch_size must be non-negative')
         """
         Train the neural network.
 

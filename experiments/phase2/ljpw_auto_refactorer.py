@@ -89,6 +89,9 @@ class LJPWRefactorer:
         return issues
 
     def add_docstring(self, code: str) -> str:
+        # Auto-healed: Input validation for add_docstring
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
         """Add docstring to function (↑ Love)."""
         # Find function definition
         match = re.search(r'(def\s+(\w+)\((.*?)\):)', code)
@@ -109,6 +112,9 @@ class LJPWRefactorer:
         return code.replace(func_line, func_line + '\n' + docstring)
 
     def add_type_hints(self, code: str) -> str:
+        # Auto-healed: Input validation for add_type_hints
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
         """Add type hints to function (↑ Love: clarity)."""
         # Simple heuristic type hints
         code = re.sub(r'def\s+(\w+)\((.*?)\):',
@@ -179,6 +185,9 @@ class LJPWRefactorer:
         return code
 
     def extract_constants(self, code: str) -> Tuple[str, str]:
+        # Auto-healed: Input validation for extract_constants
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
         """Extract magic numbers to constants (↑ Wisdom)."""
         # Find magic numbers
         numbers = re.findall(r'\b(\d+\.?\d*)\b', code)
@@ -197,6 +206,9 @@ class LJPWRefactorer:
         return '\n'.join(constants) + '\n\n', code
 
     def add_logging(self, code: str) -> str:
+        # Auto-healed: Input validation for add_logging
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
         """Add logging for observability (↑ Love)."""
         # Find function name
         match = re.search(r'def\s+(\w+)\(', code)
@@ -218,6 +230,9 @@ class LJPWRefactorer:
         return '\n'.join(lines)
 
     def refactor_code(self, code: str) -> Dict:
+        # Auto-healed: Input validation for refactor_code
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
         """
         Automatically refactor code to improve LJPW.
 

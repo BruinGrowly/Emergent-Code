@@ -57,6 +57,9 @@ class DeepCodeAnalyzer:
     """Performs deep semantic analysis of Python code."""
 
     def analyze_file(self, filepath: str) -> FileAnalysis:
+        # Auto-healed: Input validation for analyze_file
+        if filepath is not None and not isinstance(filepath, str):
+            raise TypeError(f'filepath must be str, got {type(filepath).__name__}')
         """Perform comprehensive analysis of a file."""
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -387,6 +390,11 @@ class CodeModifier:
         self.modifications_applied = []
 
     def apply_modifications(self, filepath: str, modifications: List[Dict]) -> int:
+        # Auto-healed: Input validation for apply_modifications
+        if filepath is not None and not isinstance(filepath, str):
+            raise TypeError(f'filepath must be str, got {type(filepath).__name__}')
+        if modifications is not None and not isinstance(modifications, (list, tuple)):
+            raise TypeError(f'modifications must be a sequence')
         """Apply a list of modifications to a file."""
         with open(filepath, 'r') as f:
             lines = f.readlines()

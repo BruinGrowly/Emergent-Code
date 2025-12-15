@@ -28,6 +28,9 @@ class PythonHealer:
     """
     
     def __init__(self, config: Optional[Dict] = None):
+        # Auto-healed: Input validation for __init__
+        if config is not None and not isinstance(config, dict):
+            raise TypeError(f'config must be a dict')
         """
         Initialize python healer.
         

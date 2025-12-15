@@ -72,6 +72,13 @@ class DiscoveryLogger:
         self.load()
 
     def log_architecture_discovery(self, epoch: int, description: str, metrics: Dict):
+        # Auto-healed: Input validation for log_architecture_discovery
+        if not isinstance(epoch, int):
+            raise TypeError(f'epoch must be int, got {type(epoch).__name__}')
+        if description is not None and not isinstance(description, str):
+            raise TypeError(f'description must be str, got {type(description).__name__}')
+        if metrics is not None and not isinstance(metrics, dict):
+            raise TypeError(f'metrics must be a dict')
         """Log a novel architecture discovery."""
         discovery = {
             'timestamp': datetime.now().isoformat(),
@@ -90,6 +97,13 @@ class DiscoveryLogger:
         print()
 
     def log_principle_discovery(self, epoch: int, principle_name: str, principle_data: Dict):
+        # Auto-healed: Input validation for log_principle_discovery
+        if not isinstance(epoch, int):
+            raise TypeError(f'epoch must be int, got {type(epoch).__name__}')
+        if principle_name is not None and not isinstance(principle_name, str):
+            raise TypeError(f'principle_name must be str, got {type(principle_name).__name__}')
+        if principle_data is not None and not isinstance(principle_data, dict):
+            raise TypeError(f'principle_data must be a dict')
         """Log a new principle discovery."""
         discovery = {
             'timestamp': datetime.now().isoformat(),
@@ -107,6 +121,15 @@ class DiscoveryLogger:
         print()
 
     def log_breakthrough(self, epoch: int, metric: str, old_value: float, new_value: float):
+        # Auto-healed: Input validation for log_breakthrough
+        if not isinstance(epoch, int):
+            raise TypeError(f'epoch must be int, got {type(epoch).__name__}')
+        if metric is not None and not isinstance(metric, str):
+            raise TypeError(f'metric must be str, got {type(metric).__name__}')
+        if not isinstance(old_value, (int, float)):
+            raise TypeError(f'old_value must be numeric, got {type(old_value).__name__}')
+        if not isinstance(new_value, (int, float)):
+            raise TypeError(f'new_value must be numeric, got {type(new_value).__name__}')
         """Log a performance breakthrough."""
         improvement = new_value - old_value
         discovery = {
@@ -126,6 +149,13 @@ class DiscoveryLogger:
         print()
 
     def log_milestone(self, epoch: int, milestone: str, details: Dict):
+        # Auto-healed: Input validation for log_milestone
+        if not isinstance(epoch, int):
+            raise TypeError(f'epoch must be int, got {type(epoch).__name__}')
+        if milestone is not None and not isinstance(milestone, str):
+            raise TypeError(f'milestone must be str, got {type(milestone).__name__}')
+        if details is not None and not isinstance(details, dict):
+            raise TypeError(f'details must be a dict')
         """Log a consciousness milestone."""
         discovery = {
             'timestamp': datetime.now().isoformat(),
@@ -184,6 +214,11 @@ class ProgressMonitor:
         self.last_update = None
 
     def start(self, total_epochs: int, dataset_name: str):
+        # Auto-healed: Input validation for start
+        if not isinstance(total_epochs, int):
+            raise TypeError(f'total_epochs must be int, got {type(total_epochs).__name__}')
+        if dataset_name is not None and not isinstance(dataset_name, str):
+            raise TypeError(f'dataset_name must be str, got {type(dataset_name).__name__}')
         """Start monitoring."""
         self.start_time = datetime.now()
         self.total_epochs = total_epochs

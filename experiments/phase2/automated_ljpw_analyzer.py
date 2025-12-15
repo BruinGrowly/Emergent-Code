@@ -60,6 +60,9 @@ class ImplementationPatternAnalyzer:
         pass
 
     def analyze(self, code: str) -> Dict[str, float]:
+        # Auto-healed: Input validation for analyze
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
         """
         Analyze implementation patterns and return LJPW scores.
 
@@ -403,6 +406,9 @@ class AutomatedLJPWAnalyzer:
         return {'L': 0.0, 'J': 0.0, 'P': 0.0, 'W': 0.0}
 
     def print_detailed_report(self, score: LJPWScore, code: str):
+        # Auto-healed: Input validation for print_detailed_report
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
         """Print detailed analysis report."""
         lines = len([l for l in code.split('\n') if l.strip()])
 

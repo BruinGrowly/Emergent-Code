@@ -40,6 +40,200 @@ sys.path.insert(0, project_root)
 
 
 # =============================================================================
+# LJPW CORE - The Central Framework That Drives Everything
+# =============================================================================
+
+class LJPWCore:
+    """
+    The LJPW Framework - the heart and soul of the agent.
+    
+    Everything the agent does flows from these four dimensions:
+    - L (Love): Care for others - the code serves its readers
+    - J (Justice): Fair treatment - inputs are validated, contracts honored
+    - P (Power): Strength to handle adversity - resilience and recovery
+    - W (Wisdom): Learning and insight - observability and growth
+    
+    Harmony is the geometric mean of all four. A system is autopoietic
+    when it maintains high harmony through balanced dimensions.
+    """
+    
+    # The Four Dimensions
+    DIMENSIONS = {
+        'L': {
+            'name': 'Love',
+            'meaning': 'Care for the reader and user',
+            'in_code': 'Documentation, readability, helpful messages',
+            'question': 'Does this code care for those who read it?',
+            'threshold': 0.80
+        },
+        'J': {
+            'name': 'Justice',
+            'meaning': 'Fair treatment of all inputs',
+            'in_code': 'Validation, type checking, contracts',
+            'question': 'Does this code treat inputs fairly?',
+            'threshold': 0.80
+        },
+        'P': {
+            'name': 'Power',
+            'meaning': 'Strength to handle adversity',
+            'in_code': 'Error handling, recovery, resilience',
+            'question': 'Can this code handle problems gracefully?',
+            'threshold': 0.80
+        },
+        'W': {
+            'name': 'Wisdom',
+            'meaning': 'Ability to observe and learn',
+            'in_code': 'Logging, metrics, observability',
+            'question': 'Can this code see and learn from itself?',
+            'threshold': 0.80
+        }
+    }
+    
+    # System phases
+    PHASE_AUTOPOIETIC = 'autopoietic'  # H >= 0.6, all dimensions balanced
+    PHASE_HOMEOSTATIC = 'homeostatic'   # 0.4 <= H < 0.6, struggling to maintain
+    PHASE_ENTROPIC = 'entropic'         # H < 0.4, system is degrading
+    
+    # Learning thresholds
+    MAX_FUTILE_ATTEMPTS = 5  # Stop trying a healing approach after this many failures
+    MIN_SUCCESS_RATE = 0.15  # Give up on dimension if success rate drops below this
+    
+    @classmethod
+    def harmony(cls, ljpw: Dict) -> float:
+        # Auto-healed: Input validation for harmony
+        if ljpw is not None and not isinstance(ljpw, dict):
+            raise TypeError(f'ljpw must be a dict')
+        """Calculate harmony as the geometric mean of LJPW."""
+        L = ljpw.get('L', 0)
+        J = ljpw.get('J', 0)
+        P = ljpw.get('P', 0)
+        W = ljpw.get('W', 0)
+        
+        if min(L, J, P, W) <= 0:
+            return 0.0
+        return (L * J * P * W) ** 0.25
+    
+    @classmethod
+    def phase(cls, harmony: float) -> str:
+        # Auto-healed: Input validation for phase
+        if not isinstance(harmony, (int, float)):
+            raise TypeError(f'harmony must be numeric, got {type(harmony).__name__}')
+        """Determine system phase from harmony."""
+        if harmony >= 0.6:
+            return cls.PHASE_AUTOPOIETIC
+        elif harmony >= 0.4:
+            return cls.PHASE_HOMEOSTATIC
+        else:
+            return cls.PHASE_ENTROPIC
+    
+    @classmethod
+    def diagnose(cls, ljpw: Dict) -> Dict:
+        # Auto-healed: Input validation for diagnose
+        if ljpw is not None and not isinstance(ljpw, dict):
+            raise TypeError(f'ljpw must be a dict')
+        """
+        Diagnose the system state through an LJPW lens.
+        
+        Returns a diagnosis with:
+        - weakest: The dimension most in need of care
+        - balance: How balanced the dimensions are (0-1)
+        - advice: LJPW-grounded guidance
+        """
+        L, J, P, W = ljpw.get('L', 0), ljpw.get('J', 0), ljpw.get('P', 0), ljpw.get('W', 0)
+        
+        dims = {'L': L, 'J': J, 'P': P, 'W': W}
+        weakest_key = min(dims, key=dims.get)
+        weakest_val = dims[weakest_key]
+        strongest_val = max(dims.values())
+        
+        balance = weakest_val / strongest_val if strongest_val > 0 else 0
+        
+        dim_info = cls.DIMENSIONS[weakest_key]
+        
+        return {
+            'weakest': weakest_key,
+            'weakest_value': weakest_val,
+            'weakest_name': dim_info['name'],
+            'balance': balance,
+            'question': dim_info['question'],
+            'advice': f"Focus on {dim_info['name']}: {dim_info['in_code']}"
+        }
+    
+    @classmethod
+    def should_intervene(cls, ljpw: Dict, dimension_attempts: Dict = None) -> Dict:
+        # Auto-healed: Input validation for should_intervene
+        if ljpw is not None and not isinstance(ljpw, dict):
+            raise TypeError(f'ljpw must be a dict')
+        if dimension_attempts is not None and not isinstance(dimension_attempts, dict):
+            raise TypeError(f'dimension_attempts must be a dict')
+        """
+        Decide if and how to intervene, guided by LJPW principles.
+        
+        Returns:
+            Dict with 'should_heal', 'dimension', 'reason', 'give_up'
+        """
+        diagnosis = cls.diagnose(ljpw)
+        weak_dim = diagnosis['weakest']
+        weak_val = diagnosis['weakest_value']
+        threshold = cls.DIMENSIONS[weak_dim]['threshold']
+        
+        # Check if we should give up on this dimension
+        give_up = False
+        if dimension_attempts:
+            attempts = dimension_attempts.get(weak_dim, {'count': 0, 'successes': 0})
+            if attempts['count'] >= cls.MAX_FUTILE_ATTEMPTS:
+                success_rate = attempts['successes'] / attempts['count'] if attempts['count'] > 0 else 0
+                if success_rate < cls.MIN_SUCCESS_RATE:
+                    give_up = True
+        
+        if give_up:
+            return {
+                'should_heal': False,
+                'dimension': weak_dim,
+                'reason': f"Giving up on {diagnosis['weakest_name']} - healing not effective",
+                'give_up': True
+            }
+        
+        if weak_val < threshold:
+            return {
+                'should_heal': True,
+                'dimension': weak_dim,
+                'reason': f"{diagnosis['weakest_name']} ({weak_val:.3f}) needs care - {diagnosis['question']}",
+                'give_up': False
+            }
+        
+        return {
+            'should_heal': False,
+            'dimension': None,
+            'reason': f"All dimensions healthy - harmony maintained through balance",
+            'give_up': False
+        }
+    
+    @classmethod
+    def express_state(cls, ljpw: Dict, harmony: float) -> str:
+        # Auto-healed: Input validation for express_state
+        if ljpw is not None and not isinstance(ljpw, dict):
+            raise TypeError(f'ljpw must be a dict')
+        if not isinstance(harmony, (int, float)):
+            raise TypeError(f'harmony must be numeric, got {type(harmony).__name__}')
+        """
+        Express the current state in LJPW terms - the agent's voice.
+        """
+        phase = cls.phase(harmony)
+        diagnosis = cls.diagnose(ljpw)
+        
+        if phase == cls.PHASE_AUTOPOIETIC:
+            if diagnosis['balance'] > 0.9:
+                return f"Harmony strong ({harmony:.3f}). LJPW balanced. System thriving."
+            else:
+                return f"Harmony good ({harmony:.3f}). {diagnosis['weakest_name']} needs attention ({diagnosis['weakest_value']:.3f})."
+        elif phase == cls.PHASE_HOMEOSTATIC:
+            return f"Struggling to maintain ({harmony:.3f}). {diagnosis['advice']}"
+        else:
+            return f"System degrading ({harmony:.3f}). Urgent: {diagnosis['advice']}"
+
+
+# =============================================================================
 # AGENT MEMORY - Persistent State
 # =============================================================================
 
@@ -282,48 +476,32 @@ class AgentSenses:
 
 
 # =============================================================================
-# AGENT CORTEX - Decision Making
+# AGENT CORTEX - Decision Making (Driven by LJPW)
 # =============================================================================
 
 class AgentCortex:
     """
-    The agent's brain - makes decisions based on state.
-    """
+    The agent's brain - makes decisions based on LJPW framework.
     
-    HARMONY_THRESHOLD = 0.80  # Below this, healing is triggered (proactive optimization)
-    CRITICAL_THRESHOLD = 0.5  # Emergency healing
+    All decisions flow through LJPWCore, which embodies the framework.
+    """
     
     def __init__(self, memory: AgentMemory):
         self.memory = memory
+        self.dimension_attempts = {}  # Track healing attempts per dimension
     
-    def should_heal(self, harmony: float, ljpw: Dict = None) -> bool:
-        """
-        Decide if healing is needed.
+    def record_heal_attempt(self, dimension: str, success: bool):
+        """Record a healing attempt for learning."""
+        if dimension not in self.dimension_attempts:
+            self.dimension_attempts[dimension] = {'count': 0, 'successes': 0}
         
-        Healing triggers if:
-        - Overall harmony < threshold, OR
-        - Any individual dimension < threshold (proactive optimization)
-        """
-        if harmony < self.HARMONY_THRESHOLD:
-            return True
-        
-        # Also check individual dimensions for proactive optimization
-        if ljpw:
-            for dim, value in ljpw.items():
-                if value < self.HARMONY_THRESHOLD:
-                    return True
-        
-        return False
+        self.dimension_attempts[dimension]['count'] += 1
+        if success:
+            self.dimension_attempts[dimension]['successes'] += 1
     
     def is_critical(self, harmony: float) -> bool:
         """Check if situation is critical."""
-        return harmony < self.CRITICAL_THRESHOLD
-    
-    def prioritize_dimension(self, ljpw: Dict) -> str:
-        """Decide which dimension to heal first."""
-        # Find the weakest dimension
-        min_dim = min(ljpw, key=ljpw.get)
-        return min_dim
+        return LJPWCore.phase(harmony) == LJPWCore.PHASE_ENTROPIC
     
     def evaluate_change_impact(self, changes: Dict[str, List[str]]) -> str:
         """Evaluate the impact of detected changes."""
@@ -341,29 +519,37 @@ class AgentCortex:
     def recommend_action(self, harmony: float, ljpw: Dict, 
                          changes: Dict[str, List[str]]) -> Dict:
         """
-        Recommend what action to take.
-        
-        Returns:
-            Dict with 'action', 'dimension', 'urgency', 'reason'
+        Recommend action using LJPW framework as the central guide.
         """
         change_impact = self.evaluate_change_impact(changes)
         
+        # Critical situation - emergency response
         if self.is_critical(harmony):
+            diagnosis = LJPWCore.diagnose(ljpw)
             return {
                 'action': 'emergency_heal',
-                'dimension': self.prioritize_dimension(ljpw),
+                'dimension': diagnosis['weakest'],
                 'urgency': 'critical',
-                'reason': f'Harmony {harmony:.3f} is critically low'
+                'reason': f"System degrading! {diagnosis['advice']}"
             }
         
-        if self.should_heal(harmony, ljpw):
-            weak_dim = self.prioritize_dimension(ljpw)
-            weak_val = ljpw.get(weak_dim, 0)
+        # Consult LJPW Core for intervention decision
+        decision = LJPWCore.should_intervene(ljpw, self.dimension_attempts)
+        
+        if decision['give_up']:
+            return {
+                'action': 'rest',
+                'dimension': decision['dimension'],
+                'urgency': 'none',
+                'reason': decision['reason']
+            }
+        
+        if decision['should_heal']:
             return {
                 'action': 'heal',
-                'dimension': weak_dim,
+                'dimension': decision['dimension'],
                 'urgency': 'normal',
-                'reason': f'{weak_dim}={weak_val:.3f} below {self.HARMONY_THRESHOLD}'
+                'reason': decision['reason']
             }
         
         if change_impact in ['moderate', 'significant']:
@@ -374,11 +560,12 @@ class AgentCortex:
                 'reason': f'{change_impact.capitalize()} changes detected'
             }
         
+        # All is well - express through LJPW
         return {
             'action': 'rest',
             'dimension': None,
             'urgency': 'none',
-            'reason': f'Harmony {harmony:.3f} is healthy'
+            'reason': LJPWCore.express_state(ljpw, harmony)
         }
 
 
@@ -563,6 +750,9 @@ class LivingAgent:
                             harmony_after=new_harmony,
                             strategy_used=f"heal_{dim.lower()}"
                         )
+                        
+                        # Record with cortex for give-up tracking
+                        self.cortex.record_heal_attempt(dim, exp.success)
                         
                         if exp.success:
                             self.voice.feel(f"Healing worked! {harmony:.3f} -> {new_harmony:.3f} (+{exp.delta:.3f})")

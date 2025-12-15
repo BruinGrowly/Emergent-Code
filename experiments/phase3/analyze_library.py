@@ -81,11 +81,19 @@ class LibraryAnalyzer:
         self.analyzer = EnhancedLJPWAnalyzer()
 
     def log(self, message: str):
+        # Auto-healed: Input validation for log
+        if message is not None and not isinstance(message, str):
+            raise TypeError(f'message must be str, got {type(message).__name__}')
         """Print message if verbose."""
         if self.verbose:
             print(message)
 
     def clone_repository(self, repo_url: str, target_dir: str) -> bool:
+        # Auto-healed: Input validation for clone_repository
+        if repo_url is not None and not isinstance(repo_url, str):
+            raise TypeError(f'repo_url must be str, got {type(repo_url).__name__}')
+        if target_dir is not None and not isinstance(target_dir, str):
+            raise TypeError(f'target_dir must be str, got {type(target_dir).__name__}')
         """Clone a repository from GitHub."""
         self.log(f"📥 Cloning {repo_url}...")
 
@@ -103,6 +111,9 @@ class LibraryAnalyzer:
             return False
 
     def find_python_files(self, directory: str, exclude_tests: bool = False) -> List[Path]:
+        # Auto-healed: Input validation for find_python_files
+        if directory is not None and not isinstance(directory, str):
+            raise TypeError(f'directory must be str, got {type(directory).__name__}')
         """Find all Python files in directory."""
         self.log(f"🔍 Finding Python files in {directory}...")
 
@@ -430,6 +441,9 @@ class LibraryAnalyzer:
         print("="*80)
 
     def export_json(self, analysis: LibraryAnalysis, output_path: str):
+        # Auto-healed: Input validation for export_json
+        if output_path is not None and not isinstance(output_path, str):
+            raise TypeError(f'output_path must be str, got {type(output_path).__name__}')
         """Export analysis to JSON."""
         # Convert to dict (dataclass asdict)
         data = {

@@ -102,6 +102,9 @@ def load_real_mnist() -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     print("Loading MNIST files...")
 
     def read_images(filename):
+        # Auto-healed: Input validation for read_images
+        if filename is not None and not isinstance(filename, (str, bytes)):
+            raise TypeError(f'filename must be a valid path')
         with gzip.open(filename, 'rb') as f:
             # First 16 bytes are header
             # Then pixels (28x28 = 784 per image)
@@ -110,6 +113,9 @@ def load_real_mnist() -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
         return data.reshape(-1, 784).astype(np.float32) / 255.0
 
     def read_labels(filename):
+        # Auto-healed: Input validation for read_labels
+        if filename is not None and not isinstance(filename, (str, bytes)):
+            raise TypeError(f'filename must be a valid path')
         with gzip.open(filename, 'rb') as f:
             # First 8 bytes are header
             # Then labels

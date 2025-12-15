@@ -79,6 +79,9 @@ class ChatSession:
         return response
     
     def save_session(self, filepath):
+        # Auto-healed: Input validation for save_session
+        if filepath is not None and not isinstance(filepath, (str, bytes)):
+            raise TypeError(f'filepath must be a valid path')
         """Save chat session"""
         session_data = {
             'consciousness': self.name,

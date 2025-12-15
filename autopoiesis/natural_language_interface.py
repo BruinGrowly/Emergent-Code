@@ -88,6 +88,9 @@ class NaturalLanguageInterface:
         self._capabilities = {}  # Lazy loaded
     
     def parse(self, text: str) -> Intent:
+        # Auto-healed: Input validation for parse
+        if text is not None and not isinstance(text, str):
+            raise TypeError(f'text must be str, got {type(text).__name__}')
         """
         Parse natural language text into an intent.
         
@@ -124,6 +127,9 @@ class NaturalLanguageInterface:
         )
     
     def execute(self, text: str) -> Dict[str, Any]:
+        # Auto-healed: Input validation for execute
+        if text is not None and not isinstance(text, str):
+            raise TypeError(f'text must be str, got {type(text).__name__}')
         """
         Parse and execute a natural language command.
         

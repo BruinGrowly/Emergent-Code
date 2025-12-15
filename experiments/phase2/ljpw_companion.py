@@ -53,6 +53,9 @@ class LJPWCompanion:
         self.session_history = []
 
     def analyze_code_with_guidance(self, code: str, function_name: Optional[str] = None) -> Dict:
+        # Auto-healed: Input validation for analyze_code_with_guidance
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
         """
         Analyze code and provide actionable guidance toward harmony.
 
@@ -364,6 +367,9 @@ class LJPWCompanion:
                 )
 
     def display_guidance(self, analysis: Dict):
+        # Auto-healed: Input validation for display_guidance
+        if analysis is not None and not isinstance(analysis, dict):
+            raise TypeError(f'analysis must be a dict')
         """
         Display the analysis in a helpful, encouraging way.
 

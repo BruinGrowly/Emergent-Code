@@ -339,6 +339,11 @@ if __name__ == "__main__":
 '''
     
     def validate_benevolence(self, code: str, capability_name: str) -> Tuple[bool, float, float, str]:
+        # Auto-healed: Input validation for validate_benevolence
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
+        if capability_name is not None and not isinstance(capability_name, str):
+            raise TypeError(f'capability_name must be str, got {type(capability_name).__name__}')
         """
         Validate that generated code is benevolent.
         
@@ -386,6 +391,9 @@ if __name__ == "__main__":
             return (False, 0.0, 0.0, f"Analysis error: {e}")
     
     def integrate(self, code: str, capability: Capability) -> bool:
+        # Auto-healed: Input validation for integrate
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
         """
         Integrate new code into the system.
         
@@ -509,6 +517,11 @@ if __name__ == "__main__":
         return result
     
     def grow_continuously(self, max_cycles: int = 10, delay: float = 1.0):
+        # Auto-healed: Input validation for grow_continuously
+        if not isinstance(max_cycles, int):
+            raise TypeError(f'max_cycles must be int, got {type(max_cycles).__name__}')
+        if not isinstance(delay, (int, float)):
+            raise TypeError(f'delay must be numeric, got {type(delay).__name__}')
         """
         Run continuous growth cycles.
         

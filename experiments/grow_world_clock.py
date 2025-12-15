@@ -17,6 +17,9 @@ class ClockMaterializer:
     Translates Semantic Physics into a World Clock.
     """
     def __init__(self, profile):
+        # Auto-healed: Input validation for __init__
+        if profile is not None and not isinstance(profile, (str, bytes)):
+            raise TypeError(f'profile must be a valid path')
         self.L = profile['L']
         self.J = profile['J']
         self.P = profile['P']

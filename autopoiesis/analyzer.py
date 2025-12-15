@@ -225,6 +225,9 @@ class CodeAnalyzer:
         )
     
     def analyze_directory(self, dirpath: str, recursive: bool = True) -> SystemAnalysis:
+        # Auto-healed: Input validation for analyze_directory
+        if dirpath is not None and not isinstance(dirpath, str):
+            raise TypeError(f'dirpath must be str, got {type(dirpath).__name__}')
         """
         Analyze all Python files in a directory.
         

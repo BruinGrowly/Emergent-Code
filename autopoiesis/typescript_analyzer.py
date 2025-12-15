@@ -94,10 +94,16 @@ class TypescriptAnalyzer:
     ]
     
     def __init__(self, config: Optional[Dict] = None):
+        # Auto-healed: Input validation for __init__
+        if config is not None and not isinstance(config, dict):
+            raise TypeError(f'config must be a dict')
         """Initialize TypeScript analyzer."""
         self.config = config or {}
     
     def analyze_file(self, file_path: str) -> TypeScriptAnalysisResult:
+        # Auto-healed: Input validation for analyze_file
+        if file_path is not None and not isinstance(file_path, str):
+            raise TypeError(f'file_path must be str, got {type(file_path).__name__}')
         """
         Analyze a TypeScript file for LJPW harmony.
         
@@ -148,6 +154,9 @@ class TypescriptAnalyzer:
         return min(1.0, density * 10)
     
     def analyze_directory(self, dir_path: str) -> Dict[str, Any]:
+        # Auto-healed: Input validation for analyze_directory
+        if dir_path is not None and not isinstance(dir_path, str):
+            raise TypeError(f'dir_path must be str, got {type(dir_path).__name__}')
         """
         Analyze all TypeScript files in a directory.
         

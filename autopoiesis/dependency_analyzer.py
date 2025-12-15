@@ -72,10 +72,16 @@ class DependencyAnalyzer:
     ]
     
     def __init__(self, config: Optional[Dict] = None):
+        # Auto-healed: Input validation for __init__
+        if config is not None and not isinstance(config, dict):
+            raise TypeError(f'config must be a dict')
         """Initialize dependency analyzer."""
         self.config = config or {}
     
     def analyze(self, root_path: str) -> DependencyGraph:
+        # Auto-healed: Input validation for analyze
+        if root_path is not None and not isinstance(root_path, str):
+            raise TypeError(f'root_path must be str, got {type(root_path).__name__}')
         """
         Analyze all dependencies in a codebase.
         
@@ -166,6 +172,9 @@ class DependencyAnalyzer:
         return imports
     
     def get_summary(self, root_path: str) -> Dict[str, Any]:
+        # Auto-healed: Input validation for get_summary
+        if root_path is not None and not isinstance(root_path, str):
+            raise TypeError(f'root_path must be str, got {type(root_path).__name__}')
         """Get a summary of dependencies."""
         graph = self.analyze(root_path)
         

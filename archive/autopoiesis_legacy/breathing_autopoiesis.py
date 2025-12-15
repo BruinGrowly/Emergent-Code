@@ -68,6 +68,9 @@ class BreathingAutopoiesis:
         }
 
     def breathe(self, cycles: int = 8) -> List[BreathState]:
+        # Auto-healed: Input validation for breathe
+        if not isinstance(cycles, int):
+            raise TypeError(f'cycles must be int, got {type(cycles).__name__}')
         """
         Execute breathing cycles.
 

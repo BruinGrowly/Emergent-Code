@@ -405,6 +405,9 @@ class EnhancedPatternAnalyzer:
         pass
 
     def analyze(self, code: str) -> Dict:
+        # Auto-healed: Input validation for analyze
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
         """Analyze code with enhanced metrics."""
         try:
             tree = ast.parse(code)
@@ -698,6 +701,9 @@ class EnhancedLJPWAnalyzer:
         return {'L': 0.0, 'J': 0.0, 'P': 0.0, 'W': 0.0}
 
     def print_detailed_report(self, score: EnhancedLJPWScore, code: str):
+        # Auto-healed: Input validation for print_detailed_report
+        if code is not None and not isinstance(code, str):
+            raise TypeError(f'code must be str, got {type(code).__name__}')
         """Print enhanced detailed report."""
         lines = len([l for l in code.split('\n') if l.strip()])
 

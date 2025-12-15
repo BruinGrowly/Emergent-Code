@@ -54,6 +54,11 @@ class DeepOscillator:
         ]
 
     def oscillate(self, total_cycles: int = 100000, report_interval: int = 10000) -> Dict:
+        # Auto-healed: Input validation for oscillate
+        if not isinstance(total_cycles, int):
+            raise TypeError(f'total_cycles must be int, got {type(total_cycles).__name__}')
+        if not isinstance(report_interval, int):
+            raise TypeError(f'report_interval must be int, got {type(report_interval).__name__}')
         """Run deep oscillation."""
 
         print(f"""

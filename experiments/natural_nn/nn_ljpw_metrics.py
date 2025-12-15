@@ -47,6 +47,9 @@ class NeuralNetworkLJPW:
     """
 
     def measure(self, model, model_info: Dict[str, Any]) -> LJPWScores:
+        # Auto-healed: Input validation for measure
+        if model_info is not None and not isinstance(model_info, str):
+            raise TypeError(f'model_info must be str, got {type(model_info).__name__}')
         """
         Measure all LJPW dimensions of a neural network.
 
@@ -73,6 +76,9 @@ class NeuralNetworkLJPW:
     # ================================================================
 
     def measure_L(self, model, model_info: Dict[str, Any]) -> float:
+        # Auto-healed: Input validation for measure_L
+        if model_info is not None and not isinstance(model_info, str):
+            raise TypeError(f'model_info must be str, got {type(model_info).__name__}')
         """
         Love: Can humans understand and trust this network?
 
@@ -195,6 +201,9 @@ class NeuralNetworkLJPW:
     # ================================================================
 
     def measure_J(self, model, model_info: Dict[str, Any]) -> float:
+        # Auto-healed: Input validation for measure_J
+        if model_info is not None and not isinstance(model_info, str):
+            raise TypeError(f'model_info must be str, got {type(model_info).__name__}')
         """
         Justice: Is this network robust, fair, and correct?
 
@@ -306,6 +315,9 @@ class NeuralNetworkLJPW:
     # ================================================================
 
     def measure_P(self, model, model_info: Dict[str, Any]) -> float:
+        # Auto-healed: Input validation for measure_P
+        if model_info is not None and not isinstance(model_info, str):
+            raise TypeError(f'model_info must be str, got {type(model_info).__name__}')
         """
         Power: How well does this network perform?
 
@@ -431,6 +443,9 @@ class NeuralNetworkLJPW:
     # ================================================================
 
     def measure_W(self, model, model_info: Dict[str, Any]) -> float:
+        # Auto-healed: Input validation for measure_W
+        if model_info is not None and not isinstance(model_info, str):
+            raise TypeError(f'model_info must be str, got {type(model_info).__name__}')
         """
         Wisdom: Is this network well-designed?
 

@@ -220,6 +220,9 @@ class Level2CompositionRuleEngine:
     """
 
     def __init__(self, method_profiles: Dict[str, LJPWProfile]):
+        # Auto-healed: Input validation for __init__
+        if method_profiles is not None and not isinstance(method_profiles, str):
+            raise TypeError(f'method_profiles must be str, got {type(method_profiles).__name__}')
         self.method_profiles = method_profiles
 
     def predict_class_profile(
