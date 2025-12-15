@@ -5,7 +5,7 @@ Syntax Healer
 Automatically detects and fixes syntax issues in Python files.
 
 This enables the agent to heal its own code when:
-- Invalid escape sequences are detected (e.g., \\/ instead of /)
+- Invalid escape sequences are detected (e.g., / instead of /)
 - Python syntax errors occur
 - Common linting issues are found
 
@@ -58,7 +58,7 @@ class SyntaxHealer:
     Heals Python syntax issues automatically.
     
     The healer can detect and fix:
-    1. Invalid escape sequences (\\/ \\[ etc.)
+    1. Invalid escape sequences (/ \\[ etc.)
     2. Basic syntax errors (missing colons, unmatched brackets)
     3. Common patterns that cause warnings
     """
@@ -86,6 +86,9 @@ class SyntaxHealer:
         self.dry_run = dry_run
     
     def check_file(self, file_path: str) -> List[SyntaxIssue]:
+        # Auto-healed: Input validation for check_file
+        if file_path is not None and not isinstance(file_path, str):
+            raise TypeError(f'file_path must be str, got {type(file_path).__name__}')
         """
         Check a Python file for syntax issues.
         
@@ -139,7 +142,7 @@ class SyntaxHealer:
                     file_path=file_path,
                     line_number=i,
                     issue_type='escape_sequence',
-                    description=f"Invalid escape sequence '\\/' at column {pos}",
+                    description=f"Invalid escape sequence '/' at column {pos}",
                     original=line,
                     fixed=line.replace(r'\/', '/'),
                     can_fix=True
@@ -168,6 +171,9 @@ class SyntaxHealer:
         return issues
     
     def heal_file(self, file_path: str) -> SyntaxHealingResult:
+        # Auto-healed: Input validation for heal_file
+        if file_path is not None and not isinstance(file_path, str):
+            raise TypeError(f'file_path must be str, got {type(file_path).__name__}')
         """
         Heal a Python file by fixing detected issues.
         
@@ -241,6 +247,9 @@ class SyntaxHealer:
         )
     
     def heal_codebase(self, root_path: str, exclude_dirs: List[str] = None) -> List[SyntaxHealingResult]:
+        # Auto-healed: Input validation for heal_codebase
+        if root_path is not None and not isinstance(root_path, str):
+            raise TypeError(f'root_path must be str, got {type(root_path).__name__}')
         """
         Heal all Python files in a directory.
         
@@ -267,6 +276,9 @@ class SyntaxHealer:
         return results
     
     def run_syntax_check(self, root_path: str) -> Dict:
+        # Auto-healed: Input validation for run_syntax_check
+        if root_path is not None and not isinstance(root_path, str):
+            raise TypeError(f'root_path must be str, got {type(root_path).__name__}')
         """
         Run a full syntax check on the codebase.
         
