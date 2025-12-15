@@ -499,6 +499,25 @@ class AgentCortex:
         if success:
             self.dimension_attempts[dimension]['successes'] += 1
     
+    def save(self, path: str):
+        """Save cortex state for persistence across restarts."""
+        data = {
+            'dimension_attempts': self.dimension_attempts
+        }
+        with open(path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2)
+    
+    def load(self, path: str):
+        """Load cortex state from previous session."""
+        try:
+            if os.path.exists(path):
+                with open(path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                self.dimension_attempts = data.get('dimension_attempts', {})
+        except Exception as e:
+            # If loading fails, start fresh
+            self.dimension_attempts = {}
+    
     def is_critical(self, harmony: float) -> bool:
         """Check if situation is critical."""
         return LJPWCore.phase(harmony) == LJPWCore.PHASE_ENTROPIC
@@ -599,12 +618,14 @@ class LivingAgent:
         # Paths
         self.memory_path = self.target_path / "autopoiesis" / "agent_memory.json"
         self.log_path = self.target_path / "autopoiesis" / "agent_log.txt"
+        self.cortex_path = self.target_path / "autopoiesis" / "cortex_state.json"
         
         # Components
         self.memory = AgentMemory.load(str(self.memory_path))
         self.voice = AgentVoice(str(self.log_path))
         self.senses = AgentSenses(str(self.target_path), self.memory)
         self.cortex = AgentCortex(self.memory)
+        self.cortex.load(str(self.cortex_path))  # Restore previous session state
         
         # State
         self._alive = False
@@ -859,8 +880,10 @@ class LivingAgent:
         
         # Save final memory state
         self.memory.save(str(self.memory_path))
+        self.cortex.save(str(self.cortex_path))  # Persist cortex state for next session
         
         print(f"  Memory saved to: {self.memory_path}")
+        print(f"  Cortex saved to: {self.cortex_path}")
         print(f"  Log saved to: {self.log_path}")
     
     def run_forever(self):
