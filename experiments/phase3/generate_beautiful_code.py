@@ -592,7 +592,7 @@ class BeautifulWorldClockGenerator:
             }
 
             // Justice (J): Format validation
-            if (!/^[A-Z][a-z]+\/[A-Z][a-z_]+$/.test(timezone)) {
+            if (!/^[A-Z][a-z]+\\/[A-Z][a-z_]+$/.test(timezone)) {
                 log('warn', 'Timezone format may be invalid', { timezone });
             }
 

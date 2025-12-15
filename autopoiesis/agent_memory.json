@@ -1,7 +1,7 @@
 {
   "birth_time": "2025-12-12T22:11:55.060265",
-  "total_heartbeats": 460,
-  "total_heals": 30,
+  "total_heartbeats": 465,
+  "total_heals": 35,
   "total_observations": 5,
   "harmony_history": [
     {
@@ -3683,6 +3683,46 @@
       "J": 0.7665778961384817,
       "P": 0.9063328894806925,
       "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:02:03.636450",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:02:45.147505",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:03:25.502400",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:04:06.013539",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
+    },
+    {
+      "timestamp": "2025-12-15T18:04:46.442239",
+      "harmony": 0.8409963913274235,
+      "L": 0.9000000000000001,
+      "J": 0.7665778961384817,
+      "P": 0.9063328894806925,
+      "W": 0.7999999999999989
     }
   ],
   "memories": [
@@ -4167,6 +4207,61 @@
           ],
           "deleted": []
         }
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T18:02:10.932927",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T18:02:51.936934",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T18:03:32.069215",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T18:04:12.314793",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
+      },
+      "harmony_before": 0.8409963913274235,
+      "harmony_after": 0.0
+    },
+    {
+      "timestamp": "2025-12-15T18:04:52.910603",
+      "event_type": "heal",
+      "details": {
+        "dimension": "J",
+        "result": "success",
+        "details": "{'dimension': 'J', 'files_modified': 0, 'solutions_applied': 0, 'harmony_before': 0.8409963913274235, 'harmony_after': 0.8409963913274235, 'improvement': 0.0}"
       },
       "harmony_before": 0.8409963913274235,
       "harmony_after": 0.0
