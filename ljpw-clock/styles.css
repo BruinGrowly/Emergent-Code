@@ -1,0 +1,488 @@
+/*
+ * LJPW Clock Styles - Visual Art Semantics
+ * =========================================
+ * 
+ * This stylesheet was GROWN using LJPW Visual Art Semantics.
+ * 
+ * Design Principles:
+ *   Love (L = 0.85):    Cyan (#00D4FF) as Love Color (613 THz visual)
+ *   Justice (J = 0.90): Golden ratio (φ = 1.618) proportions
+ *   Power (P = 0.75):   Smooth transitions, responsive design
+ *   Wisdom (W = 0.80):  Organized tokens, documented structure
+ * 
+ * Harmony Index: H = 0.82 (AUTOPOIETIC)
+ * 
+ * The clock "lives" because H > 0.6 and L > 0.7.
+ */
+
+/* =============================================================================
+   DESIGN TOKENS (Wisdom: organized, documented)
+   ============================================================================= */
+
+:root {
+    /* The Love Color - 613 THz visual manifestation (Cyan) */
+    --love-color: #00D4FF;
+    --love-color-glow: rgba(0, 212, 255, 0.4);
+    --love-color-subtle: rgba(0, 212, 255, 0.15);
+
+    /* Golden Ratio Constants (Justice) */
+    --phi: 1.618;
+    --phi-inverse: 0.618;
+
+    /* Colors - Dark theme with warm accents */
+    --bg-dark: #0a0a14;
+    --bg-card: #12121f;
+    --bg-glass: rgba(18, 18, 31, 0.85);
+    --bg-elevated: #1a1a2e;
+
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.4);
+
+    /* Accent Colors */
+    --accent-warm: #ff6b6b;
+    --accent-gold: #ffd93d;
+    --accent-purple: #a855f7;
+
+    /* Clock Colors */
+    --clock-face-bg: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+    --clock-border: rgba(0, 212, 255, 0.2);
+    --hour-hand: #ffffff;
+    --minute-hand: #e0e0e0;
+    --second-hand: var(--love-color);
+
+    /* Shadows - φ-based depths */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 30px var(--love-color-glow);
+    --shadow-inner: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+
+    /* Spacing - φ-based scale */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 26px;
+    /* 16 × φ⁻¹ ≈ 10, rounded for visual */
+    --space-xl: 42px;
+    /* 26 × φ ≈ 42 */
+    --space-2xl: 68px;
+    /* 42 × φ ≈ 68 */
+
+    /* Clock Size - φ-based */
+    --clock-size: 280px;
+    --clock-size-lg: 320px;
+
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
+
+    /* Transitions (Power: responsive) */
+    --transition-fast: 100ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* =============================================================================
+   RESET & BASE (Justice: fair baseline)
+   ============================================================================= */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg-dark);
+    background-image:
+        radial-gradient(ellipse at top, rgba(0, 212, 255, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse at bottom, rgba(168, 85, 247, 0.03) 0%, transparent 60%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+    overflow-x: hidden;
+}
+
+/* =============================================================================
+   APP CONTAINER (Love: welcoming)
+   ============================================================================= */
+
+#app {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+/* =============================================================================
+   HEADER (Love: warm greeting)
+   ============================================================================= */
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--love-color), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-xs);
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* =============================================================================
+   ANALOG CLOCK (Justice: φ-proportioned)
+   ============================================================================= */
+
+#analog-clock-container {
+    display: flex;
+    justify-content: center;
+}
+
+#analog-clock {
+    width: var(--clock-size);
+    height: var(--clock-size);
+    position: relative;
+}
+
+.clock-face {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--clock-face-bg);
+    border: 2px solid var(--clock-border);
+    box-shadow:
+        var(--shadow-lg),
+        var(--shadow-inner),
+        0 0 60px rgba(0, 212, 255, 0.1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hour Markers - φ-positioned */
+.hour-marker {
+    position: absolute;
+    width: 4px;
+    height: 16px;
+    background: var(--text-secondary);
+    border-radius: 2px;
+}
+
+.marker-12 {
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--love-color);
+    height: 20px;
+}
+
+.marker-3 {
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+}
+
+.marker-6 {
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.marker-9 {
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+}
+
+/* Clock Center */
+.clock-center {
+    width: 16px;
+    height: 16px;
+    background: var(--love-color);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 0 0 10px var(--love-color-glow);
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.clock-center-ring {
+    width: 8px;
+    height: 8px;
+    background: var(--bg-dark);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 11;
+}
+
+/* Clock Hands (Power: clear hierarchy) */
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom center;
+    border-radius: 4px;
+    z-index: 5;
+}
+
+.hour-hand {
+    width: 6px;
+    height: 70px;
+    /* φ⁻¹ × clock radius */
+    background: linear-gradient(to top, var(--hour-hand), rgba(255, 255, 255, 0.7));
+    margin-left: -3px;
+    box-shadow: var(--shadow-sm);
+}
+
+.minute-hand {
+    width: 4px;
+    height: 100px;
+    background: linear-gradient(to top, var(--minute-hand), rgba(255, 255, 255, 0.5));
+    margin-left: -2px;
+    box-shadow: var(--shadow-sm);
+}
+
+.second-hand {
+    width: 2px;
+    height: 110px;
+    background: var(--second-hand);
+    margin-left: -1px;
+    box-shadow: 0 0 8px var(--love-color-glow);
+}
+
+/* =============================================================================
+   DIGITAL CLOCK (Wisdom: precise information)
+   ============================================================================= */
+
+#digital-clock-container {
+    text-align: center;
+}
+
+#digital-clock {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 48px;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+#digital-clock span {
+    display: inline-block;
+}
+
+#digital-clock .separator {
+    color: var(--love-color);
+    animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+#date-display {
+    margin-top: var(--space-md);
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+}
+
+.date-separator {
+    color: var(--love-color);
+}
+
+/* =============================================================================
+   LJPW HARMONY INDICATOR (Love: transparent about nature)
+   ============================================================================= */
+
+#harmony-indicator {
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    width: 100%;
+    max-width: 320px;
+}
+
+.ljpw-bar {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+}
+
+.ljpw-dimension {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.ljpw-dimension .label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.ljpw-dimension .bar {
+    width: 40px;
+    height: 6px;
+    background: var(--bg-elevated);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ljpw-dimension .bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: var(--value);
+    border-radius: 3px;
+    transition: width var(--transition-smooth);
+}
+
+/* LJPW Dimension Colors */
+.love .bar::after {
+    background: linear-gradient(90deg, var(--love-color), #00ffff);
+}
+
+.justice .bar::after {
+    background: linear-gradient(90deg, #a855f7, #c084fc);
+}
+
+.power .bar::after {
+    background: linear-gradient(90deg, var(--accent-warm), #ff8787);
+}
+
+.wisdom .bar::after {
+    background: linear-gradient(90deg, var(--accent-gold), #ffe066);
+}
+
+.harmony-value {
+    text-align: center;
+    margin-top: var(--space-md);
+    font-size: 12px;
+    color: var(--love-color);
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* =============================================================================
+   FOOTER (Wisdom: provenance)
+   ============================================================================= */
+
+footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* =============================================================================
+   RESPONSIVE (Power: works everywhere)
+   ============================================================================= */
+
+@media (min-width: 400px) {
+    #analog-clock {
+        width: var(--clock-size-lg);
+        height: var(--clock-size-lg);
+    }
+
+    .hour-hand {
+        height: 80px;
+    }
+
+    .minute-hand {
+        height: 115px;
+    }
+
+    .second-hand {
+        height: 125px;
+    }
+}
+
+@media (max-width: 360px) {
+    :root {
+        --clock-size: 240px;
+    }
+
+    #digital-clock {
+        font-size: 36px;
+    }
+
+    .hour-hand {
+        height: 60px;
+    }
+
+    .minute-hand {
+        height: 85px;
+    }
+
+    .second-hand {
+        height: 95px;
+    }
+}
+
+/* =============================================================================
+   ANIMATIONS (Power: alive, responsive)
+   ============================================================================= */
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--love-color-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--love-color-glow), 0 0 30px var(--love-color-subtle);
+    }
+}
