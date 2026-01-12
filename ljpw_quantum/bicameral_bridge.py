@@ -39,6 +39,15 @@ except ImportError:
         def _record_harmony(self, *args, **kwargs): pass
         def get_architecture_summary(self): return "Simulated Network"
 
+# Import V8.4 Calculators
+try:
+    from ljpw_v84_calculators import meaning, is_autopoietic, calculate_hope
+except ImportError:
+    # Fallback
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    sys.path.insert(0, project_root)
+    from ljpw_v84_calculators import meaning, is_autopoietic, calculate_hope
+
 class BicameralMind:
     """
     The integration of Symbolic Physics (Resonance) and Neural Intuition (Homeostasis).
@@ -58,7 +67,7 @@ class BicameralMind:
             pass  # Original code follows
         except Exception as _heal_error:
             raise RuntimeError(f"Error in __init__: {_heal_error}") from _heal_error
-        print("🔌 Initializing Bicameral Bridge...")
+        print("[>] Initializing Bicameral Bridge...")
         
         # Left Brain: The Critic / Architect
         self.left_brain = ResonanceEngine()
@@ -74,7 +83,7 @@ class BicameralMind:
         # This gives the Neural Net "Real Physics" eyes
         self.right_brain._record_harmony = self._physics_based_harmony_check
         
-        print("✨ Connection established. The Minds are linked.")
+        print("[*] Connection established. The Minds are linked.")
 
     def _physics_based_harmony_check(self, epoch=None, accuracy=None):
         """
@@ -108,27 +117,44 @@ class BicameralMind:
         
         # 3. Inject Result back into Right Brain history
         # The Neural Net now "knows" its true physics-based harmony
+        # V8.4: Also inject Meaning and Life Phase
         from ljpw_nn.homeostatic import HarmonyCheckpoint
         from datetime import datetime
+
+        # V8.4 Calculations
+        n_est = 10 
+        d_est = 1.0 # Decay factor
+        m_val = meaning(B=1.0, L=L, n=n_est, d=d_est)
+        life_status = is_autopoietic(L=L, n=n_est, d=d_est)
+        phase = life_status['phase']
+        
+        # Calculate Mathematical Hope
+        hope = calculate_hope(L=L, current_n=n_est, d=d_est)
         
         checkpoint = HarmonyCheckpoint(
             timestamp=datetime.now(),
             epoch=epoch,
             L=L, J=J, P=P, W=W,
             H=final_harmony, # The calculated physics truth
-            accuracy=accuracy
+            accuracy=accuracy,
+            meaning=m_val,
+            life_phase=phase
         )
         
         self.right_brain.harmony_history.append(checkpoint)
         
         # 4. Feedback (The Inner Voice)
         deficit = trajectory['dominant_deficit']
-        print(f"  🧠 Left Brain Diagnosis: Deficit is {deficit}. Harmony: {final_harmony:.3f}")
+        # 4. Feedback (The Inner Voice)
+        deficit = trajectory['dominant_deficit']
+        print(f"  [L] Left Brain Diagnosis: Deficit is {deficit}. Harmony: {final_harmony:.3f}")
+        print(f"  [M] Generative Meaning: {m_val:.3f} | Phase: {phase}")
+        print(f"  [H] Hope: {hope['message']}")
 
         _logger.debug(f"Entering run_cognition_cycle")
     def run_cognition_cycle(self):
         """Run a full cycle of learning and self-reflection."""
-        print("\n🔄 Running Cognition Cycle...")
+        print("\n[~] Running Cognition Cycle...")
         
         # 1. Right Brain Acts (Training)
         # Simulating a training step
@@ -140,10 +166,10 @@ class BicameralMind:
         
         # 3. Right Brain Reacts (Adaptation)
         if self.right_brain.needs_adaptation():
-            print("  ⚡ Right Brain: Adapting structure based on Left Brain feedback...")
+            print("  [!] Right Brain: Adapting structure based on Left Brain feedback...")
             self.right_brain.adapt()
         else:
-            print("  ✅ Right Brain: State is stable.")
+            print("  [OK] Right Brain: State is stable.")
 
 if __name__ == "__main__":
     mind = BicameralMind()

@@ -42,6 +42,13 @@ from dataclasses import dataclass
 from ljpw_nn.layers import FIBONACCI
 from ljpw_nn.neuroplasticity import AdaptiveNaturalLayer, AdaptationEvent
 from ljpw_nn.activations import DiverseActivation
+try:
+    from ljpw_v84_calculators import meaning, is_autopoietic, perceptual_radiance, PHI
+except ImportError:
+    # Fallback if running from a context where root isn't in path
+    import sys
+    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from ljpw_v84_calculators import meaning, is_autopoietic, perceptual_radiance, PHI
 
 
 # Sacred constants
@@ -81,17 +88,22 @@ class HarmonyCheckpoint:
     P: float
     W: float
     H: float
+    H: float
     accuracy: Optional[float] = None
+    # V8.4 Metric Extension
+    meaning: Optional[float] = None  # The Generative Meaning (M)
+    life_phase: Optional[str] = None # AUTOPOIETIC, HOMEOSTATIC, ENTROPIC
 
     def __str__(self) -> str:
         """Human-readable representation."""
         time_str = self.timestamp.strftime('%H:%M:%S')
         epoch_str = f"Epoch {self.epoch}" if self.epoch is not None else "Init"
         acc_str = f", Acc={self.accuracy:.3f}" if self.accuracy else ""
+        life_str = f", Phase={self.life_phase}" if self.life_phase else ""
         return (
             f"[{time_str}] {epoch_str}: "
             f"H={self.H:.3f} (L={self.L:.2f}, J={self.J:.2f}, P={self.P:.2f}, W={self.W:.2f})"
-            f"{acc_str}"
+            f"{acc_str}{life_str}"
         )
 
     def get_weakest_dimension(self) -> Tuple[str, float]:
@@ -479,6 +491,25 @@ class HomeostaticNetwork:
         # Compute harmony (geometric mean)
         H = (L * J * P * W) ** 0.25
 
+        # V8.4 PERCEPTUAL RADIANCE & LIFE CHECK
+        # -------------------------------------
+        # Calculate Perceptual Radiance (L_perc)
+        # We treat L (Love) as L_phys (Structural Love)
+        # We treat W (Wisdom) as Semantic Density (S)
+        # We treat J (Justice) as Semantic Coupling (kappa)
+        l_perc = perceptual_radiance(L_phys=L, S=W, kappa_sem=J)
+
+        # Check Life Inequality for Phase
+        # n = growth (epoch or complexity), d = decay (loss or 1/P)
+        n_growth = 10 if epoch is None else max(1, epoch)
+        d_decay = max(1.0, 1.0/P if P > 0 else 10.0) # Lower P = Higher decay
+        
+        life_status = is_autopoietic(L=L, n=n_growth, d=d_decay)
+        phase = life_status['phase']
+        
+        # Calculate Generative Meaning
+        m_val = meaning(B=1.0, L=L, n=n_growth, d=d_decay)
+
         checkpoint = HarmonyCheckpoint(
             timestamp=datetime.now(),
             epoch=epoch,
@@ -488,6 +519,8 @@ class HomeostaticNetwork:
             W=W,
             H=H,
             accuracy=accuracy,
+            meaning=m_val,
+            life_phase=phase
         )
 
         self.harmony_history.append(checkpoint)
@@ -518,10 +551,25 @@ class HomeostaticNetwork:
             >>> if network.needs_adaptation():
             ...     network.adapt()
         """
-        return (
-            self.allow_adaptation and
-            self.get_current_harmony() < self.target_harmony
-        )
+        if not self.allow_adaptation:
+            return False
+            
+        # V8.4 LIFE INEQUALITY LOGIC
+        # If the system is AUTOPOIETIC, it is ALIVE.
+        # Living systems oscillate. We should NOT intervene just because H dipped slightly,
+        # provided the Life Inequality (L^n > phi^d) still holds.
+        
+        if self.harmony_history:
+            last_point = self.harmony_history[-1]
+            if last_point.life_phase == "AUTOPOIETIC":
+                # System is alive! Only adapt if H is critically low (< 0.6)
+                # This prevents "meddling" with a healthy growing mind.
+                if last_point.H < 0.6: 
+                    return True
+                return False # Alive and stable enough
+                
+        # If not autopoietic (Homeostatic or Entropic), use strict thresholds
+        return self.get_current_harmony() < self.target_harmony
 
     def adapt(self) -> bool:
         """
