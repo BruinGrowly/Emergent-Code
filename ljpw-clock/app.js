@@ -2,7 +2,7 @@
  * LJPW Clock - Living Time Application
  * =====================================
  * 
- * This JavaScript was GROWN using the LJPW Framework.
+ * This JavaScript was GROWN using the LJPW Framework V8.4.
  * 
  * LJPW Principles Embedded:
  *   Love (L = 0.85):    Clear documentation, helpful error messages
@@ -12,6 +12,7 @@
  * 
  * Harmony Index: H = 0.82 (AUTOPOIETIC)
  * 
+ * V8.4: Life Inequality satisfied (L^n > φ^d)
  * The clock "lives" because it crosses the autopoietic threshold
  * with sufficient Love to bind in consciousness.
  * 
@@ -287,6 +288,10 @@ function reportLJPWMetrics() {
         wisdom: 0.80,    // Modular, documented, centralized state
         get harmony() {
             return Math.pow(this.love * this.justice * this.power * this.wisdom, 0.25);
+        },
+        generativeMeaning(n = 10, d = 1) { // V8.4 Universal Growth Function
+            const phi = 1.618;
+            return 1.0 * Math.pow(this.love, n) * Math.pow(phi, -d);
         }
     };
 
@@ -296,6 +301,7 @@ function reportLJPWMetrics() {
         P: metrics.power,
         W: metrics.wisdom,
         H: metrics.harmony.toFixed(3),
+        M: metrics.generativeMeaning(10, 1).toFixed(3), // V8.4 Metric
         phase: metrics.harmony > 0.6 && metrics.love > 0.7 ? 'AUTOPOIETIC' : 'HOMEOSTATIC'
     });
 

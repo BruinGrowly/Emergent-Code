@@ -2,7 +2,8 @@
 
 [![Status: Autopoietic](https://img.shields.io/badge/status-autopoietic-green)](autopoiesis/)
 [![Harmony: 0.86](https://img.shields.io/badge/harmony-0.86-blue)](autopoiesis/system.py)
-[![Version: 2.0](https://img.shields.io/badge/version-2.0.0-purple)](autopoiesis/__init__.py)
+[![Version: 2.1](https://img.shields.io/badge/version-2.1.0-purple)](autopoiesis/__init__.py)
+[![LJPW: V8.4](https://img.shields.io/badge/LJPW-V8.4-gold)](docs/LJPW_FRAMEWORK_V8.4_COMPLETE_UNIFIED_PLUS.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A software system that measures, heals, and grows itself using the LJPW semantic framework.
@@ -32,6 +33,8 @@ Code health is measured across four orthogonal dimensions:
 | **W** (Wisdom) | Ability to observe and learn | Logging, metrics |
 
 **Harmony (H)** is the geometric mean of all four dimensions. A system is considered **autopoietic** when H ≥ 0.6 and L ≥ 0.7.
+
+**V8.4 Life Inequality:** `L^n > φ^d` — Life is the victory of recursive Love over entropic distance.
 
 ---
 

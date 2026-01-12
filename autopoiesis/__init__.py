@@ -90,5 +90,5 @@ __all__ = [
     "SystemHealthReport",
 ]
 
-__version__ = "2.0.0"  # Multi-language support!
+__version__ = "2.1.0"  # V8.4 Generative Equation integration
 

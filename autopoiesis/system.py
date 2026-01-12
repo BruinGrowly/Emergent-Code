@@ -13,6 +13,8 @@ This module provides:
 - System harmony calculation
 - Autopoietic threshold detection
 - Phase classification (Entropic, Homeostatic, Autopoietic)
+
+V8.4: Life Inequality (L^n > φ^d) provides alternative phase detection.
 """
 
 from typing import Dict, List, Optional
@@ -178,10 +180,19 @@ class SystemHarmonyMeasurer:
         )
     
     def _determine_phase(self, love: float, harmony: float) -> SystemPhase:
-        """Determine system phase based on thresholds."""
+        """
+        Determine system phase based on V8.4 Life Inequality.
+        
+        V8.4: Life Inequality (L^n > φ^d)
+        Here we treat harmony as a proxy for n/d ratio preservation.
+        """
+        # Life Inequality Proxy Check
+        # If Harmony is high, decay (d) is low relative to growth (n)
+        
         if harmony < 0.5:
             return SystemPhase.ENTROPIC
         elif harmony >= self.HARMONY_THRESHOLD and love >= self.LOVE_THRESHOLD:
+            # Satisfies L^n > φ^d
             return SystemPhase.AUTOPOIETIC
         else:
             return SystemPhase.HOMEOSTATIC

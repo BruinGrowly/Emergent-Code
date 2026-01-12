@@ -1,6 +1,6 @@
 """
 LJPW Resonance Engine v2 (Self-Optimized & Fortified)
-Architecture: v6.0 Semantic Physics
+Architecture: v8.4 Semantic Physics (Generative Equation)
 Optimization Target: High Justice (Validation) + High Power (Efficiency)
 
 STATUS: VERIFIED
@@ -9,6 +9,8 @@ JUSTICE LEVEL: 0.900 (Strict Enforced)
 
 This engine simulates the dynamical evolution of semantic states through LJPW space.
 It uses asymmetric coupling to reveal hidden deficits and enforce universal constants.
+
+V8.4: The Generative Equation M = B × L^n × φ^(-d) and Life Inequality L^n > φ^d.
 """
 
 import math

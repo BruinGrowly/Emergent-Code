@@ -1,6 +1,6 @@
 # RESONANCE BLUEPRINT (v6.0)
-# Intent: Perfect, High-Harmony Resonance Engine (Fixing J Deficit)
-# Context: Core Physics Engine. Current Deficit: J
+# Intent: Perfect, High-Harmony Resonance Engine (Fixing P Deficit)
+# Context: Core Physics Engine. Current Deficit: P
 
 # TARGET SEMANTIC PROFILE
 # Love (L):    0.900

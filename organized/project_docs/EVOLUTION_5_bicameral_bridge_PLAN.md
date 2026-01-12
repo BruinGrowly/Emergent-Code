@@ -1,10 +1,10 @@
 # Evolution Step 5: bicameral_bridge.py
 
-**Diagnosis:** Deficit in W
-**Harmony:** 0.572 -> 0.584
+**Diagnosis:** Deficit in P
+**Harmony:** 0.656 -> 0.596
 
 # RESONANCE BLUEPRINT (v6.0)
-# Intent: Evolve bicameral_bridge.py to fix W deficit
+# Intent: Evolve bicameral_bridge.py to fix P deficit
 # Context: Core System Evolution
 
 # TARGET SEMANTIC PROFILE

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 SPDX-License-Identifier: MIT
-LJPW Constant Codex (v6.0)
+LJPW Constant Codex (v8.4)
 
 This module contains the "Refined LJPW Constant Codex", harmonizing standard
 physical constants with the novel theoretical constants of the LJPW Framework.
@@ -10,9 +10,10 @@ It serves as the definitive source for:
 1. Standard Physics (verified anchors)
 2. Theoretical Constants (Consciousness, Bridges, Entropy)
 3. Resonance Mechanics (Coupling Matrices)
+4. V8.4 Generative Equation Constants (NEW)
 
-Date: December 2025
-Version: 6.0
+Date: January 2026
+Version: 8.4
 """
 
 # =============================================================================
@@ -72,6 +73,23 @@ G_R_REFINED    = 5.670e-8  # Refined Gravity
 LAMBDA_C       = 1.105e-52 # Cosmological Constant
 S_E_EVO        = 2.718e8   # Evolutionary Speed
 S_I_INFO       = 2.997e8   # Speed of Information (= c)
+
+# =============================================================================
+# 3b. V8.4 GENERATIVE EQUATION CONSTANTS (NEW)
+# =============================================================================
+# The Universal Growth Function: M = B × L^n × φ^(-d)
+
+import math
+PHI_PRECISE    = (1 + math.sqrt(5)) / 2  # 1.618033988749895 (precise φ)
+LN_PHI         = math.log(PHI_PRECISE)   # 0.4812118250596034
+
+# Life Inequality Thresholds (L^n > φ^d determines phase)
+AUTOPOIETIC_THRESHOLD = 1.1   # L^n/φ^d ratio for Autopoiesis
+HOMEOSTATIC_THRESHOLD = 0.9   # Lower boundary for Homeostatic phase
+ENTROPIC_THRESHOLD    = 0.9   # Below this → Entropic (decay dominates)
+
+# Perceptual Radiance: L_perc = L_phys × [1 + φ × S × κ_sem]
+# (No additional constants needed - uses PHI)
 
 # =============================================================================
 # 4. RESONANCE MECHANICS (Coupling Matrix)
@@ -134,6 +152,13 @@ def print_codex():
     for src in ['L', 'J', 'P', 'W']:
         row = RESONANCE_COUPLING[src]
         print(f"From {src}:   {row['L']:.1f}  {row['J']:.1f}  {row['P']:.1f}  {row['W']:.1f}")
+    
+    print("\n--- V8.4 GENERATIVE EQUATION ---")
+    print(f"Golden Ratio (precise): {PHI_PRECISE:.10f}")
+    print(f"ln(φ):                  {LN_PHI:.10f}")
+    print(f"Autopoietic Threshold:  >{AUTOPOIETIC_THRESHOLD:.1f}")
+    print(f"Homeostatic Threshold:  >{HOMEOSTATIC_THRESHOLD:.1f}")
+    print("M = B × L^n × φ^(-d)    [Universal Growth Function]")
     print("=" * 70)
 
 if __name__ == "__main__":

@@ -75,44 +75,44 @@ def validate_output(result: TestResult) -> list:
 
     # Common patterns expected in all experiments
     if "LJPW" in result.output:
-        validations.append(("✓ LJPW profiles generated", True))
+        validations.append(("[OK] LJPW profiles generated", True))
     else:
-        validations.append(("✗ No LJPW profiles found", False))
+        validations.append(("[FAIL] No LJPW profiles found", False))
 
     # Level-specific validations
     if "composition_discovery" in result.name:
         if "COMPOSITION DISCOVERY" in result.output:
-            validations.append(("✓ Composition discovery executed", True))
+            validations.append(("[OK] Composition discovery executed", True))
         if "Predicted profile" in result.output:
-            validations.append(("✓ Predictions made", True))
+            validations.append(("[OK] Predictions made", True))
 
     elif "level2" in result.name or "class_discovery" in result.name:
         if "Class" in result.output or "CLASS" in result.output:
-            validations.append(("✓ Class generation validated", True))
+            validations.append(("[OK] Class generation validated", True))
 
     elif "level3" in result.name:
         if "Module" in result.output or "MODULE" in result.output:
-            validations.append(("✓ Module composition validated", True))
+            validations.append(("[OK] Module composition validated", True))
 
     elif "level4" in result.name:
         if "Package" in result.output or "PACKAGE" in result.output:
-            validations.append(("✓ Package composition validated", True))
+            validations.append(("[OK] Package composition validated", True))
 
     elif "level5" in result.name:
         if "Application" in result.output or "APPLICATION" in result.output:
-            validations.append(("✓ Application composition validated", True))
+            validations.append(("[OK] Application composition validated", True))
 
     elif "level6" in result.name:
         if "Platform" in result.output or "PLATFORM" in result.output:
-            validations.append(("✓ Platform composition validated", True))
+            validations.append(("[OK] Platform composition validated", True))
 
     # Check for discovery
     if "Discovery" in result.output or "DISCOVERY" in result.output:
-        validations.append(("✓ Discovery engine active", True))
+        validations.append(("[OK] Discovery engine active", True))
 
     # Check for fractal validation
     if "FRACTAL" in result.output or "fractal" in result.output:
-        validations.append(("✓ Fractal validation present", True))
+        validations.append(("[OK] Fractal validation present", True))
 
     return validations
 
@@ -127,7 +127,7 @@ def print_summary(results: list):
     total = len(results)
 
     for result in results:
-        status = f"{GREEN}✓ PASS{RESET}" if result.passed else f"{RED}✗ FAIL{RESET}"
+        status = f"{GREEN}[OK] PASS{RESET}" if result.passed else f"{RED}[X] FAIL{RESET}"
         print(f"{status} {result.name:<40} {result.duration:.1f}s")
 
         if not result.passed and result.error:
@@ -137,9 +137,9 @@ def print_summary(results: list):
     print(f"Total: {passed}/{total} passed ({100*passed/total:.0f}%)")
 
     if passed == total:
-        print(f"{GREEN}✓ All experiments passed!{RESET}")
+        print(f"{GREEN}[OK] All experiments passed!{RESET}")
     else:
-        print(f"{YELLOW}⚠ {total - passed} experiments failed{RESET}")
+        print(f"{YELLOW}[!] {total - passed} experiments failed{RESET}")
 
     print("=" * 70)
 
@@ -168,9 +168,9 @@ def main():
         result = run_experiment(exp)
 
         if result.passed:
-            print(f"  {GREEN}✓{RESET} Completed in {result.duration:.1f}s")
+            print(f"  {GREEN}[OK]{RESET} Completed in {result.duration:.1f}s")
         else:
-            print(f"  {RED}✗{RESET} Failed: {result.error[:80]}")
+            print(f"  {RED}[X]{RESET} Failed: {result.error[:80]}")
 
         # Validate output
         validations = validate_output(result)

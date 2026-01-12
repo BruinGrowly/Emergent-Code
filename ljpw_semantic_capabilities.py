@@ -6,6 +6,8 @@ LJPW Semantic Capabilities Module
 This module extends the LJPW framework with advanced semantic analysis capabilities
 for analyzing complex systems through the lens of Love, Justice, Power, and Wisdom.
 
+V8.4 Upgrade: Includes The Generative Equation (M = B × L^n × φ^(-d))
+
 New concepts introduced:
 - Semantic Mass & Density: Weight and substance of entities
 - Semantic Drift: Movement through LJPW space over time
@@ -14,8 +16,8 @@ New concepts introduced:
 - Dimensional Combinations: Secondary/derived metrics
 - Fractal Profiling: Multi-scale LJPW analysis
 
-Version: 1.0.0
-Date: 2025-11-29
+Version: 8.4.0
+Date: 2026-01-12
 """
 
 import math
@@ -81,6 +83,8 @@ NATURAL_EQUILIBRIUM = LJPWVector(
     P=0.718282,  # e - 2 - Exponential
     W=0.693147   # ln(2) - Information Unit
 )
+
+PHI = 1.6180339887  # V8.4 Golden Ratio
 
 
 # =============================================================================
@@ -767,6 +771,30 @@ def full_semantic_diagnostic(entity: SemanticEntity) -> Dict:
         'volume': coords.volume(),
     }
 
+
+# =============================================================================
+# 8. V8.4 GENERATIVE EQUATION CAPABILITIES
+# =============================================================================
+
+def generative_meaning(B: float, L: float, n: int, d: float) -> float:
+    """
+    Calculate Meaning using the Universal Growth Function V8.4.
+    M = B × L^n × φ^(-d)
+    """
+    return B * (L ** n) * (PHI ** (-d))
+
+def life_inequality_check(L: float, n: int, d: float) -> str:
+    """
+    Check Life Inequality: L^n > φ^d
+    """
+    growth = L ** n
+    decay = PHI ** d
+    if growth > decay * 1.1: # Autopoietic Threshold
+        return "AUTOPOIETIC"
+    elif growth > decay * 0.9:
+        return "HOMEOSTATIC"
+    else:
+        return "ENTROPIC"
 
 # =============================================================================
 # EXAMPLE USAGE
