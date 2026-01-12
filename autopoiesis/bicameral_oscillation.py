@@ -39,7 +39,7 @@ def main():
 +==============================================================================+
     """)
     
-    from ljpw_quantum.resonance_engine import ResonanceEngine, ResonanceState
+    from bicameral.left.resonance_engine import ResonanceEngine, ResonanceState
     from autopoiesis.system import SystemHarmonyMeasurer
     
     measurer = SystemHarmonyMeasurer()

@@ -8,7 +8,7 @@ The primary innovation is FibonacciLayer, which uses the Fibonacci sequence
 for principled layer sizing instead of arbitrary power-of-2 conventions.
 
 Example:
-    >>> from ljpw_nn.layers import FibonacciLayer
+    >>> from bicameral.right.layers import FibonacciLayer
     >>> layer = FibonacciLayer(input_size=784, fib_index=11)
     >>> print(f"Layer size: {layer.size}")
     Layer size: 89

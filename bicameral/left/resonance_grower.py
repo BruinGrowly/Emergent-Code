@@ -10,8 +10,8 @@ from typing import Dict, Optional, List
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ljpw_quantum.resonance_engine import ResonanceEngine, ResonanceState
-from ljpw_quantum.ice_container import IceContainer, IceBounds
+from bicameral.left.resonance_engine import ResonanceEngine, ResonanceState
+from bicameral.left.ice_container import IceContainer, IceBounds
 from ljpw_constants import RESONANCE_COUPLING
 
 class ResonanceGrower:

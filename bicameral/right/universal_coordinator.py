@@ -34,9 +34,9 @@ import os
 if __name__ == '__main__':
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ljpw_nn.lov_coordination import LOVNetwork
-from ljpw_nn.metacognition import MetaCognitiveLayer
-from ljpw_nn.principle_managers import (
+from bicameral.right.lov_coordination import LOVNetwork
+from bicameral.right.metacognition import MetaCognitiveLayer
+from bicameral.right.principle_managers import (
     CoherenceManager,
     SovereigntyManager,
     SemanticGrounding,

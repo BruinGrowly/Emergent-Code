@@ -11,7 +11,7 @@ with natural approaches. It uses:
 This serves as a baseline to demonstrate the advantage of natural design.
 
 Example:
-    >>> from ljpw_nn.baseline import TraditionalMNIST
+    >>> from bicameral.right.baseline import TraditionalMNIST
     >>> model = TraditionalMNIST()
     >>> model.fit(X_train, y_train, epochs=10)
     >>> accuracy = model.evaluate(X_test, y_test)

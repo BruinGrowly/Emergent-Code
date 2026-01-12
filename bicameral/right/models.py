@@ -10,7 +10,7 @@ This module provides high-level model classes that combine natural principles:
 These models are ready to use out-of-the-box and optimized for H > 0.7.
 
 Example:
-    >>> from ljpw_nn import NaturalMNIST
+    >>> from bicameral.right import NaturalMNIST
     >>> model = NaturalMNIST()
     >>> model.fit(X_train, y_train, epochs=10)
     >>> accuracy = model.evaluate(X_test, y_test)

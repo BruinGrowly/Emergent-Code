@@ -55,7 +55,7 @@ def bicameral_grow_calculator():
     print("\n[LEFT BRAIN] Calculating semantic target profile...")
     print("-" * 60)
     
-    from ljpw_quantum.resonance_grower import ResonanceGrower
+    from bicameral.left.resonance_grower import ResonanceGrower
     
     intent = "Create a beautiful, precise scientific calculator"
     context = "Web application with advanced mathematical functions"

@@ -16,7 +16,7 @@ These are fundamental trade-offs found in all complex adaptive systems,
 from biological neurons to ecosystems to social structures.
 
 Example:
-    >>> from ljpw_nn.polarity_management import StabilityPlasticityBalance
+    >>> from bicameral.right.polarity_management import StabilityPlasticityBalance
     >>> balance = StabilityPlasticityBalance(network)
     >>> # Adjust learning rate based on balance
     >>> lr = balance.get_adaptive_learning_rate(base_lr=0.01)

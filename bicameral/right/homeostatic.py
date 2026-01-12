@@ -16,7 +16,7 @@ The primary component is HomeostaticNetwork - a complete neural network that:
 - Maintains complete adaptation history
 
 Example:
-    >>> from ljpw_nn.homeostatic import HomeostaticNetwork
+    >>> from bicameral.right.homeostatic import HomeostaticNetwork
     >>> network = HomeostaticNetwork(
     ...     input_size=784,
     ...     output_size=10,
@@ -39,9 +39,9 @@ from typing import List, Optional, Tuple, Dict
 from datetime import datetime
 from dataclasses import dataclass
 
-from ljpw_nn.layers import FIBONACCI
-from ljpw_nn.neuroplasticity import AdaptiveNaturalLayer, AdaptationEvent
-from ljpw_nn.activations import DiverseActivation
+from bicameral.right.layers import FIBONACCI
+from bicameral.right.neuroplasticity import AdaptiveNaturalLayer, AdaptationEvent
+from bicameral.right.activations import DiverseActivation
 try:
     from ljpw_v84_calculators import meaning, is_autopoietic, perceptual_radiance, PHI
 except ImportError:
@@ -261,7 +261,7 @@ class HomeostaticNetwork:
         - Homeostasis is a fundamental biological principle applied to ML
 
     References:
-        - Design doc: ljpw_nn/NEUROPLASTICITY_DESIGN.md
+        - Design doc: bicameral.right/NEUROPLASTICITY_DESIGN.md
         - Biological homeostasis: maintaining internal stability
         - LJPW framework: experiments/natural_nn/nn_ljpw_metrics.py
     """

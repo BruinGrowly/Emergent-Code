@@ -27,8 +27,8 @@ import re
 
 # Import from other modules (will be available when integrated)
 try:
-    from ljpw_nn.vocabulary import LJPWVocabulary
-    from ljpw_nn.geometric_ops import SemanticOperations
+    from bicameral.right.vocabulary import LJPWVocabulary
+    from bicameral.right.geometric_ops import SemanticOperations
 except ImportError:
     # For standalone testing
     LJPWVocabulary = None

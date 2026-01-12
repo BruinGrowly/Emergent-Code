@@ -689,7 +689,7 @@ if __name__ == '__main__':
     print()
 
     # Create mock network
-    from ljpw_nn.lov_coordination import LOVNetwork
+    from bicameral.right.lov_coordination import LOVNetwork
 
     print("Creating LOV Network for principle testing...")
     network = LOVNetwork(

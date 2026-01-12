@@ -14,7 +14,7 @@ The primary components are:
 - HarmonyGuidedPruning: Prune connections based on harmony impact
 
 Example:
-    >>> from ljpw_nn.neuroplasticity import AdaptiveNaturalLayer
+    >>> from bicameral.right.neuroplasticity import AdaptiveNaturalLayer
     >>> layer = AdaptiveNaturalLayer(input_size=784, fib_index=11)
     >>> # Layer can grow if harmony improves
     >>> if layer.should_grow(current_H, target_H=0.75):
@@ -32,7 +32,7 @@ import numpy as np
 from typing import Optional, List, Dict, Tuple
 from datetime import datetime
 from dataclasses import dataclass
-from ljpw_nn.layers import FibonacciLayer, FIBONACCI
+from bicameral.right.layers import FibonacciLayer, FIBONACCI
 
 
 @dataclass
@@ -202,7 +202,7 @@ class AdaptiveNaturalLayer(FibonacciLayer):
         - This is genuinely novel - nobody else uses H as adaptation signal
 
     References:
-        - Design doc: ljpw_nn/NEUROPLASTICITY_DESIGN.md
+        - Design doc: bicameral.right/NEUROPLASTICITY_DESIGN.md
         - Homeostatic regulation in biology: maintaining internal stability
         - LJPW framework: experiments/natural_nn/nn_ljpw_metrics.py
     """

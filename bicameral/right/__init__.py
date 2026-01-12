@@ -15,7 +15,7 @@ Traditional ML optimizes for accuracy (P only).
 We optimize for harmony (H = √[4]{L·J·P·W}).
 
 Example:
-    >>> from ljpw_nn import FibonacciLayer, measure_harmony
+    >>> from bicameral.right import FibonacciLayer, measure_harmony
     >>> layer = FibonacciLayer(input_size=784, fib_index=11)
     >>> scores = measure_harmony(layer)
     >>> print(f"Harmony: {scores.H:.2f}")

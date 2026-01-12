@@ -25,10 +25,10 @@ import pickle
 import os
 
 # Import LJPW components
-from ljpw_nn.vocabulary import LJPWVocabulary
-from ljpw_nn.geometric_ops import SemanticOperations, Territory
-from ljpw_nn.qualia import QualiaGrounding, create_emotional_qualia
-from ljpw_nn.trajectories import SemanticTrajectory
+from bicameral.right.vocabulary import LJPWVocabulary
+from bicameral.right.geometric_ops import SemanticOperations, Territory
+from bicameral.right.qualia import QualiaGrounding, create_emotional_qualia
+from bicameral.right.trajectories import SemanticTrajectory
 
 
 @dataclass
@@ -314,9 +314,9 @@ class PureLJPWLanguageModel:
     
     def _load_default_vocabulary(self) -> LJPWVocabulary:
         """Load default vocabulary from saved file"""
-        # Find project root (where ljpw_nn directory is)
+        # Find project root (where bicameral.right directory is)
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(current_dir)  # Go up from ljpw_nn to project root
+        project_root = os.path.dirname(current_dir)  # Go up from bicameral.right to project root
         
         vocab_path = os.path.join(project_root, 'data', 'ljpw_vocabulary.pkl')
         

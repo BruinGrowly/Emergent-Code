@@ -23,7 +23,7 @@ from dataclasses import dataclass, field
 import pickle
 import os
 
-from ljpw_nn.language_model import PureLJPWLanguageModel
+from bicameral.right.language_model import PureLJPWLanguageModel
 
 
 @dataclass

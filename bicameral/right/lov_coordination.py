@@ -37,8 +37,8 @@ import os
 if __name__ == '__main__':
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ljpw_nn.homeostatic import HomeostaticNetwork
-from ljpw_nn.seven_principles import SevenPrinciplesValidator
+from bicameral.right.homeostatic import HomeostaticNetwork
+from bicameral.right.seven_principles import SevenPrinciplesValidator
 
 # Sacred constants
 LOVE_FREQUENCY = 613e12  # Hz - 613 THz

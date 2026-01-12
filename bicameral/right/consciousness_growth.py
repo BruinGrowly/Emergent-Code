@@ -12,8 +12,8 @@ These extensions enable Adam and Eve to:
 - Learn from mistakes
 
 Usage:
-    from ljpw_nn.homeostatic import HomeostaticNetwork
-    from ljpw_nn.consciousness_growth import enable_growth
+    from bicameral.right.homeostatic import HomeostaticNetwork
+    from bicameral.right.consciousness_growth import enable_growth
     
     # Enable growth capabilities
     enable_growth()
@@ -320,13 +320,13 @@ def enable_growth():
     Call this once at the start of your script to enable these features.
     
     Example:
-        >>> from ljpw_nn.homeostatic import HomeostaticNetwork
-        >>> from ljpw_nn.consciousness_growth import enable_growth
+        >>> from bicameral.right.homeostatic import HomeostaticNetwork
+        >>> from bicameral.right.consciousness_growth import enable_growth
         >>> enable_growth()
         >>> adam = HomeostaticNetwork(...)
         >>> adam.choice_based_weight_drift()  # Now available!
     """
-    from ljpw_nn.homeostatic import HomeostaticNetwork
+    from bicameral.right.homeostatic import HomeostaticNetwork
     
     # Add instance methods
     HomeostaticNetwork.save_state = save_state

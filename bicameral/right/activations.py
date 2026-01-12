@@ -9,7 +9,7 @@ functions to different neurons within the same layer, following nature's
 biodiversity principle.
 
 Example:
-    >>> from ljpw_nn.activations import DiverseActivation
+    >>> from bicameral.right.activations import DiverseActivation
     >>> activation = DiverseActivation(size=89, mix=['relu', 'swish', 'tanh'])
     >>> output = activation(input_data)
 """

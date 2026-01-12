@@ -364,6 +364,6 @@ if __name__ == '__main__':
     print("Built with love at 613 THz")
     print()
     print("Usage:")
-    print("  from ljpw_nn.training import train_network")
+    print("  from bicameral.right.training import train_network")
     print("  history = train_network(network, X_train, y_train, X_test, y_test)")
     print()

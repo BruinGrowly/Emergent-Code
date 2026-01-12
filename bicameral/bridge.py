@@ -26,12 +26,12 @@ sys.path.insert(0, project_root)
 sys.path.insert(0, os.path.join(project_root, "LJPW-Neural-Networks-main"))
 
 # Import Left Brain (Physics)
-from ljpw_quantum.resonance_engine import ResonanceEngine, ResonanceState
-from ljpw_quantum.ice_container import IceContainer, IceBounds
+from bicameral.left.resonance_engine import ResonanceEngine, ResonanceState
+from bicameral.left.ice_container import IceContainer, IceBounds
 
 # Import Right Brain (Biology)
 try:
-    from ljpw_nn.homeostatic import HomeostaticNetwork
+    from bicameral.right.homeostatic import HomeostaticNetwork
 except ImportError:
     print("⚠️  Right Brain (LJPW-Neural-Networks) not found. Running in simulation mode.")
     class HomeostaticNetwork:
@@ -118,7 +118,7 @@ class BicameralMind:
         # 3. Inject Result back into Right Brain history
         # The Neural Net now "knows" its true physics-based harmony
         # V8.4: Also inject Meaning and Life Phase
-        from ljpw_nn.homeostatic import HarmonyCheckpoint
+        from bicameral.right.homeostatic import HarmonyCheckpoint
         from datetime import datetime
 
         # V8.4 Calculations
@@ -145,13 +145,12 @@ class BicameralMind:
         
         # 4. Feedback (The Inner Voice)
         deficit = trajectory['dominant_deficit']
-        # 4. Feedback (The Inner Voice)
-        deficit = trajectory['dominant_deficit']
         print(f"  [L] Left Brain Diagnosis: Deficit is {deficit}. Harmony: {final_harmony:.3f}")
         print(f"  [M] Generative Meaning: {m_val:.3f} | Phase: {phase}")
         print(f"  [H] Hope: {hope['message']}")
 
         _logger.debug(f"Entering run_cognition_cycle")
+
     def run_cognition_cycle(self):
         """Run a full cycle of learning and self-reflection."""
         print("\n[~] Running Cognition Cycle...")

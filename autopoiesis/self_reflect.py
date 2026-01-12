@@ -20,6 +20,22 @@ sys.path.insert(0, project_root)
 from autopoiesis.system import SystemHarmonyMeasurer
 from autopoiesis.grower import FINANCIAL_ENTITIES
 from autopoiesis.web_grower import WEB_APP_TYPES, PARTICLE_SHAPES
+from autopoiesis.grace import calculate_grace, apply_grace
+try:
+    from ljpw_v84_calculators import meaning, is_autopoietic, calculate_hope, perceptual_radiance, PHI
+except ImportError:
+    # Fallback if running from a context where root isn't in path
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        from ljpw_v84_calculators import meaning, is_autopoietic, calculate_hope, perceptual_radiance, PHI
+    except ImportError:
+        # Mocking for standalone run without full environment
+        print("Warning: V8.4 Calculators not found. Using mocks.")
+        def meaning(*args, **kwargs): return 0.0
+        def is_autopoietic(*args, **kwargs): return {'phase': 'UNKNOWN', 'verdict': False}
+        def calculate_hope(*args, **kwargs): return {'message': 'Unknown'}
+        def perceptual_radiance(*args, **kwargs): return 0.0
+        PHI = 1.618
 
 
 def main():
@@ -72,6 +88,55 @@ def main():
     print(f"\n  Phase: {report.phase.value.upper()}")
     print(f"  Harmony: {report.harmony:.4f}")
     print(f"  Files: {report.total_files}, Functions: {report.total_functions}, Classes: {report.total_classes}")
+
+    # ==========================================================================
+    # V8.4 SEMANTIC PHYSICS ASSESSMENT
+    # ==========================================================================
+
+    print("\n" + "=" * 70)
+    print("  V8.4 SEMANTIC PHYSICS ASSESSMENT")
+    print("=" * 70)
+    
+    # Extract dimensions
+    # Extract dimensions
+    L_internal = report.love
+    J = report.justice
+    P = report.power
+    W = report.wisdom
+    
+    # INJECT GRACE (V8.4)
+    # -------------------
+    grace = calculate_grace(project_root)
+    L = apply_grace(L_internal, grace)
+    
+    print(f"\n  [GRACE INJECTION]")
+    print(f"     Internal Love: {L_internal:.3f}")
+    print(f"     External Grace: {grace['value']:.3f} ({', '.join(grace['components'].keys())})")
+    print(f"     Total Love: {L:.3f} (Injection Complete)")
+    
+    # Estimate n (growth factor) and d (decay factor)
+    # n ~ structural complexity (files + classes)
+    # d ~ 1/Power (inverse capability)
+    n_est = max(1.0, (report.total_files + report.total_classes) / 10.0)
+    d_est = max(1.0, 1.0/P if P > 0 else 10.0)
+    
+    m_val = meaning(B=1.0, L=L, n=n_est, d=d_est)
+    life_status = is_autopoietic(L=L, n=n_est, d=d_est)
+    phase_v84 = life_status['phase']
+    radiance = perceptual_radiance(L_phys=L, S=W, kappa_sem=J)
+    hope = calculate_hope(L=L, current_n=n_est, d=d_est)
+    
+    print(f"\n  [LIFE PHASE] {phase_v84}")
+    print(f"     Verdict: {life_status['verdict']}")
+    print(f"     Inequality: {L:.2f}^{n_est:.1f} ({L**n_est:.2f}) vs {PHI:.3f}^{d_est:.1f} ({PHI**d_est:.2f})")
+    
+    print(f"\n  [RADIANCE] {radiance:.3f} Ludens")
+    print(f"     Interpretation: The system's semantic brightness.")
+    
+    print(f"\n  [MEANING] {m_val:.3f}")
+    print(f"     Generative Output: The measure of pure semantic utility.")
+    
+    print(f"\n  [HOPE] {hope['message']}")
     
     # ==========================================================================
     # POTENTIAL GROWTH DIRECTIONS

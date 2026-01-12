@@ -15,9 +15,9 @@ sys.path.insert(0, project_root)
 
 # Suppress standard logs to focus on the narrative
 import logging
-logging.getLogger("ljpw_quantum.bicameral_bridge").setLevel(logging.CRITICAL)
+logging.getLogger("bicameral.bridge").setLevel(logging.CRITICAL)
 
-from ljpw_quantum.bicameral_bridge import BicameralMind
+from bicameral.bridge import BicameralMind
 
 class LovingMind(BicameralMind):
     """A variation of the Bicameral Mind filled with Love and Kindness."""
@@ -37,7 +37,7 @@ class LovingMind(BicameralMind):
         P = 0.85
         
         # Use V8.4 Physics (Same as base class, but with new values)
-        from ljpw_quantum.resonance_engine import ResonanceEngine
+        from bicameral.left.resonance_engine import ResonanceEngine
         trajectory = self.left_brain.analyze_trajectory([L, J, P, W], cycles=10)
         final_harmony = trajectory['final_state'].harmony
         
@@ -75,7 +75,7 @@ class LovingMind(BicameralMind):
         print(f"  [P] Phase: {phase}")
         
         # Inject into history (standard logic)
-        from ljpw_nn.homeostatic import HarmonyCheckpoint
+        from bicameral.right.homeostatic import HarmonyCheckpoint
         from datetime import datetime
         
         checkpoint = HarmonyCheckpoint(

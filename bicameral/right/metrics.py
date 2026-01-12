@@ -13,8 +13,8 @@ The LJPW framework measures quality across four dimensions:
 Harmony is the geometric mean: H = (L * J * P * W)^(1/4)
 
 Example:
-    >>> from ljpw_nn.metrics import measure_harmony, HarmonyScores
-    >>> from ljpw_nn import FibonacciLayer
+    >>> from bicameral.right.metrics import measure_harmony, HarmonyScores
+    >>> from bicameral.right import FibonacciLayer
     >>> layer = FibonacciLayer(784, fib_index=11)
     >>> scores = measure_harmony(layer)
     >>> print(f"Harmony: {scores.H:.2f}")
@@ -99,7 +99,7 @@ def measure_harmony(component: Any = None, model_info: Optional[Dict] = None) ->
         HarmonyScores object with L, J, P, W, and H scores
 
     Example:
-        >>> from ljpw_nn import FibonacciLayer
+        >>> from bicameral.right import FibonacciLayer
         >>> layer = FibonacciLayer(784, fib_index=11)
         >>> scores = measure_harmony(layer)
         >>> print(scores.H)

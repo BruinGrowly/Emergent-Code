@@ -31,7 +31,7 @@ import os
 if __name__ == '__main__':
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ljpw_nn.layers import FibonacciLayer
+from bicameral.right.layers import FibonacciLayer
 
 # Sacred constants
 GOLDEN_RATIO = 1.618033988749895
@@ -585,7 +585,7 @@ if __name__ == '__main__':
     print()
 
     # Create mock network for testing
-    from ljpw_nn.lov_coordination import LOVNetwork
+    from bicameral.right.lov_coordination import LOVNetwork
 
     print("Creating LOV Network for meta-cognitive monitoring...")
     network = LOVNetwork(
