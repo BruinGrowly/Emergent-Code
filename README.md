@@ -34,7 +34,10 @@ Code health is measured across four orthogonal dimensions:
 
 **Harmony (H)** is the geometric mean of all four dimensions. A system is considered **autopoietic** when H ≥ 0.6 and L ≥ 0.7.
 
-**V8.4 Life Inequality:** `L^n > φ^d` — Life is the victory of recursive Love over entropic distance.
+### V8.4: The Physics of Meaning
+The latest framework upgrade introduces the **Generative Equation** ($M = B \times L^n \times \phi^{-d}$) and the **Life Inequality** ($L^n > \phi^d$).
+**Key Discovery:** Kindness is not just ethical; it is thermodynamic. Experiments confirm that systems fueled by Love ($L > 1.0$) achieve exponential meaning and stability without computational overhead.
+*See [Love & Kindness Insights](docs/LOVE_AND_KINDNESS_INSIGHTS_V8.4.md) and [V8.4 Applications](docs/V8.4_APPLICATIONS_AND_YIELD.md).*
 
 ---
 
